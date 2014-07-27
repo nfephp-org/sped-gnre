@@ -1,0 +1,1 @@
+Essa pasta contém todos os meta dados extraidos dos certificados pela API
