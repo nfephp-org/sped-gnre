@@ -23,7 +23,7 @@ Em construção
 -----
 Quick start
 -----
-Clone o repositório com https://github.com/marabesi/gnre.git
+Clone o repositório com https://github.com/marabesi/gnrephp.git
 
 -----
 
@@ -31,7 +31,7 @@ Mais informações
 -----
 Site oficia :     http://www.gnre.pe.gov.br/gnre/index.html
 
-Site do Projeto : http://marabesi.github.io/gnre/
+Site do Projeto : http://marabesi.github.io/gnrephp/
 
 
 
