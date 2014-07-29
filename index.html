@@ -13,15 +13,15 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Gnrephp by marabesi</title>
+    <title>GNRE PHP by marabesi</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>Gnrephp</h1>
+        <h1>Gnre PHP</h1>
         <h2>API para emissão de guias GNRE para a SEFAZ</h2>
-        <a href="https://github.com/marabesi/gnrephp" class="button"><small>View project on</small>GitHub</a>
+        <a href="https://github.com/marabesi/gnrephp" class="button"><small>Veja o projeto no</small>GitHub</a>
       </div>
     </header>
 
@@ -29,36 +29,40 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Bem vindo ao Projeto GNRE PHP.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>O Projeto GNRE PHP surgiu da necessidade da emissão de guias de pagamentos de tributos automaticamente pelos clientes que já possuiam sistemas legados em PHP, assim veio a idéia de implementar uma API que toda a comunidade pode usar e contribuir.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<pre><code>$ mkdir gnre
+$ cd gnre
+$ git clone https://github.com/marabesi/gnrephp.git ./</code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>E para utilizar a biblioteca em seu projeto pessoal são os mesmos passos! Fácil não?</p>
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>O que está rolando?</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>28/07/2014 - Foram iniciados os testes com TDD antes do lançamento  da versão 1.0-0.0. O repositório do github será atualizado em breve com os códigos-fontes das classes utilizando o PHPUnit!</p>                        
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Primeiros passos</h3>
+<p>ATENÇÃO :  Para que a API funcione corretamente é necessário possuir um certificado A3. Para maiores informações consulte o SEFAZ de seu estado.</p>
+<p>Em breve os primeiros passos necessários para a emissão da guia GNRE através da API, de uma forma rápida e simples e em menos de 5 minutos !.</p>            
+            
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Inspirações</h3>
+
+<p>Uma das maiores inspirações para o projeto ser realizado foi o <a href="https://github.com/nfephp-org/nfephp" target="_blank">NF-e PHP</a> que possui uma grande quantidade de usuários utilizando-a e contribuindo.</p>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Autores e Contribuidores</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Autor e mantedor <a href="http://twitter.com/MatheusMarabesi" class="user-mention" target="_blank">@MatheusMarabesi</a>.</p>
+<p>Deseja ser um contribuidor ? Mande um pull request !</p>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Suporte/Contato</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Deseja enviar alguma sugestão ou crítica ? Mande um e-mail para <a href="mailto:support@github.com">matheus.marabesi@gmail.com</a>.</p>
         </section>
 
         <aside id="sidebar">
@@ -78,6 +82,15 @@ $ git checkout gh-pages
       </div>
     </div>
 
-  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53238447-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
   </body>
 </html>
