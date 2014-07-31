@@ -27,7 +27,7 @@ use Gnre\Sefaz\ObjetoSefaz;
  * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 abstract class LoteGnre implements ObjetoSefaz {
 
@@ -41,7 +41,7 @@ abstract class LoteGnre implements ObjetoSefaz {
      * Método utilizado para armazenar a guia desejada na classe
      * @param \Gnre\Sefaz\Guia  $guia  Para armazenar uma guia com sucesso é necessário
      * enviar um objeto do tipo Guia
-     * @since 1.0-0.0
+     * @since 1.0.0
      */
     public function addGuia(Guia $guia) {
         $this->guias[] = $guia;
@@ -50,7 +50,7 @@ abstract class LoteGnre implements ObjetoSefaz {
     /**
      * Método utilizado para retornar todas as guias existentes no lote
      * @return array
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function getGuias() {
         return $this->guias;
@@ -59,7 +59,7 @@ abstract class LoteGnre implements ObjetoSefaz {
     /**
      * Método utilizado para retornar uma guia específica existente no lote
      * @return Guia
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function getGuia($index) {
         return $this->guias[$index];

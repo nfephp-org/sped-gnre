@@ -27,7 +27,7 @@ use Gnre\Exception\UndefinedProperty;
  * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 class Guia {
 
@@ -269,7 +269,7 @@ class Guia {
      * @param  string  $property  Uma propriedade válida dessa classe
      * @throws UndefinedProperty  Caso a propriedade desejada não exista
      * @return string  Caso a propriedade exista retorna o seu valor
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function __get($property) {
         if ($this->verifyProperty($property)) {
@@ -284,7 +284,7 @@ class Guia {
      * @param  mixed  $value  O valor desejado para ser setado no atributo desejado (string, boolean, int, Object ou array)
      * @throws UndefinedProperty  Caso o atributo desejada não exista
      * @return boolean Retorna true caso seja setado o valor para o atributo desejado
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function __set($property, $value) {
         if ($this->verifyProperty($property)) {
@@ -299,7 +299,7 @@ class Guia {
      * @param  string $property  O nome existente de um atributo existente na classe
      * @return boolean  Retorna true caso o atributo desejado exista na classe
      * @throws UndefinedProperty  Caso o atributo desejada não exista na classe
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     private function verifyProperty($property) {
         if (!property_exists($this, $property)) {

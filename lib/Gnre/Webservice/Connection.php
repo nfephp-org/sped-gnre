@@ -27,7 +27,7 @@ use Gnre\Configuration\Setup;
  * @subpackage  webservice
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 class Connection {
 
@@ -44,7 +44,7 @@ class Connection {
      * @param  \Gnre\Configuration\Interfaces\Setup $setup
      * @param  $headers  array
      * @param  $data  string
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function __construct(Setup $setup, $headers, $data) {
         $this->options = array(
@@ -72,7 +72,7 @@ class Connection {
     /**
      * Realiza a requisição ao webservice desejado através do curl() do php
      * @param  string  $url  String com a URL que será enviada a requisição
-     * @since  1.0-0.0
+     * @since  1.0.0
      * @return string|boolean  Caso a requisição não seja feita com sucesso false caso contrário uma string com XML formatado
      */
     public function doRequest($url) {

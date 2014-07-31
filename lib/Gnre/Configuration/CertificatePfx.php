@@ -28,7 +28,7 @@ use Gnre\Exception\UnableToWriteFile;
  * @subpackage  configuration
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 class CertificatePfx {
 
@@ -71,7 +71,7 @@ class CertificatePfx {
      * @param  string $nameCertificate  O nome do certificado que será utilizado para extrair os dados
      * @param  string $password  A senha do certificado enviado
      * @throws Gnre\Exception\UnreachableFile  Caso não seja encontrado o arquivo informado
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function __construct($pathCertificate, $nameCertificate, $password) {
         if (!file_exists($pathCertificate . $nameCertificate)) {
@@ -95,7 +95,7 @@ class CertificatePfx {
      * o mesmo nome do certificado com a extensão .pem por exemplo: certificado1.pfx_priKEY.pem
      * @throws Gnre\Exception\UnableToWriteFile Se a pasta de destino não tiver permissão para escrita
      * @return string  Retorna uma string com o caminho e o nome do arquivo que foi criado
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function getPrivateKey() {
         $privatekey = $this->nameCertificate . '_priKEY.pem';
@@ -112,7 +112,7 @@ class CertificatePfx {
      * o mesmo nome do certificado com a extensão .pem por exemplo: certificado1.pfx.pem
      * @throws Gnre\Exception\UnableToWriteFile Se a pasta de destino não tiver permissão para escrita
      * @return string Retorna uma string com o caminho e o nome do arquivo que foi criado
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function getCertificatePem() {
         $certificatePem = $this->nameCertificate . '.pem';

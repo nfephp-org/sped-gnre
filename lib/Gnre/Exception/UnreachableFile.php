@@ -23,14 +23,14 @@ namespace Gnre\Exception;
  * @subpackage  exception
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 class UnreachableFile extends \Exception {
 
     /**
      * Define uma mensagem padrão caso a exceção seja lançada
      * @param  string  $file O nome do arquivo que se deseja utilizar
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function __construct($file) {
         parent::__construct('Não foi possível encontrar o arquivo ' . $file, NULL, NULL);

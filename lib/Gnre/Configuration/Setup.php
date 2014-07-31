@@ -28,7 +28,7 @@ namespace Gnre\Configuration;
  * @abstract
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 abstract class Setup {
 
@@ -36,7 +36,7 @@ abstract class Setup {
      * Método utilizado para retornar o número do ambiente em que se deseja
      * realizar a conexão com o webservice da sefaz 1 - Produção 2 - Homologação
      * @abstract
-     * @since  1.0-0.0
+     * @since  1.0.0
      * @return int
      */
     abstract function getEnvironment();
@@ -45,7 +45,7 @@ abstract class Setup {
      * Método utilizado para retornar o diretório onde se encontram os certificados
      * que seram utilizados
      * @abstract
-     * @since  1.0-0.0
+     * @since  1.0.0
      * @return string 
      */
     abstract function getCertificateDirectory();
@@ -54,7 +54,7 @@ abstract class Setup {
      * Retorna o nome do certificado que será usado junto com sua extenção por exemplo
      * certificado_teste.pfx
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string 
      */
     abstract function getCertificateName();
@@ -62,7 +62,7 @@ abstract class Setup {
     /**
      * Retorna a senha do certificado 
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string 
      */
     abstract function getCertificatePassword();
@@ -70,7 +70,7 @@ abstract class Setup {
     /**
      * Retorna a URL base em que a api se encontra por exemplo http://gnre-api/
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string 
      */
     abstract function getBaseUrl();
@@ -78,7 +78,7 @@ abstract class Setup {
     /**
      * Retorna o CNPJ da empresa em que que realizará a emissão da guia para a sefaz
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  int
      */
     abstract function getCertificateCnpj();
@@ -86,7 +86,7 @@ abstract class Setup {
     /**
      * Retorna o IP do proxy caso a API estaja atrás de um por exemplo 192.168.0.1
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string 
      */
     abstract function getProxyIp();
@@ -94,7 +94,7 @@ abstract class Setup {
     /**
      * Retorna a porta do servidor de proxy por exemplo 3128 (squid)
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return   int
      */
     abstract function getProxyPort();
@@ -102,7 +102,7 @@ abstract class Setup {
     /**
      * Retorna o usuário do servidor de proxy caso seja necessário a indentificação
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string
      */
     abstract function getProxyUser();
@@ -110,7 +110,7 @@ abstract class Setup {
     /**
      * Retorna a senha do usuário do servidor de proxy caso seja necessário a indentificação
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string
      */
     abstract function getProxyPass();
@@ -119,7 +119,7 @@ abstract class Setup {
      * Método que retorna o caminho e o nome do arquivo privado extraido do certificado por exemplo
      * /var/www/chave_privada.pem
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string
      */
     abstract function getPrivateKey();
@@ -128,7 +128,7 @@ abstract class Setup {
      * Método que retorna o caminho e o nome do arquivo extraido do certificado por exemplo
      * /var/www/certificado_pem.pem
      * @abstract
-     * @since   1.0-0.0
+     * @since   1.0.0
      * @return  string
      */
     abstract function getCertificatePemFile();

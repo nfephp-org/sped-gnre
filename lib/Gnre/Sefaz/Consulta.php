@@ -25,7 +25,7 @@ use Gnre\Sefaz\ConsultaGnre;
  * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 class Consulta extends ConsultaGnre {
 

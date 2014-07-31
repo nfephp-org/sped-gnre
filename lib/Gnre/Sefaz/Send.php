@@ -29,7 +29,7 @@ use Gnre\Sefaz\ObjetoSefaz;
  * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0-0.0
+ * @version     1.0.0
  */
 class Send {
 
@@ -44,7 +44,7 @@ class Send {
      * Armazena as configurações padrões em um atributo interno da classe para ser utilizado 
      * posteriormente pela classe
      * @param  \Gnre\Configuration\Interfaces\Setup $setup Configuraçoes definidas pelo usuário
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function __construct(Setup $setup) {
         $this->setup = $setup;
@@ -54,7 +54,7 @@ class Send {
      * Obtém os dados necessários e realiza a conexão com o webservice da sefaz
      * @param  $objetoSefaz  Uma classe que implemente a interface ObjectoSefaz 
      * @return string|boolean  Caso a conexão seja feita com sucesso retorna uma string com um xml válido caso contrário retorna false
-     * @since  1.0-0.0
+     * @since  1.0.0
      */
     public function sefaz(ObjetoSefaz $objetoSefaz) {
         $data = $objetoSefaz->toXml();
