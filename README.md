@@ -16,6 +16,10 @@ Dependências
 
 ------
 
+Documentação
+------
+Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada no link abaixo: http://marabesi.github.io/gnrephp/doc/namespaces/Gnre.html
+
 Instalação via composer
 ------
 Adicionando a GNRE PHP em um projeto existente com o composer
