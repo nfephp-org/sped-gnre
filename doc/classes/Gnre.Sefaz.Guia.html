@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Gnre.html">\Gnre</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">38</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-430459729"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-430459729" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1392263703"></a>
+                                <a href="../namespaces/Gnre.html" style="margin-left: 30px; padding-left: 0">Gnre</a>
+            </div>
+            <div id="namespace-1392263703" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1094785419"></a>
+                                <a href="../namespaces/Gnre.Sefaz.html" style="margin-left: 30px; padding-left: 0">Sefaz</a>
+            </div>
+            <div id="namespace-1094785419" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Gnre.Sefaz.ObjetoSefaz.html">ObjetoSefaz</a></li>
+                                                                                                    <li class="class"><a href="../classes/Gnre.Sefaz.LoteGnre.html">LoteGnre</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Sefaz.ConsultaGnre.html">ConsultaGnre</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Sefaz.Consulta.html">Consulta</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Sefaz.Send.html">Send</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Sefaz.Lote.html">Lote</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Sefaz.Guia.html">Guia</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1822052714"></a>
+                                <a href="../namespaces/Gnre.Configuration.html" style="margin-left: 30px; padding-left: 0">Configuration</a>
+            </div>
+            <div id="namespace-1822052714" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gnre.Configuration.CertificatePfx.html">CertificatePfx</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Configuration.FileOperation.html">FileOperation</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Configuration.FilePrefix.html">FilePrefix</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Configuration.CertificatePfxFileOperation.html">CertificatePfxFileOperation</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Configuration.Setup.html">Setup</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1332624988"></a>
+                                <a href="../namespaces/Gnre.Webservice.html" style="margin-left: 30px; padding-left: 0">Webservice</a>
+            </div>
+            <div id="namespace-1332624988" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gnre.Webservice.Connection.html">Connection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-409624241"></a>
+                                <a href="../namespaces/Gnre.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-409624241" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gnre.Exception.CannotOpenCertificate.html">CannotOpenCertificate</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Exception.UnableToWriteFile.html">UnableToWriteFile</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Exception.UndefinedProperty.html">UndefinedProperty</a></li>
+                                                    <li class="class"><a href="../classes/Gnre.Exception.UnreachableFile.html">UnreachableFile</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Gnre.Sefaz.html">\Gnre\Sefaz</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Gnre\Sefaz</small>Guia</h1>
+                    <p><em>Classe responsável por criar uma simples guia GNRE. Essa classe
+armazena todos os atributos necessários para serem transformados no
+XML aceito pela SEFAZ e posteriormente submetidos através do webservice</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#method___set" class="">__set()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#method_verifyProperty" class="">verifyProperty()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c01_UfFavorecida" class="">$c01_UfFavorecida</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c02_receita" class="">$c02_receita</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c25_detalhamentoReceita" class="">$c25_detalhamentoReceita</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c26_produto" class="">$c26_produto</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c27_tipoIdentificacaoEmitente" class="">$c27_tipoIdentificacaoEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c03_idContribuinteEmitente" class="">$c03_idContribuinteEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c28_tipoDocOrigem" class="">$c28_tipoDocOrigem</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c04_docOrigem" class="">$c04_docOrigem</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c06_valorPrincipal" class="">$c06_valorPrincipal</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c10_valorTotal" class="">$c10_valorTotal</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c14_dataVencimento" class="">$c14_dataVencimento</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c15_convenio" class="">$c15_convenio</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c16_razaoSocialEmitente" class="">$c16_razaoSocialEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c17_inscricaoEstadualEmitente" class="">$c17_inscricaoEstadualEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c18_enderecoEmitente" class="">$c18_enderecoEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c19_municipioEmitente" class="">$c19_municipioEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c20_ufEnderecoEmitente" class="">$c20_ufEnderecoEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c21_cepEmitente" class="">$c21_cepEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c22_telefoneEmitente" class="">$c22_telefoneEmitente</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c34_tipoIdentificacaoDestinatario" class="">$c34_tipoIdentificacaoDestinatario</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c35_idContribuinteDestinatario" class="">$c35_idContribuinteDestinatario</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c36_inscricaoEstadualDestinatario" class="">$c36_inscricaoEstadualDestinatario</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c37_razaoSocialDestinatario" class="">$c37_razaoSocialDestinatario</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c38_municipioDestinatario" class="">$c38_municipioDestinatario</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c33_dataPagamento" class="">$c33_dataPagamento</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_periodo" class="">$periodo</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_mes" class="">$mes</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_ano" class="">$ano</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_parcela" class="">$parcela</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c39_camposExtras" class="">$c39_camposExtras</a><br />
+                                                                    <a href="../classes/Gnre.Sefaz.Guia.html#property_c42_identificadorGuia" class="">$c42_identificadorGuia</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Sefaz.Guia.php.html"><div class="path-wrapper">Sefaz/Guia.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\gnre\sefaz</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Gnre\Sefaz\Guia</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Matheus Marabesi <a href="mailto:matheus.marabesi@gmail.com">matheus.marabesi@gmail.com</a></p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p><a href="http://www.gnu.org/licenses/gpl-howto.html">http://www.gnu.org/licenses/gpl-howto.html</a> GPL</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c01_UfFavorecida" name="property_c01_UfFavorecida" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c01_UfFavorecida</h3>
+                <pre class="signature">$c01_UfFavorecida : string</pre>
+                <p><em>Uma sigla representando um dos 27 estados brasileiros
+por exemplo AC, BA, DF</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c02_receita" name="property_c02_receita" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c02_receita</h3>
+                <pre class="signature">$c02_receita : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c25_detalhamentoReceita" name="property_c25_detalhamentoReceita" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c25_detalhamentoReceita</h3>
+                <pre class="signature">$c25_detalhamentoReceita : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c26_produto" name="property_c26_produto" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c26_produto</h3>
+                <pre class="signature">$c26_produto : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c27_tipoIdentificacaoEmitente" name="property_c27_tipoIdentificacaoEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c27_tipoIdentificacaoEmitente</h3>
+                <pre class="signature">$c27_tipoIdentificacaoEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c03_idContribuinteEmitente" name="property_c03_idContribuinteEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c03_idContribuinteEmitente</h3>
+                <pre class="signature">$c03_idContribuinteEmitente : int</pre>
+                <p><em>Informar o CPF ou CNPJ sem nenhuma formatação
+apenas os dígitos</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c28_tipoDocOrigem" name="property_c28_tipoDocOrigem" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c28_tipoDocOrigem</h3>
+                <pre class="signature">$c28_tipoDocOrigem : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c04_docOrigem" name="property_c04_docOrigem" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c04_docOrigem</h3>
+                <pre class="signature">$c04_docOrigem : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c06_valorPrincipal" name="property_c06_valorPrincipal" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c06_valorPrincipal</h3>
+                <pre class="signature">$c06_valorPrincipal : double</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo double com
+o valor total da guia sem juros e/ou acréscimos</em></p>
+                
+
+                                <h4>Type</h4>
+                double
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c10_valorTotal" name="property_c10_valorTotal" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c10_valorTotal</h3>
+                <pre class="signature">$c10_valorTotal : double</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo double com
+o valor total da guia porém com o juros e/ou acréscimo já
+somados ao valor principal. Ou seja se o valor total for 5.00 e o juros
+por exemplo for 5.00 o valor total será 10.00</em></p>
+                
+
+                                <h4>Type</h4>
+                double
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c14_dataVencimento" name="property_c14_dataVencimento" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c14_dataVencimento</h3>
+                <pre class="signature">$c14_dataVencimento : string</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string com
+a data de vencimento da guia no formato AAAA-MM-DD</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c15_convenio" name="property_c15_convenio" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c15_convenio</h3>
+                <pre class="signature">$c15_convenio : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c16_razaoSocialEmitente" name="property_c16_razaoSocialEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c16_razaoSocialEmitente</h3>
+                <pre class="signature">$c16_razaoSocialEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string com
+a razão social da empresa emitente</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c17_inscricaoEstadualEmitente" name="property_c17_inscricaoEstadualEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c17_inscricaoEstadualEmitente</h3>
+                <pre class="signature">$c17_inscricaoEstadualEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int com
+a inscrição estadual (I.E) da empresa emitente</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c18_enderecoEmitente" name="property_c18_enderecoEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c18_enderecoEmitente</h3>
+                <pre class="signature">$c18_enderecoEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string com
+o endereço  da empresa emitente</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c19_municipioEmitente" name="property_c19_municipioEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c19_municipioEmitente</h3>
+                <pre class="signature">$c19_municipioEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+com o código do municipio de acordo com a tabela do IBGE removendo os 2
+primeiros digitos</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c20_ufEnderecoEmitente" name="property_c20_ufEnderecoEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c20_ufEnderecoEmitente</h3>
+                <pre class="signature">$c20_ufEnderecoEmitente : string</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string
+com a singla do estado da empresa emitente por exemplo SP, TO, AC</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c21_cepEmitente" name="property_c21_cepEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c21_cepEmitente</h3>
+                <pre class="signature">$c21_cepEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int
+com o CEP correspondente da empresa emitente</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c22_telefoneEmitente" name="property_c22_telefoneEmitente" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c22_telefoneEmitente</h3>
+                <pre class="signature">$c22_telefoneEmitente : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int
+com o telefone do emitente no formato DD99999999</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c34_tipoIdentificacaoDestinatario" name="property_c34_tipoIdentificacaoDestinatario" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c34_tipoIdentificacaoDestinatario</h3>
+                <pre class="signature">$c34_tipoIdentificacaoDestinatario : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c35_idContribuinteDestinatario" name="property_c35_idContribuinteDestinatario" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c35_idContribuinteDestinatario</h3>
+                <pre class="signature">$c35_idContribuinteDestinatario : int</pre>
+                <p><em>Informar o CPF ou CNPJ sem nenhuma formatação
+apenas os dígitos</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c36_inscricaoEstadualDestinatario" name="property_c36_inscricaoEstadualDestinatario" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c36_inscricaoEstadualDestinatario</h3>
+                <pre class="signature">$c36_inscricaoEstadualDestinatario : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int com
+a inscrição estadual (I.E) da empresa a quem se destina a guia</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c37_razaoSocialDestinatario" name="property_c37_razaoSocialDestinatario" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c37_razaoSocialDestinatario</h3>
+                <pre class="signature">$c37_razaoSocialDestinatario : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string com
+a razão social da empresa a quem se destina a guia</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c38_municipioDestinatario" name="property_c38_municipioDestinatario" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c38_municipioDestinatario</h3>
+                <pre class="signature">$c38_municipioDestinatario : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo inteiro
+com o código do municipio de acordo com a tabela do IBGE removendo os 2
+primeiros digitos</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c33_dataPagamento" name="property_c33_dataPagamento" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c33_dataPagamento</h3>
+                <pre class="signature">$c33_dataPagamento : string</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string com
+a data de pagamento da guia no formato AAAA-MM-DD</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_periodo" name="property_periodo" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$periodo</h3>
+                <pre class="signature">$periodo : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int
+com o intervalo entre 0 e 5 (1, 2, 3, 4 ou 5)</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mes" name="property_mes" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$mes</h3>
+                <pre class="signature">$mes : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int
+com algum mês do ano (IMPORTANTE : é necessário informar o zero a esquerma caso o mês
+desejado esteja entre 1 e 9)</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ano" name="property_ano" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$ano</h3>
+                <pre class="signature">$ano : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int com
+algum ano válido como por exemplo 2014 (IMPORTANTE: o ano dever ser menor ou igual a 2000)</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_parcela" name="property_parcela" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$parcela</h3>
+                <pre class="signature">$parcela : int</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo int com
+o número de parcelas desejadas entre 1 e 999 ( 1, 2, 3, 4 .</em></p>
+                <p>.. 999)</p>
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c39_camposExtras" name="property_c39_camposExtras" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c39_camposExtras</h3>
+                <pre class="signature">$c39_camposExtras : array</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo array
+contendo os campos extras para a guia com os seguintes índices :
+codigo, tipo e valor</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_c42_identificadorGuia" name="property_c42_identificadorGuia" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$c42_identificadorGuia</h3>
+                <pre class="signature">$c42_identificadorGuia : string</pre>
+                <p><em>Para esse atributo é esperado um dado do tipo string
+para maiores informações visualizar a documentação oficial do GNRE
+http://www.gnre.pe.gov.br/gnre/index.html</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(string <span class="argument">$property</span>) : string</pre>
+                <p><em>Método mágico utilizado para retornar um valor de um
+determinado atributo na classe</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$property</td>
+                                <td><p>Uma propriedade válida dessa classe</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Gnre\Exception\UndefinedProperty</dt>
+                            <dd><p>Caso a propriedade desejada não exista</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Caso a propriedade exista retorna o seu valor</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___set" name="method___set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__set(string <span class="argument">$property</span>, mixed <span class="argument">$value</span>) : boolean</pre>
+                <p><em>Método mágico utilizado para setar valores aos atributos
+existentes na classe</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$property</td>
+                                <td><p>O nome existente de um atributo existente na classe</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value</td>
+                                <td><p>O valor desejado para ser setado no atributo desejado (string, boolean, int, Object ou array)</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Gnre\Exception\UndefinedProperty</dt>
+                            <dd><p>Caso o atributo desejada não exista</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Retorna true caso seja setado o valor para o atributo desejado</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_verifyProperty" name="method_verifyProperty" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">verifyProperty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">verifyProperty(string <span class="argument">$property</span>) : boolean</pre>
+                <p><em>Método utilizado para verificar se o atributo desejado
+exista na classe</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$property</td>
+                                <td><p>O nome existente de um atributo existente na classe</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Gnre\Exception\UndefinedProperty</dt>
+                            <dd><p>Caso o atributo desejada não exista na classe</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Retorna true caso o atributo desejado exista na classe</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Guia.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Sefaz/Guia.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Gnre.html">\Gnre</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 14th, 2014 at 15:10.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
