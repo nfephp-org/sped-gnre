@@ -16,20 +16,30 @@ Dependências
 
 ------
 
-Instalação
+Instalação via composer
 ------
-Em construção 
+Adicionando a GNRE PHP em um projeto existente com o composer
+
+Caso você não possua o composer veja https://getcomposer.org/doc/01-basic-usage.md antes de prosseguir
+
+Adicione a dependência da GNRE PHP no arquivo composer.json :
+
+"marabesi/gnre": "dev-master"
+
+Atualize suas depedências existentes no composer :
+
+composer update
 
 -----
 Quick start
 -----
-Clone o repositório com https://github.com/marabesi/gnrephp.git
+git clone https://github.com/marabesi/gnrephp.git
 
 -----
 
 Mais informações
 -----
-Site oficia :     http://www.gnre.pe.gov.br/gnre/index.html
+Site oficial do governo :     http://www.gnre.pe.gov.br/gnre/index.html
 
 Site do Projeto : http://marabesi.github.io/gnrephp/
 
