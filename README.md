@@ -39,7 +39,7 @@ git clone https://github.com/marabesi/gnrephp.git
 
 Mais informações
 -----
-Site oficia :     http://www.gnre.pe.gov.br/gnre/index.html
+Site oficial do governo :     http://www.gnre.pe.gov.br/gnre/index.html
 
 Site do Projeto : http://marabesi.github.io/gnrephp/
 
