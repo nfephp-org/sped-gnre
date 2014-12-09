@@ -304,7 +304,7 @@ ABC;
 ABC;
                     }
             $html .= "</body></html>";
-            return $this->html = $html;
+            $this->html = $html;
         }
     }
 
