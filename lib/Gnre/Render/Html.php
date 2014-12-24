@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
@@ -13,7 +14,8 @@
  * junto com este programa, se não, escreva para a Fundação do Software
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-namespace Gnre\Render; 
+
+namespace Gnre\Render;
 
 use Gnre\Sefaz\Lote;
 
@@ -22,32 +24,41 @@ use Gnre\Sefaz\Lote;
  * @package     gnre
  * @subpackage  pdf
  * @author      Leandro Pereira <llpereiras@gmail.com>
+ * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
+class Html {
 
-class Html{
-
+    /**
+     * @var string
+     */
     private $html;
 
-    public function render(Lote $lote)
-    {
-        require_once('./vendor/barcode/barcode.inc.php'); 
-        $guiaViaInfo = array(1 => '1ª via Banco',
-                             2 => '2ª via Contrinuinte',
-                             3 => '3ª via Contribuinte/Fisco',);
+    /**
+     * Utiliza o lote como parâmetro para transforma-lo em uma guia HTML
+     * 
+     * @param \Gnre\Sefaz\Lote $lote
+     * @link https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg <p>
+     * Exemplo de como é transformado o objeto <b>\Gnre\Sefaz\Lote</b> após ser
+     * utilizado por esse método</p>
+     * @since 1.0.0
+     */
+    public function render(Lote $lote) {
+        $guiaViaInfo = array(
+            1 => '1ª via Banco',
+            2 => '2ª via Contrinuinte',
+            3 => '3ª via Contribuinte/Fisco'
+        );
+
         $guias = $lote->getGuias();
-        $html = '<html><head><title>Nothing</title></head<body>Nothing</body></html>';
-        for ($index = 0; $index < count($guias) -1 ; $index++) { 
-            $guia = $lote->getGuias($index);
-            
-            // include DOMPDF's default configuration
-            // $barcode = new barCodeGenrator('125689365472365458',0,$barcode, 190, 130, false);
-            $timestamp = microtime().'_'.time().'.gif';
-            new \barCodeGenrator($guia->cod_barras,true,$timestamp);
-            
+
+        for ($index = 0; $index < count($guias); $index++) {
+            $guia = $lote->getGuia($index);
+
             $html = <<<ABC
                 <html>
+                    <meta charset="UTF-8">
                 <style type="text/css">
                     @page { 
                         margin: 5px;
@@ -119,9 +130,8 @@ class Html{
                 </style>
                     <body>
 ABC;
-                    // foreach ($guiaViaInfo as $key => $via) {
-                    foreach ($guiaViaInfo as $key => $via) {
-                        $html.= <<<ABC
+            foreach ($guiaViaInfo as $key => $via) {
+                $html.= <<<ABC
                         <table cellspacing="0" cellpadding="1" style="width:100%">
                             <tr>
                                 <td style="width: 65%;" valign="top" class="noborder">
@@ -146,20 +156,20 @@ ABC;
                                         </tr>
                                         <tr>
                                             <td class="borderleft">
-                                                $gnre->c16_razaoSocialEmitente
+                                                $guia->c16_razaoSocialEmitente
                                             </td>
                                             <td class="borderright">
-                                                $gnre->c03_idContribuinteEmitente
+                                                $guia->c03_idContribuinteEmitente
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="notop nobottom" colspan="2">
-                                                Endereço: Rua 1, teste
+                                                Endereço: $guia->c18_enderecoEmitente
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="borderleft">
-                                                Município: São Paulo
+                                                Município: $guia->c19_municipioEmitente
                                             </td>
                                             <td class="borderright">
                                                 UF: SP
@@ -167,10 +177,10 @@ ABC;
                                         </tr>
                                         <tr>
                                             <td class="noright notop">
-                                                CEP: 00000-000
+                                                CEP: $guia->c21_cepEmitente
                                             </td>
                                             <td class="noleft notop">
-                                                DDD/Telefone: (11) 1234-1234
+                                                DDD/Telefone: $guia->c22_telefoneEmitente
                                             </td>
                                         </tr>
                                         <tr >
@@ -180,12 +190,12 @@ ABC;
                                         </tr>
                                         <tr>
                                             <td class="notop nobottom" colspan="2">
-                                                CNPJ/CPF/Insc. Est.: 00.000.000/0000-00
+                                                CNPJ/CPF/Insc. Est.: $guia->c35_idContribuinteDestinatario
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="notop" colspan="2">
-                                                Município: São Paulo
+                                                Município: $guia->c38_municipioDestinatario
                                             </td>
                                         </tr>
                                         <tr>
@@ -195,12 +205,12 @@ ABC;
                                         </tr>
                                         <tr>
                                             <td class="notop nobottom" colspan="2">
-                                                Convênio/Protocolo: 8367846723
+                                                Convênio/Protocolo: $guia->c15_convenio
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="notop" colspan="2">
-                                                Produto: Serviços XXX Produto YYY
+                                                Produto: $guia->c26_produto
                                             </td>
                                         </tr>
                                         <tr>
@@ -210,7 +220,7 @@ ABC;
                                         </tr>
                                         <tr>
                                             <td class="notop" colspan="2">
-                                                Documento válido para pagamento até 00/00/0000
+                                                Documento válido para pagamento até $guia->c14_dataVencimento
                                             </td>
                                         </tr>
                                     </table>
@@ -222,40 +232,40 @@ ABC;
                                             <td style="width: 120px" colspan="2" class="nobottom">Código da Receita</td>
                                         </tr>
                                         <tr>
-                                            <td class="center notop">$gnre->c01_UfFavorecida</td>
-                                            <td class="center notop" colspan="2">$gnre->c02_receita</td>
+                                            <td class="center notop">$guia->c01_UfFavorecida</td>
+                                            <td class="center notop" colspan="2">$guia->c02_receita</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Nº de Controle</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop">$gnre->c02_receita</td>
+                                            <td colspan="3" class="notop">$guia->c02_receita</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Data de Vencimento</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop">00/00/0000</td>
+                                            <td colspan="3" class="notop">$guia->c14_dataVencimento</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Nº do Documento de Origem</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop">123456</td>
+                                            <td colspan="3" class="notop">$guia->c04_docOrigem</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="nobottom">Período de Referência</td>
                                             <td class="center nobottom">Nº Parcela</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" class="notop">11/2014</td>
-                                            <td class="center notop">1</td>
+                                            <td colspan="2" class="notop">$guia->mes / $guia->ano</td>
+                                            <td class="center notop">$guia->parcela</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Valor Principal</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop">R$ 19.292,00</td>
+                                            <td colspan="3" class="notop">R$ $guia->c06_valorPrincipal</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Atualização Monetária</td>
@@ -279,7 +289,7 @@ ABC;
                                             <td colspan="3" class="nobottom">Total a Recolher</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop">&nbsp;</td>
+                                            <td colspan="3" class="notop">$guia->c10_valorTotal</td>
                                         </tr>
                                         <tr>
                                             <td class="noborder">&nbsp;</td>
@@ -295,21 +305,20 @@ ABC;
                             </tr>
                             <tr>
                                 <td class="noborder" style="padding-left:10px;" >
-                                    <img src="$timestamp" style="height:40px;width:300px;" >
+                                    <p>Código de barras</p>
                                 </td>
                             </tr>
                         </table>
                         <br>
                         <hr style="margin-top:0px;border: 1px dotted #000; border-style: none none dotted;">
 ABC;
-                    }
+            }
             $html .= "</body></html>";
             $this->html = $html;
         }
     }
 
-    public function toPrint()
-    {
+    public function toPrint() {
         return $this->html;
     }
 
