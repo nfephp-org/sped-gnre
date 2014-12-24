@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8e456166f00c1d6e3b52ae074662aac2",
+    "hash": "332c681ac35b4bc5f256940f005f9134",
     "packages": [
         {
             "name": "dompdf/dompdf",
@@ -46,44 +46,6 @@
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
             "time": "2014-03-11 01:59:52"
-        },
-        {
-            "name": "marabesi/gnre",
-            "version": "dev-dev-pdf",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/marabesi/gnrephp.git",
-                "reference": "aea5029b5f2aecb5514f68dcf69d90e7b7aef377"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/marabesi/gnrephp/zipball/aea5029b5f2aecb5514f68dcf69d90e7b7aef377",
-                "reference": "aea5029b5f2aecb5514f68dcf69d90e7b7aef377",
-                "shasum": ""
-            },
-            "require": {
-                "dompdf/dompdf": "0.6.*",
-                "mikey179/vfsstream": "1.*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Gnre": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GNU"
-            ],
-            "authors": [
-                {
-                    "name": "Matheus Marabesi",
-                    "email": "matheus.marabesi@gmail.com"
-                }
-            ],
-            "description": "API para a emissão de guias GNRE para a SEFAZ",
-            "time": "2014-11-22 15:06:25"
         },
         {
             "name": "mikey179/vfsStream",
@@ -158,13 +120,21 @@
             "time": "2014-02-01 15:22:28"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {
-        "marabesi/gnre": 20
-    },
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "beta",
+    "stability-flags": [
+
+    ],
     "prefer-stable": false,
-    "platform": [],
-    "platform-dev": []
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": [
+
+    ]
 }
