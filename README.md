@@ -18,7 +18,9 @@ Dependências
 
 Documentação
 ------
-Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada [aqui](http://marabesi.github.io/gnrephp/doc/namespaces/Gnre.html)
+* Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada [aqui](http://marabesi.github.io/gnrephp/doc/namespaces/Gnre.html)
+
+* Nosso wiki de como utilizar a API e gerar as GNRES está disponível [aqui no github](https://github.com/marabesi/gnrephp/wiki)
 
 Instalação via composer
 ------
