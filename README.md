@@ -8,23 +8,25 @@ Objetivo
 
 Dependências
 -------
-* Apache: <http://httpd.apache.org/>
-* PHP 5.3+: <http://php.net>
+* [Apache](http://httpd.apache.org/) / [Nginx](http://nginx.org/)
+* [PHP 5.3+](http://php.net)
 * Extensões PHP
- * DOMDocument: http://br2.php.net/manual/en/domdocument.construct.php.
- * cURL: Normalmente já vem habilitado com o PHP 5.3+. Veja <http://br2.php.net/manual/book.curl.php> e <http://curl.haxx.se/>.
+ * [DOMDocument](http://br2.php.net/manual/en/domdocument.construct.php)
+ * [cURL](http://br2.php.net/manual/book.curl.php)
 
 ------
 
 Documentação
 ------
-Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada no link abaixo: http://marabesi.github.io/gnrephp/doc/namespaces/Gnre.html
+* Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada [aqui](http://marabesi.github.io/gnrephp/doc/namespaces/Gnre.html)
+
+* Nosso wiki de como utilizar a API e gerar as GNRES está disponível [aqui no github](https://github.com/marabesi/gnrephp/wiki)
 
 Instalação via composer
 ------
 Adicionando a GNRE PHP em um projeto existente com o composer
 
-Caso você não possua o composer veja https://getcomposer.org/doc/01-basic-usage.md antes de prosseguir
+Caso você não possua o composer veja [esse link](https://getcomposer.org/doc/01-basic-usage.md) antes de prosseguir
 
 Adicione a dependência da GNRE PHP no arquivo composer.json :
 
