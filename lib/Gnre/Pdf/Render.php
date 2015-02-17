@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
@@ -13,7 +14,8 @@
  * junto com este programa, se não, escreva para a Fundação do Software
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-namespace Gnre\Pdf; 
+
+namespace Gnre\Pdf;
 
 use Gnre\Sefaz\Html;
 
@@ -25,16 +27,13 @@ use Gnre\Sefaz\Html;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
+class Render {
 
-class Render{
-
-    public function toPdf(Html $html)
-    {
-        require_once './vendor/dompdf/dompdf/dompdf_config.inc.php';
+    public function toPdf(Html $html) {
         $dompdf = new \DOMPDF();
         $dompdf->load_html($html->print());
         $dompdf->render();
-        $dompdf->stream('gnre.pdf',array('Attachment' => 0));
-        unlink($timestamp);
+        $dompdf->stream('gnre.pdf', array('Attachment' => 0));
     }
+
 }
