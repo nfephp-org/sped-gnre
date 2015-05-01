@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    <soap12:Header>
+        <gnreCabecMsg xmlns="http://www.gnre.pe.gov.br/wsdl/consultar">
+            <versaoDados>1.00</versaoDados>
+        </gnreCabecMsg>
+    </soap12:Header>
+    <soap12:Body>
+        <gnreDadosMsg xmlns="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote">
+            <TConsLote_GNRE xmlns="http://www.gnre.pe.gov.br">
+                <ambiente>12345678</ambiente>
+                <numeroRecibo>123</numeroRecibo>
+            </TConsLote_GNRE>
+        </gnreDadosMsg>
+    </soap12:Body>
+</soap12:Envelope>
