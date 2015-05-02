@@ -31,6 +31,8 @@ use Gnre\Sefaz\ObjetoSefaz;
  */
 abstract class LoteGnre implements ObjetoSefaz {
 
+    const EMITENTE_PESSOA_JURIDICA = 1;
+
     /**
      * Atributo que armazenará todas as guias desejadas
      * @var array 
