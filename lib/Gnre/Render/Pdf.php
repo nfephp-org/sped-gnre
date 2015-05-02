@@ -15,25 +15,31 @@
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Gnre\Pdf;
+namespace Gnre\Render;
 
-use Gnre\Sefaz\Html;
+use Gnre\Render\Html;
 
 /**
  * Classe que contém a estrutura para gerar o pdf da guia de pagamento.
  * @package     gnre
  * @subpackage  pdf
  * @author      Leandro Pereira <llpereiras@gmail.com>
+ * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Render {
+class Pdf {
 
-    public function toPdf(Html $html) {
+    /**
+     * @param \Gnre\Render\Html $html
+     * @return \DOMPDF
+     */
+    public function create(Html $html) {
         $dompdf = new \DOMPDF();
-        $dompdf->load_html($html->print());
+        $dompdf->load_html($html->getHtml());
         $dompdf->render();
-        $dompdf->stream('gnre.pdf', array('Attachment' => 0));
+
+        return $dompdf;
     }
 
 }
