@@ -14,9 +14,9 @@
                         <c02_receita>1000099</c02_receita>
                         <c25_detalhamentoReceita>10101010</c25_detalhamentoReceita>
                         <c26_produto>TESTE DE PROD</c26_produto>
-                        <c27_tipoIdentificacaoEmitente>1</c27_tipoIdentificacaoEmitente>
+                        <c27_tipoIdentificacaoEmitente>2</c27_tipoIdentificacaoEmitente>
                         <c03_idContribuinteEmitente>
-                            <CNPJ>41819055000105</CNPJ>
+                            <CPF>52162197650</CPF>
                         </c03_idContribuinteEmitente>
                         <c28_tipoDocOrigem>10</c28_tipoDocOrigem>
                         <c04_docOrigem>5656</c04_docOrigem>
@@ -31,9 +31,9 @@
                         <c20_ufEnderecoEmitente>DF</c20_ufEnderecoEmitente>
                         <c21_cepEmitente>08215917</c21_cepEmitente>
                         <c22_telefoneEmitente>1199999999</c22_telefoneEmitente>
-                        <c34_tipoIdentificacaoDestinatario>1</c34_tipoIdentificacaoDestinatario>
+                        <c34_tipoIdentificacaoDestinatario>2</c34_tipoIdentificacaoDestinatario>
                         <c35_idContribuinteDestinatario>
-                            <CNPJ>86268158000162</CNPJ>
+                            <CPF>99942896759</CPF>
                         </c35_idContribuinteDestinatario>
                         <c36_inscricaoEstadualDestinatario>10809181</c36_inscricaoEstadualDestinatario>
                         <c37_razaoSocialDestinatario>RAZAO SOCIAL GNRE PHP DESTINATARIO</c37_razaoSocialDestinatario>
@@ -45,23 +45,6 @@
                             <ano>2015</ano>
                             <parcela>2</parcela>
                         </c05_referencia>
-                        <c39_camposExtras>
-                            <campoExtra>
-                                <codigo>16</codigo>
-                                <tipo>T</tipo>
-                                <valor>1200012</valor>
-                            </campoExtra>
-                            <campoExtra>
-                                <codigo>15</codigo>
-                                <tipo>D</tipo>
-                                <valor>2015-03-02</valor>
-                            </campoExtra>
-                            <campoExtra>
-                                <codigo>10</codigo>
-                                <tipo>T</tipo>
-                                <valor>17.21</valor>
-                            </campoExtra>
-                        </c39_camposExtras>
                     </TDadosGNRE>
                 </guias>
             </TLote_GNRE>
