@@ -18,8 +18,9 @@
 namespace Gnre\Sefaz;
 
 use Gnre\Configuration\Setup;
-use Gnre\Webservice\Connection;
+use Gnre\Exception\ConnectionFactoryUnavailable;
 use Gnre\Sefaz\ObjetoSefaz;
+use Gnre\Webservice\ConnectionFactory;
 
 /**
  * Classe que realiza o intermediário entre a transformação dos dados(objetos) e a conexão 
@@ -41,6 +42,11 @@ class Send {
     private $setup;
 
     /**
+     * @var \Gnre\Webservice\ConnectionFactory
+     */
+    private $connectionFactory;
+
+    /**
      * Armazena as configurações padrões em um atributo interno da classe para ser utilizado 
      * posteriormente pela classe
      * @param  \Gnre\Configuration\Interfaces\Setup $setup Configuraçoes definidas pelo usuário
@@ -51,6 +57,27 @@ class Send {
     }
 
     /**
+     * @return \Gnre\Webservice\ConnectionFactory
+     * @throws \Gnre\Exception\ConnectionFactoryUnavailable
+     */
+    public function getConnectionFactory() {
+        if (!$this->connectionFactory instanceof ConnectionFactory) {
+            throw new ConnectionFactoryUnavailable();
+        }
+
+        return $this->connectionFactory;
+    }
+
+    /**
+     * @param \Gnre\Webservice\ConnectionFactory $connectionFactory
+     * @return \Gnre\Sefaz\Send
+     */
+    public function setConnectionFactory(ConnectionFactory $connectionFactory) {
+        $this->connectionFactory = $connectionFactory;
+        return $this;
+    }
+
+    /**
      * Obtém os dados necessários e realiza a conexão com o webservice da sefaz
      * @param  $objetoSefaz  Uma classe que implemente a interface ObjectoSefaz 
      * @return string|boolean  Caso a conexão seja feita com sucesso retorna uma string com um xml válido caso contrário retorna false
@@ -58,7 +85,8 @@ class Send {
      */
     public function sefaz(ObjetoSefaz $objetoSefaz) {
         $data = $objetoSefaz->toXml();
-        $connection = new Connection($this->setup, $objetoSefaz->getHeaderSoap(), $data);
+        $connection = $this->getConnectionFactory()->createConnection($this->setup, $objetoSefaz->getHeaderSoap(), $data);
+
         return $connection->doRequest($objetoSefaz->soapAction());
     }
 

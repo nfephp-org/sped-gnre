@@ -2,6 +2,7 @@
 
 /**
  * @covers Gnre\Sefaz\Guia
+ * @covers Gnre\Exception\UndefinedProperty
  */
 class GuiaTest extends PHPUnit_Framework_TestCase {
 
