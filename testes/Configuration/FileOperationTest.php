@@ -15,27 +15,34 @@
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Gnre\Webservice;
+namespace Gnre\Configuration\Test;
 
-use Gnre\Configuration\Setup;
+use Gnre\Configuration\FileOperation;
 
 /**
- * @package     gnre
- * @subpackage  webservice
- * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
- * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @version     1.0.0
+ * @covers Gnre\Configuration\FileOperation
+ * @covers Gnre\Exception\UnreachableFile
  */
-class ConnectionFactory {
+class FileOperationTest extends \PHPUnit_Framework_TestCase {
 
     /**
-     * @param \Gnre\Webservice\Setup $setup
-     * @param array $headers
-     * @param string $data
-     * @return \Gnre\Webservice\Connection
+     * @expectedException Gnre\Exception\UnreachableFile
      */
-    public function createConnection(Setup $setup, $headers, $data) {
-        return new Connection($setup, $headers, $data);
+    public function testArquivoInformadoNaoExiste() {
+        $myFile = new MyFile('/foo/bar.txt');
+    }
+
+    public function testArquivoInformadoExistente() {
+        $file = __DIR__ . '/../../exemplos/estrutura-lote-completo-gnre.xml';
+        $myFile = new MyFile($file);
+    }
+
+}
+
+class MyFile extends FileOperation {
+
+    public function writeFile($content, \Gnre\Configuration\FilePrefix $filePrefix) {
+        return null;
     }
 
 }

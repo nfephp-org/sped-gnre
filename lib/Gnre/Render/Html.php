@@ -58,7 +58,7 @@ class Html {
 
             $html = <<<ABC
                 <html>
-                    <meta charset="UTF-8">
+                    <meta charset="UTF-8"/>
                 <style type="text/css">
                     @page { 
                         margin: 5px;
@@ -215,7 +215,7 @@ ABC;
                                         </tr>
                                         <tr>
                                             <td class="nobrdtb" colspan="2" style="height:64px" valign="top">
-                                                Informações Complementares
+                                                Informações Complementares: $guia->retornoInformacoesComplementares
                                             </td>
                                         </tr>
                                         <tr>
@@ -239,7 +239,7 @@ ABC;
                                             <td colspan="3" class="nobottom">Nº de Controle</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" align="right" class="notop">$guia->c02_receita</td>
+                                            <td colspan="3" align="right" class="notop">$guia->retornoNumeroDeControle</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Data de Vencimento</td>
@@ -271,19 +271,19 @@ ABC;
                                             <td colspan="3" class="nobottom">Atualização Monetária</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop" align="right">&nbsp;</td>
+                                            <td colspan="3" class="notop" align="right">R$ $guia->retornoAtualizacaoMonetaria</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Juros</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop" align="right">&nbsp;</td>
+                                            <td colspan="3" class="notop" align="right">R$ $guia->retornoJuros</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Multa</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="notop" align="right">&nbsp;</td>
+                                            <td colspan="3" class="notop" align="right">R$ $guia->retornoMulta</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="nobottom">Total a Recolher</td>
@@ -292,7 +292,7 @@ ABC;
                                             <td colspan="3" class="notop" align="right">$guia->c10_valorTotal</td>
                                         </tr>
                                         <tr>
-                                            <td class="noborder">&nbsp;</td>
+                                            <td class="noborder"></td>
                                             <td class="noborder" colspan="2" style="text-align:right;">$via</td>
                                         </tr>
                                     </table>
@@ -300,7 +300,7 @@ ABC;
                             </tr>
                             <tr>
                                 <td colspan="2" class="noborder" style="padding-left:30px;height:5px">
-                                    0000000000000 0 000000000000000 0 00000000000000 0 000000000000000 0
+                                    $guia->retornoRepresentacaoNumerica
                                 </td>
                             </tr>
                             <tr>

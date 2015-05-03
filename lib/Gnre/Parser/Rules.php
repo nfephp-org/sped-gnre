@@ -26,10 +26,13 @@ namespace Gnre\Parser;
  * @abstract
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
- * @link        http://
+ * @link        http://en.wikipedia.org/wiki/Template_method_pattern Template Method Design Pattern
  * @version     1.0.0
  */
 abstract class Rules {
+
+    const ERRO_VALIDACAO = 2;
+    const GUIA_EMITIDA_COM_SUCESSO = 9;
 
     /**
      * @var string 
@@ -128,15 +131,9 @@ abstract class Rules {
 
     protected abstract function getCodigoBarras();
 
-    protected abstract function getQtdVias();
-
     protected abstract function getNumeroDeControle();
 
     protected abstract function getIdentificadorGuia();
-
-    protected abstract function getGuiaGeradaEmContingencia();
-
-    protected abstract function getReservado();
 
     protected abstract function getNumeroProtocolo();
 
@@ -205,11 +202,8 @@ abstract class Rules {
                 $this->getMulta();
                 $this->getRepresentacaoNumerica();
                 $this->getCodigoBarras();
-                $this->getQtdVias();
                 $this->getNumeroDeControle();
                 $this->getIdentificadorGuia();
-                $this->getGuiaGeradaEmContingencia();
-                $this->getReservado();
 
                 $lote->addGuia($this->lote['lote'][$i]);
             } else if ($this->identificador == 9) {
@@ -227,6 +221,17 @@ abstract class Rules {
         $this->aplicarParser();
 
         return $lote;
+    }
+
+    /**
+     * 
+     * @param string $content
+     * @param int $positionStart
+     * @param int $length
+     * @return string
+     */
+    public function getContent($content, $positionStart, $length) {
+        return substr($content, $positionStart, $length);
     }
 
 }

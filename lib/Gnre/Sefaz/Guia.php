@@ -23,6 +23,11 @@ use Gnre\Exception\UndefinedProperty;
  * Classe responsável por criar uma simples guia GNRE. Essa classe
  * armazena todos os atributos necessários para serem transformados no
  * XML aceito pela SEFAZ e posteriormente submetidos através do webservice
+ * 
+ * <b>
+ * Os atributos com o prefixo "retorno" sao populados com os dados do retorno
+ * do web service da SEFAZ, alguns deles podem ou nao possuir conteudo.
+ * </b>
  * @package     gnre
  * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
@@ -262,6 +267,23 @@ class Guia {
      * @var    string
      */
     private $c42_identificadorGuia;
+
+    /**
+     *
+     * @var string 
+     */
+    private $retornoInformacoesComplementares;
+    private $retornoAtualizacaoMonetaria;
+    private $retornoJuros;
+    private $retornoMulta;
+    private $retornoRepresentacaoNumerica;
+    private $retornoCodigoDeBarras;
+    private $retornoSituacaoGuia;
+    private $retornoSequencialGuia;
+    private $retornoErrosDeValidacaoCampo;
+    private $retornoErrosDeValidacaoCodigo;
+    private $retornoErrosDeValidacaoDescricao;
+    private $retornoNumeroDeControle;
 
     /**
      * Método mágico utilizado para retornar um valor de um
