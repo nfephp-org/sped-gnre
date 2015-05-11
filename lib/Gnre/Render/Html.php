@@ -18,6 +18,7 @@
 namespace Gnre\Render;
 
 use Gnre\Sefaz\Lote;
+use Gnre\Render\Barcode39;
 
 /**
  * Classe que contém a estrutura para gerar o pdf da guia de pagamento.
@@ -34,6 +35,31 @@ class Html {
      * @var string
      */
     private $html;
+
+    /**
+     * @var \Gnre\Render\Barcode39
+     */
+    private $barCode;
+
+    /**
+     * @return \Gnre\Render\Barcode39
+     */
+    public function getBarCode() {
+        if (!$this->barCode instanceof Barcode39) {
+            $this->barCode = new Barcode39();
+        }
+
+        return $this->barCode;
+    }
+
+    /**
+     * @param \Gnre\Render\Barcode39 $barCode
+     * @return \Gnre\Render\Html
+     */
+    public function setBarCode(Gnre\Render\Barcode39 $barCode) {
+        $this->barCode = $barCode;
+        return $this;
+    }
 
     /**
      * Utiliza o lote como parâmetro para transforma-lo em uma guia HTML
@@ -55,6 +81,9 @@ class Html {
 
         for ($index = 0; $index < count($guias); $index++) {
             $guia = $lote->getGuia($index);
+
+            $barcode = $this->getBarCode()
+                    ->setNumeroCodigoBarras($guia->retornoRepresentacaoNumerica);
 
             $html = <<<ABC
                 <html>
@@ -300,12 +329,12 @@ ABC;
                             </tr>
                             <tr>
                                 <td colspan="2" class="noborder" style="padding-left:30px;height:5px">
-                                    $guia->retornoRepresentacaoNumerica
+                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td class="noborder" style="padding-left:10px;" >
-                                    <p>Código de barras</p>
+                                    <img src="data:image/jpeg;base64,{$barcode->getCodigoBarrasBase64()}"/>
                                 </td>
                             </tr>
                         </table>
