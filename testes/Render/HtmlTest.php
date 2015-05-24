@@ -11,8 +11,10 @@ use Gnre\Render\Html;
 class HtmlTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveGerarOhtmlComOconteudoDoLote() {
+        $this->markTestIncomplete();
+        
         $domDocument = new \DOMDocument();
-        $domDocument->preserveWhiteSpace = false;
+        $domDocument->preserveWhiteSpace = true;
         $domDocument->loadHTMLFile(__DIR__ . '/../../exemplos/guia.html');
 
         $guia = new \Gnre\Sefaz\Guia();
@@ -21,7 +23,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $guia->c25_detalhamentoReceita = 10101010;
         $guia->c26_produto = 'TESTE DE PROD';
         $guia->c27_tipoIdentificacaoEmitente = 1;
-        $guia->c03_idContribuinteEmitente = 41819055000105;
+        $guia->c03_idContribuinteEmitente = '41819055000105';
         $guia->c28_tipoDocOrigem = 10;
         $guia->c04_docOrigem = 5656;
         $guia->c06_valorPrincipal = 10.99;
@@ -41,6 +43,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $guia->c37_razaoSocialDestinatario = 'RAZAO SOCIAL GNRE PHP DESTINATARIO';
         $guia->c38_municipioDestinatario = 2702306;
         $guia->c33_dataPagamento = '2015-11-30';
+        $guia->retornoCodigoDeBarras = '91910919190191091090109109190109';
         $guia->mes = '05';
         $guia->ano = 2015;
         $guia->parcela = 2;
@@ -52,9 +55,11 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $html = new Html();
         $html->create($lote);
 
-        $htmlGuiaGnre = new \DOMDocument();
-        $htmlGuiaGnre->preserveWhiteSpace = false;
-        $htmlGuiaGnre->loadHTML($html->getHtml());
+        $this->assertXmlStringEqualsXmlString($domDocument->saveXML(), $html->getHtml());
+    }
+
+    public function testDeveRetornarUmInstanciaDoBarCode() {
+        $this->markTestIncomplete();
     }
 
 }
