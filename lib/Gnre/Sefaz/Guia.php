@@ -269,20 +269,93 @@ class Guia {
     private $c42_identificadorGuia;
 
     /**
-     *
+     * Dados retornados pelo web service da SEFAZ
+     * com os dados complementares da guia
      * @var string 
      */
     private $retornoInformacoesComplementares;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ
+     * com o valor da atualização monetária, esse item pode
+     * ser encontrado do lado direito da guia em 
+     * https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg
+     * na sétima linha
+     * @var double 
+     */
     private $retornoAtualizacaoMonetaria;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ
+     * com o valor do juros, esse item pode ser encontrado do lado 
+     * direito da guia em 
+     * https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg
+     * na oitava linha
+     * @var double 
+     */
     private $retornoJuros;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ
+     * com o valor da multa, esse item pode ser encontrado do lado 
+     * direito da guia em 
+     * https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg
+     * na nona linha
+     * @var double 
+     */
     private $retornoMulta;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com a linha
+     * digitável do código de barras possuindo 48 caracteres
+     * @var int 
+     */
     private $retornoRepresentacaoNumerica;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com o código
+     * de barras, possuindo 44 caracteres (esse valor deve ser usado 
+     * para gerar a imagem do  código de barras do boleto).
+     * @var int 
+     */
     private $retornoCodigoDeBarras;
+    
+     /**
+     * Dados retornados pelo web service da SEFAZ com a situação
+     * da guia, se foi processada com sucesso ou se houve erro.
+     * Para maiores informações sobre esse item consulte
+     * a documentação de retorno em http://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
+     * @var int 
+     */
     private $retornoSituacaoGuia;
     private $retornoSequencialGuia;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com o nome dos campos do XML
+     * que causaram o erro caso a guia não tenha sido processada com sucesso
+     * @var string
+     */
     private $retornoErrosDeValidacaoCampo;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com o código
+     * do erro caso a guia não tenha sido processada com sucesso
+     * @var string
+     */
     private $retornoErrosDeValidacaoCodigo;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com a descrição
+     * do erro caso a guia não tenha sido processada com sucesso
+     * @var string
+     */
     private $retornoErrosDeValidacaoDescricao;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com o número
+     * de controle da guia, <b>o valor desse atributo é gerado pela SEFAZ</b>
+     * @var int
+     */
     private $retornoNumeroDeControle;
 
     /**
