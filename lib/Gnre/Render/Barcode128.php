@@ -24,25 +24,43 @@ namespace Gnre\Render;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Barcode39 {
+class Barcode128 {
 
+    /**
+     * @var int 
+     */
     private $numeroCodigoBarras;
 
+    /**
+     * @return int
+     */
     public function getNumeroCodigoBarras() {
         return $this->numeroCodigoBarras;
     }
 
+    /**
+     * @param int $numeroCodigoBarras
+     * @return \Gnre\Render\Barcode128
+     */
     public function setNumeroCodigoBarras($numeroCodigoBarras) {
         $this->numeroCodigoBarras = $numeroCodigoBarras;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getCodigoBarrasBase64() {
         ob_start();
 
         $text = $this->getNumeroCodigoBarras();
-        $options = array('text' => (string) $text, 'imageType' => 'jpeg');
-        $barcode = new \Zend\Barcode\Object\Code39();
+        $options = array(
+            'text' => (string) $text,
+            'imageType' => 'jpeg',
+            'drawText' => false
+        );
+
+        $barcode = new \Zend\Barcode\Object\Code128();
         $barcode->setOptions($options);
 
         $barcodeOBj = \Zend\Barcode\Barcode::factory($barcode);

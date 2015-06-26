@@ -18,7 +18,7 @@
 namespace Gnre\Render;
 
 use Gnre\Sefaz\Lote;
-use Gnre\Render\Barcode39;
+use Gnre\Render\Barcode128;
 
 /**
  * Classe que contém a estrutura para gerar o pdf da guia de pagamento.
@@ -37,26 +37,26 @@ class Html {
     private $html;
 
     /**
-     * @var \Gnre\Render\Barcode39
+     * @var \Gnre\Render\Barcode128
      */
     private $barCode;
 
     /**
-     * @return \Gnre\Render\Barcode39
+     * @return \Gnre\Render\Barcode128
      */
     public function getBarCode() {
-        if (!$this->barCode instanceof Barcode39) {
-            $this->barCode = new Barcode39();
+        if (!$this->barCode instanceof Barcode128) {
+            $this->barCode = new Barcode128();
         }
 
         return $this->barCode;
     }
 
     /**
-     * @param \Gnre\Render\Barcode39 $barCode
+     * @param \Gnre\Render\Barcode128 $barCode
      * @return \Gnre\Render\Html
      */
-    public function setBarCode(Gnre\Render\Barcode39 $barCode) {
+    public function setBarCode(Barcode128 $barCode) {
         $this->barCode = $barCode;
         return $this;
     }
@@ -83,7 +83,7 @@ class Html {
             $guia = $lote->getGuia($index);
 
             $barcode = $this->getBarCode()
-                    ->setNumeroCodigoBarras($guia->retornoRepresentacaoNumerica);
+                    ->setNumeroCodigoBarras($guia->retornoCodigoDeBarras);
 
             $html = <<<ABC
                 <html>
@@ -161,7 +161,7 @@ class Html {
 ABC;
             foreach ($guiaViaInfo as $key => $via) {
                 $html.= <<<ABC
-                        <table cellspacing="0" cellpadding="1" style="width:100%">
+                        <table cellspacing="0" cellpadding="1" style="width:100%;">
                             <tr>
                                 <td style="width: 65%;" valign="top" class="noborder">
                                     <table cellspacing="0" cellpadding="1" style="width:100%">
@@ -321,25 +321,23 @@ ABC;
                                             <td colspan="3" class="notop" align="right">$guia->c10_valorTotal</td>
                                         </tr>
                                         <tr>
-                                            <td class="noborder"></td>
-                                            <td class="noborder" colspan="2" style="text-align:right;">$via</td>
+                                            <td class="noborder" colspan="3" style="text-align:right;">$via</td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="noborder" style="padding-left:30px;height:5px">
-                                    
+                                <td colspan="2" class="noborder" style="padding-left:140px;">
+                                    $guia->retornoRepresentacaoNumerica
                                 </td>
                             </tr>
                             <tr>
-                                <td class="noborder" style="padding-left:10px;" >
+                                <td class="noborder" style="padding-left:90px;" >
                                     <img src="data:image/jpeg;base64,{$barcode->getCodigoBarrasBase64()}"/>
                                 </td>
                             </tr>
                         </table>
-                        <br>
-                        <hr style="margin-top:0px;border: 1px dotted #000; border-style: none none dotted;">
+                        <br/>
 ABC;
             }
             $html .= "</body></html>";
