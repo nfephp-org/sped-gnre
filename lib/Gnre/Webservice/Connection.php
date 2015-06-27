@@ -61,8 +61,11 @@ class Connection {
             CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => $headers
         );
-
-        if (!empty($setup->getProxyIp()) && $setup->getProxyPort()) {
+        
+        $ip = $setup->getProxyIp();
+        $port = $setup->getProxyPort();
+        
+        if (!empty($ip) && $port) {
             $this->curlOptions[CURLOPT_HTTPPROXYTUNNEL] = 1;
             $this->curlOptions[CURLOPT_PROXYTYPE] = 'CURLPROXY_HTTP';
             $this->curlOptions[CURLOPT_PROXY] = $setup->getProxyIp() . ':' . $setup->getProxyPort();
