@@ -9,7 +9,9 @@ use Gnre\Render\Pdf;
  */
 class PdfTest extends \PHPUnit_Framework_TestCase {
 
-    public function setUp() {
+    public static function setUpBeforeClass() {
+        define('DOMPDF_ENABLE_AUTOLOAD', false);
+        
         require 'vendor/dompdf/dompdf/dompdf_config.inc.php';
     }
 
