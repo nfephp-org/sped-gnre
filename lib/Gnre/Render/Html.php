@@ -340,11 +340,15 @@ ABC;
                         <br/>
 ABC;
             }
-            $html .= "</body></html>";
+            $html .= '</body></html>';
+
             $this->html = $html;
         }
     }
 
+    /**
+     * @return string
+     */
     public function getHtml() {
         return $this->html;
     }
