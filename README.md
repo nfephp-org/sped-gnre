@@ -1,4 +1,10 @@
-GNRE PHP (branch em desenvolvimento)
+[![Build Status](https://travis-ci.org/marabesi/gnrephp.svg?branch=master)](https://travis-ci.org/marabesi/gnrephp)
+[![Coverage Status](https://coveralls.io/repos/marabesi/gnrephp/badge.png?branch=master)](https://coveralls.io/r/marabesi/gnrephp?branch=master)
+[![Total Downloads](https://poser.pugx.org/marabesi/gnre/downloads)](https://packagist.org/packages/marabesi/gnre)
+[![Latest Stable Version](https://poser.pugx.org/marabesi/gnre/v/stable)](https://packagist.org/packages/marabesi/gnre)
+[![License](https://poser.pugx.org/marabesi/gnre/license)](https://packagist.org/packages/marabesi/gnre)
+
+GNRE PHP
 =================
 
 ##Atenção
