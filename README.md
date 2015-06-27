@@ -7,10 +7,6 @@
 GNRE PHP
 =================
 
-##Atenção
-Essa não é a branch principal do projeto, essa é a branch em desenvolvimento onde está sendo implementada a nova feature para exibir a guia em PDF.
-Para visualizar a branch master [clique aqui](https://github.com/marabesi/gnrephp/tree/master)
-
 Objetivo
 -----
  API possibilita a comunicação com a SEFAZ para a emissão da nota GNRE (Guia Nacional de Recolhimento de Tributos Estaduais). 
