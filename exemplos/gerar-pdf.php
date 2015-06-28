@@ -1,5 +1,7 @@
 <?php
 
+define('DOMPDF_ENABLE_AUTOLOAD', false);
+
 require '../vendor/autoload.php';
 require '../vendor/dompdf/dompdf/dompdf_config.inc.php';
 
