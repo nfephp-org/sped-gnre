@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -36,10 +36,9 @@ abstract class FileOperation {
     protected $filePath;
 
     /**
-     * Inicializa os dados necessários para que a classe trabalhe corretamente com seus métodos
-     * @param  string $pathCertificate  O caminho em que o certificado se encontra poe exemplo /var/tmp
-     * @param  string $nameCertificate  O nome do certificado que será utilizado para extrair os dados
-     * @param  string $password  A senha do certificado enviado
+     * Define o caminho absoluto de um arquivo para que a classe trabalhe 
+     * corretamente com seus métodos
+     * @param string $filePath caminho do arquivo a ser utilizado
      * @throws Gnre\Exception\UnreachableFile  Caso não seja encontrado o arquivo informado
      * @since  1.0.0
      */
