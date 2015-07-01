@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -20,6 +20,7 @@ namespace Gnre\Webservice;
 use Gnre\Configuration\Setup;
 
 /**
+ * Factory utilizada para criar um objeto <b>\Gnre\Webservice\Connection</b>
  * @package     gnre
  * @subpackage  webservice
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
@@ -29,6 +30,7 @@ use Gnre\Configuration\Setup;
 class ConnectionFactory {
 
     /**
+     * Cria um objeto <b>\Gnre\Webservice\Connection</b>
      * @param \Gnre\Webservice\Setup $setup
      * @param array $headers
      * @param string $data

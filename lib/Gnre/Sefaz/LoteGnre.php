@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -60,6 +60,7 @@ abstract class LoteGnre implements ObjetoSefaz {
 
     /**
      * Método utilizado para retornar uma guia específica existente no lote
+     * @param int $index
      * @return Guia
      * @since  1.0.0
      */

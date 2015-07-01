@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -31,6 +31,7 @@ use Gnre\Render\Html;
 class Pdf {
 
     /**
+     * Gera o PDF através do HTML
      * @param \Gnre\Render\Html $html
      * @return \DOMPDF
      */

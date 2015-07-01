@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -18,6 +18,7 @@
 namespace Gnre\Render;
 
 /**
+ * Classe utilizada para gerar o código de barras no formato 128.
  * @package     gnre
  * @subpackage  render
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
@@ -27,18 +28,22 @@ namespace Gnre\Render;
 class Barcode128 {
 
     /**
+     * Propriedade utilizada para armazenar o código de barras
      * @var int 
      */
     private $numeroCodigoBarras;
 
     /**
-     * @return int
+     * Retorna o número de código de barras definido
+     * @return mixed <p>Se o código de barras for definido retorna o mesmo, 
+     * caso contrário é retornado <b>null</b></p>
      */
     public function getNumeroCodigoBarras() {
         return $this->numeroCodigoBarras;
     }
 
     /**
+     * Define o código de barras a ser usado pela classe
      * @param int $numeroCodigoBarras
      * @return \Gnre\Render\Barcode128
      */
@@ -48,7 +53,8 @@ class Barcode128 {
     }
 
     /**
-     * @return string
+     * Gera a imagem do código de barras e o transforma em base64
+     * @return string Retorna a imagem gerada no formato base64
      */
     public function getCodigoBarrasBase64() {
         ob_start();

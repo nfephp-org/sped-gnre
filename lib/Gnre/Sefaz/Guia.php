@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -274,7 +274,7 @@ class Guia {
      * @var string 
      */
     private $retornoInformacoesComplementares;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ
      * com o valor da atualização monetária, esse item pode
@@ -284,7 +284,7 @@ class Guia {
      * @var double 
      */
     private $retornoAtualizacaoMonetaria;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ
      * com o valor do juros, esse item pode ser encontrado do lado 
@@ -294,7 +294,7 @@ class Guia {
      * @var double 
      */
     private $retornoJuros;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ
      * com o valor da multa, esse item pode ser encontrado do lado 
@@ -304,14 +304,14 @@ class Guia {
      * @var double 
      */
     private $retornoMulta;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ com a linha
      * digitável do código de barras possuindo 48 caracteres
      * @var int 
      */
     private $retornoRepresentacaoNumerica;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ com o código
      * de barras, possuindo 44 caracteres (esse valor deve ser usado 
@@ -319,8 +319,8 @@ class Guia {
      * @var int 
      */
     private $retornoCodigoDeBarras;
-    
-     /**
+
+    /**
      * Dados retornados pelo web service da SEFAZ com a situação
      * da guia, se foi processada com sucesso ou se houve erro.
      * Para maiores informações sobre esse item consulte
@@ -328,29 +328,37 @@ class Guia {
      * @var int 
      */
     private $retornoSituacaoGuia;
+
+    /**
+     * Dados retornados pelo web service da SEFAZ com o numero de sequencia
+     * que a guia tem na SEFAZ.
+     * Para maiores informações sobre esse item consulte
+     * a documentação de retorno em http://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
+     * @var type 
+     */
     private $retornoSequencialGuia;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ com o nome dos campos do XML
      * que causaram o erro caso a guia não tenha sido processada com sucesso
      * @var string
      */
     private $retornoErrosDeValidacaoCampo;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ com o código
      * do erro caso a guia não tenha sido processada com sucesso
      * @var string
      */
     private $retornoErrosDeValidacaoCodigo;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ com a descrição
      * do erro caso a guia não tenha sido processada com sucesso
      * @var string
      */
     private $retornoErrosDeValidacaoDescricao;
-    
+
     /**
      * Dados retornados pelo web service da SEFAZ com o número
      * de controle da guia, <b>o valor desse atributo é gerado pela SEFAZ</b>

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -32,16 +32,19 @@ use Gnre\Render\Barcode128;
 class Html {
 
     /**
+     * Conteúdo HTML gerado pela classe
      * @var string
      */
     private $html;
 
     /**
+     * Objeto utilizado para gerar o código de barras
      * @var \Gnre\Render\Barcode128
      */
     private $barCode;
 
     /**
+     * Retorna a instância do objeto atual ou cria uma caso não exista
      * @return \Gnre\Render\Barcode128
      */
     public function getBarCode() {
@@ -53,6 +56,8 @@ class Html {
     }
 
     /**
+     * Define um objeto <b>\Gnre\Render\Barcode128</b> para ser utilizado
+     * internamente pela classe
      * @param \Gnre\Render\Barcode128 $barCode
      * @return \Gnre\Render\Html
      */
@@ -63,7 +68,6 @@ class Html {
 
     /**
      * Utiliza o lote como parâmetro para transforma-lo em uma guia HTML
-     * 
      * @param \Gnre\Sefaz\Lote $lote
      * @link https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg <p>
      * Exemplo de como é transformado o objeto <b>\Gnre\Sefaz\Lote</b> após ser
@@ -347,6 +351,7 @@ ABC;
     }
 
     /**
+     * Retorna o conteúdo HTML gerado pela classe
      * @return string
      */
     public function getHtml() {

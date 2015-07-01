@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -84,6 +84,7 @@ class CertificatePfxFileOperation extends FileOperation {
      * Método utilizado para inserir um determinado conteúdo em um arquivo com os dados
      * extraídos do certificado
      * @param  string  $content  Conteúdo desejado a ser escrito no arquivo
+     * @param \Gnre\Configuration\FilePrefix $filePrefix
      * @throws UnableToWriteFile Caso não seja possível escrever no arquivo ou algum outro tipo de erro que não permita escrever no arquivo
      * @return string Retorna o caminho completo do arquivo em que foi escrito o conteúdo enviado
      * @since  1.0.0

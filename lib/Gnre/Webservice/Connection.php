@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -73,6 +73,7 @@ class Connection {
     }
 
     /**
+     * Retorna as opções definidas para o curl
      * @return array
      */
     public function getCurlOptions() {

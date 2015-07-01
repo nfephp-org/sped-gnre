@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -18,6 +18,8 @@
 namespace Gnre\Exception;
 
 /**
+ * Exceção utilizada caso não for possível utilizar um objeto do tipo
+ * <b>\Gnre\Webservice\ConnectionFactory</b>
  * @package     gnre
  * @subpackage  exception
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
@@ -26,6 +28,10 @@ namespace Gnre\Exception;
  */
 class ConnectionFactoryUnavailable extends \Exception {
 
+    /**
+     * Define uma mensagem padrão caso a exceção seja lançada
+     * @since  1.0.0
+     */
     public function __construct() {
         parent::__construct('Unable to use a valid Gnre\Webservice\ConnectionFactory', null, null);
     }

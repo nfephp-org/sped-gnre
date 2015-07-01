@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -42,6 +42,7 @@ class Send {
     private $setup;
 
     /**
+     * Propriedade utilizada para armazenar o objecto de conexão com a SEFAZ
      * @var \Gnre\Webservice\ConnectionFactory
      */
     private $connectionFactory;
@@ -57,6 +58,7 @@ class Send {
     }
 
     /**
+     * Retorna o objeto de conexão com a SEFAZ
      * @return \Gnre\Webservice\ConnectionFactory
      * @throws \Gnre\Exception\ConnectionFactoryUnavailable
      */
@@ -69,6 +71,7 @@ class Send {
     }
 
     /**
+     * Define um objeto de comunicação com a SEFAZ
      * @param \Gnre\Webservice\ConnectionFactory $connectionFactory
      * @return \Gnre\Sefaz\Send
      */

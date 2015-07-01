@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -20,7 +20,8 @@ namespace Gnre\Sefaz;
 use Gnre\Sefaz\ConsultaGnre;
 
 /**
- * 
+ * Classe utilzada para gerar o envelope SOAP para ser enviado ao web service
+ * da SEFAZ para realizar a operação de consulta.
  * @package     gnre
  * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
