@@ -20,7 +20,7 @@
         "phenx/php-font-lib": "0.2.*",
         "zendframework/zend-servicemanager": ">=2.0",
 	"zendframework/zend-barcode": "2.3.*@dev",
-        "satooshi/php-coveralls": "dev-master",
+        "satooshi/php-coveralls": "stable",
         "smarty/smarty": "~3.1"
     },
     "autoload": {
