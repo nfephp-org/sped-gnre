@@ -31,12 +31,21 @@ use Gnre\Render\Html;
 class Pdf {
 
     /**
+     * Método criado para ser possível testar a utilização do objeto
+     * <b>DOMPDF</b> pela classe
+     * @return \DOMPDF
+     */
+    protected function getDomPdf() {
+        return new \DOMPDF();
+    }
+
+    /**
      * Gera o PDF através do HTML
      * @param \Gnre\Render\Html $html
      * @return \DOMPDF
      */
     public function create(Html $html) {
-        $dompdf = new \DOMPDF();
+        $dompdf = $this->getDomPdf();
         $dompdf->load_html($html->getHtml());
         $dompdf->render();
 

@@ -14,4 +14,9 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('\Gnre\Render\Barcode128', $html->getBarCode());
     }
 
+    public function testDeveRetornarUmaInstanciaDoSmartyFactory() {
+        $html = new Html();
+        $this->assertInstanceOf('\Gnre\Render\SmartyFactory', $html->getSmartyFactory());
+    }
+
 }
