@@ -3,6 +3,6 @@
 /**
  * @cover \Gnre\Parser\SefazRetorno
  */
-class SefazRetornoTest extends \PHPUnit_Framework_TestCase {
+class SefazRetornoTest { //extends \PHPUnit_Framework_TestCase {
     
 }
