@@ -33,5 +33,18 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('\DOMPDF', $domPdf);
     }
+    
+    public function testDeveRetornarUmaInstanciaDoDomPdf() {
+        $dom = new CoveragePdf();
+        $this->assertInstanceOf('\DOMPDF', $dom->getDomPdf());
+    }
 
+}
+
+class CoveragePdf extends \Gnre\Render\Pdf {
+    
+    public function getDomPdf() {
+        return parent::getDomPdf();
+    }
+    
 }

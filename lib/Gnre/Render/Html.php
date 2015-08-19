@@ -45,6 +45,11 @@ class Html {
     private $barCode;
 
     /**
+     * @var type 
+     */
+    private $smartyFactory;
+
+    /**
      * Retorna a instância do objeto atual ou cria uma caso não exista
      * @return \Gnre\Render\Barcode128
      */
@@ -67,12 +72,21 @@ class Html {
         return $this;
     }
 
+    public function setSmartyFactory(\Gnre\Render\SmartyFactory $smartyFactory) {
+        $this->smartyFactory = $smartyFactory;
+        return $this;
+    }
+
     /**
      * Retorna uma factory para ser possível utilizar o Smarty
      * @return Gnre\Render\SmartyFactory
      */
     public function getSmartyFactory() {
-        return new SmartyFactory();
+        if ($this->smartyFactory === null) {
+            $this->smartyFactory = new SmartyFactory();
+        }
+
+        return $this->smartyFactory;
     }
 
     /**
