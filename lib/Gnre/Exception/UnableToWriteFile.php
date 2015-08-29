@@ -26,14 +26,16 @@ namespace Gnre\Exception;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class UnableToWriteFile extends \Exception {
+class UnableToWriteFile extends \Exception
+{
 
     /**
      * Define uma mensagem padrão caso a exceção seja lançada
      * @param  string  $file O nome do arquivo em que está tentando escrever/criar
      * @since  1.0.0
      */
-    public function __construct($file) {
+    public function __construct($file)
+    {
         parent::__construct('Não foi possível criar/escrever no arquivo ' . $file, NULL, NULL);
     }
 

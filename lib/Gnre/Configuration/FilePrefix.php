@@ -26,7 +26,8 @@ namespace Gnre\Configuration;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class FilePrefix {
+class FilePrefix
+{
 
     /**
      * Armazena o prefixo desejado para ser aplicado no nome do arquivo
@@ -39,7 +40,8 @@ class FilePrefix {
      * @param  string  $prefix  Nome do prefixo por exemplo _private, _public etc
      * @since  1.0.0
      */
-    public function setPrefix($prefix) {
+    public function setPrefix($prefix)
+    {
         $this->prefix = $prefix;
     }
 
@@ -49,7 +51,8 @@ class FilePrefix {
      * @return string  O novo nome do arquivo e seu caminho completo
      * @since  1.0.0
      */
-    public function apply($path) {
+    public function apply($path)
+    {
         if (empty($this->prefix)) {
             return $path;
         }

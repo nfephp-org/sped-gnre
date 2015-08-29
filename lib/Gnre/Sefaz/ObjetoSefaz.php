@@ -26,7 +26,8 @@ namespace Gnre\Sefaz;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-interface ObjetoSefaz {
+interface ObjetoSefaz
+{
 
     /**
      * Retorna em um formato de array os cabeçalhos necessários para a comunicação com o webservice da SEFAZ.

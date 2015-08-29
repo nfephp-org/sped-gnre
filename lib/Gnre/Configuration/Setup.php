@@ -30,7 +30,8 @@ namespace Gnre\Configuration;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-abstract class Setup {
+abstract class Setup
+{
 
     /**
      * Método utilizado para retornar o número do ambiente em que se deseja

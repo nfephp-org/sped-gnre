@@ -32,7 +32,8 @@ use Gnre\Webservice\ConnectionFactory;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Send {
+class Send
+{
 
     /**
      * As configuraçoes definidas pelo usuarios que sera utilizada para a 
@@ -53,7 +54,8 @@ class Send {
      * @param  \Gnre\Configuration\Interfaces\Setup $setup Configuraçoes definidas pelo usuário
      * @since  1.0.0
      */
-    public function __construct(Setup $setup) {
+    public function __construct(Setup $setup)
+    {
         $this->setup = $setup;
     }
 
@@ -62,7 +64,8 @@ class Send {
      * @return \Gnre\Webservice\ConnectionFactory
      * @throws \Gnre\Exception\ConnectionFactoryUnavailable
      */
-    public function getConnectionFactory() {
+    public function getConnectionFactory()
+    {
         if (!$this->connectionFactory instanceof ConnectionFactory) {
             throw new ConnectionFactoryUnavailable();
         }
@@ -75,7 +78,8 @@ class Send {
      * @param \Gnre\Webservice\ConnectionFactory $connectionFactory
      * @return \Gnre\Sefaz\Send
      */
-    public function setConnectionFactory(ConnectionFactory $connectionFactory) {
+    public function setConnectionFactory(ConnectionFactory $connectionFactory)
+    {
         $this->connectionFactory = $connectionFactory;
         return $this;
     }
@@ -86,7 +90,8 @@ class Send {
      * @return string|boolean  Caso a conexão seja feita com sucesso retorna uma string com um xml válido caso contrário retorna false
      * @since  1.0.0
      */
-    public function sefaz(ObjetoSefaz $objetoSefaz) {
+    public function sefaz(ObjetoSefaz $objetoSefaz)
+    {
         $data = $objetoSefaz->toXml();
         $connection = $this->getConnectionFactory()->createConnection($this->setup, $objetoSefaz->getHeaderSoap(), $data);
 

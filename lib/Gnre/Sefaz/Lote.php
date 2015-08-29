@@ -29,12 +29,14 @@ use Gnre\Sefaz\LoteGnre;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Lote extends LoteGnre {
+class Lote extends LoteGnre
+{
 
     /**
      * {@inheritdoc}
      */
-    public function getHeaderSoap() {
+    public function getHeaderSoap()
+    {
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote"',
             'SOAPAction: processar'
@@ -44,14 +46,16 @@ class Lote extends LoteGnre {
     /**
      * {@inheritdoc}
      */
-    public function soapAction() {
+    public function soapAction()
+    {
         return 'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toXml() {
+    public function toXml()
+    {
         $gnre = new \DOMDocument('1.0', 'UTF-8');
         $gnre->formatOutput = false;
         $gnre->preserveWhiteSpace = false;

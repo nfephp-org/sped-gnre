@@ -29,7 +29,8 @@ use Gnre\Sefaz\ObjetoSefaz;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-abstract class LoteGnre implements ObjetoSefaz {
+abstract class LoteGnre implements ObjetoSefaz
+{
 
     const EMITENTE_PESSOA_JURIDICA = 1;
 
@@ -45,7 +46,8 @@ abstract class LoteGnre implements ObjetoSefaz {
      * enviar um objeto do tipo Guia
      * @since 1.0.0
      */
-    public function addGuia(Guia $guia) {
+    public function addGuia(Guia $guia)
+    {
         $this->guias[] = $guia;
     }
 
@@ -54,7 +56,8 @@ abstract class LoteGnre implements ObjetoSefaz {
      * @return array
      * @since  1.0.0
      */
-    public function getGuias() {
+    public function getGuias()
+    {
         return $this->guias;
     }
 
@@ -64,7 +67,8 @@ abstract class LoteGnre implements ObjetoSefaz {
      * @return Guia
      * @since  1.0.0
      */
-    public function getGuia($index) {
+    public function getGuia($index)
+    {
         return $this->guias[$index];
     }
 

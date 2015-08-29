@@ -34,7 +34,8 @@ use Gnre\Exception\UndefinedProperty;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Guia {
+class Guia
+{
 
     /**
      * Uma sigla representando um dos 27 estados brasileiros
@@ -374,7 +375,8 @@ class Guia {
      * @return string  Caso a propriedade exista retorna o seu valor
      * @since  1.0.0
      */
-    public function __get($property) {
+    public function __get($property)
+    {
         if ($this->verifyProperty($property)) {
             return $this->$property;
         }
@@ -389,7 +391,8 @@ class Guia {
      * @return boolean Retorna true caso seja setado o valor para o atributo desejado
      * @since  1.0.0
      */
-    public function __set($property, $value) {
+    public function __set($property, $value)
+    {
         if ($this->verifyProperty($property)) {
             $this->$property = $value;
             return true;
@@ -404,7 +407,8 @@ class Guia {
      * @throws UndefinedProperty  Caso o atributo desejada não exista na classe
      * @since  1.0.0
      */
-    private function verifyProperty($property) {
+    private function verifyProperty($property)
+    {
         if (!property_exists($this, $property)) {
             throw new UndefinedProperty($property);
         }

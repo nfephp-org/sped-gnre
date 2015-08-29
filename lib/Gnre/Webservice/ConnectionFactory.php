@@ -27,7 +27,8 @@ use Gnre\Configuration\Setup;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class ConnectionFactory {
+class ConnectionFactory
+{
 
     /**
      * Cria um objeto <b>\Gnre\Webservice\Connection</b>
@@ -36,7 +37,8 @@ class ConnectionFactory {
      * @param string $data
      * @return \Gnre\Webservice\Connection
      */
-    public function createConnection(Setup $setup, $headers, $data) {
+    public function createConnection(Setup $setup, $headers, $data)
+    {
         return new Connection($setup, $headers, $data);
     }
 

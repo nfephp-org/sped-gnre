@@ -25,7 +25,8 @@ namespace Gnre\Render;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class SmartyFactory {
+class SmartyFactory
+{
 
     /**
      * Cria um objeto smarty com o diretório padrão <b>/root/templates</b> para
@@ -34,7 +35,8 @@ class SmartyFactory {
      * compilados pelo smarty serão salvos
      * @return \Smarty
      */
-    public function create() {
+    public function create()
+    {
         $documentRoot = getenv('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR;
 
         $smarty = new \Smarty();

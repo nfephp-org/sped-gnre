@@ -30,7 +30,8 @@ use Gnre\Exception\UnableToWriteFile;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class CertificatePfxFileOperation extends FileOperation {
+class CertificatePfxFileOperation extends FileOperation
+{
 
     /**
      * O nome da pasta em que os meta dados dos certificados são armazenados.
@@ -48,7 +49,8 @@ class CertificatePfxFileOperation extends FileOperation {
     /**
      * {@inheritdoc}
      */
-    public function __construct($filePath) {
+    public function __construct($filePath)
+    {
         parent::__construct($filePath);
 
         $explodePath = explode('/', $this->filePath);
@@ -70,7 +72,8 @@ class CertificatePfxFileOperation extends FileOperation {
      * @throws CannotOpenCertificate Caso a senha do certificado for inválida
      * @since  1.0.0
      */
-    public function open($password) {
+    public function open($password)
+    {
         $key = file_get_contents($this->filePath);
         $dataCertificate = array();
         if (!openssl_pkcs12_read($key, $dataCertificate, $password)) {
@@ -89,7 +92,8 @@ class CertificatePfxFileOperation extends FileOperation {
      * @return string Retorna o caminho completo do arquivo em que foi escrito o conteúdo enviado
      * @since  1.0.0
      */
-    public function writeFile($content, FilePrefix $filePrefix) {
+    public function writeFile($content, FilePrefix $filePrefix)
+    {
         $pathToWrite = $filePrefix->apply($this->pathToWrite);
 
         if (!file_put_contents($pathToWrite, $content)) {

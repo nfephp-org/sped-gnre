@@ -29,7 +29,8 @@ namespace Gnre\Parser;
  * @link        http://en.wikipedia.org/wiki/Template_method_pattern Template Method Design Pattern
  * @version     1.0.0
  */
-abstract class Rules {
+abstract class Rules
+{
 
     const ERRO_VALIDACAO = 2;
     const GUIA_EMITIDA_COM_SUCESSO = 9;
@@ -67,7 +68,8 @@ abstract class Rules {
      * web service da SEFAZ</p>
      * @since 1.0.0
      */
-    public function __construct($dadosArquivo) {
+    public function __construct($dadosArquivo)
+    {
         $this->dadosArquivo = explode(PHP_EOL, $dadosArquivo);
     }
 
@@ -158,7 +160,8 @@ abstract class Rules {
     /**
      * @return \Gnre\Sefaz\Lote
      */
-    public function getLote() {
+    public function getLote()
+    {
         $lote = new \Gnre\Sefaz\Lote();
 
         for ($i = 0; $i < sizeof($this->dadosArquivo); $i++) {
@@ -230,7 +233,8 @@ abstract class Rules {
      * @param int $length
      * @return string
      */
-    public function getContent($content, $positionStart, $length) {
+    public function getContent($content, $positionStart, $length)
+    {
         return substr($content, $positionStart, $length);
     }
 

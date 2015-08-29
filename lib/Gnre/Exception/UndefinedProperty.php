@@ -25,13 +25,15 @@ namespace Gnre\Exception;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class UndefinedProperty extends \Exception {
+class UndefinedProperty extends \Exception
+{
 
     /**
      * Define uma mensagem padrão caso a exceção seja lançada
      * @since  1.0.0
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('Não foi possível encontrar o atributo desejado na classe', 100, null);
     }
 

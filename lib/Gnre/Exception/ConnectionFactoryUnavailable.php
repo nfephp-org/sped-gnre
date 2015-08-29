@@ -26,13 +26,15 @@ namespace Gnre\Exception;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class ConnectionFactoryUnavailable extends \Exception {
+class ConnectionFactoryUnavailable extends \Exception
+{
 
     /**
      * Define uma mensagem padrão caso a exceção seja lançada
      * @since  1.0.0
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('Unable to use a valid Gnre\Webservice\ConnectionFactory', null, null);
     }
 

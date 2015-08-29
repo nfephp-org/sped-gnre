@@ -30,7 +30,8 @@ use Gnre\Render\SmartyFactory;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Html {
+class Html
+{
 
     /**
      * Conteúdo HTML gerado pela classe
@@ -53,7 +54,8 @@ class Html {
      * Retorna a instância do objeto atual ou cria uma caso não exista
      * @return \Gnre\Render\Barcode128
      */
-    public function getBarCode() {
+    public function getBarCode()
+    {
         if (!$this->barCode instanceof Barcode128) {
             $this->barCode = new Barcode128();
         }
@@ -67,12 +69,14 @@ class Html {
      * @param \Gnre\Render\Barcode128 $barCode
      * @return \Gnre\Render\Html
      */
-    public function setBarCode(Barcode128 $barCode) {
+    public function setBarCode(Barcode128 $barCode)
+    {
         $this->barCode = $barCode;
         return $this;
     }
 
-    public function setSmartyFactory(\Gnre\Render\SmartyFactory $smartyFactory) {
+    public function setSmartyFactory(\Gnre\Render\SmartyFactory $smartyFactory)
+    {
         $this->smartyFactory = $smartyFactory;
         return $this;
     }
@@ -81,7 +85,8 @@ class Html {
      * Retorna uma factory para ser possível utilizar o Smarty
      * @return Gnre\Render\SmartyFactory
      */
-    public function getSmartyFactory() {
+    public function getSmartyFactory()
+    {
         if ($this->smartyFactory === null) {
             $this->smartyFactory = new SmartyFactory();
         }
@@ -97,7 +102,8 @@ class Html {
      * utilizado por esse método</p>
      * @since 1.0.0
      */
-    public function create(Lote $lote) {
+    public function create(Lote $lote)
+    {
         $guiaViaInfo = array(
             1 => '1ª via Banco',
             2 => '2ª via Contrinuinte',
@@ -129,7 +135,8 @@ class Html {
      * Retorna o conteúdo HTML gerado pela classe
      * @return string
      */
-    public function getHtml() {
+    public function getHtml()
+    {
         return $this->html;
     }
 

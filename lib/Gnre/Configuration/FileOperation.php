@@ -27,7 +27,8 @@ use Gnre\Exception\UnreachableFile;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-abstract class FileOperation {
+abstract class FileOperation
+{
 
     /**
      * Caminho em que o certificado físico está alocado
@@ -42,7 +43,8 @@ abstract class FileOperation {
      * @throws Gnre\Exception\UnreachableFile  Caso não seja encontrado o arquivo informado
      * @since  1.0.0
      */
-    public function __construct($filePath) {
+    public function __construct($filePath)
+    {
         if (!file_exists($filePath)) {
             throw new UnreachableFile($filePath);
         }

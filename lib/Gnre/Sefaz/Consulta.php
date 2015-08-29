@@ -28,12 +28,14 @@ use Gnre\Sefaz\ConsultaGnre;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Consulta extends ConsultaGnre {
+class Consulta extends ConsultaGnre
+{
 
     /**
      * {@inheritdoc}
      */
-    public function getHeaderSoap() {
+    public function getHeaderSoap()
+    {
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote"',
             'SOAPAction: consultar'
@@ -43,14 +45,16 @@ class Consulta extends ConsultaGnre {
     /**
      * {@inheritdoc}
      */
-    public function soapAction() {
+    public function soapAction()
+    {
         return 'https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toXml() {
+    public function toXml()
+    {
         $gnre = new \DOMDocument('1.0', 'UTF-8');
         $gnre->formatOutput = false;
         $gnre->preserveWhiteSpace = false;

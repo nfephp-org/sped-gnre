@@ -15,7 +15,7 @@
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Gnre\Configuration; 
+namespace Gnre\Configuration;
 
 use Gnre\Configuration\CertificatePfxFileOperation;
 
@@ -28,7 +28,8 @@ use Gnre\Configuration\CertificatePfxFileOperation;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class CertificatePfx {
+class CertificatePfx
+{
 
     /**
      * Atributo que armazena os dados extraidos do certificado com a função openssl_pkcs12_read
@@ -49,7 +50,8 @@ class CertificatePfx {
      * @param string $password  senha utilizada para realizar operações com o certificado
      * @since  1.0.0
      */
-    public function __construct(CertificatePfxFileOperation $cerficationFileOperation, $password) {
+    public function __construct(CertificatePfxFileOperation $cerficationFileOperation, $password)
+    {
         $this->cerficationFileOperation = $cerficationFileOperation;
         $this->dataCertificate = $this->cerficationFileOperation->open($password);
     }
@@ -62,7 +64,8 @@ class CertificatePfx {
      * @return string  Retorna uma string com o caminho e o nome do arquivo que foi criado
      * @since  1.0.0
      */
-    public function getPrivateKey() {
+    public function getPrivateKey()
+    {
         $filePrefix = new FilePrefix();
         $filePrefix->setPrefix('_privKEY');
         return $this->cerficationFileOperation->writeFile($this->dataCertificate['pkey'], $filePrefix);
@@ -76,7 +79,8 @@ class CertificatePfx {
      * @return string Retorna uma string com o caminho e o nome do arquivo que foi criado
      * @since  1.0.0
      */
-    public function getCertificatePem() {
+    public function getCertificatePem()
+    {
         $filePrefix = new FilePrefix();
         $filePrefix->setPrefix('_certKEY');
         return $this->cerficationFileOperation->writeFile($this->dataCertificate['cert'], $filePrefix);

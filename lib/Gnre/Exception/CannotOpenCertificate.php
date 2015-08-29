@@ -25,14 +25,16 @@ namespace Gnre\Exception;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class CannotOpenCertificate extends \Exception {
+class CannotOpenCertificate extends \Exception
+{
 
     /**
      * Define uma mensagem padrão caso a exceção seja lançada
      * @param  string  $certificate O nome do certificado que está sendo aberto
      * @since  1.0.0
      */
-    public function __construct($certificate) {
+    public function __construct($certificate)
+    {
         parent::__construct('Não foi possível abrir o certificado ' . $certificate . ' verifique a senha informada', NULL, NULL);
     }
 

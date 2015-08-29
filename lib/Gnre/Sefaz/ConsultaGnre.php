@@ -29,7 +29,8 @@ use Gnre\Sefaz\ObjetoSefaz;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-abstract class ConsultaGnre implements ObjetoSefaz {
+abstract class ConsultaGnre implements ObjetoSefaz
+{
 
     /**
      * O número que representa em qual ambiente sera realizada a consulta
@@ -50,7 +51,8 @@ abstract class ConsultaGnre implements ObjetoSefaz {
      * @since  1.0.0
      * @return int
      */
-    public function getRecibo() {
+    public function getRecibo()
+    {
         return $this->recibo;
     }
 
@@ -60,7 +62,8 @@ abstract class ConsultaGnre implements ObjetoSefaz {
      * @param  int  $recibo  Número retornado pelo webservice da sefaz após ter recebido um lote com sucesso
      * @since  1.0.0
      */
-    public function setRecibo($recibo) {
+    public function setRecibo($recibo)
+    {
         $this->recibo = $recibo;
     }
 
@@ -69,7 +72,8 @@ abstract class ConsultaGnre implements ObjetoSefaz {
      * @return  int
      * @since   1.0.0
      */
-    public function getEnvironment() {
+    public function getEnvironment()
+    {
         return $this->environment;
     }
 
@@ -78,7 +82,8 @@ abstract class ConsultaGnre implements ObjetoSefaz {
      * @param  int  $environment  O número do ambiente que se deseja consultar número 1 representa produção e 2 representa homologação
      * @since  1.0.0
      */
-    public function setEnvironment($environment) {
+    public function setEnvironment($environment)
+    {
         $this->environment = $environment;
     }
 

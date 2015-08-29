@@ -29,7 +29,8 @@ use Gnre\Configuration\Setup;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Connection {
+class Connection
+{
 
     /**
      * Armazena todas as opções desejadas para serem incluídas no curl() 
@@ -46,7 +47,8 @@ class Connection {
      * @param  $data  string
      * @since  1.0.0
      */
-    public function __construct(Setup $setup, $headers, $data) {
+    public function __construct(Setup $setup, $headers, $data)
+    {
         $this->curlOptions = array(
             CURLOPT_PORT => 443,
             CURLOPT_VERBOSE => 1,
@@ -61,10 +63,10 @@ class Connection {
             CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => $headers
         );
-        
+
         $ip = $setup->getProxyIp();
         $port = $setup->getProxyPort();
-        
+
         if (!empty($ip) && $port) {
             $this->curlOptions[CURLOPT_HTTPPROXYTUNNEL] = 1;
             $this->curlOptions[CURLOPT_PROXYTYPE] = 'CURLPROXY_HTTP';
@@ -76,7 +78,8 @@ class Connection {
      * Retorna as opções definidas para o curl
      * @return array
      */
-    public function getCurlOptions() {
+    public function getCurlOptions()
+    {
         return $this->curlOptions;
     }
 
@@ -104,7 +107,8 @@ class Connection {
      * @param array $option
      * @return \Gnre\Webservice\Connection
      */
-    public function addCurlOption(array $option) {
+    public function addCurlOption(array $option)
+    {
         foreach ($option as $key => $value) {
             $this->curlOptions[$key] = $value;
         }
@@ -118,7 +122,8 @@ class Connection {
      * @since  1.0.0
      * @return string|boolean  Caso a requisição não seja feita com sucesso false caso contrário uma string com XML formatado
      */
-    public function doRequest($url) {
+    public function doRequest($url)
+    {
         $curl = curl_init($url);
         curl_setopt_array($curl, $this->curlOptions);
         $ret = curl_exec($curl);

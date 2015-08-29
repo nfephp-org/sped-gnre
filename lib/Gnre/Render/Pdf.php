@@ -28,14 +28,16 @@ use Gnre\Render\Html;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Pdf {
+class Pdf
+{
 
     /**
      * Método criado para ser possível testar a utilização do objeto
      * <b>DOMPDF</b> pela classe
      * @return \DOMPDF
      */
-    protected function getDomPdf() {
+    protected function getDomPdf()
+    {
         return new \DOMPDF();
     }
 
@@ -44,7 +46,8 @@ class Pdf {
      * @param \Gnre\Render\Html $html
      * @return \DOMPDF
      */
-    public function create(Html $html) {
+    public function create(Html $html)
+    {
         $dompdf = $this->getDomPdf();
         $dompdf->load_html($html->getHtml());
         $dompdf->render();

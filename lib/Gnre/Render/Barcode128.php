@@ -25,7 +25,8 @@ namespace Gnre\Render;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Barcode128 {
+class Barcode128
+{
 
     /**
      * Propriedade utilizada para armazenar o código de barras
@@ -38,7 +39,8 @@ class Barcode128 {
      * @return mixed <p>Se o código de barras for definido retorna o mesmo, 
      * caso contrário é retornado <b>null</b></p>
      */
-    public function getNumeroCodigoBarras() {
+    public function getNumeroCodigoBarras()
+    {
         return $this->numeroCodigoBarras;
     }
 
@@ -47,7 +49,8 @@ class Barcode128 {
      * @param int $numeroCodigoBarras
      * @return \Gnre\Render\Barcode128
      */
-    public function setNumeroCodigoBarras($numeroCodigoBarras) {
+    public function setNumeroCodigoBarras($numeroCodigoBarras)
+    {
         $this->numeroCodigoBarras = $numeroCodigoBarras;
         return $this;
     }
@@ -56,7 +59,8 @@ class Barcode128 {
      * Gera a imagem do código de barras e o transforma em base64
      * @return string Retorna a imagem gerada no formato base64
      */
-    public function getCodigoBarrasBase64() {
+    public function getCodigoBarrasBase64()
+    {
         ob_start();
 
         $text = $this->getNumeroCodigoBarras();
