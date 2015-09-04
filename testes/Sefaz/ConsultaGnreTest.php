@@ -1,11 +1,11 @@
 <?php
 
-namespace Gnre\Sefaz\Test;
+namespace Sped\Gnre\Sefaz\Test;
 
-use Gnre\Sefaz\ConsultaGnre;
+use Sped\Gnre\Sefaz\ConsultaGnre;
 
 /**
- * @covers Gnre\Sefaz\ConsultaGnre
+ * @covers Sped\Gnre\Sefaz\ConsultaGnre
  */
 class ConsultaGnreTest extends \PHPUnit_Framework_TestCase {
 

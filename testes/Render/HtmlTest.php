@@ -1,40 +1,40 @@
 <?php
 
-namespace Gnre\Render\Test;
+namespace Sped\Gnre\Render\Test;
 
-use Gnre\Render\Html;
+use Sped\Gnre\Render\Html;
 
 /**
- * @covers \Gnre\Render\Html
+ * @covers \Sped\Gnre\Render\Html
  */
 class HtmlTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveRetornarUmInstanciaDoBarCode() {
         $html = new Html();
-        $this->assertInstanceOf('\Gnre\Render\Barcode128', $html->getBarCode());
+        $this->assertInstanceOf('\Sped\Gnre\Render\Barcode128', $html->getBarCode());
     }
 
     public function testDeveRetornarUmaInstanciaDoSmartyFactory() {
         $html = new Html();
-        $this->assertInstanceOf('\Gnre\Render\SmartyFactory', $html->getSmartyFactory());
+        $this->assertInstanceOf('\Sped\Gnre\Render\SmartyFactory', $html->getSmartyFactory());
     }
 
     public function testDeveDefinirUmObjetoDeCodigoDeBarrasParaSerUtilizado() {
-        $barCode = new \Gnre\Render\Barcode128();
+        $barCode = new \Sped\Gnre\Render\Barcode128();
         $html = new Html();
 
-        $this->assertInstanceOf('\Gnre\Render\Html', $html->setBarCode($barCode));
+        $this->assertInstanceOf('\Sped\Gnre\Render\Html', $html->setBarCode($barCode));
         $this->assertSame($barCode, $html->getBarCode());
     }
 
     public function testDeveRetornarNullSeNaoForCriadoOhtmlDaGuia() {
-        $html = new \Gnre\Render\Html();
+        $html = new \Sped\Gnre\Render\Html();
         $this->assertEmpty($html->getHtml());
     }
 
     public function testNaoDeveGerarOhtmlDoLoteQuandoOloteEvazio() {
         $html = new Html();
-        $mkcLote = $this->getMock('\Gnre\Sefaz\Lote');
+        $mkcLote = $this->getMock('\Sped\Gnre\Sefaz\Lote');
         $mkcLote->expects($this->once())
                 ->method('getGuias');
         $mkcLote->expects($this->never())
@@ -61,7 +61,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
                 ->with('gnre.tpl')
                 ->will($this->returnValue('<html></html>'));
 
-        $smartyFactory = $this->getMock('\Gnre\Render\SmartyFactory');
+        $smartyFactory = $this->getMock('\Sped\Gnre\Render\SmartyFactory');
         $smartyFactory->expects($this->once())
                 ->method('create')
                 ->will($this->returnValue($smarty));
@@ -69,8 +69,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $html = new Html();
         $html->setSmartyFactory($smartyFactory);
 
-        $lote = new \Gnre\Sefaz\Lote();
-        $lote->addGuia(new \Gnre\Sefaz\Guia());
+        $lote = new \Sped\Gnre\Sefaz\Lote();
+        $lote->addGuia(new \Sped\Gnre\Sefaz\Guia());
 
         $html->create($lote);
 

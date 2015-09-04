@@ -16,12 +16,12 @@
  */
 
 /**
- * @covers Gnre\Configuration\CertificatePfx
+ * @covers Sped\Gnre\Configuration\CertificatePfx
  */
 class TestCertificatePfx extends PHPUnit_Framework_TestCase {
 
     public function testPassarAoCriarChavePrivadaApartirDoCertificado() {
-        $stubFileOperation = $this->getMockBuilder('Gnre\Configuration\CertificatePfxFileOperation')
+        $stubFileOperation = $this->getMockBuilder('Sped\Gnre\Configuration\CertificatePfxFileOperation')
                 ->disableOriginalConstructor()
                 ->getMock();
 
@@ -29,14 +29,14 @@ class TestCertificatePfx extends PHPUnit_Framework_TestCase {
                 ->method('writeFile')
                 ->will($this->returnValue('vfs://certificadoDir/metadata/certificado_Private.pem'));
 
-        $certificatePfx = new Gnre\Configuration\CertificatePfx($stubFileOperation, 'senha');
+        $certificatePfx = new Sped\Gnre\Configuration\CertificatePfx($stubFileOperation, 'senha');
         $caminhoDoArquivoCriado = $certificatePfx->getPrivateKey();
 
         $this->assertEquals('vfs://certificadoDir/metadata/certificado_Private.pem', $caminhoDoArquivoCriado);
     }
 
     public function testPassarAoCriarCertificadoPemApartirDoCertificado() {
-        $mockFileOperation = $this->getMockBuilder('Gnre\Configuration\CertificatePfxFileOperation')
+        $mockFileOperation = $this->getMockBuilder('Sped\Gnre\Configuration\CertificatePfxFileOperation')
                 ->disableOriginalConstructor()
                 ->getMock();
 
@@ -44,7 +44,7 @@ class TestCertificatePfx extends PHPUnit_Framework_TestCase {
                 ->method('writeFile')
                 ->will($this->returnValue('vfs://certificadoDir/metadata/certificado_pemKEY.pem'));
 
-        $certificatePfx = new Gnre\Configuration\CertificatePfx($mockFileOperation, 'senha');
+        $certificatePfx = new Sped\Gnre\Configuration\CertificatePfx($mockFileOperation, 'senha');
         $caminhoDoArquivoCriado = $certificatePfx->getCertificatePem();
 
         $this->assertEquals('vfs://certificadoDir/metadata/certificado_pemKEY.pem', $caminhoDoArquivoCriado);

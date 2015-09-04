@@ -1,12 +1,12 @@
 <?php
 
-namespace Gnre\Sefaz\Test;
+namespace Sped\Gnre\Sefaz\Test;
 
-use Gnre\Sefaz\Lote;
-use Gnre\Sefaz\Guia;
+use Sped\Gnre\Sefaz\Lote;
+use Sped\Gnre\Sefaz\Guia;
 
 /**
- * @covers Gnre\Sefaz\Lote
+ * @covers Sped\Gnre\Sefaz\Lote
  */
 class LoteTest extends \PHPUnit_Framework_TestCase {
 

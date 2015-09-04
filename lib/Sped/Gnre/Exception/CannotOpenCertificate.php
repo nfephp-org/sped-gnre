@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -15,34 +15,27 @@
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Sped\Gnre\Configuration\Test;
-
-use Sped\Gnre\Configuration\FileOperation;
+namespace Sped\Gnre\Exception;
 
 /**
- * @covers Sped\Gnre\Configuration\FileOperation
- * @covers Sped\Gnre\Exception\UnreachableFile
+ * Exceçao lançada caso não seja possível obter os dados do certificado com a senha informada
+ * @package     gnre
+ * @subpackage  exception
+ * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
+ * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
+ * @version     1.0.0
  */
-class FileOperationTest extends \PHPUnit_Framework_TestCase {
+class CannotOpenCertificate extends \Exception
+{
 
     /**
-     * @expectedException Sped\Gnre\Exception\UnreachableFile
+     * Define uma mensagem padrão caso a exceção seja lançada
+     * @param  string  $certificate O nome do certificado que está sendo aberto
+     * @since  1.0.0
      */
-    public function testArquivoInformadoNaoExiste() {
-        $myFile = new MyFile('/foo/bar.txt');
-    }
-
-    public function testArquivoInformadoExistente() {
-        $file = __DIR__ . '/../../exemplos/estrutura-lote-completo-gnre.xml';
-        $myFile = new MyFile($file);
-    }
-
-}
-
-class MyFile extends FileOperation {
-
-    public function writeFile($content, \Sped\Gnre\Configuration\FilePrefix $filePrefix) {
-        return null;
+    public function __construct($certificate)
+    {
+        parent::__construct('Não foi possível abrir o certificado ' . $certificate . ' verifique a senha informada', NULL, NULL);
     }
 
 }

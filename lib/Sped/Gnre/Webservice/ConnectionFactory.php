@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Este arquivo é parte do programa GNRE PHP
  * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
  * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
@@ -15,34 +15,31 @@
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Sped\Gnre\Configuration\Test;
+namespace Sped\Gnre\Webservice;
 
-use Sped\Gnre\Configuration\FileOperation;
+use Sped\Gnre\Configuration\Setup;
 
 /**
- * @covers Sped\Gnre\Configuration\FileOperation
- * @covers Sped\Gnre\Exception\UnreachableFile
+ * Factory utilizada para criar um objeto <b>\Sped\Gnre\Webservice\Connection</b>
+ * @package     gnre
+ * @subpackage  webservice
+ * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
+ * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
+ * @version     1.0.0
  */
-class FileOperationTest extends \PHPUnit_Framework_TestCase {
+class ConnectionFactory
+{
 
     /**
-     * @expectedException Sped\Gnre\Exception\UnreachableFile
+     * Cria um objeto <b>\Sped\Gnre\Webservice\Connection</b>
+     * @param \Sped\Gnre\Webservice\Setup $setup
+     * @param array $headers
+     * @param string $data
+     * @return \Sped\Gnre\Webservice\Connection
      */
-    public function testArquivoInformadoNaoExiste() {
-        $myFile = new MyFile('/foo/bar.txt');
-    }
-
-    public function testArquivoInformadoExistente() {
-        $file = __DIR__ . '/../../exemplos/estrutura-lote-completo-gnre.xml';
-        $myFile = new MyFile($file);
-    }
-
-}
-
-class MyFile extends FileOperation {
-
-    public function writeFile($content, \Sped\Gnre\Configuration\FilePrefix $filePrefix) {
-        return null;
+    public function createConnection(Setup $setup, $headers, $data)
+    {
+        return new Connection($setup, $headers, $data);
     }
 
 }
