@@ -1,9 +1,9 @@
 <?php
 
-namespace Gnre\Render\Test;
+namespace Sped\Gnre\Render\Test;
 
 /**
- * @covers \Gnre\Render\Pdf
+ * @covers \Sped\Gnre\Render\Pdf
  */
 class PdfTest extends \PHPUnit_Framework_TestCase {
 
@@ -18,13 +18,13 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
         $dom->expects($this->once())
                 ->method('render');
 
-        $html = $this->getMock('\Gnre\Render\Html');
+        $html = $this->getMock('\Sped\Gnre\Render\Html');
         $html->expects($this->once())
                 ->method('getHtml')
                 ->will($this->returnValue('<html><p>Guia GNRE</p></html>'));
 
 
-        $pdf = $this->getMock('\Gnre\Render\Pdf', array('getDomPdf'));
+        $pdf = $this->getMock('\Sped\Gnre\Render\Pdf', array('getDomPdf'));
         $pdf->expects($this->once())
                 ->method('getDomPdf')
                 ->will($this->returnValue($dom));
@@ -41,7 +41,7 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
 
 }
 
-class CoveragePdf extends \Gnre\Render\Pdf {
+class CoveragePdf extends \Sped\Gnre\Render\Pdf {
     
     public function getDomPdf() {
         return parent::getDomPdf();

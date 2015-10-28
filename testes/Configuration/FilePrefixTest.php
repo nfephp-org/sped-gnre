@@ -16,23 +16,23 @@
  */
 
 /**
- * @covers \Gnre\Configuration\FilePrefix
+ * @covers \Sped\Gnre\Configuration\FilePrefix
  */
 class FilePrefixTest extends PHPUnit_Framework_TestCase {
 
     public function testPassarAoAplicarUmPrefixoEmUmArquivo() {
-        $prefix = new \Gnre\Configuration\FilePrefix();
+        $prefix = new \Sped\Gnre\Configuration\FilePrefix();
         $prefix->setPrefix('meuPref');
         $this->assertEquals('/var/www/filemeuPref.doc', $prefix->apply('/var/www/file.doc'));
     }
 
     public function testPassarSemAdicionarPrefixoEmUmArquivo() {
-        $prefix = new \Gnre\Configuration\FilePrefix();
+        $prefix = new \Sped\Gnre\Configuration\FilePrefix();
         $this->assertEquals('/path/to/foo.doc', $prefix->apply('/path/to/foo.doc'));
     }
 
     public function testPassarAoEnviarUmCaminhoDeArquivoVazio() {
-        $prefix = new \Gnre\Configuration\FilePrefix();
+        $prefix = new \Sped\Gnre\Configuration\FilePrefix();
         $this->assertEmpty($prefix->apply(''));
     }
 

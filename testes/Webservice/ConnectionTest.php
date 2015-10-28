@@ -1,11 +1,11 @@
 <?php
 
-namespace Gnre\Webservice\Test;
+namespace Sped\Gnre\Webservice\Test;
 
-use Gnre\Webservice\Connection;
+use Sped\Gnre\Webservice\Connection;
 
 /**
- * @covers \Gnre\Webservice\Connection
+ * @covers \Sped\Gnre\Webservice\Connection
  */
 class ConnectionTest extends \PHPUnit_Framework_TestCase {
 
@@ -33,7 +33,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testDeveAdicionarUmaNocaOpcaoAsOpcoesDoCurl() {
-        $setup = $this->getMockForAbstractClass('\Gnre\Configuration\Setup');
+        $setup = $this->getMockForAbstractClass('\Sped\Gnre\Configuration\Setup');
 
         $connection = new Connection($setup, array(), '');
 
@@ -52,7 +52,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
         $this->curlOptions[CURLOPT_SSLCERT] = '/foo/bar/cert.pem';
         $this->curlOptions[CURLOPT_SSLKEY] = '/foo/bar/priv.pem';
 
-        $setup = $this->getMockForAbstractClass('\Gnre\Configuration\Setup');
+        $setup = $this->getMockForAbstractClass('\Sped\Gnre\Configuration\Setup');
         $setup->expects($this->once())
                 ->method('getCertificatePemFile')
                 ->will($this->returnValue('/foo/bar/cert.pem'));
@@ -70,7 +70,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
         $this->curlOptions[CURLOPT_PROXYTYPE] = 'CURLPROXY_HTTP';
         $this->curlOptions[CURLOPT_PROXY] = '192.168.0.1:3128';
 
-        $setup = $this->getMockForAbstractClass('\Gnre\Configuration\Setup');
+        $setup = $this->getMockForAbstractClass('\Sped\Gnre\Configuration\Setup');
         $setup->expects($this->exactly(2))
                 ->method('getProxyIp')
                 ->will($this->returnValue('192.168.0.1'));

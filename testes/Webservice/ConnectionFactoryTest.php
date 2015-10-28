@@ -1,21 +1,21 @@
 <?php
 
-namespace Gnre\Webservice\Test;
+namespace Sped\Gnre\Webservice\Test;
 
-use Gnre\Webservice\ConnectionFactory;
+use Sped\Gnre\Webservice\ConnectionFactory;
 
 /**
- * @covers \Gnre\Webservice\ConnectionFactory
+ * @covers \Sped\Gnre\Webservice\ConnectionFactory
  */
 class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveRetornarUmaNovaInstanciaDeConnection() {
-        $setup = $this->getMockForAbstractClass('\Gnre\Configuration\Setup');
+        $setup = $this->getMockForAbstractClass('\Sped\Gnre\Configuration\Setup');
 
         $factory = new ConnectionFactory();
         $connection = $factory->createConnection($setup, array(), '<env:soap>my data</env:soap>');
 
-        $this->assertInstanceOf('\Gnre\Webservice\Connection', $connection);
+        $this->assertInstanceOf('\Sped\Gnre\Webservice\Connection', $connection);
     }
 
 }

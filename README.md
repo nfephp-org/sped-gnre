@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/marabesi/gnrephp.svg?branch=master)](https://travis-ci.org/marabesi/gnrephp)
+[![Build Status](https://travis-ci.org/nfephp-org/sped-gnre.svg)](https://travis-ci.org/marabesi/gnrephp)
 [![Coverage Status](https://coveralls.io/repos/marabesi/gnrephp/badge.svg)](https://coveralls.io/r/marabesi/gnrephp)
 [![Total Downloads](https://poser.pugx.org/marabesi/gnre/downloads)](https://packagist.org/packages/marabesi/gnre)
 [![Latest Stable Version](https://poser.pugx.org/marabesi/gnre/v/stable)](https://packagist.org/packages/marabesi/gnre)
@@ -25,9 +25,9 @@ Dependências
 
 Documentação
 ------
-* Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada [aqui](http://marabesi.github.io/gnrephp/doc/namespaces/Gnre.html)
+* Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada [aqui](http://nfephp-org.github.io/sped-gnre//doc/namespaces/Gnre.html)
 
-* Nosso wiki de como utilizar a API e gerar as GNRES está disponível [aqui no github](https://github.com/marabesi/gnrephp/wiki)
+* Nosso wiki de como utilizar a API e gerar as GNRES está disponível [aqui no github](https://github.com/nfephp-org/sped-gnre/wiki)
 
 Instalação via composer
 ------
@@ -46,7 +46,7 @@ composer update
 -----
 Quick start
 -----
-git clone https://github.com/marabesi/gnrephp.git
+git clone https://github.com/nfephp-org/sped-gnre.git
 
 -----
 
@@ -54,7 +54,7 @@ Mais informações
 -----
 Site oficial do governo :     http://www.gnre.pe.gov.br/gnre/index.html
 
-Site do Projeto : http://marabesi.github.io/gnrephp/
+Site do Projeto : http://nfephp-org.github.io/sped-gnre/
 
 
 
