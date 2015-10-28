@@ -1,5 +1,5 @@
 {
-    "name": "marabesi/gnre",
+    "name": "nfephp-org/sped-gnre",
     "description": "API para a emissão de guias GNRE para a SEFAZ",
     "license": "GNU",
     "authors": [
@@ -24,8 +24,8 @@
         "smarty/smarty": "~3.1"
     },
     "autoload": {
-        "psr-0": {
-            "Sped": "lib"
+        "psr-4": {
+            "Sped\\Gnre\\": "lib/"
         }
     }
 }
