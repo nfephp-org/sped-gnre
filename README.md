@@ -37,17 +37,38 @@ Caso você não possua o composer veja [esse link](https://getcomposer.org/doc/0
 
 Adicione a dependência da GNRE PHP no arquivo composer.json :
 
-"marabesi/gnre": "dev-master"
+``` json
+{
+    "marabesi/gnre": "dev-master"
+}
+```
 
 Atualize suas depedências existentes no composer :
 
+``` terminal
 composer update
+```
+-----
+Possíveis erros
+-----
 
+[InvalidArgumentException]                                                                                                                 
+**Could not find package marabesi/gnre at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability**
+
+Esse problema ocorre pois não estamos informando ao composer qual a versão mínima que queremos utilizar, para resolver esse problema basta adicionar a seguinte linha no seu arquivo composer.json
+
+``` json
+{
+    "minimum-stability": "dev" 
+}
+```
 -----
 Quick start
 -----
+Clone o repositório do projeto
+``` terminal
 git clone https://github.com/nfephp-org/sped-gnre.git
-
+```
 -----
 
 Mais informações
@@ -56,5 +77,5 @@ Site oficial do governo :     http://www.gnre.pe.gov.br/gnre/index.html
 
 Site do Projeto : http://nfephp-org.github.io/sped-gnre/
 
-
+E nossa **WIKI**, onde é possível encontrar maiores informações de como utilizar a API : https://github.com/nfephp-org/sped-gnre/wiki
 
