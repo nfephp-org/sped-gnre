@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 
-class MySetup extends Gnre\Configuration\Setup {
+class MySetup extends Sped\Gnre\Configuration\Setup {
 
     public function getBaseUrl() {
         
@@ -59,12 +59,12 @@ $xml = file_get_contents('estrutura-lote-completo-gnre.xml');
 
 $minhaConfiguracao = new MySetup();
 
-$guia = new \Gnre\Sefaz\Guia();
+$guia = new Sped\Gnre\Sefaz\Guia();
 
-$lote = new \Gnre\Sefaz\Lote();
+$lote = new Sped\Gnre\Sefaz\Lote();
 $lote->addGuia($guia);
 
-$webService = new Gnre\Webservice\Connection($minhaConfiguracao, $lote->getHeaderSoap(), $lote->toXml());
+$webService = new Sped\Gnre\Webservice\Connection($minhaConfiguracao, $lote->getHeaderSoap(), $lote->toXml());
 echo $webService->doRequest($lote->soapAction());
 
 

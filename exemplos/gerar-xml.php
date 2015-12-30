@@ -42,12 +42,25 @@ $guia->mes = '05';
 $guia->ano = 2015;
 $guia->parcela = 2;
 $guia->periodo = 2014;
+$guia->c39_camposExtras = array(
+    array(
+        'campoExtra' => array(
+            'codigo' => 666,
+            'tipo' => 'TXT',
+            'valor' => 'GNRE'
+        )
+    ),
+    array(
+        'campoExtra' => array(
+            'codigo' => 111,
+            'tipo' => 'INT',
+            'valor' => 'GNRE2'
+        )
+    ),
+);
 
 $lote = new Sped\Gnre\Sefaz\Lote();
 $lote->addGuia($guia);
 
-$html = new Sped\Gnre\Render\Html();
-$html->create($lote);
-
-$pdf = new Sped\Gnre\Render\Pdf();
-$pdf->create($html)->stream('gnre.pdf', array('Attachment' => 0));
+header('Content-Type: text/xml');
+print $lote->toXml();

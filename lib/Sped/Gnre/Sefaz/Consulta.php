@@ -68,6 +68,16 @@ class Consulta extends ConsultaGnre
         $consulta->appendChild($ambiente);
         $consulta->appendChild($numeroRecibo);
 
+        $this->getSoapEnvelop($gnre, $consulta);
+
+        return $gnre->saveXML();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSoapEnvelop($gnre, $consulta)
+    {
         $soapEnv = $gnre->createElement('soap12:Envelope');
         $soapEnv->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
         $soapEnv->setAttribute('xmlns:xsd', 'http://www.w3.org/2001/XMLSchema');
@@ -92,8 +102,5 @@ class Consulta extends ConsultaGnre
         $soapBody->appendChild($gnreDadosMsg);
 
         $soapEnv->appendChild($soapBody);
-
-        return $gnre->saveXML();
     }
-
 }

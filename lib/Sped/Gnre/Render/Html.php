@@ -125,7 +125,9 @@ class Html
             $smarty->assign('barcode', $barcode);
             $smarty->assign('guia', $guia);
 
-            $html .= $smarty->fetch('gnre.tpl');
+            $documentRoot = realpath('../') . DIRECTORY_SEPARATOR;
+
+            $html .= $smarty->fetch($documentRoot . 'templates/gnre.tpl');
         }
 
         $this->html = $html;

@@ -18,6 +18,7 @@
 namespace Sped\Gnre\Sefaz;
 
 use Sped\Gnre\Sefaz\LoteGnre;
+use Sped\Gnre\Sefaz\EstadoFactory;
 
 /**
  * Classe que armazena uma ou mais Guias (\Sped\Gnre\Sefaz\Guia) para serem 
@@ -31,6 +32,33 @@ use Sped\Gnre\Sefaz\LoteGnre;
  */
 class Lote extends LoteGnre
 {
+
+    /**
+     * @var Sped\Gnre\Sefaz\EstadoFactory
+     */
+    private $estadoFactory;
+
+    /**
+     * @return mixed
+     */
+    public function getEstadoFactory()
+    {
+        if (null === $this->estadoFactory) {
+            $this->estadoFactory = new EstadoFactory();
+        }
+
+        return $this->estadoFactory;
+    }
+
+    /**
+     * @param mixed $estadoFactory
+     * @return Lote
+     */
+    public function setEstadoFactory(EstadoFactory $estadoFactory)
+    {
+        $this->estadoFactory = $estadoFactory;
+        return $this;
+    }
 
     /**
      * {@inheritdoc}
@@ -67,19 +95,25 @@ class Lote extends LoteGnre
         $guia = $gnre->createElement('guias');
 
         foreach ($this->getGuias() as $gnreGuia) {
+            $estado = $gnreGuia->c01_UfFavorecida;
+
+            $guiaEstado = $this->getEstadoFactory()->create($estado);
+
             $dados = $gnre->createElement('TDadosGNRE');
-            $c1 = $gnre->createElement('c01_UfFavorecida', $gnreGuia->c01_UfFavorecida);
+            $c1 = $gnre->createElement('c01_UfFavorecida', $estado);
             $c2 = $gnre->createElement('c02_receita', $gnreGuia->c02_receita);
             $c25 = $gnre->createElement('c25_detalhamentoReceita', $gnreGuia->c25_detalhamentoReceita);
             $c26 = $gnre->createElement('c26_produto', $gnreGuia->c26_produto);
             $c27 = $gnre->createElement('c27_tipoIdentificacaoEmitente', $gnreGuia->c27_tipoIdentificacaoEmitente);
 
             $c03 = $gnre->createElement('c03_idContribuinteEmitente');
-            if ($gnreGuia->c27_tipoIdentificacaoEmitente == 1) {
+
+            if ($gnreGuia->c27_tipoIdentificacaoEmitente == parent::EMITENTE_PESSOA_JURIDICA) {
                 $emitenteContribuinteDocumento = $gnre->createElement('CNPJ', $gnreGuia->c03_idContribuinteEmitente);
             } else {
                 $emitenteContribuinteDocumento = $gnre->createElement('CPF', $gnreGuia->c03_idContribuinteEmitente);
             }
+
             $c03->appendChild($emitenteContribuinteDocumento);
 
             $c28 = $gnre->createElement('c28_tipoDocOrigem', $gnreGuia->c28_tipoDocOrigem);
@@ -98,46 +132,19 @@ class Lote extends LoteGnre
             $c34 = $gnre->createElement('c34_tipoIdentificacaoDestinatario', $gnreGuia->c34_tipoIdentificacaoDestinatario);
 
             $c35 = $gnre->createElement('c35_idContribuinteDestinatario');
-            if ($gnreGuia->c34_tipoIdentificacaoDestinatario == 1) {
+
+            if ($gnreGuia->c34_tipoIdentificacaoDestinatario == parent::DESTINATARIO_PESSOA_JURIDICA) {
                 $destinatarioContribuinteDocumento = $gnre->createElement('CNPJ', $gnreGuia->c35_idContribuinteDestinatario);
             } else {
                 $destinatarioContribuinteDocumento = $gnre->createElement('CPF', $gnreGuia->c35_idContribuinteDestinatario);
             }
+
             $c35->appendChild($destinatarioContribuinteDocumento);
 
             $c36 = $gnre->createElement('c36_inscricaoEstadualDestinatario', $gnreGuia->c36_inscricaoEstadualDestinatario);
             $c37 = $gnre->createElement('c37_razaoSocialDestinatario', $gnreGuia->c37_razaoSocialDestinatario);
             $c38 = $gnre->createElement('c38_municipioDestinatario', $gnreGuia->c38_municipioDestinatario);
             $c33 = $gnre->createElement('c33_dataPagamento', $gnreGuia->c33_dataPagamento);
-            $c05 = $gnre->createElement('c05_referencia');
-
-            $periodo = $gnre->createElement('periodo', $gnreGuia->periodo);
-            $mes = $gnre->createElement('mes', $gnreGuia->mes);
-            $ano = $gnre->createElement('ano', $gnreGuia->ano);
-            $parcela = $gnre->createElement('parcela', $gnreGuia->parcela);
-
-            $c05->appendChild($periodo);
-            $c05->appendChild($mes);
-            $c05->appendChild($ano);
-            $c05->appendChild($parcela);
-
-
-            if (is_array($gnreGuia->c39_camposExtras) && count($gnreGuia->c39_camposExtras) > 0) {
-                $c39_camposExtras = $gnre->createElement('c39_camposExtras');
-
-                foreach ($gnreGuia->c39_camposExtras as $key => $campos) {
-                    $campoExtra = $gnre->createElement('campoExtra');
-                    $codigo = $gnre->createElement('codigo', $campos['campoExtra']['codigo']);
-                    $tipo = $gnre->createElement('tipo', $campos['campoExtra']['tipo']);
-                    $valor = $gnre->createElement('valor', $campos['campoExtra']['valor']);
-
-                    $campoExtra->appendChild($codigo);
-                    $campoExtra->appendChild($tipo);
-                    $campoExtra->appendChild($valor);
-
-                    $c39_camposExtras->appendChild($campoExtra);
-                }
-            }
 
             $dados->appendChild($c1);
             $dados->appendChild($c2);
@@ -164,9 +171,13 @@ class Lote extends LoteGnre
             $dados->appendChild($c37);
             $dados->appendChild($c38);
             $dados->appendChild($c33);
+
+            $c05 = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
             $dados->appendChild($c05);
 
-            if (isset($c39_camposExtras)) {
+            $c39_camposExtras = $guiaEstado->getNodeCamposExtras($gnre, $gnreGuia);
+
+            if ($c39_camposExtras != null) {
                 $dados->appendChild($c39_camposExtras);
             }
 
@@ -175,6 +186,16 @@ class Lote extends LoteGnre
             $loteGnre->appendChild($guia);
         }
 
+        $this->getSoapEnvelop($gnre, $loteGnre);
+
+        return $gnre->saveXML();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSoapEnvelop($gnre, $loteGnre)
+    {
         $soapEnv = $gnre->createElement('soap12:Envelope');
         $soapEnv->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
         $soapEnv->setAttribute('xmlns:xsd', 'http://www.w3.org/2001/XMLSchema');
@@ -199,8 +220,5 @@ class Lote extends LoteGnre
         $soapBody->appendChild($gnreDadosMsg);
 
         $soapEnv->appendChild($soapBody);
-
-        return $gnre->saveXML();
     }
-
 }

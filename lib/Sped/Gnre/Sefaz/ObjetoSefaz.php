@@ -51,4 +51,11 @@ interface ObjetoSefaz
      * @return string Uma string XML contendo um documento XML formatado
      */
     public function toXml();
+
+    /**
+     * Método responsável por encapsular todo o XML gerado e encapsula-lo dentro
+     * de um envelop SOAP válido para ser enviado
+     * @return mixed
+     */
+    public function getSoapEnvelop($noRaiz, $conteudoEnvelope);
 }

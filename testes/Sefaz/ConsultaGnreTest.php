@@ -49,4 +49,8 @@ class MinhaConsultaGnre extends ConsultaGnre {
         
     }
 
+    public function getSoapEnvelop($noRaiz, $conteudoEnvelope)
+    {
+
+    }
 }

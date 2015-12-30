@@ -33,6 +33,7 @@ abstract class LoteGnre implements ObjetoSefaz
 {
 
     const EMITENTE_PESSOA_JURIDICA = 1;
+    const DESTINATARIO_PESSOA_JURIDICA = 1;
 
     /**
      * Atributo que armazenará todas as guias desejadas
@@ -71,5 +72,4 @@ abstract class LoteGnre implements ObjetoSefaz
     {
         return $this->guias[$index];
     }
-
 }

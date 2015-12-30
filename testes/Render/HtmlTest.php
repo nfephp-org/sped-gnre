@@ -58,7 +58,6 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
                 ->with('guia');
         $smarty->expects($this->at(3))
                 ->method('fetch')
-                ->with('gnre.tpl')
                 ->will($this->returnValue('<html></html>'));
 
         $smartyFactory = $this->getMock('\Sped\Gnre\Render\SmartyFactory');

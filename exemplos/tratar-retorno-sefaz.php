@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 
-use Gnre\Parser\SefazRetorno;
+use Sped\Gnre\Parser\SefazRetorno;
 
 $resultado = '020560726600011014111866530
 100011DF12345630000100931575117TESTE TESTE                                                 AQAA A AAAAAAAAA                                                                                              DF053390000000533900030000100931575117                                                                                                                                                                                                                                                                                                                 0000012345678911111111111                                                                                                                                                                                                                                                                                                                                   01122014000000001122014001000000000001001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000                                                                                                                              
@@ -14,7 +14,7 @@ $resultado = '020560726600011014111866530
 $parser = new SefazRetorno($resultado);
 $lote = $parser->getLote();
 
-$consulta = new Gnre\Sefaz\Consulta();
+$consulta = new Sped\Gnre\Sefaz\Consulta();
 
 header('Content-Type: text/xml');
 echo $lote->toXml();
