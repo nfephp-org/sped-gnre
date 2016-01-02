@@ -17,6 +17,8 @@
 
 namespace Sped\Gnre\Sefaz\Estados;
 
+use Sped\Gnre\Sefaz\Guia;
+
 abstract class Padrao
 {
 
@@ -24,7 +26,7 @@ abstract class Padrao
      * @param $gnre
      * @param $gnreGuia
      */
-    public function getNodeCamposExtras($gnre, $gnreGuia)
+    public function getNodeCamposExtras(\DOMDocument $gnre, Guia $gnreGuia)
     {
         if (is_array($gnreGuia->c39_camposExtras) && count($gnreGuia->c39_camposExtras) > 0) {
             $c39_camposExtras = $gnre->createElement('c39_camposExtras');
@@ -52,7 +54,7 @@ abstract class Padrao
      * @param $gnre
      * @param $gnreGuia
      */
-    public function getNodeReferencia($gnre, $gnreGuia)
+    public function getNodeReferencia(\DOMDocument $gnre, Guia $gnreGuia)
     {
         $c05 = $gnre->createElement('c05_referencia');
 
