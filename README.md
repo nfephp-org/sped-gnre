@@ -20,6 +20,7 @@ Dependências
 * Extensões PHP
  * [DOMDocument](http://br2.php.net/manual/en/domdocument.construct.php)
  * [cURL](http://br2.php.net/manual/book.curl.php)
+ * [GD] (http://php.net/manual/pt_BR/book.image.php)
 
 ------
 
