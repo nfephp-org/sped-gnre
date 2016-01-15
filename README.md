@@ -53,8 +53,12 @@ composer update
 Possíveis erros
 -----
 
-[InvalidArgumentException]                                                                                                                 
-**Could not find package marabesi/gnre at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability**
+Erro : **unable to use client certificate (no key found or wrong pass phrase?)**
+
+Se você está obtendo essa mensagem após enviar a requisição para o web service da SEFAZ verifique a senha que você está utilizando, pois esse erro ocorre quando a senha informada não bate com a senha do certificado utilizado
+
+Erro: **[InvalidArgumentException]                                                                                                                 
+Could not find package marabesi/gnre at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability**
 
 Esse problema ocorre pois não estamos informando ao composer qual a versão mínima que queremos utilizar, para resolver esse problema basta adicionar a seguinte linha no seu arquivo composer.json
 
