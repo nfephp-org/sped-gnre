@@ -24,6 +24,15 @@ Dependências
 
 ------
 
+Informações úteis
+-----
+
+|Descrição|Endereço|
+|---------|--------|
+|Site oficial do governo | http://www.gnre.pe.gov.br/gnre/index.html|
+|Site do Projeto | http://nfephp-org.github.io/sped-gnre/|
+|Wiki, onde é possível encontrar maiores informações de como utilizar a API | https://github.com/nfephp-org/sped-gnre/wiki|
+
 Documentação
 ------
 * Documentação da GNRE PHP gerada com o PHPDOC pode ser visualizada [aqui](http://nfephp-org.github.io/sped-gnre//doc/namespaces/Gnre.html)
@@ -75,12 +84,4 @@ Clone o repositório do projeto
 git clone https://github.com/nfephp-org/sped-gnre.git
 ```
 -----
-
-Mais informações
------
-Site oficial do governo :     http://www.gnre.pe.gov.br/gnre/index.html
-
-Site do Projeto : http://nfephp-org.github.io/sped-gnre/
-
-E nossa **WIKI**, onde é possível encontrar maiores informações de como utilizar a API : https://github.com/nfephp-org/sped-gnre/wiki
 
