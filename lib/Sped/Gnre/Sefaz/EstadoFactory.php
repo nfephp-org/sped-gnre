@@ -22,7 +22,7 @@ class EstadoFactory
 
     /**
      * @param string $estado
-     * @return Sped\Gnre\Sefaz\Estados\Padrao
+     * @return \Sped\Gnre\Sefaz\Estados\Padrao
      */
     public function create($estado = 'BA')
     {

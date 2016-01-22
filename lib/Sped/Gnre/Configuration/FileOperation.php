@@ -40,7 +40,7 @@ abstract class FileOperation
      * Define o caminho absoluto de um arquivo para que a classe trabalhe 
      * corretamente com seus métodos
      * @param string $filePath caminho do arquivo a ser utilizado
-     * @throws Sped\Gnre\Exception\UnreachableFile  Caso não seja encontrado o arquivo informado
+     * @throws \Sped\Gnre\Exception\UnreachableFile  Caso não seja encontrado o arquivo informado
      * @since  1.0.0
      */
     public function __construct($filePath)

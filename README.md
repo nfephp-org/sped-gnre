@@ -5,6 +5,11 @@
 [![Latest Unstable Version](https://poser.pugx.org/marabesi/gnre/v/unstable.png)](https://packagist.org/packages/marabesi/gnre)
 [![License](https://poser.pugx.org/marabesi/gnre/license)](https://packagist.org/packages/marabesi/gnre)
 
+Atenção!!
+=================
+Caso encontre algum estado que possua uma regra especial para gerar uma GNRE por favor informar abrindo uma **issue**.
+Dessa forma podemos manter a a API atualizada e ajudar a todos que utlizam a GNRE PHP
+
 GNRE PHP
 =================
 
@@ -32,6 +37,11 @@ Informações úteis
 |Site oficial do governo | http://www.gnre.pe.gov.br/gnre/index.html|
 |Site do Projeto | http://nfephp-org.github.io/sped-gnre/|
 |Wiki, onde é possível encontrar maiores informações de como utilizar a API | https://github.com/nfephp-org/sped-gnre/wiki|
+|Site oficial da SEFAZ de todo os estados|http://www.gnre.pe.gov.br/gnre/portal/linksUteis.jsp|
+
+1. Antes de gerar qualquer guia GNRE com o seu certificado, tenha **CERTEZA** que você possui autorização para isso. A geração de
+GNRE depende de cada estado, ou seja, se você deseja gerar a guia para o Acre (com destino ao Acre) tenha certeza que 
+já pediu a liberação do certificado no SEFAZ Acre e repita esse processo para cada estado.
 
 Documentação
 ------
@@ -83,5 +93,18 @@ Clone o repositório do projeto
 ``` terminal
 git clone https://github.com/nfephp-org/sped-gnre.git
 ```
+Vá para a pasta de exemplos
+```
+cd exemplos/
+```
+Rode o servidor built-in do PHP
+```
+php -S localhost:8181
+```
+Abra o seu navegador e digite a seguinte URL
+```
+http://localhost:8181/gerar-xml.php
+```
 -----
 
+Caso queira ver outros exemplos utilizados pela API acesse esse link https://github.com/nfephp-org/sped-gnre/tree/master/exemplos

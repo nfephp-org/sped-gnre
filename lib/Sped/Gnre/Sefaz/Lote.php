@@ -34,7 +34,7 @@ class Lote extends LoteGnre
 {
 
     /**
-     * @var Sped\Gnre\Sefaz\EstadoFactory
+     * @var \Sped\Gnre\Sefaz\EstadoFactory
      */
     private $estadoFactory;
 

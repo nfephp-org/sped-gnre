@@ -23,8 +23,9 @@ abstract class Padrao
 {
 
     /**
-     * @param $gnre
-     * @param $gnreGuia
+     * @param \DOMDocument $gnre
+     * @param \Sped\Gnre\Sefaz\Guia $gnreGuia
+     * @return mixed
      */
     public function getNodeCamposExtras(\DOMDocument $gnre, Guia $gnreGuia)
     {
@@ -51,8 +52,9 @@ abstract class Padrao
     }
 
     /**
-     * @param $gnre
-     * @param $gnreGuia
+     * @param \DOMDocument $gnre
+     * @param \Sped\Gnre\Sefaz\Guia $gnreGuia
+     * @return \DOMElement
      */
     public function getNodeReferencia(\DOMDocument $gnre, Guia $gnreGuia)
     {

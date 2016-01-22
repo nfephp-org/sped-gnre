@@ -209,11 +209,11 @@ abstract class Rules
                 $this->getIdentificadorGuia();
 
                 $lote->addGuia($this->lote['lote'][$i]);
-            } else if ($this->identificador == 9) {
+            } else if ($this->identificador == self::GUIA_EMITIDA_COM_SUCESSO) {
                 $this->getNumeroProtocolo();
                 $this->getTotalGuias();
                 $this->getHashDeValidacao();
-            } else if ($this->identificador == 2) {
+            } else if ($this->identificador == self::ERRO_VALIDACAO) {
                 $this->getSequencialGuiaErroValidacao();
                 $this->getNomeCampo();
                 $this->getCodigoMotivoRejeicao();
@@ -227,7 +227,9 @@ abstract class Rules
     }
 
     /**
-     * 
+     * Esse método é mais utilizado pelas classes filhas onde é necessário
+     * pegar uma parte do conteúdo baseado em uma string
+     * @see \Sped\Gnre\Parser\SefazRetorno
      * @param string $content
      * @param int $positionStart
      * @param int $length

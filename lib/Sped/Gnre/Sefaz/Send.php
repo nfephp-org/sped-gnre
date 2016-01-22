@@ -38,7 +38,7 @@ class Send
     /**
      * As configuraçoes definidas pelo usuarios que sera utilizada para a 
      * transmissao dos dados
-     * @var \Sped\Gnre\Configuration\Interfaces\Setup 
+     * @var \Sped\Gnre\Configuration\Setup
      */
     private $setup;
 
@@ -51,7 +51,7 @@ class Send
     /**
      * Armazena as configurações padrões em um atributo interno da classe para ser utilizado 
      * posteriormente pela classe
-     * @param  \Sped\Gnre\Configuration\Interfaces\Setup $setup Configuraçoes definidas pelo usuário
+     * @param  \Sped\Gnre\Configuration\Setup $setup Configuraçoes definidas pelo usuário
      * @since  1.0.0
      */
     public function __construct(Setup $setup)
