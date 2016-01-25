@@ -18,7 +18,7 @@
         "mikey179/vfsStream": "1.*",
         "dompdf/dompdf": "0.6.*",
         "phenx/php-font-lib": "0.2.*",
-        "zendframework/zend-servicemanager": ">=2.0",
+        "zendframework/zend-servicemanager": "~2.0",
 	"zendframework/zend-barcode": "2.3.*@dev",
         "satooshi/php-coveralls": "dev-master",
         "smarty/smarty": "~3.1"

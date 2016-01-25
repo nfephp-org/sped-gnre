@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6c6479c0b43fc8e8753d059cd4cfd89d",
-    "content-hash": "d0207aaf134bc5a0bf5d107e3a96133f",
+    "hash": "9c6e8410479c33a10fd614619f6514ae",
+    "content-hash": "9db58d6418a54cc9b000a4905438ed8f",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -81,12 +81,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "74fc3909170d66f3e93719ae025b79faea1f49f5"
+                "reference": "1ddfa56770c17cec9db9bc350c474608224c3ee8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/74fc3909170d66f3e93719ae025b79faea1f49f5",
-                "reference": "74fc3909170d66f3e93719ae025b79faea1f49f5",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/1ddfa56770c17cec9db9bc350c474608224c3ee8",
+                "reference": "1ddfa56770c17cec9db9bc350c474608224c3ee8",
                 "shasum": ""
             },
             "require": {
@@ -135,7 +135,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-12-29 21:28:50"
+            "time": "2016-01-25 18:48:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -190,16 +190,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982"
+                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/4d0bdbe1206df7440219ce14c972aa57cc5e4982",
-                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5d04bdd2881ac89abde1fb78cc234bce24327bb",
+                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb",
                 "shasum": ""
             },
             "require": {
@@ -244,7 +244,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2015-11-03 01:34:55"
+            "time": "2016-01-23 01:23:02"
         },
         {
             "name": "mikey179/vfsStream",
@@ -428,12 +428,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/satooshi/php-coveralls.git",
-                "reference": "536b23de186ff3e04a138a8d3efbc526946964c4"
+                "reference": "50c60bb64054974f8ed7540ae6e75fd7981a5fd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/536b23de186ff3e04a138a8d3efbc526946964c4",
-                "reference": "536b23de186ff3e04a138a8d3efbc526946964c4",
+                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/50c60bb64054974f8ed7540ae6e75fd7981a5fd3",
+                "reference": "50c60bb64054974f8ed7540ae6e75fd7981a5fd3",
                 "shasum": ""
             },
             "require": {
@@ -442,10 +442,10 @@
                 "guzzlehttp/guzzle": "^6.0",
                 "php": ">=5.5",
                 "psr/log": "^1.0",
-                "symfony/config": "^2.4|^3.0",
+                "symfony/config": "^2.1|^3.0",
                 "symfony/console": "^2.1|^3.0",
-                "symfony/stopwatch": "^2.2|^3.0",
-                "symfony/yaml": "^2.1|^3.0"
+                "symfony/stopwatch": "^2.0|^3.0",
+                "symfony/yaml": "^2.0|^3.0"
             },
             "suggest": {
                 "symfony/http-kernel": "Allows Symfony integration"
@@ -483,7 +483,7 @@
                 "github",
                 "test"
             ],
-            "time": "2016-01-04 18:41:30"
+            "time": "2016-01-20 17:44:41"
         },
         {
             "name": "smarty/smarty",
@@ -546,12 +546,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "5fc2fc90efaad8febfdf61722abeba369fb0d122"
+                "reference": "8158926b61ecf427ed50da5710f594729845fe86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/5fc2fc90efaad8febfdf61722abeba369fb0d122",
-                "reference": "5fc2fc90efaad8febfdf61722abeba369fb0d122",
+                "url": "https://api.github.com/repos/symfony/config/zipball/8158926b61ecf427ed50da5710f594729845fe86",
+                "reference": "8158926b61ecf427ed50da5710f594729845fe86",
                 "shasum": ""
             },
             "require": {
@@ -588,7 +588,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-03 15:35:40"
+            "time": "2016-01-21 10:01:50"
         },
         {
             "name": "symfony/console",
@@ -596,12 +596,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "2347467d5383e5bf427ca414cbb170c32830fd96"
+                "reference": "d09af8f0c981dd381b30522e0939ad7f08c580c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/2347467d5383e5bf427ca414cbb170c32830fd96",
-                "reference": "2347467d5383e5bf427ca414cbb170c32830fd96",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d09af8f0c981dd381b30522e0939ad7f08c580c0",
+                "reference": "d09af8f0c981dd381b30522e0939ad7f08c580c0",
                 "shasum": ""
             },
             "require": {
@@ -648,7 +648,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 16:23:43"
+            "time": "2016-01-25 12:26:46"
         },
         {
             "name": "symfony/filesystem",
@@ -656,12 +656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "ac9ddb864896839f64fdb66eb9c06a4b9e144d23"
+                "reference": "2cb19575f3d04f1da5b4dc35d7fef9562cd9c3f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/ac9ddb864896839f64fdb66eb9c06a4b9e144d23",
-                "reference": "ac9ddb864896839f64fdb66eb9c06a4b9e144d23",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/2cb19575f3d04f1da5b4dc35d7fef9562cd9c3f2",
+                "reference": "2cb19575f3d04f1da5b4dc35d7fef9562cd9c3f2",
                 "shasum": ""
             },
             "require": {
@@ -697,7 +697,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 16:23:43"
+            "time": "2016-01-21 10:01:50"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -705,12 +705,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "d7f01c96a4dde264682cf36c28e62086c77a09d4"
+                "reference": "1289d16209491b584839022f29257ad859b8532d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d7f01c96a4dde264682cf36c28e62086c77a09d4",
-                "reference": "d7f01c96a4dde264682cf36c28e62086c77a09d4",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
+                "reference": "1289d16209491b584839022f29257ad859b8532d",
                 "shasum": ""
             },
             "require": {
@@ -722,7 +722,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -756,7 +756,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-13 07:16:33"
+            "time": "2016-01-20 09:13:37"
         },
         {
             "name": "symfony/stopwatch",
@@ -813,12 +813,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "82287b794641153ae1837b9288c3ae90cecdf5c4"
+                "reference": "25d01edb35f3d5902f612eff297385e9b4d9a8b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/82287b794641153ae1837b9288c3ae90cecdf5c4",
-                "reference": "82287b794641153ae1837b9288c3ae90cecdf5c4",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/25d01edb35f3d5902f612eff297385e9b4d9a8b4",
+                "reference": "25d01edb35f3d5902f612eff297385e9b4d9a8b4",
                 "shasum": ""
             },
             "require": {
@@ -854,7 +854,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 16:23:43"
+            "time": "2016-01-22 06:37:40"
         },
         {
             "name": "zendframework/zend-barcode",
@@ -912,16 +912,16 @@
         },
         {
             "name": "zendframework/zend-servicemanager",
-            "version": "dev-master",
+            "version": "2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-servicemanager.git",
-                "reference": "97dfca5c8b368b2d41dc47aa3cbf9383072e0ace"
+                "reference": "846f8a4f9c2e438e45d2de5cec11509cb7e08d79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/97dfca5c8b368b2d41dc47aa3cbf9383072e0ace",
-                "reference": "97dfca5c8b368b2d41dc47aa3cbf9383072e0ace",
+                "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/846f8a4f9c2e438e45d2de5cec11509cb7e08d79",
+                "reference": "846f8a4f9c2e438e45d2de5cec11509cb7e08d79",
                 "shasum": ""
             },
             "require": {
@@ -930,18 +930,20 @@
             },
             "require-dev": {
                 "athletic/athletic": "dev-master",
-                "ocramius/proxy-manager": "~1.0",
-                "phpunit/phpunit": "~4.6",
-                "squizlabs/php_codesniffer": "^2.0@dev"
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "zendframework/zend-di": "~2.5",
+                "zendframework/zend-mvc": "~2.5"
             },
             "suggest": {
-                "ocramius/proxy-manager": "ProxyManager 1.* to handle lazy initialization of services"
+                "ocramius/proxy-manager": "ProxyManager 0.5.* to handle lazy initialization of services",
+                "zendframework/zend-di": "Zend\\Di component"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev",
-                    "dev-develop": "3.1-dev"
+                    "dev-master": "2.7-dev",
+                    "dev-develop": "3.0-dev"
                 }
             },
             "autoload": {
@@ -955,11 +957,10 @@
             ],
             "homepage": "https://github.com/zendframework/zend-servicemanager",
             "keywords": [
-                "service-manager",
                 "servicemanager",
-                "zf"
+                "zf2"
             ],
-            "time": "2016-01-11 18:53:50"
+            "time": "2016-01-19 21:01:21"
         },
         {
             "name": "zendframework/zend-stdlib",
