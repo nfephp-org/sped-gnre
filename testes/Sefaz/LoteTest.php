@@ -18,6 +18,13 @@ class LoteTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('SOAPAction: processar', $headersArray[1]);
     }
 
+    public function testDeveUtilizarOAmbienteDeProducaoAoEnviarUmLoteParaOwebService()
+    {
+        $lote = new Lote();
+
+        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+    }
+
     public function testDeveRetornarAacaoAserExecutadaNoSoap() {
         $lote = new Lote();
 
@@ -169,6 +176,23 @@ class LoteTest extends \PHPUnit_Framework_TestCase {
         $lote->addGuia($guia);
 
         $this->assertXmlStringEqualsXmlString($estruturaLote, $lote->toXml());
+    }
+
+    public function testDeveUtilizarOAmbienteDeTestesAoEnviarUmLoteParaOwebService()
+    {
+        $lote = new Lote();
+        $lote->utilizarAmbienteDeTeste(true);
+        $this->assertEquals('https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+    }
+
+    public function testDeveRetornarOsCabecalhosParaArequisicaoSoapAoWebServiceDeteste() {
+        $lote = new Lote();
+        $lote->utilizarAmbienteDeTeste(true);
+
+        $headersArray = $lote->getHeaderSoap();
+
+        $this->assertEquals('Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote"', $headersArray[0]);
+        $this->assertEquals('SOAPAction: processar', $headersArray[1]);
     }
 
 }

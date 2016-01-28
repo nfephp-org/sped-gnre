@@ -58,4 +58,12 @@ interface ObjetoSefaz
      * @return mixed
      */
     public function getSoapEnvelop($noRaiz, $conteudoEnvelope);
+
+    /**
+     * Define se a requisição será realizada no ambiente de testes ou não
+     * @param boolen $ambiente Define se será utilizado o ambiente de teste ou não, o padrão é <b>false</b>(para
+     * não usar o ambiente de testes)
+     * @return mixed
+     */
+    public function utilizarAmbienteDeTeste($ambiente = false);
 }

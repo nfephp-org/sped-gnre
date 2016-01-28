@@ -2,6 +2,7 @@
 
 namespace Sped\Gnre\Sefaz\Test;
 
+use Sped\Gnre\Sefaz\boolen;
 use Sped\Gnre\Sefaz\ConsultaGnre;
 
 /**
@@ -50,6 +51,11 @@ class MinhaConsultaGnre extends ConsultaGnre {
     }
 
     public function getSoapEnvelop($noRaiz, $conteudoEnvelope)
+    {
+
+    }
+
+    public function utilizarAmbienteDeTeste($ambiente = false)
     {
 
     }

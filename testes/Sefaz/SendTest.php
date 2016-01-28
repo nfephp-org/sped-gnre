@@ -19,7 +19,7 @@ class SendTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException Sped\Gnre\Exception\ConnectionFactoryUnavailable
+     * @expectedException \Sped\Gnre\Exception\ConnectionFactoryUnavailable
      */
     public function testDeveLancarExcecaoAoNaoSetarUmaConnectionFactoryParaSerUsada() {
         $send = new Send($this->setup);

@@ -32,12 +32,21 @@ class Consulta extends ConsultaGnre
 {
 
     /**
+     * @var bool
+     */
+    private $ambienteDeTeste = false;
+
+    /**
      * {@inheritdoc}
      */
     public function getHeaderSoap()
     {
+        $action = $this->ambienteDeTeste ?
+            'http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
+            'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
+
         return array(
-            'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote"',
+            'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
             'SOAPAction: consultar'
         );
     }
@@ -47,7 +56,9 @@ class Consulta extends ConsultaGnre
      */
     public function soapAction()
     {
-        return 'https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
+        return $this->ambienteDeTeste ?
+            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote' :
+            'https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
     }
 
     /**
@@ -93,8 +104,12 @@ class Consulta extends ConsultaGnre
         $soapEnv->appendChild($soapHeader);
         $gnre->appendChild($soapEnv);
 
+        $action = $this->ambienteDeTeste ?
+            'http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
+            'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
+
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
-        $gnreDadosMsg->setAttribute('xmlns', 'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote');
+        $gnreDadosMsg->setAttribute('xmlns', $action);
 
         $gnreDadosMsg->appendChild($consulta);
 
@@ -102,5 +117,13 @@ class Consulta extends ConsultaGnre
         $soapBody->appendChild($gnreDadosMsg);
 
         $soapEnv->appendChild($soapBody);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function utilizarAmbienteDeTeste($ambiente = false)
+    {
+        $this->ambienteDeTeste = $ambiente;
     }
 }

@@ -62,9 +62,9 @@ $minhaConfiguracao = new MySetup();
 $guia = new Sped\Gnre\Sefaz\Guia();
 
 $lote = new Sped\Gnre\Sefaz\Lote();
+// $lote->utilizarAmbienteDeTeste(true); Descomente essa linha para utilizar o ambiente de testes
+
 $lote->addGuia($guia);
 
 $webService = new Sped\Gnre\Webservice\Connection($minhaConfiguracao, $lote->getHeaderSoap(), $lote->toXml());
 echo $webService->doRequest($lote->soapAction());
-
-

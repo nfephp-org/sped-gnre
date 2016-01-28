@@ -39,6 +39,11 @@ class Lote extends LoteGnre
     private $estadoFactory;
 
     /**
+     * @var bool
+     */
+    private $ambienteDeTeste = false;
+
+    /**
      * @return mixed
      */
     public function getEstadoFactory()
@@ -65,8 +70,12 @@ class Lote extends LoteGnre
      */
     public function getHeaderSoap()
     {
+        $action = $this->ambienteDeTeste ?
+            'http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote' :
+            'http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote';
+
         return array(
-            'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote"',
+            'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
             'SOAPAction: processar'
         );
     }
@@ -76,7 +85,9 @@ class Lote extends LoteGnre
      */
     public function soapAction()
     {
-        return 'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
+        return $this->ambienteDeTeste ?
+            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao' :
+            'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
     }
 
     /**
@@ -211,6 +222,10 @@ class Lote extends LoteGnre
         $soapEnv->appendChild($soapHeader);
         $gnre->appendChild($soapEnv);
 
+        $action = $this->ambienteDeTeste ?
+            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
+            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
         $gnreDadosMsg->setAttribute('xmlns', 'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao');
 
@@ -220,5 +235,13 @@ class Lote extends LoteGnre
         $soapBody->appendChild($gnreDadosMsg);
 
         $soapEnv->appendChild($soapBody);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function utilizarAmbienteDeTeste($ambiente = false)
+    {
+        $this->ambienteDeTeste = $ambiente;
     }
 }
