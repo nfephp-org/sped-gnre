@@ -10,6 +10,11 @@ Atenção!!
 Caso encontre algum estado que possua uma regra especial para gerar uma GNRE por favor informar abrindo uma **issue**.
 Dessa forma podemos manter a a API atualizada e ajudar a todos que utlizam a GNRE PHP
 
+Antes de usar a API
+=================
+
+Verifique se seu certificado digital não foi expedido através da [certisign](https://www.certisign.com.br), pois existe um problema na cadeia do certificado que impossibilita a emissão de guias GNRE. Certificados expedidos através do [SERASA](https://serasa.certificadodigital.com.br/) funcionam normalmente para a emissão (até agora nenhum erro foi relatado).
+
 GNRE PHP
 =================
 
