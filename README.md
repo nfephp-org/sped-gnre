@@ -39,6 +39,7 @@ Informações úteis
 
 |Descrição|Endereço|
 |---------|--------|
+|Grupo de discussão | https://groups.google.com/forum/#!forum/gnrephp|
 |Site oficial do governo | http://www.gnre.pe.gov.br/gnre/index.html|
 |Site do Projeto | http://nfephp-org.github.io/sped-gnre/|
 |Wiki, onde é possível encontrar maiores informações de como utilizar a API | https://github.com/nfephp-org/sped-gnre/wiki|
