@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/nfephp-org/sped-gnre.svg)](https://travis-ci.org/marabesi/gnrephp)
-[![Coverage Status](https://coveralls.io/repos/marabesi/gnrephp/badge.svg)](https://coveralls.io/r/marabesi/gnrephp)
-[![Total Downloads](https://poser.pugx.org/marabesi/gnre/downloads)](https://packagist.org/packages/marabesi/gnre)
-[![Latest Stable Version](https://poser.pugx.org/marabesi/gnre/v/stable)](https://packagist.org/packages/marabesi/gnre)
-[![Latest Unstable Version](https://poser.pugx.org/marabesi/gnre/v/unstable.png)](https://packagist.org/packages/marabesi/gnre)
-[![License](https://poser.pugx.org/marabesi/gnre/license)](https://packagist.org/packages/marabesi/gnre)
+[![Build Status](https://travis-ci.org/nfephp-org/sped-gnre.svg?branch=master)](https://travis-ci.org/nfephp-org/sped-gnre)
+[![Coverage Status](https://coveralls.io/repos/marabesi/gnrephp/badge.svg)](https://coveralls.io/r/nfephp-org/sped-gnre)
+[![Total Downloads](https://poser.pugx.org/marabesi/gnre/downloads)](https://packagist.org/packages/nfephp-org/sped-gnre)
+[![Latest Stable Version](https://poser.pugx.org/marabesi/gnre/v/stable)](https://packagist.org/packages/nfephp-org/sped-gnre)
+[![Latest Unstable Version](https://poser.pugx.org/marabesi/gnre/v/unstable.png)](https://packagist.org/packages/nfephp-org/sped-gnre)
+[![License](https://poser.pugx.org/marabesi/gnre/license)](https://packagist.org/packages/nfephp-org/sped-gnre)
 
 Atenção!!
 =================
