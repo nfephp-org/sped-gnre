@@ -34,6 +34,13 @@ Dependências
 
 ------
 
+Road-map
+-----
+
+Atualmente estamos utilizando o trello para gerenciar o que será implementado nas próximas versões e melhorias na API, esse road map poe ser acessado em https://trello.com/b/kNP1tvsi/gnre-api-github
+
+------
+
 Informações úteis
 -----
 
