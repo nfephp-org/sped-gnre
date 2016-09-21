@@ -62,11 +62,24 @@ class SendTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveExibirDebug()
     {
+        $connection = $this->getMockBuilder('\Sped\Gnre\Webservice\Connection')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $connection->expects($this->once())
+            ->method('doRequest')
+            ->will($this->returnValue(true));
+
+        $connectionFactory = $this->getMock('\Sped\Gnre\Webservice\ConnectionFactory');
+        $connectionFactory->expects($this->once())
+            ->method('createConnection')
+            ->will($this->returnValue($connection));
+
         $this->setup->expects($this->once())
             ->method('getDebug')
             ->will($this->returnValue(true));
 
         $send = new Send($this->setup);
+        $send->setConnectionFactory($connectionFactory);
         $send->sefaz($this->objetoSefaz);
     }
 }
