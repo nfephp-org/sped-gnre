@@ -60,4 +60,13 @@ class SendTest extends \PHPUnit_Framework_TestCase {
         $send->sefaz($this->objetoSefaz);
     }
 
+    public function testDeveExibirDebug()
+    {
+        $this->setup->expects($this->once())
+            ->method('getDebug')
+            ->will($this->returnValue(true));
+
+        $send = new Send($this->setup);
+        $send->sefaz($this->objetoSefaz);
+    }
 }

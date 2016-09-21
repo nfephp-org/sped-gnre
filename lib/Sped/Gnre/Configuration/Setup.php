@@ -34,6 +34,13 @@ abstract class Setup
 {
 
     /**
+     * Define o modo de debug, geralmente utilizado para ver dados da requisição e resposta
+     * da comunicação com o webservice
+     * @var bool
+     */
+    protected $debug = false;
+
+    /**
      * Método utilizado para retornar o número do ambiente em que se deseja
      * realizar a conexão com o webservice da sefaz 1 - Produção 2 - Homologação
      * @abstract
@@ -133,4 +140,13 @@ abstract class Setup
      * @return  string
      */
     abstract function getCertificatePemFile();
+
+    /**
+     * Método utilizado para retornar o modo de debug
+     * @return bool
+     */
+    public function getDebug()
+    {
+        return $this->debug;
+    }
 }

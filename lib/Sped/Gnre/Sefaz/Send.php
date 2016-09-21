@@ -93,6 +93,11 @@ class Send
     public function sefaz(ObjetoSefaz $objetoSefaz)
     {
         $data = $objetoSefaz->toXml();
+
+        if ($this->setup->getDebug()) {
+            print $data;
+        }
+        
         $connection = $this->getConnectionFactory()->createConnection($this->setup, $objetoSefaz->getHeaderSoap(), $data);
 
         return $connection->doRequest($objetoSefaz->soapAction());
