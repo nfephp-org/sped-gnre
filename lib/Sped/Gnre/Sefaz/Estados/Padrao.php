@@ -58,6 +58,10 @@ abstract class Padrao
      */
     public function getNodeReferencia(\DOMDocument $gnre, Guia $gnreGuia)
     {
+        if(!$gnreGuia->periodo && !$gnreGuia->mes && !$gnreGuia->ano && !$gnreGuia->parcela) {
+            return null;
+        }
+
         $c05 = $gnre->createElement('c05_referencia');
 
         $periodo = $gnre->createElement('periodo', $gnreGuia->periodo);
