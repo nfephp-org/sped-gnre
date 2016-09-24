@@ -134,7 +134,8 @@ class Lote extends LoteGnre
             $c14 = $gnre->createElement('c14_dataVencimento', $gnreGuia->c14_dataVencimento);
             $c15 = $gnre->createElement('c15_convenio', $gnreGuia->c15_convenio);
             $c16 = $gnre->createElement('c16_razaoSocialEmitente', $gnreGuia->c16_razaoSocialEmitente);
-            $c17 = $gnre->createElement('c17_inscricaoEstadualEmitente', $gnreGuia->c17_inscricaoEstadualEmitente);
+            if($gnreGuia->c17_inscricaoEstadualEmitente)
+                $c17 = $gnre->createElement('c17_inscricaoEstadualEmitente', $gnreGuia->c17_inscricaoEstadualEmitente);
             $c18 = $gnre->createElement('c18_enderecoEmitente', $gnreGuia->c18_enderecoEmitente);
             $c19 = $gnre->createElement('c19_municipioEmitente', $gnreGuia->c19_municipioEmitente);
             $c20 = $gnre->createElement('c20_ufEnderecoEmitente', $gnreGuia->c20_ufEnderecoEmitente);
@@ -159,8 +160,10 @@ class Lote extends LoteGnre
 
             $dados->appendChild($c1);
             $dados->appendChild($c2);
-            $dados->appendChild($c25);
-            $dados->appendChild($c26);
+            if($gnreGuia->c25_detalhamentoReceita)
+                $dados->appendChild($c25);
+            if($gnreGuia->c26_produto)
+                $dados->appendChild($c26);
             $dados->appendChild($c27);
             $dados->appendChild($c03);
             $dados->appendChild($c28);
@@ -168,9 +171,11 @@ class Lote extends LoteGnre
             $dados->appendChild($c06);
             $dados->appendChild($c10);
             $dados->appendChild($c14);
-            $dados->appendChild($c15);
+            if($gnreGuia->c15_convenio)
+                $dados->appendChild($c15);
             $dados->appendChild($c16);
-            $dados->appendChild($c17);
+            if($gnreGuia->c17_inscricaoEstadualEmitente)
+                $dados->appendChild($c17);
             $dados->appendChild($c18);
             $dados->appendChild($c19);
             $dados->appendChild($c20);
@@ -178,13 +183,17 @@ class Lote extends LoteGnre
             $dados->appendChild($c22);
             $dados->appendChild($c34);
             $dados->appendChild($c35);
-            $dados->appendChild($c36);
-            $dados->appendChild($c37);
+            if($gnreGuia->c36_inscricaoEstadualDestinatario)
+                $dados->appendChild($c36);
+            if($gnreGuia->c37_razaoSocialDestinatario)
+                $dados->appendChild($c37);
             $dados->appendChild($c38);
             $dados->appendChild($c33);
 
             $c05 = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
-            $dados->appendChild($c05);
+            if($c05) {
+                $dados->appendChild($c05);
+            }
 
             $c39_camposExtras = $guiaEstado->getNodeCamposExtras($gnre, $gnreGuia);
 
