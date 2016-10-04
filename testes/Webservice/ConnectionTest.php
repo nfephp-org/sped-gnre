@@ -24,7 +24,8 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
             CURLOPT_POST => 1,
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_POSTFIELDS => '',
-            CURLOPT_HTTPHEADER => array()
+            CURLOPT_HTTPHEADER => array(),
+            CURLOPT_VERBOSE => false,
         );
     }
 

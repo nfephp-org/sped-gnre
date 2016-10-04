@@ -61,7 +61,8 @@ class Connection
             CURLOPT_POST => 1,
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_POSTFIELDS => $data,
-            CURLOPT_HTTPHEADER => $headers
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_VERBOSE => $setup->getDebug(),
         );
 
         $ip = $setup->getProxyIp();

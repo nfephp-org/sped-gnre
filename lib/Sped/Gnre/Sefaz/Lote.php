@@ -236,7 +236,7 @@ class Lote extends LoteGnre
             'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
-        $gnreDadosMsg->setAttribute('xmlns', 'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao');
+        $gnreDadosMsg->setAttribute('xmlns', $action);
 
         $gnreDadosMsg->appendChild($loteGnre);
 
