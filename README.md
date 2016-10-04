@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/nfephp-org/sped-gnre.svg?branch=master)](https://travis-ci.org/nfephp-org/sped-gnre)
 [![Coverage Status](https://coveralls.io/repos/marabesi/gnrephp/badge.svg)](https://coveralls.io/r/nfephp-org/sped-gnre)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b593e02cc9c4a67a29216b6486b00b7)](https://www.codacy.com/app/matheus-marabesi/sped-gnre?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nfephp-org/sped-gnre&amp;utm_campaign=Badge_Grade)
 [![Total Downloads](https://poser.pugx.org/marabesi/gnre/downloads)](https://packagist.org/packages/nfephp-org/sped-gnre)
 [![Latest Stable Version](https://poser.pugx.org/marabesi/gnre/v/stable)](https://packagist.org/packages/nfephp-org/sped-gnre)
 [![Latest Unstable Version](https://poser.pugx.org/marabesi/gnre/v/unstable.png)](https://packagist.org/packages/nfephp-org/sped-gnre)
