@@ -69,6 +69,8 @@ Documentação
 
 * Nosso wiki de como utilizar a API e gerar as GNRES está disponível [aqui no github](https://github.com/nfephp-org/sped-gnre/wiki)
 
+* Exemplos com código fonte são encontrados na pasta [exemplos/](https://github.com/nfephp-org/sped-gnre/tree/master/exemplos)
+
 Instalação via composer
 ------
 Adicionando a GNRE PHP em um projeto existente com o composer
