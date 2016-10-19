@@ -39,6 +39,11 @@ class Connection
     private $curlOptions = array();
 
     /**
+     * @var \Sped\Gnre\Configuration\Setup
+     */
+    private $setup;
+
+    /**
      * Inicia os parâmetros com o curl para se comunicar com o  webservice da SEFAZ.
      * São setadas a URL de acesso o certificado que será usado e uma série de parâmetros
      * para a header do curl e caso seja usado proxy esse método o adiciona
@@ -49,6 +54,8 @@ class Connection
      */
     public function __construct(Setup $setup, $headers, $data)
     {
+        $this->setup = $setup;
+
         $this->curlOptions = array(
             CURLOPT_PORT => 443,
             CURLOPT_VERBOSE => 1,
@@ -132,6 +139,10 @@ class Connection
         $n = strlen($ret);
         $x = stripos($ret, "<");
         $xml = substr($ret, $x, $n - $x);
+
+        if ($this->setup->getDebug()) {
+            print_r(curl_getinfo($curl));
+        }
 
         if ($xml === false) {
             $xml = curl_error($curl);
