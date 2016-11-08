@@ -9,7 +9,7 @@
 Atenção!!
 =================
 Caso encontre algum estado que possua uma regra especial para gerar uma GNRE por favor informar abrindo uma **issue**.
-Dessa forma podemos manter a a API atualizada e ajudar a todos que utlizam a GNRE PHP
+Dessa forma podemos manter a API atualizada e ajudar a todos que utlizam a GNRE PHP
 
 Antes de usar a API
 =================
