@@ -11,6 +11,14 @@ Atenção!!
 Caso encontre algum estado que possua uma regra especial para gerar uma GNRE por favor informar abrindo uma **issue**.
 Dessa forma podemos manter a API atualizada e ajudar a todos que utlizam a GNRE PHP
 
+Versões suportadas
+=================
+- PHP 5.5
+- PHP 5.6
+- HHVM
+- PHP 7.0
+
+
 Antes de usar a API
 =================
 
