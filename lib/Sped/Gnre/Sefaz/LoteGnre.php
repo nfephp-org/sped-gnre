@@ -36,6 +36,12 @@ abstract class LoteGnre implements ObjetoSefaz
     const DESTINATARIO_PESSOA_JURIDICA = 1;
 
     /**
+     * Atributo com o nome da ação
+     * @var string
+     */
+    private $action = 'GnreLoteRecepcao';
+    
+    /**
      * Atributo que armazenará todas as guias desejadas
      * @var array 
      */
@@ -71,5 +77,19 @@ abstract class LoteGnre implements ObjetoSefaz
     public function getGuia($index)
     {
         return $this->guias[$index];
+    }
+    
+    /**
+     * Método utilizado para trocar a ação
+     */
+    public function setAction($action) {
+        $this->action = $action;
+    }
+    
+    /**
+     * Método utilizado para retornar a ação
+     */
+    public function getAction() {
+        return $this->action;
     }
 }

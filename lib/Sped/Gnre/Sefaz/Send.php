@@ -57,6 +57,7 @@ class Send
     public function __construct(Setup $setup)
     {
         $this->setup = $setup;
+        $this->connectionFactory = new ConnectionFactory();
     }
 
     /**
@@ -92,15 +93,12 @@ class Send
      */
     public function sefaz(ObjetoSefaz $objetoSefaz)
     {
-        $data = $objetoSefaz->toXml();
-
         if ($this->setup->getDebug()) {
-            print $data;
+            print $objetoSefaz->toXml();
         }
         
-        $connection = $this->getConnectionFactory()->createConnection($this->setup, $objetoSefaz->getHeaderSoap(), $data);
-
-        return $connection->doRequest($objetoSefaz->soapAction());
+        $connection = $this->getConnectionFactory()->createConnection($this->setup, $objetoSefaz);
+        $retorno = new \Sped\Gnre\Parser\SefazRetornoXML();
+        return $retorno->parse($connection->doRequest($objetoSefaz->soapAction()));
     }
-
 }
