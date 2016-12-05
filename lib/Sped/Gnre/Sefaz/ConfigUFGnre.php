@@ -29,13 +29,14 @@ use Sped\Gnre\Sefaz\ObjetoSefaz;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-abstract class ConsultaGnre implements ObjetoSefaz
+abstract class ConfigUFGnre implements ObjetoSefaz
 {
+
     /**
      * Atributo com o nome da ação
      * @var string
      */
-    private $action = 'GnreLoteRecepcao';
+    private $action = 'GnreConfigUF';
     
     /**
      * O número que representa em qual ambiente sera realizada a consulta
@@ -45,31 +46,59 @@ abstract class ConsultaGnre implements ObjetoSefaz
     private $environment;
 
     /**
-     * O número do recibo enviado apos um lote recebido com sucesso pelo webservice
-     * da sefaz geralmente com 10 posições (1406670518)
+     * Sigal da UF para a qual devem ser retornadas as regras para envio do
+     * lote
+     * @var string 
+     */
+    private $uf;
+    
+    /**
+     * Código da receita para a qual devem ser retornadas as regras para
+     * envio do lote. Campo opcional.
      * @var int 
      */
-    private $recibo;
+    private $receita;
 
     /**
-     * Retorna o número de recibo armazenado no atributo interno da classe
+     * Retorna a sigla da UF
      * @since  1.0.0
-     * @return int
+     * @return string
      */
-    public function getRecibo()
+    public function getUF()
     {
-        return $this->recibo;
+        return $this->uf;
     }
 
     /**
-     * Define um número de recibo para ser utilizado na consulta ao 
+     * Define a sigla da UF para ser utilizada na consulta das regras no 
      * webservice da sefaz
-     * @param  int  $recibo  Número retornado pelo webservice da sefaz após ter recebido um lote com sucesso
+     * @param  string  $uf  Sigla da UF
      * @since  1.0.0
      */
-    public function setRecibo($recibo)
+    public function setUF($uf)
     {
-        $this->recibo = $recibo;
+        $this->uf = $uf;
+    }
+    
+    /**
+     * Retorna o código da receita
+     * @since  1.0.0
+     * @return int
+     */
+    public function getReceita()
+    {
+        return $this->uf;
+    }
+
+    /**
+     * Define o código da receita para ser utilizada na consulta das regras no 
+     * webservice da sefaz
+     * @param  int  $receita  Código da receita
+     * @since  1.0.0
+     */
+    public function setReceita($receita)
+    {
+        $this->receita = $receita;
     }
 
     /**

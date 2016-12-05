@@ -39,7 +39,19 @@ abstract class Setup
      * @var bool
      */
     protected $debug = false;
-
+    
+    /**
+     * Constantes do Ambiente de Produção
+     */
+    const URL_PRODUCAO = "https://www.gnre.pe.gov.br/gnreWS/services/";
+    const HEADER_PRODUCAO = "http://www.gnre.pe.gov.br/webservice/";
+    
+    /*
+     * Constantes do Ambiente de Homologação
+     */
+    const HEADER_HOMOLOGACAO = "http://www.testegnre.pe.gov.br/webservice/";
+    const URL_HOMOLOGACAO = "https://www.testegnre.pe.gov.br/gnreWS/services/";
+    
     /**
      * Método utilizado para retornar o número do ambiente em que se deseja
      * realizar a conexão com o webservice da sefaz 1 - Produção 2 - Homologação
@@ -149,4 +161,10 @@ abstract class Setup
     {
         return $this->debug;
     }
+    
+    /**
+     * Método utilizado para retornar o tipo de conexão (SOAP ou CURL)
+     * @return string
+     */
+    abstract public function getTipoConexao();
 }

@@ -19,6 +19,7 @@ namespace Sped\Gnre\Sefaz;
 
 use Sped\Gnre\Sefaz\LoteGnre;
 use Sped\Gnre\Sefaz\EstadoFactory;
+use Sped\Gnre\Configuration\Setup;
 
 /**
  * Classe que armazena uma ou mais Guias (\Sped\Gnre\Sefaz\Guia) para serem 
@@ -42,7 +43,7 @@ class Lote extends LoteGnre
      * @var bool
      */
     private $ambienteDeTeste = false;
-
+    
     /**
      * @return mixed
      */
@@ -70,12 +71,10 @@ class Lote extends LoteGnre
      */
     public function getHeaderSoap()
     {
-        $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote' :
-            'http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote';
+        $headerURL = $this->ambienteDeTeste ? Setup::HEADER_HOMOLOGACAO : Setup::HEADER_PRODUCAO;
 
         return array(
-            'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
+            'Content-Type: application/soap+xml;charset=utf-8;action="' . $headerURL . $this->getAction() . '"',
             'SOAPAction: processar'
         );
     }
@@ -85,9 +84,9 @@ class Lote extends LoteGnre
      */
     public function soapAction()
     {
-        return $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao' :
-            'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
+        $actionURL = $this->ambienteDeTeste ? Setup::URL_HOMOLOGACAO : Setup::URL_PRODUCAO;
+        
+        return $actionURL . $this->getAction();
     }
 
     /**
@@ -180,7 +179,8 @@ class Lote extends LoteGnre
             $dados->appendChild($c19);
             $dados->appendChild($c20);
             $dados->appendChild($c21);
-            $dados->appendChild($c22);
+            if ($gnreGuia->c22_telefoneEmitente)
+                $dados->appendChild($c22);
             $dados->appendChild($c34);
             $dados->appendChild($c35);
             if($gnreGuia->c36_inscricaoEstadualDestinatario)
@@ -230,13 +230,11 @@ class Lote extends LoteGnre
 
         $soapEnv->appendChild($soapHeader);
         $gnre->appendChild($soapEnv);
-
-        $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
-            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+        
+        $headerURL = $this->ambienteDeTeste ? Setup::HEADER_HOMOLOGACAO : Setup::HEADER_PRODUCAO;
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
-        $gnreDadosMsg->setAttribute('xmlns', $action);
+        $gnreDadosMsg->setAttribute('xmlns', $headerURL . $this->getAction());
 
         $gnreDadosMsg->appendChild($loteGnre);
 

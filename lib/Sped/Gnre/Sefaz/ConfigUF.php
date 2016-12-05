@@ -17,7 +17,7 @@
 
 namespace Sped\Gnre\Sefaz;
 
-use Sped\Gnre\Sefaz\ConsultaGnre;
+use Sped\Gnre\Sefaz\ConfigUFGnre;
 use Sped\Gnre\Configuration\Setup;
 
 /**
@@ -29,14 +29,14 @@ use Sped\Gnre\Configuration\Setup;
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class Consulta extends ConsultaGnre
+class ConfigUF extends ConfigUFGnre
 {
 
     /**
      * @var bool
      */
     private $ambienteDeTeste = false;
-    
+
     /**
      * {@inheritdoc}
      */
@@ -69,15 +69,20 @@ class Consulta extends ConsultaGnre
         $gnre->formatOutput = false;
         $gnre->preserveWhiteSpace = false;
 
-        $consulta = $gnre->createElement('TConsLote_GNRE');
+        $consulta = $gnre->createElement('TConsultaConfigUf');
         $consulta->setAttribute('xmlns', 'http://www.gnre.pe.gov.br');
 
         $ambiente = $gnre->createElement('ambiente', $this->getEnvironment());
-        $numeroRecibo = $gnre->createElement('numeroRecibo', $this->getRecibo());
-
+        $siglaUF = $gnre->createElement('uf', $this->getUF());
+        
         $consulta->appendChild($ambiente);
-        $consulta->appendChild($numeroRecibo);
+        $consulta->appendChild($siglaUF);
 
+        if ($this->getReceita() > 0) {
+            $receita = $gnre->createElement('receita', $this->getReceita());
+            $consulta->appendChild($receita);
+        }
+        
         $this->getSoapEnvelop($gnre, $consulta);
 
         return $gnre->saveXML();
