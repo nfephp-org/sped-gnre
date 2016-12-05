@@ -18,6 +18,7 @@
 namespace Sped\Gnre\Webservice;
 
 use Sped\Gnre\Configuration\Setup;
+use Sped\Gnre\Sefaz\ObjetoSefaz;
 
 /**
  * Classe que realiza a conexão com o webservice da SEFAZ com a
@@ -31,126 +32,36 @@ use Sped\Gnre\Configuration\Setup;
  */
 class Connection
 {
-
-    /**
-     * Armazena todas as opções desejadas para serem incluídas no curl() 
-     * @var array 
-     */
-    private $curlOptions = array();
-
     /**
      * @var \Sped\Gnre\Configuration\Setup
      */
     private $setup;
-
+    
+    /**
+     * @var \Sped\Gnre\Sefaz\ObjetoSefaz
+     */
+    private $data;
+    
     /**
      * Inicia os parâmetros com o curl para se comunicar com o  webservice da SEFAZ.
      * São setadas a URL de acesso o certificado que será usado e uma série de parâmetros
      * para a header do curl e caso seja usado proxy esse método o adiciona
      * @param  \Sped\Gnre\Configuration\Interfaces\Setup $setup
-     * @param  $headers  array
-     * @param  $data  string
+     * @param  \Sped\Gnre\Sefaz\ObjetoSefaz $data
+     * @return mixed
      * @since  1.0.0
      */
-    public function __construct(Setup $setup, $headers, $data)
+    public function __construct(Setup $setup, ObjetoSefaz $data)
     {
         $this->setup = $setup;
-
-        $this->curlOptions = array(
-            CURLOPT_PORT => 443,
-            CURLOPT_VERBOSE => 1,
-            CURLOPT_HEADER => 1,
-            CURLOPT_SSLVERSION => 3,
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_SSLCERT => $setup->getCertificatePemFile(),
-            CURLOPT_SSLKEY => $setup->getPrivateKey(),
-            CURLOPT_POST => 1,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_POSTFIELDS => $data,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_VERBOSE => $setup->getDebug(),
-        );
-
-        $ip = $setup->getProxyIp();
-        $port = $setup->getProxyPort();
-
-        if (!empty($ip) && $port) {
-            $this->curlOptions[CURLOPT_HTTPPROXYTUNNEL] = 1;
-            $this->curlOptions[CURLOPT_PROXYTYPE] = 'CURLPROXY_HTTP';
-            $this->curlOptions[CURLOPT_PROXY] = $setup->getProxyIp() . ':' . $setup->getProxyPort();
-        }
+        $this->data = $data;
     }
-
-    /**
-     * Retorna as opções definidas para o curl
-     * @return array
-     */
-    public function getCurlOptions()
-    {
-        return $this->curlOptions;
+    
+    public function getSetup() {
+        return $this->setup;
     }
-
-    /**
-     * Com esse método é possível adicionar novas opções ou alterar o valor das
-     * opções exitentes antes de realizar a requisição para o web service, 
-     * exemplo de utilização com apenas uma opção:
-     * <pre>
-     * $connection->addCurlOption(
-     * array(
-     *       CURLOPT_PORT => 123
-     *  )
-     * );
-     * </pre>
-     * Exemplo de utilização com mais de uma opção :
-     * <pre>
-     * $connection->addCurlOption(
-     * array(
-     *       CURLOPT_SSLVERSION => 6,
-     *       CURLOPT_SSL_VERIFYPEER => 1
-     *  )
-     * );
-     * </pre>
-     * 
-     * @param array $option
-     * @return \Sped\Gnre\Webservice\Connection
-     */
-    public function addCurlOption(array $option)
-    {
-        foreach ($option as $key => $value) {
-            $this->curlOptions[$key] = $value;
-        }
-
-        return $this;
+    
+    public function getData() {
+        return $this->data;
     }
-
-    /**
-     * Realiza a requisição ao webservice desejado através do curl() do php
-     * @param  string  $url  String com a URL que será enviada a requisição
-     * @since  1.0.0
-     * @return string|boolean  Caso a requisição não seja feita com sucesso false caso contrário uma string com XML formatado
-     */
-    public function doRequest($url)
-    {
-        $curl = curl_init($url);
-        curl_setopt_array($curl, $this->curlOptions);
-        $ret = curl_exec($curl);
-
-        $n = strlen($ret);
-        $x = stripos($ret, "<");
-        $xml = substr($ret, $x, $n - $x);
-
-        if ($this->setup->getDebug()) {
-            print_r(curl_getinfo($curl));
-        }
-
-        if ($xml === false) {
-            $xml = curl_error($curl);
-        }
-
-        curl_close($curl);
-
-        return $xml;
-    }
-
 }

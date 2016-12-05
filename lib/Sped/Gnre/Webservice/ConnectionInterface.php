@@ -21,34 +21,32 @@ use Sped\Gnre\Configuration\Setup;
 use Sped\Gnre\Sefaz\ObjetoSefaz;
 
 /**
- * Factory utilizada para criar um objeto <b>\Sped\Gnre\Webservice\Connection</b>
+ * Interface criada para ser implementada pelas classes que desejam
+ * enviar seus dados através do webservice da SEFAZ
  * @package     gnre
- * @subpackage  webservice
+ * @subpackage  sefaz
  * @author      Matheus Marabesi <matheus.marabesi@gmail.com>
  * @license     http://www.gnu.org/licenses/gpl-howto.html GPL
  * @version     1.0.0
  */
-class ConnectionFactory
+interface ConnectionInterface
 {
-
     /**
-     * Cria um objeto <b>\Sped\Gnre\Webservice\Connection</b>
-     * @param \Sped\Gnre\Webservice\Setup $setup
-     * @param \Sped\Gnre\Sefaz\ObjetoSefaz $data
-     * @return \Sped\Gnre\Webservice\Connection
+     * Seta a configuração da conexão
+     * @since  1.0.0
+     * @return null
      */
-    public function createConnection(Setup $setup, ObjetoSefaz $data)
-    {
-        $classe = sprintf(
-            '\Sped\Gnre\Webservice\%sConnection',
-            $setup->getTipoConexao()
-        );
-
-        if (!class_exists($classe)) {
-            $classe = '\Sped\Gnre\Webservice\CURLConnection';
-        }
-        
-        return new $classe($setup, $data);
-    }
-
+    public function setConfig();
+    
+    /**
+     * Realiza a requisição ao webservice desejado através do curl() do php
+     * @param  string  $url  String com a URL que será enviada a requisição
+     * @since  1.0.0
+     * @return string|boolean  Caso a requisição não seja feita com sucesso false caso contrário uma string com XML formatado
+     */
+    public function doRequest($url);
+    
+    public function getSetup();
+    
+    public function getData();
 }
