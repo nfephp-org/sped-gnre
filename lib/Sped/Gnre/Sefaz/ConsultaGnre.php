@@ -35,7 +35,7 @@ abstract class ConsultaGnre implements ObjetoSefaz
      * Atributo com o nome da ação
      * @var string
      */
-    private $action = 'GnreLoteRecepcao';
+    private $action = 'GnreResultadoLote';
     
     /**
      * O número que representa em qual ambiente sera realizada a consulta

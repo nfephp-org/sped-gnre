@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote" xmlns:s="http://www.w3.org/2001/XMLSchema"
-                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
-                  xmlns:tns="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
     <wsdl:types>
         <s:schema elementFormDefault="qualified" targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote">
             <s:element name="gnreDadosMsg">
@@ -12,7 +9,7 @@
                     </s:sequence>
                 </s:complexType>
             </s:element>
-            <s:element name="processarResponse">
+            <s:element name="gnreRespostaMsg">
                 <s:complexType mixed="true">
                     <s:sequence>
                         <s:any/>
@@ -28,30 +25,28 @@
             </s:element>
         </s:schema>
     </wsdl:types>
-    <wsdl:message name="processarSoapIn">
+    <wsdl:message name="consultarSoapIn">
         <wsdl:part element="tns:gnreDadosMsg" name="gnreDadosMsg"/>
     </wsdl:message>
-    <wsdl:message name="processarSoapOut">
-        <wsdl:part element="tns:processarResponse" name="processarResponse"/>
+    <wsdl:message name="consultarSoapOut">
+        <wsdl:part element="tns:gnreRespostaMsg" name="gnreRespostaMsg"/>
     </wsdl:message>
-    <wsdl:message name="processarSoapHeader">
+    <wsdl:message name="consultarSoapHeader">
         <wsdl:part element="tns:gnreCabecMsg" name="gnreCabecMsg"/>
     </wsdl:message>
-    <wsdl:portType name="GnreLoteRecepcaoSoap">
+    <wsdl:portType name="GnreResultadoLoteSoap">
         <wsdl:operation name="consultar">
-            <wsdl:input message="tns:processarSoapIn"/>
-            <wsdl:output message="tns:processarSoapOut"/>
+            <wsdl:input message="tns:consultarSoapIn"/>
+            <wsdl:output message="tns:consultarSoapOut"/>
         </wsdl:operation>
     </wsdl:portType>
-    <wsdl:binding name="GnreResultadoLote" type="tns:GnreLoteRecepcaoSoap">
+    <wsdl:binding name="GnreResultadoLote" type="tns:GnreResultadoLoteSoap">
         <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="consultar">
-            <soap12:operation
-                soapAction="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote/consultar"
-                style="document"/>
+            <soap12:operation soapAction="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote/consultar" style="document"/>
             <wsdl:input>
                 <soap12:body use="literal"/>
-                <soap12:header message="tns:processarSoapHeader" part="gnreCabecMsg" use="literal"/>
+                <soap12:header message="tns:consultarSoapHeader" part="gnreCabecMsg" use="literal"/>
             </wsdl:input>
             <wsdl:output>
                 <soap:body use="literal"/>
@@ -60,7 +55,7 @@
     </wsdl:binding>
     <wsdl:service name="GnreResultadoLote">
         <wsdl:port binding="tns:GnreResultadoLote" name="GnreResultadoLote">
-            <soap12:address location="http://localhost:9081/gnre-ws/services/GnreResultadoLote"/>
+            <soap12:address location="https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

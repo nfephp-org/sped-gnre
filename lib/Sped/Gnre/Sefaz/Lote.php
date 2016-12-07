@@ -156,7 +156,8 @@ class Lote extends LoteGnre
             $c37 = $gnre->createElement('c37_razaoSocialDestinatario', $gnreGuia->c37_razaoSocialDestinatario);
             $c38 = $gnre->createElement('c38_municipioDestinatario', $gnreGuia->c38_municipioDestinatario);
             $c33 = $gnre->createElement('c33_dataPagamento', $gnreGuia->c33_dataPagamento);
-
+            $c42 = $gnre->createElement('c42_identificadorGuia', $gnreGuia->c42_identificadorGuia);
+            
             $dados->appendChild($c1);
             $dados->appendChild($c2);
             if($gnreGuia->c25_detalhamentoReceita)
@@ -165,8 +166,10 @@ class Lote extends LoteGnre
                 $dados->appendChild($c26);
             $dados->appendChild($c27);
             $dados->appendChild($c03);
-            $dados->appendChild($c28);
-            $dados->appendChild($c04);
+            if ($gnreGuia->c28_tipoDocOrigem) {
+                $dados->appendChild($c28);
+                $dados->appendChild($c04);
+            }
             $dados->appendChild($c06);
             $dados->appendChild($c10);
             $dados->appendChild($c14);
@@ -190,15 +193,19 @@ class Lote extends LoteGnre
             $dados->appendChild($c38);
             $dados->appendChild($c33);
 
-            $c05 = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
-            if($c05) {
-                $dados->appendChild($c05);
+            $c05_referencia = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
+            if ($c05_referencia != null) {
+                $dados->appendChild($c05_referencia);
             }
 
             $c39_camposExtras = $guiaEstado->getNodeCamposExtras($gnre, $gnreGuia);
 
             if ($c39_camposExtras != null) {
                 $dados->appendChild($c39_camposExtras);
+            }
+            
+            if ($gnreGuia->c42_identificadorGuia) {
+                $dados->appendChild($c42);
             }
 
             $guia->appendChild($dados);

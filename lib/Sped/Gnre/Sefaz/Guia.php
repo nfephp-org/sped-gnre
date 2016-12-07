@@ -366,6 +366,13 @@ class Guia
      * @var int
      */
     private $retornoNumeroDeControle;
+    
+    /**
+     * Dados retornados pelo web service da SEFAZ com o número
+     * do protocolo da guia, <b>o valor desse atributo é gerado pela SEFAZ</b>
+     * @var int
+     */
+    private $retornoNumeroProtocolo;
 
     /**
      * Método mágico utilizado para retornar um valor de um

@@ -88,7 +88,17 @@ class SefazRetorno extends Rules
 
     protected function getDocumentoEmitente()
     {
-        $this->lote['lote'][$this->index]->c03_idContribuinteEmitente = $this->getContent($this->dadosArquivo[$this->index], 15, 16);
+        switch ($this->getContent($this->dadosArquivo[$this->index], 14, 1)) {
+            case 1:
+                $tipo = "cpf";
+                break;
+            case 2:
+                $tipo = "cnpj";
+                break;
+            default:
+                $tipo = "ie";
+        }
+        $this->lote['lote'][$this->index]->c03_idContribuinteEmitente = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 15, 16), $tipo);
     }
 
     protected function getRazaoSocialEmitente()
@@ -113,12 +123,12 @@ class SefazRetorno extends Rules
 
     protected function getCEPEmitente()
     {
-        $this->lote['lote'][$this->index]->c21_cepEmitente = $this->getContent($this->dadosArquivo[$this->index], 203, 8);
+        $this->lote['lote'][$this->index]->c21_cepEmitente = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 203, 8), "cep");
     }
 
     protected function getTelefoneEmitente()
     {
-        $this->lote['lote'][$this->index]->c22_telefoneEmitente = $this->getContent($this->dadosArquivo[$this->index], 211, 11);
+        $this->lote['lote'][$this->index]->c22_telefoneEmitente = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 211, 11), "telefone");
     }
 
     protected function getTipoDocDestinatario()
@@ -128,7 +138,17 @@ class SefazRetorno extends Rules
 
     protected function getDocumentoDestinatario()
     {
-        $this->lote['lote'][$this->index]->c35_idContribuinteDestinatario = $this->getContent($this->dadosArquivo[$this->index], 223, 16);
+        switch ($this->getContent($this->dadosArquivo[$this->index], 222, 1)) {
+            case 1:
+                $tipo = "cpf";
+                break;
+            case 2:
+                $tipo = "cnpj";
+                break;
+            default:
+                $tipo = "ie";
+        }
+        $this->lote['lote'][$this->index]->c35_idContribuinteDestinatario = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 223, 16), $tipo);
     }
 
     protected function getMunicipioDestinatario()
@@ -143,7 +163,7 @@ class SefazRetorno extends Rules
 
     protected function getNumeroDocumentoDeOrigem()
     {
-        $this->lote['lote'][$this->index]->c04_docOrigem = $this->getContent($this->dadosArquivo[$this->index], 544, 18);
+        $this->lote['lote'][$this->index]->c04_docOrigem = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 544, 18), "inteiro");
     }
 
     protected function getConvenio()
@@ -153,37 +173,38 @@ class SefazRetorno extends Rules
 
     protected function getDataDeVencimento()
     {
-        $this->lote['lote'][$this->index]->c14_dataVencimento = $this->getContent($this->dadosArquivo[$this->index], 892, 8);
+        $this->lote['lote'][$this->index]->c14_dataVencimento = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 892, 8), "data");
     }
 
     protected function getDataLimitePagamento()
     {
-        $this->lote['lote'][$this->index]->c33_dataPagamento = $this->getContent($this->dadosArquivo[$this->index], 900, 8);
+        $this->lote['lote'][$this->index]->c33_dataPagamento = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 900, 8), "data");
     }
 
     protected function getPeriodoReferencia()
     {
-        $this->lote['lote'][$this->index]->periodo = $this->getContent($this->dadosArquivo[$this->index], 909, 1);
+        $this->lote['lote'][$this->index]->periodo = $this->getContent($this->dadosArquivo[$this->index], 908, 1);
     }
 
     protected function getMesAnoReferencia()
     {
-        $this->lote['lote'][$this->index]->mes = $this->getContent($this->dadosArquivo[$this->index], 908, 30);
+        $this->lote['lote'][$this->index]->mes = $this->getContent($this->dadosArquivo[$this->index], 909, 2);
+        $this->lote['lote'][$this->index]->ano = $this->getContent($this->dadosArquivo[$this->index], 911, 4);
     }
 
     protected function getParcela()
     {
-        $this->lote['lote'][$this->index]->parcela = $this->getContent($this->dadosArquivo[$this->index], 915, 3);
+        $this->lote['lote'][$this->index]->parcela = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 915, 3), "inteiro");
     }
 
     protected function getValorPrincipal()
     {
-        $this->lote['lote'][$this->index]->c06_valorPrincipal = $this->getContent($this->dadosArquivo[$this->index], 918, 15);
+        $this->lote['lote'][$this->index]->c06_valorPrincipal = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 918, 15), "moeda");
     }
 
     protected function getSequencialGuia()
     {
-        $this->lote['lote'][$this->index]->retornoSequencialGuia = $this->getContent($this->dadosArquivo[$this->index], 1, 4);
+        $this->lote['lote'][$this->index]->retornoSequencialGuia = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 1, 4), "inteiro");
     }
 
     protected function getSituacaoGuia()
@@ -198,17 +219,29 @@ class SefazRetorno extends Rules
 
     protected function getAtualizacaoMonetaria()
     {
-        $this->lote['lote'][$this->index]->retornoAtualizacaoMonetaria = $this->getContent($this->dadosArquivo[$this->index], 933, 15);
+        $this->lote['lote'][$this->index]->retornoAtualizacaoMonetaria = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 933, 15), "moeda");
     }
 
     protected function getJuros()
     {
-        $this->lote['lote'][$this->index]->retornoJuros = $this->getContent($this->dadosArquivo[$this->index], 948, 15);
+        $this->lote['lote'][$this->index]->retornoJuros = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 948, 15), "moeda");
     }
 
     protected function getMulta()
     {
-        $this->lote['lote'][$this->index]->retornoMulta = $this->getContent($this->dadosArquivo[$this->index], 963, 15);
+        $this->lote['lote'][$this->index]->retornoMulta = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 963, 15), "moeda");
+    }
+    
+    protected function getValorTotal()
+    {
+        $valorPrincipal = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 918, 15), "real");
+        $atualizacaoMonetaria = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 933, 15), "real");
+        $juros = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 948, 15), "real");
+        $multa = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 963, 15), "real");
+        
+        $valor = $valorPrincipal + $atualizacaoMonetaria + $juros + $multa;
+        
+        $this->lote['lote'][$this->index]->c10_valorTotal = number_format($valor, 2, ",", ".");
     }
 
     protected function getRepresentacaoNumerica()
@@ -220,29 +253,24 @@ class SefazRetorno extends Rules
     {
         $this->lote['lote'][$this->index]->retornoCodigoDeBarras = $this->getContent($this->dadosArquivo[$this->index], 1026, 44);
     }
-
+    
+    protected function getQuantidadeVias()
+    {
+        $this->lote['lote'][$this->index]->retornoQuantidadeVias = $this->getContent($this->dadosArquivo[$this->index], 1070, 1);
+    }
+    
     protected function getNumeroDeControle()
     {
-        $this->lote['lote'][$this->index]->retornoNumeroDeControle = $this->getContent($this->dadosArquivo[$this->index], 1071, 16);
+        $this->lote['lote'][$this->index]->retornoNumeroDeControle = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 1071, 16), "inteiro");
     }
 
     protected function getIdentificadorGuia()
     {
-        $tratamento = array(
-            'posicao' => 1087,
-            'tamanho' => 10
-        );
-
-//        $this->lote['lote'][$this->index]['identificador_guia'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
+        $this->lote['lote'][$this->index]->c42_identificadorGuia = $this->getContent($this->dadosArquivo[$this->index], 1087, 10);
     }
 
     protected function getSequencialGuiaErroValidacao()
     {
-        $tratamento = array(
-            'posicao' => 1,
-            'tamanho' => 4
-        );
-
         $this->sequencialGuiaErroValidacao = $this->getContent($this->dadosArquivo[$this->index], 1, 4);
     }
 
@@ -278,32 +306,17 @@ class SefazRetorno extends Rules
 
     protected function getNumeroProtocolo()
     {
-        $tratamento = array(
-            'posicao' => 1,
-            'tamanho' => 10
-        );
-
-//        $this->lote['rodape']['numero_protocolo'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
+        $this->lote['footer']['numero_protocolo'] = $this->getContent($this->dadosArquivo[$this->index], 1, 10);
     }
 
     protected function getTotalGuias()
     {
-        $tratamento = array(
-            'posicao' => 11,
-            'tamanho' => 4
-        );
-
-//        $this->lote['rodape']['total_guias'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
+        $this->lote['footer']['total_guias'] = $this->formataCampo($this->getContent($this->dadosArquivo[$this->index], 11, 4), "inteiro");
     }
 
     protected function getHashDeValidacao()
     {
-        $tratamento = array(
-            'posicao' => 15,
-            'tamanho' => 64
-        );
-
-//        $this->lote['rodape']['hash_validacao'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
+        $this->lote['footer']['hash_validacao'] = $this->getContent($this->dadosArquivo[$this->index], 15, 64);
     }
 
     protected function aplicarParser()

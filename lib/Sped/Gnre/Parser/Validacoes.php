@@ -61,7 +61,7 @@ class Validacoes
                                 $receita->setCodigo($receitaXML->getAttribute("codigo"));
                                 
                                 $receita->setDescricao($receitaXML->getAttribute("descricao"));
-                                if ($receitaXML->getAttribute("codigo") == "100056" && $receitaXML->getAttribute("courier") == "S") {
+                                if ($receitaXML->getAttribute("codigo") == "100056" && strtoupper($receitaXML->getAttribute("courier")) == "S") {
                                     $receita->setDescricao($receitaXML->getAttribute("descricao") . " - Courier");
                                 }
                                 
@@ -140,6 +140,6 @@ class Validacoes
     }
     
     private function converteTxtToBoolean($string) {
-        return $string === "S" ? 1 : 0;
+        return strtoupper($string) === "S" ? 1 : 0;
     }
 }

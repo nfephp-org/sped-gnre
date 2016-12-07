@@ -33,8 +33,8 @@ use DOMDocument;
  */
 class SefazRetornoXML
 {
-    private $codigo;
-    private $descricao;
+    private $situacao = ["codigo" => 0, "descricao" => "Não foi possível processar o retorno da Sefaz."];
+    private $recibo = ["numero" => 0, "dataHoraRecibo" => "", "tempoEstimadoProc" => 0];
 
     /**
      * Efetua o parse do XML para um array com o retorno
@@ -47,21 +47,58 @@ class SefazRetornoXML
         $doc = new DOMDocument();
         $doc->loadXML($xml);
         
-        $situacaoConsulta = $doc->getElementsByTagName('situacaoRecepcao');
-        if ($situacaoConsulta->length) {
-            $childs = $situacaoConsulta->item(0)->childNodes;
+        $situacaoRecepcao = $doc->getElementsByTagName('situacaoRecepcao');
+        if ($situacaoRecepcao->length) {
+            $childs = $situacaoRecepcao->item(0)->childNodes;
             if ($childs->length > 0) {
                 foreach ($childs as $child) {
                     if ($child->nodeName == "codigo") {
-                        $this->codigo = $child->nodeValue;
+                        $this->situacao["codigo"] = $child->nodeValue;
                     }
                     if ($child->nodeName == "descricao") {
-                        $this->descricao = $child->nodeValue;
+                        $this->situacao["descricao"] = $child->nodeValue;
                     }
                 }
-                return ["codigo" => $this->codigo, "descricao" => $this->descricao];
+            }
+            $recibo = $doc->getElementsByTagName('recibo');
+            if ($recibo->length) {
+                $childs = $recibo->item(0)->childNodes;
+                if ($childs->length > 0) {
+                    foreach ($childs as $child) {
+                        if ($child->nodeName == "numero") {
+                            $this->recibo['numero'] = $child->nodeValue;
+                        }
+                        if ($child->nodeName == "dataHoraRecibo") {
+                            $this->recibo['dataHoraRecibo'] = $child->nodeValue;
+                        }
+                        if ($child->nodeName == "tempoEstimadoProc") {
+                            $this->recibo['tempoEstimadoProc'] = $child->nodeValue;
+                        }
+                    }
+                }
+            }
+            return ["situacao" => $this->situacao, "recibo" => $this->recibo];
+        }
+        
+        $situacaoProcess = $doc->getElementsByTagName('situacaoProcess');
+        if ($situacaoProcess->length) {
+            $childs = $situacaoProcess->item(0)->childNodes;
+            if ($childs->length > 0) {
+                foreach ($childs as $child) {
+                    if ($child->nodeName == "codigo") {
+                        $this->situacao["codigo"] = $child->nodeValue;
+                    }
+                    if ($child->nodeName == "descricao") {
+                        $this->situacao["descricao"] = $child->nodeValue;
+                    }
+                }
+            }
+            $resultado = $doc->getElementsByTagName('resultado');
+            if ($resultado->length) {
+                $texto = $resultado->item(0)->nodeValue;
+                return ["situacao" => $this->situacao, "resultado" => $texto];
             }
         }
-        return ["codigo" => 0, "descricao" => "Não foi possível processar o retorna da Sefaz."];
+        return ["situacao" => $this->situacao];
     }
 }

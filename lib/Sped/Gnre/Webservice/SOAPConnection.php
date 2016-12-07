@@ -70,7 +70,7 @@ class SOAPConnection extends Connection implements ConnectionInterface {
         try {
             $soap = new SoapClient("{$url}?wsdl", $this->soapOptions);
             $xml = $soap->__doRequest($this->getData()->toXml(), $url, $this->getData()->getAction(), $this->soapOptions["soap_version"]);            
-            
+            Log::info($this->getData()->toXml());
             return str_replace("ns1:", "", $xml);
         } catch (\Exception $e) {
             Log::error($e);

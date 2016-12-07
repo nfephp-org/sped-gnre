@@ -38,7 +38,9 @@ class Pdf
      */
     protected function getDomPdf()
     {
-        return new \DOMPDF();
+        $opcoes = new \Dompdf\Options();
+        $opcoes->setLogOutputFile(\Utils::getStorage("logs/DOMPDF.log"));
+        return new \Dompdf\Dompdf($opcoes);
     }
 
     /**
@@ -49,7 +51,7 @@ class Pdf
     public function create(Html $html)
     {
         $dompdf = $this->getDomPdf();
-        $dompdf->load_html($html->getHtml());
+        $dompdf->loadHtml($html->getHtml());
         $dompdf->render();
 
         return $dompdf;
