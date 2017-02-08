@@ -19,9 +19,10 @@
         "dompdf/dompdf": "0.6.*",
         "phenx/php-font-lib": "0.2.*",
         "zendframework/zend-servicemanager": "~2.0",
-	"zendframework/zend-barcode": "2.3.*@dev",
+	"zendframework/zend-barcode": "^2.3",
         "satooshi/php-coveralls": "dev-master",
-        "smarty/smarty": "~3.1"
+        "smarty/smarty": "~3.1",
+        "nfephp-org/sped-nfe": "4.1.0.x-dev"
     },
     "autoload": {
         "psr-4": {
