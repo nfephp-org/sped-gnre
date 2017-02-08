@@ -13,7 +13,6 @@ Dessa forma podemos manter a API atualizada e ajudar a todos que utlizam a GNRE 
 
 Versões suportadas
 =================
-- PHP 5.5
 - PHP 5.6
 - HHVM
 - PHP 7.0
