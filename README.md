@@ -86,9 +86,17 @@ Caso você não possua o composer veja [esse link](https://getcomposer.org/doc/0
 
 Adicione a dependência da GNRE PHP no arquivo composer.json :
 
+Para PHP <= 5.5
 ``` json
 {
-    "marabesi/gnre": "dev-master"
+    "marabesi/gnre": "0.1.1"
+}
+```
+
+Para PHP >= 5.6
+``` json
+{
+    "marabesi/gnre": "0.1.2"
 }
 ```
 
