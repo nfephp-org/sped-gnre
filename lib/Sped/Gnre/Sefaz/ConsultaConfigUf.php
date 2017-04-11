@@ -40,7 +40,7 @@ abstract class ConsultaConfigUf implements ObjetoSefaz
      * UF do estado
      * @var string 
      */
-    private $uf;
+    private $estado;
     
     /**
      * Código da receita
@@ -52,18 +52,18 @@ abstract class ConsultaConfigUf implements ObjetoSefaz
      * Retorna a UF que deve ser consultada
      * @return string
      */
-    public function getUf()
+    public function getEstado()
     {
-        return $this->uf;
+        return $this->estado;
     }
 
     /**
      * Define a UF que deve ser consultada
      * @param string $uf UF
      */
-    public function setUf($uf)
+    public function setEstado($estado)
     {
-        $this->uf = $uf;
+        $this->estado = $estado;
     }
 
     /**

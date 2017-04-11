@@ -75,7 +75,7 @@ $config = new \Sped\Gnre\Sefaz\ConfigUf;
  */
 $config->setEnvironment(1);
 $config->setReceita(100099);
-$config->setUf('PR');
+$config->setEstado('PR');
 
 $webService = new Sped\Gnre\Webservice\Connection($minhaConfiguracao, $config->getHeaderSoap(), $config->toXml());
 

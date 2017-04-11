@@ -75,11 +75,11 @@ class ConfigUf extends ConsultaConfigUf
         $consulta->setAttribute('xmlns', 'http://www.gnre.pe.gov.br');
 
         $ambiente = $gnre->createElement('ambiente', $this->getEnvironment());
-        $uf       = $gnre->createElement('uf', $this->getUf());
+        $estado   = $gnre->createElement('uf', $this->getEstado());
         $receita  = $gnre->createElement('receita', $this->getReceita());
 
         $consulta->appendChild($ambiente);
-        $consulta->appendChild($uf);
+        $consulta->appendChild($estado);
         $consulta->appendChild($receita);
 
         $this->getSoapEnvelop($gnre, $consulta);
