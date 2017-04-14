@@ -18,7 +18,7 @@
 /**
  * @covers Sped\Gnre\Configuration\CertificatePfx
  */
-class TestCertificatePfx extends PHPUnit_Framework_TestCase {
+class TestCertificatePfx extends \PHPUnit_Framework_TestCase {
 
     public function testPassarAoCriarChavePrivadaApartirDoCertificado() {
         $stubFileOperation = $this->getMockBuilder('Sped\Gnre\Configuration\CertificatePfxFileOperation')

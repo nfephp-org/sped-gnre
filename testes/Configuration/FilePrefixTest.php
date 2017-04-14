@@ -18,7 +18,7 @@
 /**
  * @covers \Sped\Gnre\Configuration\FilePrefix
  */
-class FilePrefixTest extends PHPUnit_Framework_TestCase {
+class FilePrefixTest extends \PHPUnit_Framework_TestCase {
 
     public function testPassarAoAplicarUmPrefixoEmUmArquivo() {
         $prefix = new \Sped\Gnre\Configuration\FilePrefix();

@@ -5,7 +5,7 @@ use Sped\Gnre\Sefaz\EstadoFactory;
 /**
  * @covers Sped\Gnre\Sefaz\EstadoFactory
  */
-class EstadoFactoryTest extends PHPUnit_Framework_TestCase
+class EstadoFactoryTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testShouldReturnAnObjectWhenIsGivenAexistingClass()

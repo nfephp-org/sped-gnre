@@ -18,7 +18,7 @@
 /**
  * @covers Sped\Gnre\Sefaz\LoteGnre
  */
-class LoteTest extends PHPUnit_Framework_TestCase {
+class LoteTest extends \PHPUnit_Framework_TestCase {
 
     private $lote;
 

@@ -3,7 +3,7 @@
 /**
  * @covers Sped\Gnre\Sefaz\Consulta
  */
-class ConsultaTest extends PHPUnit_Framework_TestCase {
+class ConsultaTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveRetornarOsCabecalhosParaArequisicaoSoap() {
         $consulta = new Sped\Gnre\Sefaz\Consulta();

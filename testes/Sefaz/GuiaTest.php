@@ -4,7 +4,7 @@
  * @covers Sped\Gnre\Sefaz\Guia
  * @covers Sped\Gnre\Exception\UndefinedProperty
  */
-class GuiaTest extends PHPUnit_Framework_TestCase {
+class GuiaTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveSetarOvalorAumaPropriedadeExistenteDaClasse() {
         $gnreGuia = new Sped\Gnre\Sefaz\Guia();

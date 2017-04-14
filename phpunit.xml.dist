@@ -12,13 +12,12 @@
     convertWarningsToExceptions="true"
     forceCoversAnnotation="false"
     mapTestClassNameToCoveredClassName="false"
-    printerClass="PHPUnit_TextUI_ResultPrinter"
     processIsolation="false"
     stopOnError="false"
     stopOnFailure="true"
     stopOnIncomplete="false"
     stopOnSkipped="false"
-    testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
+    testSuiteLoaderFile="./vendor/phpunit/phpunit/src/Runner/StandardTestSuiteLoader.php"
     timeoutForSmallTests="1"
     timeoutForMediumTests="10"
     timeoutForLargeTests="60"
@@ -32,6 +31,12 @@
         <blacklist>
             <directory suffix=".php">./vendor/</directory>
         </blacklist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./lib</directory>
+            <exclude>
+                <directory suffix=".php">./vendor/</directory>
+            </exclude>
+        </whitelist>
     </filter>
 </phpunit>
 

@@ -22,7 +22,8 @@
 	"zendframework/zend-barcode": "^2.3",
         "satooshi/php-coveralls": "dev-master",
         "smarty/smarty": "~3.1",
-        "nfephp-org/sped-nfe": "4.1.0.x-dev"
+        "nfephp-org/sped-nfe": "4.1.0.x-dev",
+        "phpunit/phpunit": "~5.7"
     },
     "autoload": {
         "psr-4": {
