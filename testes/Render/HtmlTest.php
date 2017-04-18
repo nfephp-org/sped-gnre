@@ -34,7 +34,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
 
     public function testNaoDeveGerarOhtmlDoLoteQuandoOloteEvazio() {
         $html = new Html();
-        $mkcLote = $this->getMock('\Sped\Gnre\Sefaz\Lote');
+        $mkcLote = $this->createMock('\Sped\Gnre\Sefaz\Lote');
         $mkcLote->expects($this->once())
                 ->method('getGuias');
         $mkcLote->expects($this->never())
@@ -46,7 +46,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testDeveGerarOhtmlDoLoteQuandoPossuirGuias() {
-        $smarty = $this->getMock('\Smarty');
+        $smarty = $this->createMock('\Smarty');
         $smarty->expects($this->at(0))
                 ->method('assign')
                 ->with('guiaViaInfo');
@@ -60,7 +60,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
                 ->method('fetch')
                 ->will($this->returnValue('<html></html>'));
 
-        $smartyFactory = $this->getMock('\Sped\Gnre\Render\SmartyFactory');
+        $smartyFactory = $this->createMock('\Sped\Gnre\Render\SmartyFactory');
         $smartyFactory->expects($this->once())
                 ->method('create')
                 ->will($this->returnValue($smarty));

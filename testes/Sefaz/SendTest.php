@@ -14,8 +14,8 @@ class SendTest extends \PHPUnit_Framework_TestCase {
     private $objetoSefaz;
 
     public function setUp() {
-        $this->setup = $this->getMock('\Sped\Gnre\Configuration\Setup');
-        $this->objetoSefaz = $this->getMock('\Sped\Gnre\Sefaz\ObjetoSefaz');
+        $this->setup = $this->createMock('\Sped\Gnre\Configuration\Setup');
+        $this->objetoSefaz = $this->createMock('\Sped\Gnre\Sefaz\ObjetoSefaz');
     }
 
     /**
@@ -27,14 +27,14 @@ class SendTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testDeveSetarUmaConnectionFactoryParaSerUsada() {
-        $connectionFactory = $this->getMock('\Sped\Gnre\Webservice\ConnectionFactory');
+        $connectionFactory = $this->createMock('\Sped\Gnre\Webservice\ConnectionFactory');
 
         $send = new Send($this->setup);
         $this->assertInstanceOf('\Sped\Gnre\Sefaz\Send', $send->setConnectionFactory($connectionFactory));
     }
 
     public function testDeveRetornarUmaConnectionFactory() {
-        $connectionFactory = $this->getMock('\Sped\Gnre\Webservice\ConnectionFactory');
+        $connectionFactory = $this->createMock('\Sped\Gnre\Webservice\ConnectionFactory');
 
         $send = new Send($this->setup);
         $send->setConnectionFactory($connectionFactory);
@@ -50,7 +50,7 @@ class SendTest extends \PHPUnit_Framework_TestCase {
                 ->method('doRequest')
                 ->will($this->returnValue(true));
 
-        $connectionFactory = $this->getMock('\Sped\Gnre\Webservice\ConnectionFactory');
+        $connectionFactory = $this->createMock('\Sped\Gnre\Webservice\ConnectionFactory');
         $connectionFactory->expects($this->once())
                 ->method('createConnection')
                 ->will($this->returnValue($connection));
@@ -69,7 +69,7 @@ class SendTest extends \PHPUnit_Framework_TestCase {
             ->method('doRequest')
             ->will($this->returnValue(true));
 
-        $connectionFactory = $this->getMock('\Sped\Gnre\Webservice\ConnectionFactory');
+        $connectionFactory = $this->createMock('\Sped\Gnre\Webservice\ConnectionFactory');
         $connectionFactory->expects($this->once())
             ->method('createConnection')
             ->will($this->returnValue($connection));

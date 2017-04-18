@@ -14,17 +14,17 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testDeveCriarOpdfApartirDoHtml() {
-        $dom = $this->getMock('\DOMPDF');
+        $dom = $this->createMock('\DOMPDF');
         $dom->expects($this->once())
                 ->method('render');
 
-        $html = $this->getMock('\Sped\Gnre\Render\Html');
+        $html = $this->createMock('\Sped\Gnre\Render\Html');
         $html->expects($this->once())
                 ->method('getHtml')
                 ->will($this->returnValue('<html><p>Guia GNRE</p></html>'));
 
 
-        $pdf = $this->getMock('\Sped\Gnre\Render\Pdf', array('getDomPdf'));
+        $pdf = $this->createMock('\Sped\Gnre\Render\Pdf', array('getDomPdf'));
         $pdf->expects($this->once())
                 ->method('getDomPdf')
                 ->will($this->returnValue($dom));
