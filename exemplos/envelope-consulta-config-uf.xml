@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap12:Envelope xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:gnr="http://www.gnre.pe.gov.br/webservice/GnreConfigUF">
+    <soap12:Header>
+        <gnr:gnreCabecMsg>
+            <gnr:versaoDados>1.00</gnr:versaoDados>
+        </gnr:gnreCabecMsg>
+    </soap12:Header>
+    <soap12:Body>
+        <gnr:gnreDadosMsg>
+            <TConsultaConfigUf xmlns="http://www.gnre.pe.gov.br">
+                <ambiente>1</ambiente>
+                <uf>PR</uf>
+                <receita>100099</receita>
+            </TConsultaConfigUf>
+        </gnr:gnreDadosMsg>
+    </soap12:Body>
+</soap12:Envelope>
