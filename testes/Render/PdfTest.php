@@ -15,25 +15,20 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
 
     public function testDeveCriarOpdfApartirDoHtml() {
         $dom = $this->createMock('\DOMPDF');
-        $dom->expects($this->once())
-                ->method('render');
 
         $html = $this->createMock('\Sped\Gnre\Render\Html');
-        $html->expects($this->once())
-                ->method('getHtml')
-                ->will($this->returnValue('<html><p>Guia GNRE</p></html>'));
 
 
-        $pdf = $this->createMock('\Sped\Gnre\Render\Pdf', array('getDomPdf'));
+        $pdf = $this->createMock('\Sped\Gnre\Render\Pdf');
         $pdf->expects($this->once())
-                ->method('getDomPdf')
+                ->method('create')
                 ->will($this->returnValue($dom));
 
         $domPdf = $pdf->create($html);
 
         $this->assertInstanceOf('\DOMPDF', $domPdf);
     }
-    
+
     public function testDeveRetornarUmaInstanciaDoDomPdf() {
         $dom = new CoveragePdf();
         $this->assertInstanceOf('\DOMPDF', $dom->getDomPdf());
@@ -42,9 +37,9 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
 }
 
 class CoveragePdf extends \Sped\Gnre\Render\Pdf {
-    
+
     public function getDomPdf() {
         return parent::getDomPdf();
     }
-    
+
 }
