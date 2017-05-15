@@ -88,6 +88,8 @@ abstract class Rules
     protected abstract function getTipoEmitente();
 
     protected abstract function getDocumentoEmitente();
+    
+    protected abstract function getRazaoSocialEmitente();
 
     protected abstract function getEnderecoEmitente();
 
@@ -118,6 +120,8 @@ abstract class Rules
     protected abstract function getDataLimitePagamento();
 
     protected abstract function getPeriodoReferencia();
+    
+    protected abstract function getMesAnoReferencia();
 
     protected abstract function getParcela();
 
@@ -128,6 +132,8 @@ abstract class Rules
     protected abstract function getJuros();
 
     protected abstract function getMulta();
+    
+    protected abstract function getValorTotal();
 
     protected abstract function getRepresentacaoNumerica();
 
@@ -183,6 +189,7 @@ abstract class Rules
                 $this->getCodigoReceita();
                 $this->getTipoEmitente();
                 $this->getDocumentoEmitente();
+                $this->getRazaoSocialEmitente();
                 $this->getEnderecoEmitente();
                 $this->getMunicipioEmitente();
                 $this->getUFEmitente();
@@ -198,16 +205,20 @@ abstract class Rules
                 $this->getDataDeVencimento();
                 $this->getDataLimitePagamento();
                 $this->getPeriodoReferencia();
+                $this->getMesAnoReferencia();
                 $this->getParcela();
                 $this->getValorPrincipal();
                 $this->getAtualizacaoMonetaria();
                 $this->getJuros();
                 $this->getMulta();
+                $this->getValorTotal();
                 $this->getRepresentacaoNumerica();
                 $this->getCodigoBarras();
                 $this->getNumeroDeControle();
                 $this->getIdentificadorGuia();
-
+                
+                $this->lote['lote'][$i]->retornoNumeroProtocolo = $this->lote['header']['numeroProtocoloLote'];
+                
                 $lote->addGuia($this->lote['lote'][$i]);
             } else if ($this->identificador == self::GUIA_EMITIDA_COM_SUCESSO) {
                 $this->getNumeroProtocolo();
@@ -238,6 +249,44 @@ abstract class Rules
     public function getContent($content, $positionStart, $length)
     {
         return substr($content, $positionStart, $length);
+    }
+    
+    protected function formataCampo($valor, $tipo) {
+        switch($tipo) {
+            case 'inteiro':
+                $valor = intval($valor);
+                break;
+            case 'real':
+                $valor = intval($valor, "0");
+                if ($valor > 0) {
+                    $valor = floatval($valor / 100);
+                } else {
+                    $valor = floatval(0.00);
+                }
+                break;
+            case 'moeda':
+                $valor = number_format($this->formataCampo($valor, "real"), 2, ",", ".");
+                break;
+            case 'data':
+                $valor = substr($valor, 0, 2)."/".substr($valor, 2, 2)."/".substr($valor, 4, 4);
+                break;
+            case 'mesano':
+                $valor = substr($valor, 0, 2)."/".substr($valor, 2, 4);
+                break;
+            case 'cnpj':
+                $valor = substr($valor, 2, 2).".".substr($valor, 4, 3).".".substr($valor, 7, 3)."/".substr($valor, 10, 4)."-".substr($valor, 14, 2);
+                break;
+            case 'cpf':
+                $valor = substr($valor, 5, 3).".".substr($valor, 8, 3).".".substr($valor, 11, 3)."-".substr($valor, 14, 2);
+                break;
+            case 'cep':
+                $valor = substr($valor, 0, 2).".".substr($valor, 2, 3)."-".substr($valor, 5, 3);
+                break;
+            case 'telefone':
+                $valor = "(".substr($valor, 0, 2).")".substr($valor, 2, 5)."-".substr($valor, 7, 4);
+                break;
+        }
+        return $valor;
     }
 
 }

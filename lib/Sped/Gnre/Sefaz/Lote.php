@@ -19,6 +19,7 @@ namespace Sped\Gnre\Sefaz;
 
 use Sped\Gnre\Sefaz\LoteGnre;
 use Sped\Gnre\Sefaz\EstadoFactory;
+use Sped\Gnre\Configuration\Setup;
 
 /**
  * Classe que armazena uma ou mais Guias (\Sped\Gnre\Sefaz\Guia) para serem 
@@ -42,7 +43,7 @@ class Lote extends LoteGnre
      * @var bool
      */
     private $ambienteDeTeste = false;
-
+    
     /**
      * @return mixed
      */
@@ -70,12 +71,10 @@ class Lote extends LoteGnre
      */
     public function getHeaderSoap()
     {
-        $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote' :
-            'http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote';
+        $headerURL = $this->ambienteDeTeste ? Setup::HEADER_HOMOLOGACAO : Setup::HEADER_PRODUCAO;
 
         return array(
-            'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
+            'Content-Type: application/soap+xml;charset=utf-8;action="' . $headerURL . $this->getAction() . '"',
             'SOAPAction: processar'
         );
     }
@@ -85,9 +84,9 @@ class Lote extends LoteGnre
      */
     public function soapAction()
     {
-        return $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao' :
-            'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
+        $actionURL = $this->ambienteDeTeste ? Setup::URL_HOMOLOGACAO : Setup::URL_PRODUCAO;
+        
+        return $actionURL . $this->getAction();
     }
 
     /**
@@ -157,7 +156,8 @@ class Lote extends LoteGnre
             $c37 = $gnre->createElement('c37_razaoSocialDestinatario', $gnreGuia->c37_razaoSocialDestinatario);
             $c38 = $gnre->createElement('c38_municipioDestinatario', $gnreGuia->c38_municipioDestinatario);
             $c33 = $gnre->createElement('c33_dataPagamento', $gnreGuia->c33_dataPagamento);
-
+            $c42 = $gnre->createElement('c42_identificadorGuia', $gnreGuia->c42_identificadorGuia);
+            
             $dados->appendChild($c1);
             $dados->appendChild($c2);
             if($gnreGuia->c25_detalhamentoReceita)
@@ -166,8 +166,10 @@ class Lote extends LoteGnre
                 $dados->appendChild($c26);
             $dados->appendChild($c27);
             $dados->appendChild($c03);
-            $dados->appendChild($c28);
-            $dados->appendChild($c04);
+            if ($gnreGuia->c28_tipoDocOrigem) {
+                $dados->appendChild($c28);
+                $dados->appendChild($c04);
+            }
             $dados->appendChild($c06);
             $dados->appendChild($c10);
             $dados->appendChild($c14);
@@ -180,7 +182,8 @@ class Lote extends LoteGnre
             $dados->appendChild($c19);
             $dados->appendChild($c20);
             $dados->appendChild($c21);
-            $dados->appendChild($c22);
+            if ($gnreGuia->c22_telefoneEmitente)
+                $dados->appendChild($c22);
             $dados->appendChild($c34);
             $dados->appendChild($c35);
             if($gnreGuia->c36_inscricaoEstadualDestinatario)
@@ -190,15 +193,19 @@ class Lote extends LoteGnre
             $dados->appendChild($c38);
             $dados->appendChild($c33);
 
-            $c05 = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
-            if($c05) {
-                $dados->appendChild($c05);
+            $c05_referencia = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
+            if ($c05_referencia != null) {
+                $dados->appendChild($c05_referencia);
             }
 
             $c39_camposExtras = $guiaEstado->getNodeCamposExtras($gnre, $gnreGuia);
 
             if ($c39_camposExtras != null) {
                 $dados->appendChild($c39_camposExtras);
+            }
+            
+            if ($gnreGuia->c42_identificadorGuia) {
+                $dados->appendChild($c42);
             }
 
             $guia->appendChild($dados);
@@ -230,13 +237,11 @@ class Lote extends LoteGnre
 
         $soapEnv->appendChild($soapHeader);
         $gnre->appendChild($soapEnv);
-
-        $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
-            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+        
+        $headerURL = $this->ambienteDeTeste ? Setup::HEADER_HOMOLOGACAO : Setup::HEADER_PRODUCAO;
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
-        $gnreDadosMsg->setAttribute('xmlns', $action);
+        $gnreDadosMsg->setAttribute('xmlns', $headerURL . $this->getAction());
 
         $gnreDadosMsg->appendChild($loteGnre);
 

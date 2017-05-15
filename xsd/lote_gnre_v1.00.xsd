@@ -527,7 +527,7 @@
 													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
-										</xs:element>
+										</xs:element>
                                         <xs:element name="c42_identificadorGuia" maxOccurs="1" minOccurs="0">
                                             <xs:simpleType>
                                             	<xs:restriction

@@ -66,4 +66,16 @@ interface ObjetoSefaz
      * @return mixed
      */
     public function utilizarAmbienteDeTeste($ambiente = false);
+    
+    /**
+     * Método utilizado para trocar a ação
+     * @return null
+     */
+    public function setAction($action);
+    
+    /**
+     * Método utilizado para retornar a ação
+     * @return string
+     */
+    public function getAction();
 }

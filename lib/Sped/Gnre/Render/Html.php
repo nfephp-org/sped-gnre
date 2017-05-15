@@ -37,7 +37,7 @@ class Html
      * Conteúdo HTML gerado pela classe
      * @var string
      */
-    private $html;
+    private $html = [];
 
     /**
      * Objeto utilizado para gerar o código de barras
@@ -109,28 +109,28 @@ class Html
             2 => '2ª via Contrinuinte',
             3 => '3ª via Contribuinte/Fisco'
         );
-
+        
+        $documentRoot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) .  DIRECTORY_SEPARATOR ;
+        $smarty = $this->getSmartyFactory()->create();
+        
+        $this->html = $smarty->fetch($documentRoot . 'templates' . DIRECTORY_SEPARATOR . 'header.tpl');
         $guias = $lote->getGuias();
-        $html = '';
-
         for ($index = 0; $index < count($guias); $index++) {
             $guia = $lote->getGuia($index);
-
+            
             $barcode = $this->getBarCode()
-                    ->setNumeroCodigoBarras($guia->retornoCodigoDeBarras);
-
-            $smarty = $this->getSmartyFactory()
-                    ->create();
+                ->setNumeroCodigoBarras($guia->retornoCodigoDeBarras);
+            
             $smarty->assign('guiaViaInfo', $guiaViaInfo);
             $smarty->assign('barcode', $barcode);
             $smarty->assign('guia', $guia);
-
-            $documentRoot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) .  DIRECTORY_SEPARATOR ;
-
-            $html .= $smarty->fetch($documentRoot . 'templates' . DIRECTORY_SEPARATOR . 'gnre.tpl');
+            
+            $this->html .= $smarty->fetch($documentRoot . 'templates' . DIRECTORY_SEPARATOR . 'gnre.tpl');
+            if (($index + 1) < count($guias)) {
+                $this->html .= "<div style='page-break-before: always;'>";
+            }
         }
-
-        $this->html = $html;
+        $this->html .= $smarty->fetch($documentRoot . 'templates' . DIRECTORY_SEPARATOR . 'footer.tpl');
     }
 
     /**
