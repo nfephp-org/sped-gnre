@@ -58,7 +58,7 @@ abstract class Padrao
      */
     public function getNodeReferencia(\DOMDocument $gnre, Guia $gnreGuia)
     {
-        if(!$gnreGuia->periodo && !$gnreGuia->mes && !$gnreGuia->ano && !$gnreGuia->parcela) {
+        if (!$gnreGuia->periodo && !$gnreGuia->mes && !$gnreGuia->ano && !$gnreGuia->parcela) {
             return null;
         }
 

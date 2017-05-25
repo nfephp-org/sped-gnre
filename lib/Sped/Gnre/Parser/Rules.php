@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * abstractada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * abstractada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -18,9 +18,9 @@
 namespace Sped\Gnre\Parser;
 
 /**
- * Classe abstrata que utiliza o padrão de projeto Template Method para 
+ * Classe abstrata que utiliza o padrão de projeto Template Method para
  * setar as regras de leitura do retorno da SEFAZ
- * 
+ *
  * @package     gnre
  * @subpackage  configuration
  * @abstract
@@ -36,7 +36,7 @@ abstract class Rules
     const GUIA_EMITIDA_COM_SUCESSO = 9;
 
     /**
-     * @var string 
+     * @var string
      */
     protected $dadosArquivo;
 
@@ -61,10 +61,10 @@ abstract class Rules
     protected $lote = array();
 
     /**
-     * Utiliza o método construtor da classe para ser enviado um conteúdo de 
+     * Utiliza o método construtor da classe para ser enviado um conteúdo de
      * arquivo para ser extraido
-     * 
-     * @param string $dadosArquivo <p>String contendo o conteúdo de retorno do 
+     *
+     * @param string $dadosArquivo <p>String contendo o conteúdo de retorno do
      * web service da SEFAZ</p>
      * @since 1.0.0
      */
@@ -73,89 +73,89 @@ abstract class Rules
         $this->dadosArquivo = explode(PHP_EOL, $dadosArquivo);
     }
 
-    protected abstract function getTipoIdentificadorDoSolicitante();
+    abstract protected function getTipoIdentificadorDoSolicitante();
 
-    protected abstract function getIdentificador();
+    abstract protected function getIdentificador();
 
-    protected abstract function getSequencialGuia();
+    abstract protected function getSequencialGuia();
 
-    protected abstract function getSituacaoGuia();
+    abstract protected function getSituacaoGuia();
 
-    protected abstract function getUfFavorecida();
+    abstract protected function getUfFavorecida();
 
-    protected abstract function getCodigoReceita();
+    abstract protected function getCodigoReceita();
 
-    protected abstract function getTipoEmitente();
+    abstract protected function getTipoEmitente();
 
-    protected abstract function getDocumentoEmitente();
+    abstract protected function getDocumentoEmitente();
 
-    protected abstract function getEnderecoEmitente();
+    abstract protected function getEnderecoEmitente();
 
-    protected abstract function getMunicipioEmitente();
+    abstract protected function getMunicipioEmitente();
 
-    protected abstract function getUFEmitente();
+    abstract protected function getUFEmitente();
 
-    protected abstract function getCEPEmitente();
+    abstract protected function getCEPEmitente();
 
-    protected abstract function getTelefoneEmitente();
+    abstract protected function getTelefoneEmitente();
 
-    protected abstract function getTipoDocDestinatario();
+    abstract protected function getTipoDocDestinatario();
 
-    protected abstract function getDocumentoDestinatario();
+    abstract protected function getDocumentoDestinatario();
 
-    protected abstract function getMunicipioDestinatario();
+    abstract protected function getMunicipioDestinatario();
 
-    protected abstract function getProduto();
+    abstract protected function getProduto();
 
-    protected abstract function getNumeroDocumentoDeOrigem();
+    abstract protected function getNumeroDocumentoDeOrigem();
 
-    protected abstract function getConvenio();
+    abstract protected function getConvenio();
 
-    protected abstract function getInformacoesComplementares();
+    abstract protected function getInformacoesComplementares();
 
-    protected abstract function getDataDeVencimento();
+    abstract protected function getDataDeVencimento();
 
-    protected abstract function getDataLimitePagamento();
+    abstract protected function getDataLimitePagamento();
 
-    protected abstract function getPeriodoReferencia();
+    abstract protected function getPeriodoReferencia();
 
-    protected abstract function getParcela();
+    abstract protected function getParcela();
 
-    protected abstract function getValorPrincipal();
+    abstract protected function getValorPrincipal();
 
-    protected abstract function getAtualizacaoMonetaria();
+    abstract protected function getAtualizacaoMonetaria();
 
-    protected abstract function getJuros();
+    abstract protected function getJuros();
 
-    protected abstract function getMulta();
+    abstract protected function getMulta();
 
-    protected abstract function getRepresentacaoNumerica();
+    abstract protected function getRepresentacaoNumerica();
 
-    protected abstract function getCodigoBarras();
+    abstract protected function getCodigoBarras();
 
-    protected abstract function getNumeroDeControle();
+    abstract protected function getNumeroDeControle();
 
-    protected abstract function getIdentificadorGuia();
+    abstract protected function getIdentificadorGuia();
 
-    protected abstract function getNumeroProtocolo();
+    abstract protected function getNumeroProtocolo();
 
-    protected abstract function getTotalGuias();
+    abstract protected function getTotalGuias();
 
-    protected abstract function getHashDeValidacao();
+    abstract protected function getHashDeValidacao();
 
-    protected abstract function getIdentificadorDoSolicitante();
+    abstract protected function getIdentificadorDoSolicitante();
 
-    protected abstract function getNumeroDoProtocoloDoLote();
+    abstract protected function getNumeroDoProtocoloDoLote();
 
-    protected abstract function getAmbiente();
+    abstract protected function getAmbiente();
 
-    protected abstract function getNomeCampo();
+    abstract protected function getNomeCampo();
 
-    protected abstract function getCodigoMotivoRejeicao();
+    abstract protected function getCodigoMotivoRejeicao();
 
-    protected abstract function getDescricaoMotivoRejeicao();
+    abstract protected function getDescricaoMotivoRejeicao();
 
-    protected abstract function aplicarParser();
+    abstract protected function aplicarParser();
 
     /**
      * @return \Sped\Gnre\Sefaz\Lote
@@ -174,7 +174,7 @@ abstract class Rules
                 $this->getIdentificadorDoSolicitante();
                 $this->getNumeroDoProtocoloDoLote();
                 $this->getAmbiente();
-            } else if ($this->identificador == 1) {
+            } elseif ($this->identificador == 1) {
                 $this->lote['lote'][$i] = new \Sped\Gnre\Sefaz\Guia();
 
                 $this->getSequencialGuia();
@@ -209,11 +209,11 @@ abstract class Rules
                 $this->getIdentificadorGuia();
 
                 $lote->addGuia($this->lote['lote'][$i]);
-            } else if ($this->identificador == self::GUIA_EMITIDA_COM_SUCESSO) {
+            } elseif ($this->identificador == self::GUIA_EMITIDA_COM_SUCESSO) {
                 $this->getNumeroProtocolo();
                 $this->getTotalGuias();
                 $this->getHashDeValidacao();
-            } else if ($this->identificador == self::ERRO_VALIDACAO) {
+            } elseif ($this->identificador == self::ERRO_VALIDACAO) {
                 $this->getSequencialGuiaErroValidacao();
                 $this->getNomeCampo();
                 $this->getCodigoMotivoRejeicao();
@@ -239,5 +239,4 @@ abstract class Rules
     {
         return substr($content, $positionStart, $length);
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sped\Gnre\Sefaz\Test;
+namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Sefaz\Lote;
 use Sped\Gnre\Sefaz\Guia;
@@ -8,13 +8,16 @@ use Sped\Gnre\Sefaz\Guia;
 /**
  * @covers Sped\Gnre\Sefaz\Lote
  */
-class LoteTest extends \PHPUnit_Framework_TestCase {
+class LoteTest extends \PHPUnit_Framework_TestCase
+{
 
-    public function testDeveRetornarOsCabecalhosParaArequisicaoSoap() {
+    public function testDeveRetornarOsCabecalhosParaArequisicaoSoap()
+    {
         $lote = new Lote();
         $headersArray = $lote->getHeaderSoap();
 
-        $this->assertEquals('Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote"', $headersArray[0]);
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote"';
+        $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: processar', $headersArray[1]);
     }
 
@@ -25,13 +28,15 @@ class LoteTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
-    public function testDeveRetornarAacaoAserExecutadaNoSoap() {
+    public function testDeveRetornarAacaoAserExecutadaNoSoap()
+    {
         $lote = new Lote();
 
         $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
-    public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioJuridicos() {
+    public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioJuridicos()
+    {
         $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/lote-emit-cnpj-dest-cnpj-sem-campos-extras.xml');
 
         $guia = new Guia();
@@ -72,7 +77,8 @@ class LoteTest extends \PHPUnit_Framework_TestCase {
         $this->assertXmlStringEqualsXmlString($estruturaLote, $lote->toXml());
     }
 
-    public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioFisicos() {
+    public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioFisicos()
+    {
         $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/lote-emit-cpf-dest-cpf-sem-campos-extras.xml');
 
         $guia = new Guia();
@@ -113,7 +119,8 @@ class LoteTest extends \PHPUnit_Framework_TestCase {
         $this->assertXmlStringEqualsXmlString($estruturaLote, $lote->toXml());
     }
 
-    public function testDeveRetornarOxmlDoLoteComOsCamposExtras() {
+    public function testDeveRetornarOxmlDoLoteComOsCamposExtras()
+    {
         $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/estrutura-lote-completo-gnre.xml');
 
         $guia = new Guia();
@@ -185,14 +192,15 @@ class LoteTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
-    public function testDeveRetornarOsCabecalhosParaArequisicaoSoapAoWebServiceDeteste() {
+    public function testDeveRetornarOsCabecalhosParaArequisicaoSoapAoWebServiceDeteste()
+    {
         $lote = new Lote();
         $lote->utilizarAmbienteDeTeste(true);
 
         $headersArray = $lote->getHeaderSoap();
 
-        $this->assertEquals('Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote"', $headersArray[0]);
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote"';
+        $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: processar', $headersArray[1]);
     }
-
 }

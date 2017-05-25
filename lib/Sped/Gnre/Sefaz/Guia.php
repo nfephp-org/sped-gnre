@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -23,7 +23,7 @@ use Sped\Gnre\Exception\UndefinedProperty;
  * Classe responsável por criar uma simples guia GNRE. Essa classe
  * armazena todos os atributos necessários para serem transformados no
  * XML aceito pela SEFAZ e posteriormente submetidos através do webservice
- * 
+ *
  * <b>
  * Os atributos com o prefixo "retorno" sao populados com os dados do retorno
  * do web service da SEFAZ, alguns deles podem ou nao possuir conteudo.
@@ -79,7 +79,7 @@ class Guia
     /**
      * Informar o CPF ou CNPJ sem nenhuma formatação
      * apenas os dígitos
-     * @var    int 
+     * @var    int
      */
     private $c03_idContribuinteEmitente;
 
@@ -100,15 +100,15 @@ class Guia
     private $c04_docOrigem;
 
     /**
-     * Para esse atributo é esperado um dado do tipo double com 
+     * Para esse atributo é esperado um dado do tipo double com
      * o valor total da guia sem juros e/ou acréscimos
      * @var    double
      */
     private $c06_valorPrincipal;
 
     /**
-     * Para esse atributo é esperado um dado do tipo double com 
-     * o valor total da guia porém com o juros e/ou acréscimo já 
+     * Para esse atributo é esperado um dado do tipo double com
+     * o valor total da guia porém com o juros e/ou acréscimo já
      * somados ao valor principal. Ou seja se o valor total for 5.00 e o juros
      * por exemplo for 5.00 o valor total será 10.00
      * @var    double
@@ -116,7 +116,7 @@ class Guia
     private $c10_valorTotal;
 
     /**
-     * Para esse atributo é esperado um dado do tipo string com 
+     * Para esse atributo é esperado um dado do tipo string com
      * a data de vencimento da guia no formato AAAA-MM-DD
      * @var    string
      */
@@ -131,21 +131,21 @@ class Guia
     private $c15_convenio;
 
     /**
-     * Para esse atributo é esperado um dado do tipo string com 
+     * Para esse atributo é esperado um dado do tipo string com
      * a razão social da empresa emitente
      * @var    int
      */
     private $c16_razaoSocialEmitente;
 
     /**
-     * Para esse atributo é esperado um dado do tipo int com 
+     * Para esse atributo é esperado um dado do tipo int com
      * a inscrição estadual (I.E) da empresa emitente
      * @var    int
      */
     private $c17_inscricaoEstadualEmitente;
 
     /**
-     * Para esse atributo é esperado um dado do tipo string com 
+     * Para esse atributo é esperado um dado do tipo string com
      * o endereço  da empresa emitente
      * @var    int
      */
@@ -153,7 +153,7 @@ class Guia
 
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
-     * com o código do municipio de acordo com a tabela do IBGE removendo os 2 
+     * com o código do municipio de acordo com a tabela do IBGE removendo os 2
      * primeiros digitos
      * @var    int
      */
@@ -168,7 +168,7 @@ class Guia
 
     /**
      * Para esse atributo é esperado um dado do tipo int
-     * com o CEP correspondente da empresa emitente 
+     * com o CEP correspondente da empresa emitente
      * @var    int
      */
     private $c21_cepEmitente;
@@ -191,19 +191,19 @@ class Guia
     /**
      * Informar o CPF ou CNPJ sem nenhuma formatação
      * apenas os dígitos
-     * @var    int 
+     * @var    int
      */
     private $c35_idContribuinteDestinatario;
 
     /**
-     * Para esse atributo é esperado um dado do tipo int com 
+     * Para esse atributo é esperado um dado do tipo int com
      * a inscrição estadual (I.E) da empresa a quem se destina a guia
      * @var    int
      */
     private $c36_inscricaoEstadualDestinatario;
 
     /**
-     * Para esse atributo é esperado um dado do tipo string com 
+     * Para esse atributo é esperado um dado do tipo string com
      * a razão social da empresa a quem se destina a guia
      * @var    int
      */
@@ -211,14 +211,14 @@ class Guia
 
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
-     * com o código do municipio de acordo com a tabela do IBGE removendo os 2 
+     * com o código do municipio de acordo com a tabela do IBGE removendo os 2
      * primeiros digitos
      * @var    int
      */
     private $c38_municipioDestinatario;
 
     /**
-     * Para esse atributo é esperado um dado do tipo string com 
+     * Para esse atributo é esperado um dado do tipo string com
      * a data de pagamento da guia no formato AAAA-MM-DD
      * @var    string
      */
@@ -272,52 +272,52 @@ class Guia
     /**
      * Dados retornados pelo web service da SEFAZ
      * com os dados complementares da guia
-     * @var string 
+     * @var string
      */
     private $retornoInformacoesComplementares;
 
     /**
      * Dados retornados pelo web service da SEFAZ
      * com o valor da atualização monetária, esse item pode
-     * ser encontrado do lado direito da guia em 
+     * ser encontrado do lado direito da guia em
      * https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg
      * na sétima linha
-     * @var double 
+     * @var double
      */
     private $retornoAtualizacaoMonetaria;
 
     /**
      * Dados retornados pelo web service da SEFAZ
-     * com o valor do juros, esse item pode ser encontrado do lado 
-     * direito da guia em 
+     * com o valor do juros, esse item pode ser encontrado do lado
+     * direito da guia em
      * https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg
      * na oitava linha
-     * @var double 
+     * @var double
      */
     private $retornoJuros;
 
     /**
      * Dados retornados pelo web service da SEFAZ
-     * com o valor da multa, esse item pode ser encontrado do lado 
-     * direito da guia em 
+     * com o valor da multa, esse item pode ser encontrado do lado
+     * direito da guia em
      * https://github.com/marabesi/gnrephp/blob/dev-pdf/exemplos/guia.jpg
      * na nona linha
-     * @var double 
+     * @var double
      */
     private $retornoMulta;
 
     /**
      * Dados retornados pelo web service da SEFAZ com a linha
      * digitável do código de barras possuindo 48 caracteres
-     * @var int 
+     * @var int
      */
     private $retornoRepresentacaoNumerica;
 
     /**
      * Dados retornados pelo web service da SEFAZ com o código
-     * de barras, possuindo 44 caracteres (esse valor deve ser usado 
+     * de barras, possuindo 44 caracteres (esse valor deve ser usado
      * para gerar a imagem do  código de barras do boleto).
-     * @var int 
+     * @var int
      */
     private $retornoCodigoDeBarras;
 
@@ -326,7 +326,7 @@ class Guia
      * da guia, se foi processada com sucesso ou se houve erro.
      * Para maiores informações sobre esse item consulte
      * a documentação de retorno em http://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
-     * @var int 
+     * @var int
      */
     private $retornoSituacaoGuia;
 
@@ -335,7 +335,7 @@ class Guia
      * que a guia tem na SEFAZ.
      * Para maiores informações sobre esse item consulte
      * a documentação de retorno em http://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
-     * @var type 
+     * @var type
      */
     private $retornoSequencialGuia;
 
@@ -383,10 +383,10 @@ class Guia
     }
 
     /**
-     * Método mágico utilizado para setar valores aos atributos 
+     * Método mágico utilizado para setar valores aos atributos
      * existentes na classe
      * @param  string $property  O nome existente de um atributo existente na classe
-     * @param  mixed  $value  O valor desejado para ser setado no atributo desejado (string, boolean, int, Object ou array)
+     * @param  mixed  $value  O valor desejado para ser setado no atributo desejado
      * @throws UndefinedProperty  Caso o atributo desejada não exista
      * @return boolean Retorna true caso seja setado o valor para o atributo desejado
      * @since  1.0.0
@@ -415,5 +415,4 @@ class Guia
 
         return true;
     }
-
 }

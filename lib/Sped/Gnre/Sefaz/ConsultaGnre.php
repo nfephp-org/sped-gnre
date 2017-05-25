@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -42,7 +42,7 @@ abstract class ConsultaGnre implements ObjetoSefaz
     /**
      * O número do recibo enviado apos um lote recebido com sucesso pelo webservice
      * da sefaz geralmente com 10 posições (1406670518)
-     * @var int 
+     * @var int
      */
     private $recibo;
 
@@ -57,7 +57,7 @@ abstract class ConsultaGnre implements ObjetoSefaz
     }
 
     /**
-     * Define um número de recibo para ser utilizado na consulta ao 
+     * Define um número de recibo para ser utilizado na consulta ao
      * webservice da sefaz
      * @param  int  $recibo  Número retornado pelo webservice da sefaz após ter recebido um lote com sucesso
      * @since  1.0.0
@@ -79,12 +79,11 @@ abstract class ConsultaGnre implements ObjetoSefaz
 
     /**
      * Define o ambiente desejado para realizar a consulta no webservice da sefaz
-     * @param  int  $environment  O número do ambiente que se deseja consultar número 1 representa produção e 2 representa homologação
+     * @param  int  $environment O número do ambiente que se deseja consultar. 1 = produção e 2 = homologação
      * @since  1.0.0
      */
     public function setEnvironment($environment)
     {
         $this->environment = $environment;
     }
-
 }

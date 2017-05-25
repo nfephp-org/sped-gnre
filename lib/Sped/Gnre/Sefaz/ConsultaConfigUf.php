@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -28,7 +28,7 @@ namespace Sped\Gnre\Sefaz;
  */
 abstract class ConsultaConfigUf implements ObjetoSefaz
 {
-    
+
     /**
      * O número representa qual ambiente deve ser realizada a consulta
      * 1 - produção 2 - homologação
@@ -38,10 +38,10 @@ abstract class ConsultaConfigUf implements ObjetoSefaz
 
     /**
      * UF do estado
-     * @var string 
+     * @var string
      */
     private $estado;
-    
+
     /**
      * Código da receita
      * @var int
@@ -101,5 +101,4 @@ abstract class ConsultaConfigUf implements ObjetoSefaz
     {
         $this->environment = $environment;
     }
-    
 }

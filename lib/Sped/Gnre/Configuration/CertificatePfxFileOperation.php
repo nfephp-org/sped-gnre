@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -22,7 +22,7 @@ use Sped\Gnre\Exception\CannotOpenCertificate;
 use Sped\Gnre\Exception\UnableToWriteFile;
 
 /**
- * Classe responsável por escrever novos arquivos com os dados extraidos do certificado e manipular 
+ * Classe responsável por escrever novos arquivos com os dados extraidos do certificado e manipular
  * os metadados utilizados para a conexão com a sefaz
  * @package     gnre
  * @subpackage  configuration
@@ -36,13 +36,13 @@ class CertificatePfxFileOperation extends FileOperation
     /**
      * O nome da pasta em que os meta dados dos certificados são armazenados.
      * Essa pasta ficará abaixo da pasta /certs ficando então /certs/metadata
-     * @var string 
+     * @var string
      */
     private $metadataFolder = 'metadata';
 
     /**
      * Caminho e o nome do arquivo completo do certificado a ser utilizado
-     * @var string 
+     * @var string
      */
     private $pathToWrite;
 
@@ -88,7 +88,7 @@ class CertificatePfxFileOperation extends FileOperation
      * extraídos do certificado
      * @param  string  $content  Conteúdo desejado a ser escrito no arquivo
      * @param \Sped\Gnre\Configuration\FilePrefix $filePrefix
-     * @throws UnableToWriteFile Caso não seja possível escrever no arquivo ou algum outro tipo de erro que não permita escrever no arquivo
+     * @throws UnableToWriteFile Caso não seja possível escrever no arquivo
      * @return string Retorna o caminho completo do arquivo em que foi escrito o conteúdo enviado
      * @since  1.0.0
      */
@@ -102,5 +102,4 @@ class CertificatePfxFileOperation extends FileOperation
 
         return $pathToWrite;
     }
-
 }

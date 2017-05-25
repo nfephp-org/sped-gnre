@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -32,12 +32,12 @@ abstract class FileOperation
 
     /**
      * Caminho em que o certificado físico está alocado
-     * @var string 
+     * @var string
      */
     protected $filePath;
 
     /**
-     * Define o caminho absoluto de um arquivo para que a classe trabalhe 
+     * Define o caminho absoluto de um arquivo para que a classe trabalhe
      * corretamente com seus métodos
      * @param string $filePath caminho do arquivo a ser utilizado
      * @throws \Sped\Gnre\Exception\UnreachableFile  Caso não seja encontrado o arquivo informado
@@ -59,5 +59,5 @@ abstract class FileOperation
      * @param FilePrefix Utilizado para aplicar algum prefixo ou regras em um determinado arquivo
      * @since  1.0.0
      */
-    abstract function writeFile($content, FilePrefix $filePrefix);
+    abstract public function writeFile($content, FilePrefix $filePrefix);
 }
