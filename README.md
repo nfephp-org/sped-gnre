@@ -11,6 +11,11 @@ Atenção!!
 Caso encontre algum estado que possua uma regra especial para gerar uma GNRE por favor informar abrindo uma **issue**.
 Dessa forma podemos manter a API atualizada e ajudar a todos que utlizam a GNRE PHP
 
+Atenção 2!!
+=================
+Se você possui um certificado da certisign e está com o erro "Bad request" veja a solução encontrada pelo [renandelmonico](https://github.com/renandelmonico) utilizando
+as classes da sped-common nesse [link](https://groups.google.com/d/msg/gnrephp/kbNWB3aEBbs/0g067FKlBgAJ)
+
 Versões suportadas
 =================
 - PHP 5.6
