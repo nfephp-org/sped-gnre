@@ -1,13 +1,17 @@
 <?php
 
+namespace Sped\Gnre\Test\Sefaz;
+
 /**
  * @covers Sped\Gnre\Sefaz\Guia
  * @covers Sped\Gnre\Exception\UndefinedProperty
  */
-class GuiaTest extends \PHPUnit_Framework_TestCase {
+class GuiaTest extends \PHPUnit_Framework_TestCase
+{
 
-    public function testDeveSetarOvalorAumaPropriedadeExistenteDaClasse() {
-        $gnreGuia = new Sped\Gnre\Sefaz\Guia();
+    public function testDeveSetarOvalorAumaPropriedadeExistenteDaClasse()
+    {
+        $gnreGuia = new \Sped\Gnre\Sefaz\Guia();
         $gnreGuia->c01_UfFavorecida = 'SP';
 
         $this->assertEquals('SP', $gnreGuia->c01_UfFavorecida);
@@ -18,9 +22,9 @@ class GuiaTest extends \PHPUnit_Framework_TestCase {
      * @expectedExceptionMessage Não foi possível encontrar o atributo desejado na classe
      * @expectedExceptionCode 100
      */
-    public function testAcessarUmaPropriedadeQueNaoExisteNaClasse() {
-        $gnreGuia = new Sped\Gnre\Sefaz\Guia();
+    public function testAcessarUmaPropriedadeQueNaoExisteNaClasse()
+    {
+        $gnreGuia = new \Sped\Gnre\Sefaz\Guia();
         $gnreGuia->teste = 'SP';
     }
-
 }

@@ -15,16 +15,17 @@
  * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace Sped\Gnre\Render\Test;
+namespace Sped\Gnre\Test\Render;
 
 use Sped\Gnre\Render\SmartyFactory;
 
-class SmartyFactoryTest extends \PHPUnit_Framework_TestCase {
+class SmartyFactoryTest extends \PHPUnit_Framework_TestCase
+{
 
-    public function testDeveRetornarUmaInstanciaDoSmarty() {
+    public function testDeveRetornarUmaInstanciaDoSmarty()
+    {
         $factory = new SmartyFactory();
 
         $this->assertInstanceOf('\Smarty', $factory->create());
     }
-
 }

@@ -1,9 +1,8 @@
 <?php
 
-namespace Sped\Gnre\Sefaz\Test;
+namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Sefaz\boolen;
-use Sped\Gnre\Sefaz\ConsultaConfigUf;
 
 /**
  * @covers Sped\Gnre\Sefaz\ConsultaConfigUf
@@ -51,35 +50,5 @@ class ConsultaConfigUfTest extends \PHPUnit_Framework_TestCase
         $gnreConsulta->setEnvironment(1);
 
         $this->assertEquals(1, $gnreConsulta->getEnvironment());
-    }
-
-}
-
-class MinhaConsultaConfigUf extends ConsultaConfigUf
-{
-
-    public function getHeaderSoap()
-    {
-        
-    }
-
-    public function soapAction()
-    {
-        
-    }
-
-    public function toXml()
-    {
-        
-    }
-
-    public function getSoapEnvelop($noRaiz, $conteudoEnvelope)
-    {
-
-    }
-
-    public function utilizarAmbienteDeTeste($ambiente = false)
-    {
-
     }
 }

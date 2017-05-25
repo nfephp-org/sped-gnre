@@ -1,55 +1,58 @@
 <?php
 
+namespace Exemplo;
+
 require '../vendor/autoload.php';
 
-class MySetup extends Sped\Gnre\Configuration\Setup {
+class MySetup extends Sped\Gnre\Configuration\Setup
+{
 
-    public function getBaseUrl() {
-        
+    public function getBaseUrl()
+    {
     }
 
-    public function getCertificateCnpj() {
-        
+    public function getCertificateCnpj()
+    {
     }
 
-    public function getCertificateDirectory() {
-        
+    public function getCertificateDirectory()
+    {
     }
 
-    public function getCertificateName() {
-        
+    public function getCertificateName()
+    {
     }
 
-    public function getCertificatePassword() {
-        
+    public function getCertificatePassword()
+    {
     }
 
-    public function getCertificatePemFile() {
-        
+    public function getCertificatePemFile()
+    {
     }
 
-    public function getEnvironment() {
-        
+    public function getEnvironment()
+    {
     }
 
-    public function getPrivateKey() {
-        
+    public function getPrivateKey()
+    {
     }
 
-    public function getProxyIp() {
-        
+    public function getProxyIp()
+    {
     }
 
-    public function getProxyPass() {
-        
+    public function getProxyPass()
+    {
     }
 
-    public function getProxyPort() {
-        
+    public function getProxyPort()
+    {
     }
 
-    public function getProxyUser() {
-        
+    public function getProxyUser()
+    {
     }
 
     public function getDebug()

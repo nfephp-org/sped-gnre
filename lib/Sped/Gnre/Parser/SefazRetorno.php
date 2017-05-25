@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * abstractada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * abstractada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -53,177 +53,212 @@ class SefazRetorno extends Rules
 
     protected function getTipoIdentificadorDoSolicitante()
     {
-        $this->lote['header']['tipoIdentificadorSolicitante'] = $this->getContent($this->dadosArquivo[$this->index], 1, 1);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 1, 1);
+        $this->lote['header']['tipoIdentificadorSolicitante'] = $content;
     }
 
     protected function getIdentificadorDoSolicitante()
     {
-        $this->lote['header']['identificadorSolicitante'] = $this->getContent($this->dadosArquivo[$this->index], 2, 14);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 2, 14);
+        $this->lote['header']['identificadorSolicitante'] = $content;
     }
 
     protected function getNumeroDoProtocoloDoLote()
     {
-        $this->lote['header']['numeroProtocoloLote'] = $this->getContent($this->dadosArquivo[$this->index], 16, 10);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 16, 10);
+        $this->lote['header']['numeroProtocoloLote'] = $content;
     }
 
     protected function getAmbiente()
     {
-        $this->lote['header']['ambiente'] = $this->getContent($this->dadosArquivo[$this->index], 26, 1);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 26, 1);
+        $this->lote['header']['ambiente'] = $content;
     }
 
     protected function getUfFavorecida()
     {
-        $this->lote['lote'][$this->index]->c01_UfFavorecida = $this->getContent($this->dadosArquivo[$this->index], 6, 2);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 6, 2);
+        $this->lote['lote'][$this->index]->c01_UfFavorecida = $content;
     }
 
     protected function getCodigoReceita()
     {
-        $this->lote['lote'][$this->index]->c02_receita = $this->getContent($this->dadosArquivo[$this->index], 8, 6);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 8, 6);
+        $this->lote['lote'][$this->index]->c02_receita = $content;
     }
 
     protected function getTipoEmitente()
     {
-        $this->lote['lote'][$this->index]->c27_tipoIdentificacaoEmitente = $this->getContent($this->dadosArquivo[$this->index], 14, 1);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 14, 1);
+        $this->lote['lote'][$this->index]->c27_tipoIdentificacaoEmitente = $content;
     }
 
     protected function getDocumentoEmitente()
     {
-        $this->lote['lote'][$this->index]->c03_idContribuinteEmitente = $this->getContent($this->dadosArquivo[$this->index], 15, 16);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 15, 16);
+        $this->lote['lote'][$this->index]->c03_idContribuinteEmitente = $content;
     }
 
     protected function getRazaoSocialEmitente()
     {
-        $this->lote['lote'][$this->index]->c16_razaoSocialEmitente = $this->getContent($this->dadosArquivo[$this->index], 31, 60);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 31, 60);
+        $this->lote['lote'][$this->index]->c16_razaoSocialEmitente = $content;
     }
 
     protected function getEnderecoEmitente()
     {
-        $this->lote['lote'][$this->index]->c18_enderecoEmitente = $this->getContent($this->dadosArquivo[$this->index], 91, 60);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 91, 60);
+        $this->lote['lote'][$this->index]->c18_enderecoEmitente = $content;
     }
 
     protected function getMunicipioEmitente()
     {
-        $this->lote['lote'][$this->index]->c19_municipioEmitente = $this->getContent($this->dadosArquivo[$this->index], 151, 50);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 151, 50);
+        $this->lote['lote'][$this->index]->c19_municipioEmitente = $content;
     }
 
     protected function getUFEmitente()
     {
-        $this->lote['lote'][$this->index]->c20_ufEnderecoEmitente = $this->getContent($this->dadosArquivo[$this->index], 201, 2);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 201, 2);
+        $this->lote['lote'][$this->index]->c20_ufEnderecoEmitente = $content;
     }
 
     protected function getCEPEmitente()
     {
-        $this->lote['lote'][$this->index]->c21_cepEmitente = $this->getContent($this->dadosArquivo[$this->index], 203, 8);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 203, 8);
+        $this->lote['lote'][$this->index]->c21_cepEmitente = $content;
     }
 
     protected function getTelefoneEmitente()
     {
-        $this->lote['lote'][$this->index]->c22_telefoneEmitente = $this->getContent($this->dadosArquivo[$this->index], 211, 11);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 211, 11);
+        $this->lote['lote'][$this->index]->c22_telefoneEmitente = $content;
     }
 
     protected function getTipoDocDestinatario()
     {
-        $this->lote['lote'][$this->index]->c34_tipoIdentificacaoDestinatario = $this->getContent($this->dadosArquivo[$this->index], 222, 1);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 222, 1);
+        $this->lote['lote'][$this->index]->c34_tipoIdentificacaoDestinatario = $content;
     }
 
     protected function getDocumentoDestinatario()
     {
-        $this->lote['lote'][$this->index]->c35_idContribuinteDestinatario = $this->getContent($this->dadosArquivo[$this->index], 223, 16);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 223, 16);
+        $this->lote['lote'][$this->index]->c35_idContribuinteDestinatario = $content;
     }
 
     protected function getMunicipioDestinatario()
     {
-        $this->lote['lote'][$this->index]->c38_municipioDestinatario = $this->getContent($this->dadosArquivo[$this->index], 239, 50);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 239, 50);
+        $this->lote['lote'][$this->index]->c38_municipioDestinatario = $content;
     }
 
     protected function getProduto()
     {
-        $this->lote['lote'][$this->index]->c26_produto = $this->getContent($this->dadosArquivo[$this->index], 289, 255);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 289, 255);
+        $this->lote['lote'][$this->index]->c26_produto = $content;
     }
 
     protected function getNumeroDocumentoDeOrigem()
     {
-        $this->lote['lote'][$this->index]->c04_docOrigem = $this->getContent($this->dadosArquivo[$this->index], 544, 18);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 544, 18);
+        $this->lote['lote'][$this->index]->c04_docOrigem = $content;
     }
 
     protected function getConvenio()
     {
-        $this->lote['lote'][$this->index]->c15_convenio = $this->getContent($this->dadosArquivo[$this->index], 562, 30);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 562, 30);
+        $this->lote['lote'][$this->index]->c15_convenio = $content;
     }
 
     protected function getDataDeVencimento()
     {
-        $this->lote['lote'][$this->index]->c14_dataVencimento = $this->getContent($this->dadosArquivo[$this->index], 892, 8);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 892, 8);
+        $this->lote['lote'][$this->index]->c14_dataVencimento = $content;
     }
 
     protected function getDataLimitePagamento()
     {
-        $this->lote['lote'][$this->index]->c33_dataPagamento = $this->getContent($this->dadosArquivo[$this->index], 900, 8);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 900, 8);
+        $this->lote['lote'][$this->index]->c33_dataPagamento = $content;
     }
 
     protected function getPeriodoReferencia()
     {
-        $this->lote['lote'][$this->index]->periodo = $this->getContent($this->dadosArquivo[$this->index], 909, 1);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 909, 1);
+        $this->lote['lote'][$this->index]->periodo = $content;
     }
 
     protected function getMesAnoReferencia()
     {
-        $this->lote['lote'][$this->index]->mes = $this->getContent($this->dadosArquivo[$this->index], 908, 30);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 908, 30);
+        $this->lote['lote'][$this->index]->mes = $content;
     }
 
     protected function getParcela()
     {
-        $this->lote['lote'][$this->index]->parcela = $this->getContent($this->dadosArquivo[$this->index], 915, 3);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 915, 3);
+        $this->lote['lote'][$this->index]->parcela = $content;
     }
 
     protected function getValorPrincipal()
     {
-        $this->lote['lote'][$this->index]->c06_valorPrincipal = $this->getContent($this->dadosArquivo[$this->index], 918, 15);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 918, 15);
+        $this->lote['lote'][$this->index]->c06_valorPrincipal = $content;
     }
 
     protected function getSequencialGuia()
     {
-        $this->lote['lote'][$this->index]->retornoSequencialGuia = $this->getContent($this->dadosArquivo[$this->index], 1, 4);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 1, 4);
+        $this->lote['lote'][$this->index]->retornoSequencialGuia = $content;
     }
 
     protected function getSituacaoGuia()
     {
-        $this->lote['lote'][$this->index]->retornoSituacaoGuia = $this->getContent($this->dadosArquivo[$this->index], 5, 1);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 5, 1);
+        $this->lote['lote'][$this->index]->retornoSituacaoGuia = $content;
     }
 
     protected function getInformacoesComplementares()
     {
-        $this->lote['lote'][$this->index]->retornoInformacoesComplementares = $this->getContent($this->dadosArquivo[$this->index], 592, 300);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 592, 300);
+        $this->lote['lote'][$this->index]->retornoInformacoesComplementares = $content;
     }
 
     protected function getAtualizacaoMonetaria()
     {
-        $this->lote['lote'][$this->index]->retornoAtualizacaoMonetaria = $this->getContent($this->dadosArquivo[$this->index], 933, 15);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 933, 15);
+        $this->lote['lote'][$this->index]->retornoAtualizacaoMonetaria = $content;
     }
 
     protected function getJuros()
     {
-        $this->lote['lote'][$this->index]->retornoJuros = $this->getContent($this->dadosArquivo[$this->index], 948, 15);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 948, 15);
+        $this->lote['lote'][$this->index]->retornoJuros = $content;
     }
 
     protected function getMulta()
     {
-        $this->lote['lote'][$this->index]->retornoMulta = $this->getContent($this->dadosArquivo[$this->index], 963, 15);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 963, 15);
+        $this->lote['lote'][$this->index]->retornoMulta = $content;
     }
 
     protected function getRepresentacaoNumerica()
     {
-        $this->lote['lote'][$this->index]->retornoRepresentacaoNumerica = $this->getContent($this->dadosArquivo[$this->index], 978, 48);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 978, 48);
+        $this->lote['lote'][$this->index]->retornoRepresentacaoNumerica = $content;
     }
 
     protected function getCodigoBarras()
     {
-        $this->lote['lote'][$this->index]->retornoCodigoDeBarras = $this->getContent($this->dadosArquivo[$this->index], 1026, 44);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 1026, 44);
+        $this->lote['lote'][$this->index]->retornoCodigoDeBarras = $content;
     }
 
     protected function getNumeroDeControle()
     {
-        $this->lote['lote'][$this->index]->retornoNumeroDeControle = $this->getContent($this->dadosArquivo[$this->index], 1071, 16);
+        $content = $this->getContent($this->dadosArquivo[$this->index], 1071, 16);
+        $this->lote['lote'][$this->index]->retornoNumeroDeControle = $content;
     }
 
     protected function getIdentificadorGuia()
@@ -232,8 +267,6 @@ class SefazRetorno extends Rules
             'posicao' => 1087,
             'tamanho' => 10
         );
-
-//        $this->lote['lote'][$this->index]['identificador_guia'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
     }
 
     protected function getSequencialGuiaErroValidacao()
@@ -250,7 +283,8 @@ class SefazRetorno extends Rules
     {
         foreach ($this->lote['lote'] as $index => $guia) {
             if ($guia->retornoSequencialGuia == $this->sequencialGuiaErroValidacao) {
-                $this->lote['lote'][$index]->retornoErrosDeValidacaoCampo = $this->getContent($this->dadosArquivo[$this->index], 5, 30);
+                $content = $this->getContent($this->dadosArquivo[$this->index], 5, 30);
+                $this->lote['lote'][$index]->retornoErrosDeValidacaoCampo = $content;
                 break;
             }
         }
@@ -260,7 +294,8 @@ class SefazRetorno extends Rules
     {
         foreach ($this->lote['lote'] as $index => $guia) {
             if ($guia->retornoSequencialGuia == $this->sequencialGuiaErroValidacao) {
-                $this->lote['lote'][$index]->retornoErrosDeValidacaoCodigo = $this->getContent($this->dadosArquivo[$this->index], 35, 3);
+                $content = $this->getContent($this->dadosArquivo[$this->index], 35, 3);
+                $this->lote['lote'][$index]->retornoErrosDeValidacaoCodigo = $content;
                 break;
             }
         }
@@ -270,7 +305,8 @@ class SefazRetorno extends Rules
     {
         foreach ($this->lote['lote'] as $index => $guia) {
             if ($guia->retornoSequencialGuia == $this->sequencialGuiaErroValidacao) {
-                $this->lote['lote'][$index]->retornoErrosDeValidacaoDescricao = $this->getContent($this->dadosArquivo[$this->index], 38, 355);
+                $content = $this->getContent($this->dadosArquivo[$this->index], 38, 355);
+                $this->lote['lote'][$index]->retornoErrosDeValidacaoDescricao = $content;
                 break;
             }
         }
@@ -282,8 +318,6 @@ class SefazRetorno extends Rules
             'posicao' => 1,
             'tamanho' => 10
         );
-
-//        $this->lote['rodape']['numero_protocolo'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
     }
 
     protected function getTotalGuias()
@@ -292,8 +326,6 @@ class SefazRetorno extends Rules
             'posicao' => 11,
             'tamanho' => 4
         );
-
-//        $this->lote['rodape']['total_guias'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
     }
 
     protected function getHashDeValidacao()
@@ -302,13 +334,10 @@ class SefazRetorno extends Rules
             'posicao' => 15,
             'tamanho' => 64
         );
-
-//        $this->lote['rodape']['hash_validacao'] = substr($this->dadosArquivo[$this->index], $tratamento['posicao'], $tratamento['tamanho']);
     }
 
     protected function aplicarParser()
     {
         return $this->lote;
     }
-
 }

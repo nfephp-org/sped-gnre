@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -20,7 +20,7 @@ namespace Sped\Gnre\Configuration;
 use Sped\Gnre\Configuration\CertificatePfxFileOperation;
 
 /**
- * Classe responsável por extrair os dados de um certificado baseado 
+ * Classe responsável por extrair os dados de um certificado baseado
  * nos parâmetros passados para enviar uma consulta para a sefaz com sucesso
  * @package     gnre
  * @subpackage  configuration
@@ -33,14 +33,14 @@ class CertificatePfx
 
     /**
      * Atributo que armazena os dados extraidos do certificado com a função openssl_pkcs12_read
-     * @var array 
+     * @var array
      */
     private $dataCertificate = array();
 
     /**
      * Objecto necessário para realizar operações de criação de arquivos
      * a partir dos dados do certificado
-     * @var \Sped\Gnre\Configuration\CertificatePfxFileOperation 
+     * @var \Sped\Gnre\Configuration\CertificatePfxFileOperation
      */
     private $cerficationFileOperation;
 
@@ -57,7 +57,7 @@ class CertificatePfx
     }
 
     /**
-     * Cria um arquivo na pasta definida nas configurações padrões (/certs/metadata) com a 
+     * Cria um arquivo na pasta definida nas configurações padrões (/certs/metadata) com a
      * chave privada do certificado. Para salvar o novo arquivo é utilizado
      * o mesmo nome do certificado e com prefixo definido no método
      * @throws Sped\Gnre\Exception\UnableToWriteFile Se a pasta de destino não tiver permissão para escrita
@@ -72,7 +72,7 @@ class CertificatePfx
     }
 
     /**
-     * Cria um arquivo na pasta definida nas configurações padrões (/certs/metadata) com a 
+     * Cria um arquivo na pasta definida nas configurações padrões (/certs/metadata) com a
      * chave privada do certificado. Para salvar o novo arquivo é utilizado
      * o mesmo nome do certificado e com prefixo definido no método
      * @throws Sped\Gnre\Exception\UnableToWriteFile Se a pasta de destino não tiver permissão para escrita
@@ -85,5 +85,4 @@ class CertificatePfx
         $filePrefix->setPrefix('_certKEY');
         return $this->cerficationFileOperation->writeFile($this->dataCertificate['cert'], $filePrefix);
     }
-
 }

@@ -46,5 +46,4 @@ class SmartyFactory
 
         return $smarty;
     }
-
 }

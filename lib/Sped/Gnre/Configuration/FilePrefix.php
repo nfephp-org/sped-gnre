@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -18,7 +18,7 @@
 namespace Sped\Gnre\Configuration;
 
 /**
- * Classe que realiza a adição de prefixos no nome do arquivo desejado 
+ * Classe que realiza a adição de prefixos no nome do arquivo desejado
  * IMPORTANTE: A classe não realiza escrita em disco ou manipulação de arquivos
  * @package     gnre
  * @subpackage  configuration
@@ -31,7 +31,7 @@ class FilePrefix
 
     /**
      * Armazena o prefixo desejado para ser aplicado no nome do arquivo
-     * @var string 
+     * @var string
      */
     private $prefix;
 
@@ -72,5 +72,4 @@ class FilePrefix
 
         return $finalPath;
     }
-
 }

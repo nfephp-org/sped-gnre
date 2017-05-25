@@ -1,25 +1,29 @@
 <?php
 
-namespace Sped\Gnre\Render\Test;
+namespace Sped\Gnre\Test\Render;
 
 use Sped\Gnre\Render\Html;
 
 /**
  * @covers \Sped\Gnre\Render\Html
  */
-class HtmlTest extends \PHPUnit_Framework_TestCase {
+class HtmlTest extends \PHPUnit_Framework_TestCase
+{
 
-    public function testDeveRetornarUmInstanciaDoBarCode() {
+    public function testDeveRetornarUmInstanciaDoBarCode()
+    {
         $html = new Html();
         $this->assertInstanceOf('\Sped\Gnre\Render\Barcode128', $html->getBarCode());
     }
 
-    public function testDeveRetornarUmaInstanciaDoSmartyFactory() {
+    public function testDeveRetornarUmaInstanciaDoSmartyFactory()
+    {
         $html = new Html();
         $this->assertInstanceOf('\Sped\Gnre\Render\SmartyFactory', $html->getSmartyFactory());
     }
 
-    public function testDeveDefinirUmObjetoDeCodigoDeBarrasParaSerUtilizado() {
+    public function testDeveDefinirUmObjetoDeCodigoDeBarrasParaSerUtilizado()
+    {
         $barCode = new \Sped\Gnre\Render\Barcode128();
         $html = new Html();
 
@@ -27,12 +31,14 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $this->assertSame($barCode, $html->getBarCode());
     }
 
-    public function testDeveRetornarNullSeNaoForCriadoOhtmlDaGuia() {
+    public function testDeveRetornarNullSeNaoForCriadoOhtmlDaGuia()
+    {
         $html = new \Sped\Gnre\Render\Html();
         $this->assertEmpty($html->getHtml());
     }
 
-    public function testNaoDeveGerarOhtmlDoLoteQuandoOloteEvazio() {
+    public function testNaoDeveGerarOhtmlDoLoteQuandoOloteEvazio()
+    {
         $html = new Html();
         $mkcLote = $this->createMock('\Sped\Gnre\Sefaz\Lote');
         $mkcLote->expects($this->once())
@@ -45,7 +51,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
         $this->assertEmpty($html->getHtml());
     }
 
-    public function testDeveGerarOhtmlDoLoteQuandoPossuirGuias() {
+    public function testDeveGerarOhtmlDoLoteQuandoPossuirGuias()
+    {
         $smarty = $this->createMock('\Smarty');
         $smarty->expects($this->at(0))
                 ->method('assign')
@@ -75,5 +82,4 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertNotEmpty($html->getHtml());
     }
-
 }

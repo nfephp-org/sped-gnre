@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -23,7 +23,7 @@ use Sped\Gnre\Sefaz\ObjetoSefaz;
 use Sped\Gnre\Webservice\ConnectionFactory;
 
 /**
- * Classe que realiza o intermediário entre a transformação dos dados(objetos) e a conexão 
+ * Classe que realiza o intermediário entre a transformação dos dados(objetos) e a conexão
  * com o webservice da sefaz. Para isso é utilizado o objeto onde foi definido as configurações
  * e alguma classe que implementa a interface ObjectoSefaz (Sped\Gnre\Sefaz\ObjetoSefaz)
  * @package     gnre
@@ -36,7 +36,7 @@ class Send
 {
 
     /**
-     * As configuraçoes definidas pelo usuarios que sera utilizada para a 
+     * As configuraçoes definidas pelo usuarios que sera utilizada para a
      * transmissao dos dados
      * @var \Sped\Gnre\Configuration\Setup
      */
@@ -49,7 +49,7 @@ class Send
     private $connectionFactory;
 
     /**
-     * Armazena as configurações padrões em um atributo interno da classe para ser utilizado 
+     * Armazena as configurações padrões em um atributo interno da classe para ser utilizado
      * posteriormente pela classe
      * @param  \Sped\Gnre\Configuration\Setup $setup Configuraçoes definidas pelo usuário
      * @since  1.0.0
@@ -86,21 +86,21 @@ class Send
 
     /**
      * Obtém os dados necessários e realiza a conexão com o webservice da sefaz
-     * @param  $objetoSefaz  Uma classe que implemente a interface ObjectoSefaz 
-     * @return string|boolean  Caso a conexão seja feita com sucesso retorna uma string com um xml válido caso contrário retorna false
+     * @param  $objetoSefaz  Uma classe que implemente a interface ObjectoSefaz
+     * @return string|boolean Caso a conexão seja feita com sucesso retorna um xml válido caso contrário retorna false
      * @since  1.0.0
      */
     public function sefaz(ObjetoSefaz $objetoSefaz)
     {
         $data = $objetoSefaz->toXml();
+        $header = $objetoSefaz->getHeaderSoap();
 
         if ($this->setup->getDebug()) {
             print $data;
         }
-        
-        $connection = $this->getConnectionFactory()->createConnection($this->setup, $objetoSefaz->getHeaderSoap(), $data);
+
+        $connection = $this->getConnectionFactory()->createConnection($this->setup, $header, $data);
 
         return $connection->doRequest($objetoSefaz->soapAction());
     }
-
 }

@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -33,8 +33,8 @@ class Connection
 {
 
     /**
-     * Armazena todas as opções desejadas para serem incluídas no curl() 
-     * @var array 
+     * Armazena todas as opções desejadas para serem incluídas no curl()
+     * @var array
      */
     private $curlOptions = array();
 
@@ -93,7 +93,7 @@ class Connection
 
     /**
      * Com esse método é possível adicionar novas opções ou alterar o valor das
-     * opções exitentes antes de realizar a requisição para o web service, 
+     * opções exitentes antes de realizar a requisição para o web service,
      * exemplo de utilização com apenas uma opção:
      * <pre>
      * $connection->addCurlOption(
@@ -111,7 +111,7 @@ class Connection
      *  )
      * );
      * </pre>
-     * 
+     *
      * @param array $option
      * @return \Sped\Gnre\Webservice\Connection
      */
@@ -128,7 +128,7 @@ class Connection
      * Realiza a requisição ao webservice desejado através do curl() do php
      * @param  string  $url  String com a URL que será enviada a requisição
      * @since  1.0.0
-     * @return string|boolean  Caso a requisição não seja feita com sucesso false caso contrário uma string com XML formatado
+     * @return string|boolean Caso a requisição não seja feita com sucesso false, caso contrário um XML formatado
      */
     public function doRequest($url)
     {
@@ -152,5 +152,4 @@ class Connection
 
         return $xml;
     }
-
 }

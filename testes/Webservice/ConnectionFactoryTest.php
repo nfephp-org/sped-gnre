@@ -1,15 +1,17 @@
 <?php
 
-namespace Sped\Gnre\Webservice\Test;
+namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Webservice\ConnectionFactory;
 
 /**
  * @covers \Sped\Gnre\Webservice\ConnectionFactory
  */
-class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase {
+class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase
+{
 
-    public function testDeveRetornarUmaNovaInstanciaDeConnection() {
+    public function testDeveRetornarUmaNovaInstanciaDeConnection()
+    {
         $setup = $this->getMockForAbstractClass('\Sped\Gnre\Configuration\Setup');
 
         $factory = new ConnectionFactory();
@@ -17,5 +19,4 @@ class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('\Sped\Gnre\Webservice\Connection', $connection);
     }
-
 }

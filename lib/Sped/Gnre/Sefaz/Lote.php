@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * publicada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * publicada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -21,7 +21,7 @@ use Sped\Gnre\Sefaz\LoteGnre;
 use Sped\Gnre\Sefaz\EstadoFactory;
 
 /**
- * Classe que armazena uma ou mais Guias (\Sped\Gnre\Sefaz\Guia) para serem 
+ * Classe que armazena uma ou mais Guias (\Sped\Gnre\Sefaz\Guia) para serem
  * transmitidas. Não é possível transmitir uma simples guia em um formato unitário, para que seja transmitida
  * com sucesso a guia deve estar dentro de um lote (\Sped\Gnre\Sefaz\Lote).
  * @package     gnre
@@ -134,36 +134,43 @@ class Lote extends LoteGnre
             $c14 = $gnre->createElement('c14_dataVencimento', $gnreGuia->c14_dataVencimento);
             $c15 = $gnre->createElement('c15_convenio', $gnreGuia->c15_convenio);
             $c16 = $gnre->createElement('c16_razaoSocialEmitente', $gnreGuia->c16_razaoSocialEmitente);
-            if($gnreGuia->c17_inscricaoEstadualEmitente)
+            if ($gnreGuia->c17_inscricaoEstadualEmitente) {
                 $c17 = $gnre->createElement('c17_inscricaoEstadualEmitente', $gnreGuia->c17_inscricaoEstadualEmitente);
+            }
             $c18 = $gnre->createElement('c18_enderecoEmitente', $gnreGuia->c18_enderecoEmitente);
             $c19 = $gnre->createElement('c19_municipioEmitente', $gnreGuia->c19_municipioEmitente);
             $c20 = $gnre->createElement('c20_ufEnderecoEmitente', $gnreGuia->c20_ufEnderecoEmitente);
             $c21 = $gnre->createElement('c21_cepEmitente', $gnreGuia->c21_cepEmitente);
             $c22 = $gnre->createElement('c22_telefoneEmitente', $gnreGuia->c22_telefoneEmitente);
-            $c34 = $gnre->createElement('c34_tipoIdentificacaoDestinatario', $gnreGuia->c34_tipoIdentificacaoDestinatario);
+
+            $c34_tipoIdentificacaoDestinatario = $gnreGuia->c34_tipoIdentificacaoDestinatario;
+            $c34 = $gnre->createElement('c34_tipoIdentificacaoDestinatario', $c34_tipoIdentificacaoDestinatario);
 
             $c35 = $gnre->createElement('c35_idContribuinteDestinatario');
 
+            $c35_idContribuinteDestinatario = $gnreGuia->c35_idContribuinteDestinatario;
             if ($gnreGuia->c34_tipoIdentificacaoDestinatario == parent::DESTINATARIO_PESSOA_JURIDICA) {
-                $destinatarioContribuinteDocumento = $gnre->createElement('CNPJ', $gnreGuia->c35_idContribuinteDestinatario);
+                $destinatarioContribuinteDocumento = $gnre->createElement('CNPJ', $c35_idContribuinteDestinatario);
             } else {
-                $destinatarioContribuinteDocumento = $gnre->createElement('CPF', $gnreGuia->c35_idContribuinteDestinatario);
+                $destinatarioContribuinteDocumento = $gnre->createElement('CPF', $c35_idContribuinteDestinatario);
             }
 
             $c35->appendChild($destinatarioContribuinteDocumento);
 
-            $c36 = $gnre->createElement('c36_inscricaoEstadualDestinatario', $gnreGuia->c36_inscricaoEstadualDestinatario);
+            $c36_inscricaoEstadualDestinatario = $gnreGuia->c36_inscricaoEstadualDestinatario;
+            $c36 = $gnre->createElement('c36_inscricaoEstadualDestinatario', $c36_inscricaoEstadualDestinatario);
             $c37 = $gnre->createElement('c37_razaoSocialDestinatario', $gnreGuia->c37_razaoSocialDestinatario);
             $c38 = $gnre->createElement('c38_municipioDestinatario', $gnreGuia->c38_municipioDestinatario);
             $c33 = $gnre->createElement('c33_dataPagamento', $gnreGuia->c33_dataPagamento);
 
             $dados->appendChild($c1);
             $dados->appendChild($c2);
-            if($gnreGuia->c25_detalhamentoReceita)
+            if ($gnreGuia->c25_detalhamentoReceita) {
                 $dados->appendChild($c25);
-            if($gnreGuia->c26_produto)
+            }
+            if ($gnreGuia->c26_produto) {
                 $dados->appendChild($c26);
+            }
             $dados->appendChild($c27);
             $dados->appendChild($c03);
             $dados->appendChild($c28);
@@ -171,11 +178,13 @@ class Lote extends LoteGnre
             $dados->appendChild($c06);
             $dados->appendChild($c10);
             $dados->appendChild($c14);
-            if($gnreGuia->c15_convenio)
+            if ($gnreGuia->c15_convenio) {
                 $dados->appendChild($c15);
+            }
             $dados->appendChild($c16);
-            if($gnreGuia->c17_inscricaoEstadualEmitente)
+            if ($gnreGuia->c17_inscricaoEstadualEmitente) {
                 $dados->appendChild($c17);
+            }
             $dados->appendChild($c18);
             $dados->appendChild($c19);
             $dados->appendChild($c20);
@@ -183,15 +192,17 @@ class Lote extends LoteGnre
             $dados->appendChild($c22);
             $dados->appendChild($c34);
             $dados->appendChild($c35);
-            if($gnreGuia->c36_inscricaoEstadualDestinatario)
+            if ($gnreGuia->c36_inscricaoEstadualDestinatario) {
                 $dados->appendChild($c36);
-            if($gnreGuia->c37_razaoSocialDestinatario)
+            }
+            if ($gnreGuia->c37_razaoSocialDestinatario) {
                 $dados->appendChild($c37);
+            }
             $dados->appendChild($c38);
             $dados->appendChild($c33);
 
             $c05 = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
-            if($c05) {
+            if ($c05) {
                 $dados->appendChild($c05);
             }
 

@@ -2,11 +2,11 @@
 
 /**
  * Este arquivo é parte do programa GNRE PHP
- * GNRE PHP é um software livre; você pode redistribuí-lo e/ou 
- * modificá-lo dentro dos termos da Licença Pública Geral GNU como 
- * abstractada pela Fundação do Software Livre (FSF); na versão 2 da 
+ * GNRE PHP é um software livre; você pode redistribuí-lo e/ou
+ * modificá-lo dentro dos termos da Licença Pública Geral GNU como
+ * abstractada pela Fundação do Software Livre (FSF); na versão 2 da
  * Licença, ou (na sua opinião) qualquer versão.
- * Este programa é distribuído na esperança de que possa ser  útil, 
+ * Este programa é distribuído na esperança de que possa ser  útil,
  * mas SEM NENHUMA GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer
  * MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a
  * Licença Pública Geral GNU para maiores detalhes.
@@ -19,10 +19,10 @@ namespace Sped\Gnre\Configuration;
 
 /**
  * Classe abstrata para controlar as propriedades/métodos de uma classe que será
- * a base das configurações. Com isso temos certeza que será enviado as 
+ * a base das configurações. Com isso temos certeza que será enviado as
  * propriedades necessárias para a comunicação com a sefaz, independentemente da classe.
  * Basta usar essa classe abstrata que tudo deverá funcionar
- * 
+ *
  * @package     gnre
  * @subpackage  configuration
  * @abstract
@@ -47,41 +47,41 @@ abstract class Setup
      * @since  1.0.0
      * @return int
      */
-    abstract function getEnvironment();
+    abstract public function getEnvironment();
 
     /**
      * Método utilizado para retornar o diretório onde se encontram os certificados
      * que seram utilizados
      * @abstract
      * @since  1.0.0
-     * @return string 
+     * @return string
      */
-    abstract function getCertificateDirectory();
+    abstract public function getCertificateDirectory();
 
     /**
      * Retorna o nome do certificado que será usado junto com sua extenção por exemplo
      * certificado_teste.pfx
      * @abstract
      * @since   1.0.0
-     * @return  string 
+     * @return  string
      */
-    abstract function getCertificateName();
+    abstract public function getCertificateName();
 
     /**
-     * Retorna a senha do certificado 
+     * Retorna a senha do certificado
      * @abstract
      * @since   1.0.0
-     * @return  string 
+     * @return  string
      */
-    abstract function getCertificatePassword();
+    abstract public function getCertificatePassword();
 
     /**
      * Retorna a URL base em que a api se encontra por exemplo http://gnre-api/
      * @abstract
      * @since   1.0.0
-     * @return  string 
+     * @return  string
      */
-    abstract function getBaseUrl();
+    abstract public function getBaseUrl();
 
     /**
      * Retorna o CNPJ da empresa em que que realizará a emissão da guia para a sefaz
@@ -89,15 +89,15 @@ abstract class Setup
      * @since   1.0.0
      * @return  int
      */
-    abstract function getCertificateCnpj();
+    abstract public function getCertificateCnpj();
 
     /**
      * Retorna o IP do proxy caso a API estaja atrás de um por exemplo 192.168.0.1
      * @abstract
      * @since   1.0.0
-     * @return  string 
+     * @return  string
      */
-    abstract function getProxyIp();
+    abstract public function getProxyIp();
 
     /**
      * Retorna a porta do servidor de proxy por exemplo 3128 (squid)
@@ -105,7 +105,7 @@ abstract class Setup
      * @since   1.0.0
      * @return   int
      */
-    abstract function getProxyPort();
+    abstract public function getProxyPort();
 
     /**
      * Retorna o usuário do servidor de proxy caso seja necessário a indentificação
@@ -113,7 +113,7 @@ abstract class Setup
      * @since   1.0.0
      * @return  string
      */
-    abstract function getProxyUser();
+    abstract public function getProxyUser();
 
     /**
      * Retorna a senha do usuário do servidor de proxy caso seja necessário a indentificação
@@ -121,7 +121,7 @@ abstract class Setup
      * @since   1.0.0
      * @return  string
      */
-    abstract function getProxyPass();
+    abstract public function getProxyPass();
 
     /**
      * Método que retorna o caminho e o nome do arquivo privado extraido do certificado por exemplo
@@ -130,7 +130,7 @@ abstract class Setup
      * @since   1.0.0
      * @return  string
      */
-    abstract function getPrivateKey();
+    abstract public function getPrivateKey();
 
     /**
      * Método que retorna o caminho e o nome do arquivo extraido do certificado por exemplo
@@ -139,7 +139,7 @@ abstract class Setup
      * @since   1.0.0
      * @return  string
      */
-    abstract function getCertificatePemFile();
+    abstract public function getCertificatePemFile();
 
     /**
      * Método utilizado para retornar o modo de debug

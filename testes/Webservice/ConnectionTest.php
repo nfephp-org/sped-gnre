@@ -1,17 +1,19 @@
 <?php
 
-namespace Sped\Gnre\Webservice\Test;
+namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Webservice\Connection;
 
 /**
  * @covers \Sped\Gnre\Webservice\Connection
  */
-class ConnectionTest extends \PHPUnit_Framework_TestCase {
+class ConnectionTest extends \PHPUnit_Framework_TestCase
+{
 
     private $curlOptions;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->curlOptions = array(
             CURLOPT_PORT => 443,
             CURLOPT_VERBOSE => 1,
@@ -29,11 +31,13 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         $this->curlOptions = array();
     }
 
-    public function testDeveAdicionarUmaNocaOpcaoAsOpcoesDoCurl() {
+    public function testDeveAdicionarUmaNocaOpcaoAsOpcoesDoCurl()
+    {
         $setup = $this->getMockForAbstractClass('\Sped\Gnre\Configuration\Setup');
 
         $connection = new Connection($setup, array(), '');
@@ -49,7 +53,8 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($this->curlOptions, $connection->getCurlOptions());
     }
 
-    public function testDeveCriarUmObjetoConnectionSemProxy() {
+    public function testDeveCriarUmObjetoConnectionSemProxy()
+    {
         $this->curlOptions[CURLOPT_SSLCERT] = '/foo/bar/cert.pem';
         $this->curlOptions[CURLOPT_SSLKEY] = '/foo/bar/priv.pem';
 
@@ -66,7 +71,8 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($this->curlOptions, $connection->getCurlOptions());
     }
 
-    public function testDeveCriarUmObjetoConnectionComProxy() {
+    public function testDeveCriarUmObjetoConnectionComProxy()
+    {
         $this->curlOptions[CURLOPT_HTTPPROXYTUNNEL] = 1;
         $this->curlOptions[CURLOPT_PROXYTYPE] = 'CURLPROXY_HTTP';
         $this->curlOptions[CURLOPT_PROXY] = '192.168.0.1:3128';
@@ -83,5 +89,4 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals($this->curlOptions, $connection->getCurlOptions());
     }
-
 }

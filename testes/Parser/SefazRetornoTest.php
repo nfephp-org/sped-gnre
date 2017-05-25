@@ -1,8 +1,11 @@
 <?php
 
+namespace Sped\Gnre\Test\Parser;
+
 /**
  * @cover \Sped\Gnre\Parser\SefazRetorno
  */
-class SefazRetornoTest { //extends \PHPUnit_Framework_TestCase {
-    
+class SefazRetornoTest
+{
+
 }

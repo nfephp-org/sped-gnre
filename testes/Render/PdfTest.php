@@ -1,19 +1,22 @@
 <?php
 
-namespace Sped\Gnre\Render\Test;
+namespace Sped\Gnre\Test\Render;
 
 /**
  * @covers \Sped\Gnre\Render\Pdf
  */
-class PdfTest extends \PHPUnit_Framework_TestCase {
+class PdfTest extends \PHPUnit_Framework_TestCase
+{
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass()
+    {
         define('DOMPDF_ENABLE_AUTOLOAD', false);
 
         require 'vendor/dompdf/dompdf/dompdf_config.inc.php';
     }
 
-    public function testDeveCriarOpdfApartirDoHtml() {
+    public function testDeveCriarOpdfApartirDoHtml()
+    {
         $dom = $this->createMock('\DOMPDF');
 
         $html = $this->createMock('\Sped\Gnre\Render\Html');
@@ -29,17 +32,9 @@ class PdfTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('\DOMPDF', $domPdf);
     }
 
-    public function testDeveRetornarUmaInstanciaDoDomPdf() {
+    public function testDeveRetornarUmaInstanciaDoDomPdf()
+    {
         $dom = new CoveragePdf();
         $this->assertInstanceOf('\DOMPDF', $dom->getDomPdf());
     }
-
-}
-
-class CoveragePdf extends \Sped\Gnre\Render\Pdf {
-
-    public function getDomPdf() {
-        return parent::getDomPdf();
-    }
-
 }

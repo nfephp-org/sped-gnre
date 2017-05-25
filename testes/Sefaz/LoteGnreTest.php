@@ -15,32 +15,38 @@
 * Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+namespace Sped\Gnre\Test\Sefaz;
+
 /**
  * @covers Sped\Gnre\Sefaz\LoteGnre
  */
-class LoteTest extends \PHPUnit_Framework_TestCase {
+class LoteGnreTest extends \PHPUnit_Framework_TestCase
+{
 
     private $lote;
 
-    public function setUp() {
-        $this->lote = new Sped\Gnre\Sefaz\Lote();
+    public function setUp()
+    {
+        $this->lote = new \Sped\Gnre\Sefaz\Lote();
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         $this->lote = null;
     }
 
-    public function testAdicionarUmaGuiaAoLote() {
-        $this->lote->addGuia(new Sped\Gnre\Sefaz\Guia());
+    public function testAdicionarUmaGuiaAoLote()
+    {
+        $this->lote->addGuia(new \Sped\Gnre\Sefaz\Guia());
         $this->assertEquals(1, count($this->lote->getGuias()));
     }
 
-    public function testBuscarUmaGuiaEmEspecifico() {
-        $this->lote->addGuia(new Sped\Gnre\Sefaz\Guia());
-        $this->lote->addGuia(new Sped\Gnre\Sefaz\Guia());
+    public function testBuscarUmaGuiaEmEspecifico()
+    {
+        $this->lote->addGuia(new \Sped\Gnre\Sefaz\Guia());
+        $this->lote->addGuia(new \Sped\Gnre\Sefaz\Guia());
 
-        $this->assertInstanceOf('Sped\Gnre\Sefaz\Guia', $this->lote->getGuia(0));
-        $this->assertInstanceOf('Sped\Gnre\Sefaz\Guia', $this->lote->getGuia(1));
+        $this->assertInstanceOf('\Sped\Gnre\Sefaz\Guia', $this->lote->getGuia(0));
+        $this->assertInstanceOf('\Sped\Gnre\Sefaz\Guia', $this->lote->getGuia(1));
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace Sped\Gnre\Test\Sefaz;
+
 use Sped\Gnre\Sefaz\EstadoFactory;
 
 /**
