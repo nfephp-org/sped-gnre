@@ -94,14 +94,14 @@ Adicione a dependência da GNRE PHP no arquivo composer.json :
 Para PHP <= 5.5
 ``` json
 {
-    "marabesi/gnre": "0.1.1"
+    "nfephp-org/sped-gnre": "0.1.1"
 }
 ```
 
 Para PHP >= 5.6
 ``` json
 {
-    "marabesi/gnre": "0.1.2"
+    "nfephp-org/sped-gnre": "0.1.2"
 }
 ```
 
