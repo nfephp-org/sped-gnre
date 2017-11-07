@@ -3,11 +3,12 @@
 namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Webservice\Connection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Sped\Gnre\Webservice\Connection
  */
-class ConnectionTest extends \PHPUnit_Framework_TestCase
+class ConnectionTest extends TestCase
 {
 
     private $curlOptions;

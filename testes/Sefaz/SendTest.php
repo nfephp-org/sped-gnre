@@ -3,12 +3,13 @@
 namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Sefaz\Send;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Sped\Gnre\Sefaz\Send
  * @covers Sped\Gnre\Exception\ConnectionFactoryUnavailable
  */
-class SendTest extends \PHPUnit_Framework_TestCase
+class SendTest extends TestCase
 {
 
     private $setup;

@@ -15,16 +15,18 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.6.0",
-        "mikey179/vfsStream": "1.*",
+        "mikey179/vfsStream": "^1.5.0",
         "dompdf/dompdf": "0.6.*",
         "phenx/php-font-lib": "0.2.*",
         "zendframework/zend-servicemanager": "~2.0",
         "zendframework/zend-barcode": "^2.3",
         "satooshi/php-coveralls": "dev-master",
         "smarty/smarty": "~3.1",
-        "nfephp-org/sped-nfe": "4.1.0.x-dev",
-        "phpunit/phpunit": "~5.7",
-        "squizlabs/php_codesniffer": "^3.0@dev"
+        "nfephp-org/sped-nfe": "~4.1",
+        "nfephp-org/sped-common": "~4.1",
+        "phpunit/phpunit": "~5.7.25",
+        "squizlabs/php_codesniffer": "^3.0@dev",
+        "doctrine/instantiator": "^1.0.5"
     },
     "autoload": {
         "psr-4": {

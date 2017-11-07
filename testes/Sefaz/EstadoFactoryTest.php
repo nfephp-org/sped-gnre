@@ -3,11 +3,12 @@
 namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Sefaz\EstadoFactory;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Sped\Gnre\Sefaz\EstadoFactory
  */
-class EstadoFactoryTest extends \PHPUnit_Framework_TestCase
+class EstadoFactoryTest extends TestCase
 {
 
     public function testShouldReturnAnObjectWhenIsGivenAexistingClass()

@@ -18,12 +18,13 @@
 namespace Sped\Gnre\Test\Configuration;
 
 use Sped\Gnre\Configuration\FileOperation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Sped\Gnre\Configuration\FileOperation
  * @covers Sped\Gnre\Exception\UnreachableFile
  */
-class FileOperationTest extends \PHPUnit_Framework_TestCase
+class FileOperationTest extends TestCase
 {
 
     /**

@@ -3,11 +3,12 @@
 namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Sefaz\boolen;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Sped\Gnre\Sefaz\ConsultaConfigUf
  */
-class ConsultaConfigUfTest extends \PHPUnit_Framework_TestCase
+class ConsultaConfigUfTest extends TestCase
 {
 
     public function testDeveDefinirAreceitaParaSerUtilizada()
