@@ -4,11 +4,12 @@ namespace Sped\Gnre\Test\Sefaz;
 
 use Sped\Gnre\Sefaz\Lote;
 use Sped\Gnre\Sefaz\Guia;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers Sped\Gnre\Sefaz\Lote
  */
-class LoteTest extends \PHPUnit_Framework_TestCase
+class LoteTest extends TestCase
 {
 
     public function testDeveRetornarOsCabecalhosParaArequisicaoSoap()

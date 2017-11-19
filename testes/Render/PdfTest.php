@@ -2,10 +2,12 @@
 
 namespace Sped\Gnre\Test\Render;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \Sped\Gnre\Render\Pdf
  */
-class PdfTest extends \PHPUnit_Framework_TestCase
+class PdfTest extends TestCase
 {
 
     public static function setUpBeforeClass()

@@ -2,10 +2,12 @@
 
 namespace Sped\Gnre\Test\Sefaz;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers Sped\Gnre\Sefaz\Consulta
  */
-class ConsultaTest extends \PHPUnit_Framework_TestCase
+class ConsultaTest extends TestCase
 {
 
     public function testDeveRetornarOsCabecalhosParaArequisicaoSoap()

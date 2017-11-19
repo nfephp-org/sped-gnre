@@ -18,8 +18,9 @@
 namespace Sped\Gnre\Test\Render;
 
 use Sped\Gnre\Render\SmartyFactory;
+use PHPUnit\Framework\TestCase;
 
-class SmartyFactoryTest extends \PHPUnit_Framework_TestCase
+class SmartyFactoryTest extends TestCase
 {
 
     public function testDeveRetornarUmaInstanciaDoSmarty()

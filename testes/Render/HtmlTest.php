@@ -3,11 +3,12 @@
 namespace Sped\Gnre\Test\Render;
 
 use Sped\Gnre\Render\Html;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Sped\Gnre\Render\Html
  */
-class HtmlTest extends \PHPUnit_Framework_TestCase
+class HtmlTest extends TestCase
 {
 
     public function testDeveRetornarUmInstanciaDoBarCode()

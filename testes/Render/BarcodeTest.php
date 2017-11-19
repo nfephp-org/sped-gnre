@@ -2,7 +2,9 @@
 
 namespace Sped\Gnre\Test\Render;
 
-class BarcodeTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class BarcodeTest extends TestCase
 {
 
     public function testDeveSetarUmNumeroDeCodigoDeBarras()
