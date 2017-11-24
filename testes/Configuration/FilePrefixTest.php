@@ -17,10 +17,12 @@
 
 namespace Sped\Gnre\Test\Configuration;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \Sped\Gnre\Configuration\FilePrefix
  */
-class FilePrefixTest extends \PHPUnit_Framework_TestCase
+class FilePrefixTest extends TestCase
 {
 
     public function testPassarAoAplicarUmPrefixoEmUmArquivo()

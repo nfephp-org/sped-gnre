@@ -2,10 +2,12 @@
 
 namespace Sped\Gnre\Test\Sefaz;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers Sped\Gnre\Sefaz\ConfigUf
  */
-class ConfigUfTest extends \PHPUnit_Framework_TestCase
+class ConfigUfTest extends TestCase
 {
 
     public function testDeveRetornarOsCabecalhosParaArequisicaoSoap()

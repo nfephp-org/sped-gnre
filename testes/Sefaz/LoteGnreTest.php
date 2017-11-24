@@ -17,10 +17,12 @@
 
 namespace Sped\Gnre\Test\Sefaz;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers Sped\Gnre\Sefaz\LoteGnre
  */
-class LoteGnreTest extends \PHPUnit_Framework_TestCase
+class LoteGnreTest extends TestCase
 {
 
     private $lote;

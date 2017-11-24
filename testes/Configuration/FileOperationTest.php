@@ -17,13 +17,14 @@
 
 namespace Sped\Gnre\Test\Configuration;
 
+use PHPUnit\Framework\TestCase;
 use Sped\Gnre\Configuration\FileOperation;
 
 /**
  * @covers Sped\Gnre\Configuration\FileOperation
  * @covers Sped\Gnre\Exception\UnreachableFile
  */
-class FileOperationTest extends \PHPUnit_Framework_TestCase
+class FileOperationTest extends TestCase
 {
 
     /**
@@ -38,5 +39,6 @@ class FileOperationTest extends \PHPUnit_Framework_TestCase
     {
         $file = __DIR__ . '/../../exemplos/estrutura-lote-completo-gnre.xml';
         $myFile = new MyFile($file);
+        $this->assertFileExists($file);
     }
 }
