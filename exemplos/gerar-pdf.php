@@ -1,9 +1,8 @@
 <?php
 
-define('DOMPDF_ENABLE_AUTOLOAD', false);
-
 require '../vendor/autoload.php';
-require '../vendor/dompdf/dompdf/dompdf_config.inc.php';
+
+use Dompdf\Dompdf;
 
 $guia = new Sped\Gnre\Sefaz\Guia();
 $guia->c01_UfFavorecida = 'SP';
