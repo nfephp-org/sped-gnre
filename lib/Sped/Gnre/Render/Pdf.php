@@ -17,6 +17,7 @@
 
 namespace Sped\Gnre\Render;
 
+use Dompdf\Dompdf;
 use Sped\Gnre\Render\Html;
 
 /**
@@ -33,18 +34,18 @@ class Pdf
 
     /**
      * Método criado para ser possível testar a utilização do objeto
-     * <b>DOMPDF</b> pela classe
-     * @return \DOMPDF
+     * <b>Dompdf</b> pela classe
+     * @return \Dompdf\Dompdf
      */
     protected function getDomPdf()
     {
-        return new \DOMPDF();
+        return new Dompdf();
     }
 
     /**
      * Gera o PDF através do HTML
      * @param \Sped\Gnre\Render\Html $html
-     * @return \DOMPDF
+     * @return \Dompdf\Dompdf
      */
     public function create(Html $html)
     {

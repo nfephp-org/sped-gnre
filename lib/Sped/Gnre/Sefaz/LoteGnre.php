@@ -57,7 +57,7 @@ abstract class LoteGnre implements ObjetoSefaz
      * @return array
      * @since  1.0.0
      */
-    public function getGuias()
+    public function getGuias(): array
     {
         return $this->guias;
     }

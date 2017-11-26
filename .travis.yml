@@ -3,16 +3,25 @@ language: php
 dist: trusty
 
 php:
-  - 5.6
-  - hhvm
   - 7.0
+  - 7.1
+  - 7.2
+  - nightly
+  - hhvm
+  - hhvm-nightly
+
+matrix:
+  allow_failures:
+    - php: nightly
+    - php: hhvm
+    - php: hhvm-nightly
 
 before_script:
-  - composer install
+  - composer install --prefer-dist --no-interaction --no-progress
   - composer update #required to install zend-servicemanager and zend-barcode
 
 script:
-  - mkdir -p build/logs 
+  - mkdir -p build/logs
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:

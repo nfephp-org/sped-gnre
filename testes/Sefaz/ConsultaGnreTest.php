@@ -2,12 +2,13 @@
 
 namespace Sped\Gnre\Test\Sefaz;
 
+use PHPUnit\Framework\TestCase;
 use Sped\Gnre\Sefaz\boolen;
 
 /**
  * @covers Sped\Gnre\Sefaz\ConsultaGnre
  */
-class ConsultaGnreTest extends \PHPUnit_Framework_TestCase
+class ConsultaGnreTest extends TestCase
 {
 
     public function testDeveDefinirOreciboParaSerUtilizado()

@@ -2,12 +2,13 @@
 
 namespace Sped\Gnre\Test\Sefaz;
 
+use PHPUnit\Framework\TestCase;
 use Sped\Gnre\Webservice\ConnectionFactory;
 
 /**
  * @covers \Sped\Gnre\Webservice\ConnectionFactory
  */
-class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase
+class ConnectionFactoryTest extends TestCase
 {
 
     public function testDeveRetornarUmaNovaInstanciaDeConnection()

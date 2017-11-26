@@ -2,11 +2,13 @@
 
 namespace Sped\Gnre\Test\Sefaz;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers Sped\Gnre\Sefaz\Guia
  * @covers Sped\Gnre\Exception\UndefinedProperty
  */
-class GuiaTest extends \PHPUnit_Framework_TestCase
+class GuiaTest extends TestCase
 {
 
     public function testDeveSetarOvalorAumaPropriedadeExistenteDaClasse()

@@ -17,10 +17,12 @@
 
 namespace Sped\Gnre\Test\Configuration;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers Sped\Gnre\Configuration\CertificatePfx
  */
-class TestCertificatePfx extends \PHPUnit_Framework_TestCase
+class TestCertificatePfx extends TestCase
 {
 
     public function testPassarAoCriarChavePrivadaApartirDoCertificado()
