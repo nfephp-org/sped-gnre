@@ -18,9 +18,12 @@ as classes da sped-common nesse [link](https://groups.google.com/d/msg/gnrephp/k
 
 Versões suportadas
 =================
-- PHP 5.6
-- HHVM
-- PHP 7.0
+
+|PHP| GNRE|
+|---|-----|
+| PHP 5.6 | 0.1.4 |
+| HHVM | 0.1.4 |
+| PHP 7.0 | 0.1.5 |
 
 
 Antes de usar a API
