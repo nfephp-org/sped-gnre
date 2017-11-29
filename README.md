@@ -101,10 +101,18 @@ Para PHP <= 5.5
 }
 ```
 
-Para PHP >= 5.6
+Para PHP = 5.6
 ``` json
 {
-    "nfephp-org/sped-gnre": "0.1.2"
+    "nfephp-org/sped-gnre": "0.1.4"
+}
+```
+
+
+Para PHP >= 7.0
+``` json
+{
+    "nfephp-org/sped-gnre": "0.1.5"
 }
 ```
 
