@@ -1,6 +1,7 @@
 {
     "name": "nfephp-org/sped-gnre",
     "description": "API para a emissão de guias GNRE para a SEFAZ",
+    "license": ["GPL-3.0+","LGPL-3.0+", "MIT"],
     "authors": [
         {
             "name": "Matheus Marabesi",
