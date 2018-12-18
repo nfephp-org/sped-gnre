@@ -24,6 +24,7 @@ Versões suportadas
 | PHP 5.6 | 0.1.4 |
 | HHVM | 0.1.4 |
 | PHP 7.0 | 0.1.5 |
+| PHP 7.3 | 0.1.6 |
 
 
 Antes de usar a API
