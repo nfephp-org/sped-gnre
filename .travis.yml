@@ -7,6 +7,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4snapshot
   - nightly
   - hhvm
   - hhvm-nightly
@@ -16,6 +17,7 @@ matrix:
     - php: nightly
     - php: hhvm
     - php: hhvm-nightly
+    - php: 7.4snapshot
 
 before_script:
   - composer install --prefer-dist --no-interaction --no-progress
