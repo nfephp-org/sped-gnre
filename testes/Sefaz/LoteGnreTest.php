@@ -27,12 +27,12 @@ class LoteGnreTest extends TestCase
 
     private $lote;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->lote = new \Sped\Gnre\Sefaz\Lote();
     }
 
-    public function tearDown()
+    public function tearDown():void
     {
         $this->lote = null;
     }
