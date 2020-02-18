@@ -144,7 +144,7 @@ class Connection
             print_r(curl_getinfo($curl));
         }
 
-        if ($xml === false) {
+        if ($xml === false || $xml === '') {
             $xml = curl_error($curl);
         }
 
