@@ -16,6 +16,25 @@ Atenção 2!!
 Se você possui um certificado da certisign e está com o erro "Bad request" veja a solução encontrada pelo [renandelmonico](https://github.com/renandelmonico) utilizando
 as classes da sped-common nesse [link](https://groups.google.com/d/msg/gnrephp/kbNWB3aEBbs/0g067FKlBgAJ)
 
+Os certificados da certisign possuem algum problema em que não é possível extrair a cadeia de certificação, portanto é necessário fazer o download da cadeia manualmente nesse [link](https://www.certisign.com.br/duvidas-suporte/downloads/hierarquias/icp-brasil/ac-instituto-fenacon-rfb) (Hierarquia V5).
+
+Após o download é necessário extrair usando o openssl, copiar o conteúdo gerado pelos 3 certificados e colar em um novo arquivo .pem.
+
+```sh
+openssl x509 -inform der -in ARQUIVO.cer -pubkey -noout > ARQUIVO.pem
+```
+
+Depois de realizar o processo acima, é necessário utilizar o método addCurlOption da classe Sped\Gnre\Webservice\Connection para alterar algumas configurações e informar manualmente a cadeia de certificação.
+
+```php
+$webService->addCurlOption([
+    CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_SSL_VERIFYPEER => 1,
+    CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1,
+    CURLOPT_CAINFO => 'ARQUIVO.pem'
+]);
+```
+
 Versões suportadas
 =================
 
@@ -32,7 +51,7 @@ Antes de usar a API
 
 - Verifique se seu certificado digital não foi expedido através da [certisign](https://www.certisign.com.br), pois existe um problema na cadeia do certificado que impossibilita a emissão de guias GNRE. Certificados expedidos através do [SERASA](https://serasa.certificadodigital.com.br/) funcionam normalmente para a emissão (até agora nenhum erro foi relatado).
 
-- É permitido utilizar o mesmo certificado utilizado para emitir NF-e. 
+- É permitido utilizar o mesmo certificado utilizado para emitir NF-e.
 
 - É necessário entrar em contato com a SEFAZ de cada estado pedindo liberação do serviço de emissão de GNRE.
 
@@ -43,7 +62,7 @@ GNRE PHP
 
 Objetivo
 -----
- API possibilita a comunicação com a SEFAZ para a emissão da nota GNRE (Guia Nacional de Recolhimento de Tributos Estaduais). 
+ API possibilita a comunicação com a SEFAZ para a emissão da nota GNRE (Guia Nacional de Recolhimento de Tributos Estaduais).
  A API GNRE tem como maior inspiração a API NFEPHP que você pode encontrar através do link https://github.com/nfephp
 
 Dependências
@@ -76,7 +95,7 @@ Informações úteis
 |Site oficial da SEFAZ de todo os estados|http://www.gnre.pe.gov.br/gnre/portal/linksUteis.jsp|
 
 1. Antes de gerar qualquer guia GNRE com o seu certificado, tenha **CERTEZA** que você possui autorização para isso. A geração de
-GNRE depende de cada estado, ou seja, se você deseja gerar a guia para o Acre (com destino ao Acre) tenha certeza que 
+GNRE depende de cada estado, ou seja, se você deseja gerar a guia para o Acre (com destino ao Acre) tenha certeza que
 já pediu a liberação do certificado no SEFAZ Acre e repita esse processo para cada estado.
 
 Documentação
@@ -130,14 +149,14 @@ Erro : **unable to use client certificate (no key found or wrong pass phrase?)**
 
 Se você está obtendo essa mensagem após enviar a requisição para o web service da SEFAZ verifique a senha que você está utilizando, pois esse erro ocorre quando a senha informada não bate com a senha do certificado utilizado
 
-Erro: **[InvalidArgumentException]                                                                                                                 
+Erro: **[InvalidArgumentException]
 Could not find package marabesi/gnre at any version for your minimum-stability (stable). Check the package spelling or your minimum-stability**
 
 Esse problema ocorre pois não estamos informando ao composer qual a versão mínima que queremos utilizar, para resolver esse problema basta adicionar a seguinte linha no seu arquivo composer.json
 
 ``` json
 {
-    "minimum-stability": "dev" 
+    "minimum-stability": "dev"
 }
 ```
 -----
