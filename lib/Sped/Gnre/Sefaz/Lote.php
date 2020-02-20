@@ -140,8 +140,12 @@ class Lote extends LoteGnre
             $c18 = $gnre->createElement('c18_enderecoEmitente', $gnreGuia->c18_enderecoEmitente);
             $c19 = $gnre->createElement('c19_municipioEmitente', $gnreGuia->c19_municipioEmitente);
             $c20 = $gnre->createElement('c20_ufEnderecoEmitente', $gnreGuia->c20_ufEnderecoEmitente);
-            $c21 = $gnre->createElement('c21_cepEmitente', $gnreGuia->c21_cepEmitente);
-            $c22 = $gnre->createElement('c22_telefoneEmitente', $gnreGuia->c22_telefoneEmitente);
+            if ($gnreGuia->c21_cepEmitente) {
+                $c21 = $gnre->createElement('c21_cepEmitente', $gnreGuia->c21_cepEmitente);
+            }
+            if ($gnreGuia->c22_telefoneEmitente) {
+                $c22 = $gnre->createElement('c22_telefoneEmitente', $gnreGuia->c22_telefoneEmitente);
+            }
 
             $c34_tipoIdentificacaoDestinatario = $gnreGuia->c34_tipoIdentificacaoDestinatario;
             $c34 = $gnre->createElement('c34_tipoIdentificacaoDestinatario', $c34_tipoIdentificacaoDestinatario);
@@ -188,8 +192,12 @@ class Lote extends LoteGnre
             $dados->appendChild($c18);
             $dados->appendChild($c19);
             $dados->appendChild($c20);
-            $dados->appendChild($c21);
-            $dados->appendChild($c22);
+            if (isset($c21)) {
+                $dados->appendChild($c21);
+            }
+            if (isset($c22)) {
+                $dados->appendChild($c22);
+            }
             $dados->appendChild($c34);
             $dados->appendChild($c35);
             if ($gnreGuia->c36_inscricaoEstadualDestinatario) {
