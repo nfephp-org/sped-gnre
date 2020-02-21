@@ -38,7 +38,7 @@ class LoteTest extends TestCase
 
     public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioJuridicos()
     {
-        $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/lote-emit-cnpj-dest-cnpj-sem-campos-extras.xml');
+        $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/xml/lote-emit-cnpj-dest-cnpj-sem-campos-extras.xml');
 
         $guia = new Guia();
 
@@ -80,7 +80,7 @@ class LoteTest extends TestCase
 
     public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioFisicos()
     {
-        $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/lote-emit-cpf-dest-cpf-sem-campos-extras.xml');
+        $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/xml/lote-emit-cpf-dest-cpf-sem-campos-extras.xml');
 
         $guia = new Guia();
 
@@ -245,7 +245,7 @@ class LoteTest extends TestCase
 
     public function testDeveRetornarOxmlDoLoteComOsCamposExtras()
     {
-        $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/estrutura-lote-completo-gnre.xml');
+        $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/xml/estrutura-lote-completo-gnre.xml');
 
         $guia = new Guia();
 

@@ -41,7 +41,7 @@ class ConfigUfTest extends TestCase
 
     public function testDeveRetornarXmlCompletoVazioParaRealizarAconsulta()
     {
-        $dadosParaConsulta = file_get_contents(__DIR__ . '/../../exemplos/envelope-consulta-config-uf.xml');
+        $dadosParaConsulta = file_get_contents(__DIR__ . '/../../exemplos/xml/envelope-consulta-config-uf.xml');
 
         $consulta = new \Sped\Gnre\Sefaz\ConfigUf();
         $consulta->setEnvironment(1);

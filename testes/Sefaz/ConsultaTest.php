@@ -41,7 +41,7 @@ class ConsultaTest extends TestCase
 
     public function testDeveRetornarXmlCompletoVazioParaRealizarAconsulta()
     {
-        $dadosParaConsulta = file_get_contents(__DIR__ . '/../../exemplos/envelope-consultar-gnre.xml');
+        $dadosParaConsulta = file_get_contents(__DIR__ . '/../../exemplos/xml/envelope-consultar-gnre.xml');
 
         $consulta = new \Sped\Gnre\Sefaz\Consulta();
         $consulta->setEnvironment(12345678);

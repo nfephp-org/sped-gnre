@@ -61,7 +61,7 @@ class MySetup extends Sped\Gnre\Configuration\Setup
     }
 }
 
-$xml = file_get_contents('estrutura-lote-completo-gnre.xml');
+$xml = file_get_contents('xml/estrutura-lote-completo-gnre.xml');
 
 
 $minhaConfiguracao = new MySetup();
