@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    <soap12:Header>
+        <gnreCabecMsg xmlns="http://www.gnre.pe.gov.br/wsdl/processar">
+            <versaoDados>1.00</versaoDados>
+        </gnreCabecMsg>
+    </soap12:Header>
+    <soap12:Body>
+        <gnreDadosMsg xmlns="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao">
+            <TLote_GNRE xmlns="http://www.gnre.pe.gov.br">
+                <guias>
+                    <TDadosGNRE>
+                        <c01_UfFavorecida>26</c01_UfFavorecida>
+                        <c02_receita>1000099</c02_receita>
+                        <c25_detalhamentoReceita>10101010</c25_detalhamentoReceita>
+                        <c26_produto>TESTE DE PROD</c26_produto>
+                        <c27_tipoIdentificacaoEmitente>2</c27_tipoIdentificacaoEmitente>
+                        <c03_idContribuinteEmitente>
+                            <CPF>52162197650</CPF>
+                        </c03_idContribuinteEmitente>
+                        <c28_tipoDocOrigem>10</c28_tipoDocOrigem>
+                        <c04_docOrigem>5656</c04_docOrigem>
+                        <c06_valorPrincipal>10.99</c06_valorPrincipal>
+                        <c10_valorTotal>12.52</c10_valorTotal>
+                        <c14_dataVencimento>2015-05-01</c14_dataVencimento>
+                        <c15_convenio>546456</c15_convenio>
+                        <c16_razaoSocialEmitente>GNRE PHP EMITENTE</c16_razaoSocialEmitente>
+                        <c18_enderecoEmitente>Queens St</c18_enderecoEmitente>
+                        <c19_municipioEmitente>5300108</c19_municipioEmitente>
+                        <c20_ufEnderecoEmitente>DF</c20_ufEnderecoEmitente>
+                        <c21_cepEmitente>08215917</c21_cepEmitente>
+                        <c22_telefoneEmitente>1199999999</c22_telefoneEmitente>
+                        <c34_tipoIdentificacaoDestinatario>2</c34_tipoIdentificacaoDestinatario>
+                        <c35_idContribuinteDestinatario>
+                            <CPF>99942896759</CPF>
+                        </c35_idContribuinteDestinatario>
+                        <c36_inscricaoEstadualDestinatario>10809181</c36_inscricaoEstadualDestinatario>
+                        <c37_razaoSocialDestinatario>RAZAO SOCIAL GNRE PHP DESTINATARIO</c37_razaoSocialDestinatario>
+                        <c38_municipioDestinatario>2702306</c38_municipioDestinatario>
+                        <c33_dataPagamento>2015-11-30</c33_dataPagamento>
+                        <c05_referencia>
+                            <periodo>2014</periodo>
+                            <mes>05</mes>
+                            <ano>2015</ano>
+                            <parcela>2</parcela>
+                        </c05_referencia>
+                    </TDadosGNRE>
+                </guias>
+            </TLote_GNRE>
+        </gnreDadosMsg>
+    </soap12:Body>
+</soap12:Envelope>
