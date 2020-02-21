@@ -120,7 +120,7 @@ class LoteTest extends TestCase
         $this->assertXmlStringEqualsXmlString($estruturaLote, $lote->toXml());
     }
 
-    public function testDeveRetornarOxmlDoLoteSemOcampoCepEmitenteparaEmitenteEdestinatarioFisicos()
+    public function testDeveRetornarOxmlDoLoteSemOcampoCepEmitenteParaEmitenteEdestinatarioFisicos()
     {
         $estruturaLote = file_get_contents(__DIR__ . '/../../exemplos/xml/lote-emit-cpf-dest-cpf-sem-cep-emitente.xml');
 
