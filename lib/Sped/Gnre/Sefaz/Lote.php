@@ -206,15 +206,21 @@ class Lote extends LoteGnre
             if (isset($c22)) {
                 $dados->appendChild($c22);
             }
-            $dados->appendChild($c34);
-            $dados->appendChild($c35);
+            if ($c34_tipoIdentificacaoDestinatario) {
+                $dados->appendChild($c34);
+            }
+            if ($c35_idContribuinteDestinatario) {
+                $dados->appendChild($c35);
+            }
             if ($gnreGuia->c36_inscricaoEstadualDestinatario) {
                 $dados->appendChild($c36);
             }
             if ($gnreGuia->c37_razaoSocialDestinatario) {
                 $dados->appendChild($c37);
             }
-            $dados->appendChild($c38);
+            if ($c36_inscricaoEstadualDestinatario) {
+                $dados->appendChild($c38);
+            }
             $dados->appendChild($c33);
 
             $c05 = $guiaEstado->getNodeReferencia($gnre, $gnreGuia);
