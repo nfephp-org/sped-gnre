@@ -15,8 +15,8 @@
     "require": {
         "php": ">=7.0.0",
         "dompdf/dompdf": "0.8.*",
-        "zendframework/zend-servicemanager": "~2.0",
-        "zendframework/zend-barcode": "^2.3",
+        "laminas/laminas-servicemanager": "~2.0",
+        "laminas/laminas-barcode": "^2.3",
         "smarty/smarty": "~3.1",
         "nfephp-org/sped-nfe": "~5.0"
     },
