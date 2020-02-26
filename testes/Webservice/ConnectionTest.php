@@ -13,7 +13,7 @@ class ConnectionTest extends TestCase
 
     private $curlOptions;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->curlOptions = array(
             CURLOPT_PORT => 443,
@@ -32,7 +32,7 @@ class ConnectionTest extends TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown():void
     {
         $this->curlOptions = array();
     }

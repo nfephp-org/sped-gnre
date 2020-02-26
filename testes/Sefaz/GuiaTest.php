@@ -3,6 +3,7 @@
 namespace Sped\Gnre\Test\Sefaz;
 
 use PHPUnit\Framework\TestCase;
+use Sped\Gnre\Exception\UndefinedProperty;
 
 /**
  * @covers Sped\Gnre\Sefaz\Guia
@@ -19,13 +20,12 @@ class GuiaTest extends TestCase
         $this->assertEquals('SP', $gnreGuia->c01_UfFavorecida);
     }
 
-    /**
-     * @expectedException Sped\Gnre\Exception\UndefinedProperty
-     * @expectedExceptionMessage Não foi possível encontrar o atributo desejado na classe
-     * @expectedExceptionCode 100
-     */
     public function testAcessarUmaPropriedadeQueNaoExisteNaClasse()
     {
+        $this->expectException(UndefinedProperty::class);
+        $this->expectExceptionMessage('Não foi possível encontrar o atributo desejado na classe');
+        $this->expectExceptionCode(100);
+
         $gnreGuia = new \Sped\Gnre\Sefaz\Guia();
         $gnreGuia->teste = 'SP';
     }

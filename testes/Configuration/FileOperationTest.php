@@ -19,6 +19,7 @@ namespace Sped\Gnre\Test\Configuration;
 
 use PHPUnit\Framework\TestCase;
 use Sped\Gnre\Configuration\FileOperation;
+use Sped\Gnre\Exception\UnreachableFile;
 
 /**
  * @covers Sped\Gnre\Configuration\FileOperation
@@ -26,12 +27,9 @@ use Sped\Gnre\Configuration\FileOperation;
  */
 class FileOperationTest extends TestCase
 {
-
-    /**
-     * @expectedException Sped\Gnre\Exception\UnreachableFile
-     */
     public function testArquivoInformadoNaoExiste()
     {
+        $this->expectException(UnreachableFile::class);
         $myFile = new MyFile('/foo/bar.txt');
     }
 
