@@ -218,7 +218,7 @@ class Lote extends LoteGnre
             if ($gnreGuia->c37_razaoSocialDestinatario) {
                 $dados->appendChild($c37);
             }
-            if ($c36_inscricaoEstadualDestinatario) {
+            if ($gnreGuia->c38_municipioDestinatario) {
                 $dados->appendChild($c38);
             }
             $dados->appendChild($c33);
