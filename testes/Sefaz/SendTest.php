@@ -3,6 +3,7 @@
 namespace Sped\Gnre\Test\Sefaz;
 
 use PHPUnit\Framework\TestCase;
+use Sped\Gnre\Exception\ConnectionFactoryUnavailable;
 use Sped\Gnre\Sefaz\Send;
 
 /**
@@ -15,17 +16,16 @@ class SendTest extends TestCase
     private $setup;
     private $objetoSefaz;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->setup = $this->createMock('\Sped\Gnre\Configuration\Setup');
         $this->objetoSefaz = $this->createMock('\Sped\Gnre\Sefaz\ObjetoSefaz');
     }
 
-    /**
-     * @expectedException \Sped\Gnre\Exception\ConnectionFactoryUnavailable
-     */
     public function testDeveLancarExcecaoAoNaoSetarUmaConnectionFactoryParaSerUsada()
     {
+        $this->expectException(ConnectionFactoryUnavailable::class);
+
         $send = new Send($this->setup);
         $send->sefaz($this->objetoSefaz);
     }
