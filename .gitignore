@@ -2,3 +2,4 @@ certs/
 vendor/
 .idea/
 coverage/
+local/
