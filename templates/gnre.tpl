@@ -111,7 +111,7 @@
                                     Município: {$guia->c19_municipioEmitente}
                                 </td>
                                 <td class="borderright">
-                                    UF: SP
+                                    UF: {$guia->c20_ufEnderecoEmitente}
                                 </td>
                             </tr>
                             <tr>
