@@ -20,6 +20,9 @@
         "smarty/smarty": "~3.1",
         "nfephp-org/sped-nfe": "~5.0"
     },
+    "scripts": {
+        "test": "phpunit"
+    },
     "autoload": {
         "psr-4": {
             "Sped\\Gnre\\": "lib/Sped/Gnre/",
