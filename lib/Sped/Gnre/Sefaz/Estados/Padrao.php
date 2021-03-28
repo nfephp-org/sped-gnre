@@ -64,15 +64,23 @@ abstract class Padrao
 
         $c05 = $gnre->createElement('c05_referencia');
 
-        $periodo = $gnre->createElement('periodo', $gnreGuia->periodo);
+        if ($gnreGuia->periodo) {
+            $periodo = $gnre->createElement('periodo', $gnreGuia->periodo);
+        }
         $mes = $gnre->createElement('mes', $gnreGuia->mes);
         $ano = $gnre->createElement('ano', $gnreGuia->ano);
-        $parcela = $gnre->createElement('parcela', $gnreGuia->parcela);
+        if ($gnreGuia->parcela) {
+            $parcela = $gnre->createElement('parcela', $gnreGuia->parcela);
+        }
 
-        $c05->appendChild($periodo);
+        if (isset($periodo)) {
+            $c05->appendChild($periodo);
+        }
         $c05->appendChild($mes);
         $c05->appendChild($ano);
-        $c05->appendChild($parcela);
+        if (isset($parcela)) {
+            $c05->appendChild($parcela);
+        }
 
         return $c05;
     }
