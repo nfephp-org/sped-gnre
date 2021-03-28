@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  gnre:
+    build:
+      context: .
+    ports:
+      - '8181:8181'
+    volumes:
+      - ./:/var/www
+    command: php -S 0.0.0.0:8181
