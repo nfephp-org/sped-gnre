@@ -91,22 +91,22 @@ class LoteV2 extends Lote {
             $dadosVersao->value = '2.00';
             $dados->appendChild($dadosVersao);
 
-            $ufFavorecida = $gnre->createElement('ufFavorecida', $estado);
+            if ($estado) {
+                $ufFavorecida = $gnre->createElement('ufFavorecida', $estado);
+            }
             $tipoGnre = $gnre->createElement('tipoGnre', '0');
-            $valorGNRE = $gnre->createElement('valorGNRE', $gnreGuia->c10_valorTotal);
-            $dataPagamento = $gnre->createElement('dataPagamento', $gnreGuia->c33_dataPagamento);
+            if ($gnreGuia->c10_valorTotal) {
+                $valorGNRE = $gnre->createElement('valorGNRE', $gnreGuia->c10_valorTotal);
+            }
+
+            if ($gnreGuia->c33_dataPagamento) {
+                $dataPagamento = $gnre->createElement('dataPagamento', $gnreGuia->c33_dataPagamento);
+            }
+
             $identificadorGuia = $gnre->createElement('identificadorGuia', '1');
 
-            $contribuinteEmitente = $gnre->createElement('contribuinteEmitente');
 
-            $identificacao = $gnre->createElement('identificacao');
-            if ($gnreGuia->c27_tipoIdentificacaoEmitente == parent::EMITENTE_PESSOA_JURIDICA) {
-                $identificacaoChild = $gnre->createElement('CNPJ', $gnreGuia->c03_idContribuinteEmitente);
-            } else {
-                $identificacaoChild = $gnre->createElement('CPF', $gnreGuia->c03_idContribuinteEmitente);
-            }
-            $identificacao->appendChild($identificacaoChild);
-
+            // Trata os dados dos emitente
             $razaoSocial = $gnre->createElement('razaoSocial', $gnreGuia->c16_razaoSocialEmitente);
             $endereco = $gnre->createElement('endereco', $gnreGuia->c18_enderecoEmitente);
             $municipio = $gnre->createElement('municipio', $gnreGuia->c19_municipioEmitente);
@@ -114,17 +114,41 @@ class LoteV2 extends Lote {
             $cep = $gnre->createElement('cep', $gnreGuia->c21_cepEmitente);
             $telefone = $gnre->createElement('telefone', $gnreGuia->c22_telefoneEmitente);
 
-            $contribuinteEmitente->appendChild($identificacao);
-            $contribuinteEmitente->appendChild($razaoSocial);
-            $contribuinteEmitente->appendChild($endereco);
-            $contribuinteEmitente->appendChild($municipio);
-            $contribuinteEmitente->appendChild($uf);
-            $contribuinteEmitente->appendChild($cep);
-            $contribuinteEmitente->appendChild($telefone);
+            $contribuinteEmitente = $gnre->createElement('contribuinteEmitente');
 
-            $itensGNRE = $gnre->createElement('itensGNRE');
+            if ($gnreGuia->c03_idContribuinteEmitente) {
+                $identificacao = $gnre->createElement('identificacao');
+                if ($gnreGuia->c27_tipoIdentificacaoEmitente == parent::EMITENTE_PESSOA_JURIDICA) {
+                    $identificacaoChild = $gnre->createElement('CNPJ', $gnreGuia->c03_idContribuinteEmitente);
+                } else {
+                    $identificacaoChild = $gnre->createElement('CPF', $gnreGuia->c03_idContribuinteEmitente);
+                }
+                $identificacao->appendChild($identificacaoChild);
+                $contribuinteEmitente->appendChild($identificacao);
+            }
 
-            $item = $gnre->createElement('item');
+
+            if ($razaoSocial->nodeValue) {
+                $contribuinteEmitente->appendChild($razaoSocial);
+            }
+            if ($endereco->nodeValue) {
+                $contribuinteEmitente->appendChild($endereco);
+            }
+            if ($municipio->nodeValue) {
+                $contribuinteEmitente->appendChild($municipio);
+            }
+            if ($uf->nodeValue) {
+                $contribuinteEmitente->appendChild($uf);
+            }
+            if ($cep->nodeValue) {
+                $contribuinteEmitente->appendChild($cep);
+            }
+            if ($telefone->nodeValue) {
+                $contribuinteEmitente->appendChild($telefone);
+            }
+
+
+            // Trata os dados dos itens
 
             $receita = $gnre->createElement('receita', $gnreGuia->c02_receita);
             $documentoOrigem = $gnre->createElement('documentoOrigem', $gnreGuia->c04_docOrigem);
@@ -134,6 +158,11 @@ class LoteV2 extends Lote {
             $referencia = $gnre->createElement('referencia');
             $periodo =  $gnre->createElement('periodo', '0');
             $referencia->appendChild($periodo);
+
+            $itensGNRE = $gnre->createElement('itensGNRE');
+
+            $item = $gnre->createElement('item');
+
             if ($gnreGuia->mes!=null) {
                 $mes =  $gnre->createElement('mes', $gnreGuia->mes);
                 $referencia->appendChild($mes);
@@ -146,15 +175,22 @@ class LoteV2 extends Lote {
                 $parcela =  $gnre->createElement('parcela', $gnreGuia->parcela);
                 $referencia->appendChild($parcela);
             }
-            $dataVencimento = $gnre->createElement('dataVencimento', $gnreGuia->c14_dataVencimento);
-            $valor11 = $gnre->createElement('valor', $gnreGuia->c06_valorPrincipal);
-            $tipo11 = $gnre->createAttribute('tipo');
-            $tipo11->value = '11';
-            $valor11->appendChild($tipo11);
-            $valor21 = $gnre->createElement('valor', $gnreGuia->c06_valorPrincipal);
-            $tipo21 = $gnre->createAttribute('tipo');
-            $tipo21->value = '21';
-            $valor21->appendChild($tipo21);
+
+            if ($gnreGuia->c14_dataVencimento) {
+                $dataVencimento = $gnre->createElement('dataVencimento', $gnreGuia->c14_dataVencimento);
+            }
+
+            if ($gnreGuia->c06_valorPrincipal) {
+                $valor11 = $gnre->createElement('valor', $gnreGuia->c06_valorPrincipal);
+                $tipo11 = $gnre->createAttribute('tipo');
+                $tipo11->value = '11';
+                $valor11->appendChild($tipo11);
+                $valor21 = $gnre->createElement('valor', $gnreGuia->c06_valorPrincipal);
+                $tipo21 = $gnre->createAttribute('tipo');
+                $tipo21->value = '21';
+                $valor21->appendChild($tipo21);
+            }
+
 
             $contribuinteDestinatario = $gnre->createElement('contribuinteDestinatario');
             $identificacao = $gnre->createElement('identificacao');
@@ -164,11 +200,15 @@ class LoteV2 extends Lote {
             } else {
                 $destinatarioContribuinteDocumento = $gnre->createElement('CPF', $gnreGuia->c35_idContribuinteDestinatario);
             }
+
+
             $identificacao->appendChild($destinatarioContribuinteDocumento);
             if ($gnreGuia->c36_inscricaoEstadualDestinatario!='') {
                 $IE = $gnre->createElement('IE', $gnreGuia->c36_inscricaoEstadualDestinatario);
                 $identificacao->appendChild($IE);
             }
+
+
             $razaoSocial = $gnre->createElement('razaoSocial', $gnreGuia->c37_razaoSocialDestinatario);
             $municipio = $gnre->createElement('municipio', $gnreGuia->c38_municipioDestinatario);
             $contribuinteDestinatario->appendChild($identificacao);
@@ -177,28 +217,60 @@ class LoteV2 extends Lote {
 
 
 
-            $item->appendChild($receita);
-            $item->appendChild($documentoOrigem);
-            $item->appendChild($referencia);
-            $item->appendChild($dataVencimento);
-            $item->appendChild($valor11);
-            $item->appendChild($valor21);
-            $item->appendChild($contribuinteDestinatario);
+            if ($receita->nodeValue) {
+                $item->appendChild($receita);
+            }
+            if ($documentoOrigem->nodeValue) {
+                $item->appendChild($documentoOrigem);
+            }
+            if ($referencia->nodeValue) {
+                $item->appendChild($referencia);
+            }
+            if ($gnreGuia->c14_dataVencimento) {
+                $item->appendChild($dataVencimento);
+            }
+            if ($gnreGuia->c06_valorPrincipal) {
+                $item->appendChild($valor11);
+            }
+            if ($gnreGuia->c06_valorPrincipal) {
+                $item->appendChild($valor21);
+            }
+            if ($contribuinteDestinatario->nodeValue) {
+                $item->appendChild($contribuinteDestinatario);
+            }
 
             $camposExtras = $this->gerarCamposExtras($gnre, $gnreGuia);
             if ($camposExtras != null) {
                 $item->appendChild($camposExtras);
             }
+            if (count($item->childNodes)) {
+                $itensGNRE->appendChild($item);
+            }
 
-            $itensGNRE->appendChild($item);
 
 
-            $dados->appendChild($ufFavorecida);
+            if ($estado) {
+                $dados->appendChild($ufFavorecida);
+            }
+
             $dados->appendChild($tipoGnre);
-            $dados->appendChild($contribuinteEmitente);
-            $dados->appendChild($itensGNRE);
-            $dados->appendChild($valorGNRE);
-            $dados->appendChild($dataPagamento);
+            if (count($contribuinteEmitente->childNodes)) {
+                $dados->appendChild($contribuinteEmitente);
+            }
+
+            if (count($itensGNRE->childNodes)) {
+                $dados->appendChild($itensGNRE);
+            }
+
+
+            if ($gnreGuia->c10_valorTotal) {
+                $dados->appendChild($valorGNRE);
+            }
+
+            if ($gnreGuia->c33_dataPagamento) {
+                $dados->appendChild($dataPagamento);
+            }
+
             $dados->appendChild($identificadorGuia);
 
 
