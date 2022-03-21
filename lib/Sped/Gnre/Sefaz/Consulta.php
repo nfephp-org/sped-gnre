@@ -96,7 +96,7 @@ class Consulta extends ConsultaGnre
 
         $gnreCabecalhoSoap = $gnre->createElement('gnreCabecMsg');
         $gnreCabecalhoSoap->setAttribute('xmlns', 'http://www.gnre.pe.gov.br/wsdl/consultar');
-        $gnreCabecalhoSoap->appendChild($gnre->createElement('versaoDados', '1.00'));
+        $gnreCabecalhoSoap->appendChild($gnre->createElement('versaoDados', '2.00'));
 
         $soapHeader = $gnre->createElement('soap12:Header');
         $soapHeader->appendChild($gnreCabecalhoSoap);
