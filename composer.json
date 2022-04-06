@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=7.3.0",
-        "dompdf/dompdf": "0.8.*",
+        "dompdf/dompdf": "1.2.*",
         "laminas/laminas-servicemanager": "~3.0",
         "laminas/laminas-barcode": "^2.3",
         "smarty/smarty": "~3.1",
