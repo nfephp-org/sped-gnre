@@ -1,5 +1,5 @@
 {
-    "name": "nfephp-org/sped-gnre",
+    "name": "controleonline/sped-gnre",
     "description": "API para a emissão de guias GNRE para a SEFAZ",
     "license": ["GPL-3.0-or-later", "MIT"],
     "authors": [
