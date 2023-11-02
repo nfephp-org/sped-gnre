@@ -1,5 +1,5 @@
 {
-    "name": "nfephp-org/sped-gnre",
+    "name": "controleonline/sped-gnre",
     "description": "API para a emissão de guias GNRE para a SEFAZ",
     "license": ["GPL-3.0-or-later", "MIT"],
     "authors": [
@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=7.3.0",
-        "dompdf/dompdf": "0.8.*",
+        "dompdf/dompdf": "^1.0",
         "laminas/laminas-servicemanager": "~3.0",
         "laminas/laminas-barcode": "^2.3",
         "smarty/smarty": "~3.1",
