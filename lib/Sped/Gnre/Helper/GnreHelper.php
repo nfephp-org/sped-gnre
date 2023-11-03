@@ -86,7 +86,7 @@ class GnreHelper
         $parsed->UfEmpresa = $xml->NFe->infNFe->emit->enderEmit->UF;
         $parsed->TelefoneEmpresa = $xml->NFe->infNFe->emit->enderEmit->fone;
         $parsed->NrIEEmpresa = $xml->NFe->infNFe->emit->IE;                
-        $parsed->NmEmpresaCliente = $xml->NFe->infNFe->emit->xNome;
+        $parsed->NmEmpresa = $xml->NFe->infNFe->emit->xNome;
         $parsed->NrDocumentoCliente = $xml->NFe->infNFe->dest->CNPJ ?: $xml->NFe->infNFe->dest->CPF;
         $parsed->NrIECliente = $xml->NFe->infNFe->dest->IE;
         $parsed->NmCliente = $xml->NFe->infNFe->dest->xNome;
