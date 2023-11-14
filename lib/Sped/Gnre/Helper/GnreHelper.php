@@ -74,7 +74,7 @@ class GnreHelper
     }
 
 
-    public static function parseNf($xmlNf): stdClass
+    public static function parseNf($xmlNf): ?stdClass
     {
         $xml = simplexml_load_string($xmlNf);
         $parsed = new stdClass();
