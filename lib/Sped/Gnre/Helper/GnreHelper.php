@@ -79,6 +79,9 @@ class GnreHelper
         $xml = simplexml_load_string($xmlNf);
         $parsed = new stdClass();
 
+        if (!$xml->NFe)
+            return null;
+
 
         $parsed->CEPEmpresa = $xml->NFe->infNFe->emit->enderEmit->CEP;
         $parsed->EnderecoEmpresa = $xml->NFe->infNFe->emit->enderEmit->xLgr;
