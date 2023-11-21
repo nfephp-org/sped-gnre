@@ -71,8 +71,8 @@ class Lote extends LoteGnre
     public function getHeaderSoap()
     {
         $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote' :
-            'http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote';
+            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
+            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
 
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
