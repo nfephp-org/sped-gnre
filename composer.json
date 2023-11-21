@@ -19,6 +19,7 @@
         "laminas/laminas-barcode": "^2.3",
         "smarty/smarty": "~3.1",
         "nfephp-org/sped-nfe": "~5.0",
+        "nfephp-org/sped-common": "^5.1.0",
         "ext-gd": "*",
         "ext-dom": "*"
     },
