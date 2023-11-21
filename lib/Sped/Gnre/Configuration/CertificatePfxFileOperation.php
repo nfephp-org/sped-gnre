@@ -77,6 +77,7 @@ class CertificatePfxFileOperation extends FileOperation
         $key = file_get_contents($this->filePath);
         $dataCertificate = array();
         if (!openssl_pkcs12_read($key, $dataCertificate, $password)) {
+            print_r($dataCertificate);
             throw new CannotOpenCertificate($this->filePath);
         }
 
