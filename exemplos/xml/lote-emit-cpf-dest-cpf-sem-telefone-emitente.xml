@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
     <soap12:Header>
-        <gnreCabecMsg xmlns="http://www.gnre.pe.gov.br/wsdl/processar">
+        <gnreCabecMsg xmlns="https://www.gnre.pe.gov.br/wsdl/processar">
             <versaoDados>1.00</versaoDados>
         </gnreCabecMsg>
     </soap12:Header>
     <soap12:Body>
-        <gnreDadosMsg xmlns="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao">
-            <TLote_GNRE xmlns="http://www.gnre.pe.gov.br">
+        <gnreDadosMsg xmlns="https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao">
+            <TLote_GNRE xmlns="https://www.gnre.pe.gov.br">
                 <guias>
                     <TDadosGNRE>
                         <c01_UfFavorecida>26</c01_UfFavorecida>

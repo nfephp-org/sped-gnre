@@ -42,8 +42,8 @@ class Consulta extends ConsultaGnre
     public function getHeaderSoap()
     {
         $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
-            'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
+            'https://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
+            'https://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
 
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
@@ -71,7 +71,7 @@ class Consulta extends ConsultaGnre
         $gnre->preserveWhiteSpace = false;
 
         $consulta = $gnre->createElement('TConsLote_GNRE');
-        $consulta->setAttribute('xmlns', 'http://www.gnre.pe.gov.br');
+        $consulta->setAttribute('xmlns', 'https://www.gnre.pe.gov.br');
 
         $ambiente = $gnre->createElement('ambiente', $this->getEnvironment());
         $numeroRecibo = $gnre->createElement('numeroRecibo', $this->getRecibo());
@@ -95,7 +95,7 @@ class Consulta extends ConsultaGnre
         $soapEnv->setAttribute('xmlns:soap12', 'http://www.w3.org/2003/05/soap-envelope');
 
         $gnreCabecalhoSoap = $gnre->createElement('gnreCabecMsg');
-        $gnreCabecalhoSoap->setAttribute('xmlns', 'http://www.gnre.pe.gov.br/wsdl/consultar');
+        $gnreCabecalhoSoap->setAttribute('xmlns', 'https://www.gnre.pe.gov.br/wsdl/consultar');
         $gnreCabecalhoSoap->appendChild($gnre->createElement('versaoDados', '1.00'));
 
         $soapHeader = $gnre->createElement('soap12:Header');
@@ -105,8 +105,8 @@ class Consulta extends ConsultaGnre
         $gnre->appendChild($soapEnv);
 
         $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
-            'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
+            'https://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
+            'https://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
         $gnreDadosMsg->setAttribute('xmlns', $action);

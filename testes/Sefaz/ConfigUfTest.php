@@ -15,7 +15,7 @@ class ConfigUfTest extends TestCase
         $consulta = new \Sped\Gnre\Sefaz\ConfigUf();
         $headersArray = $consulta->getHeaderSoap();
 
-        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreConfigUF"';
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="https://www.gnre.pe.gov.br/webservice/GnreConfigUF"';
         $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: consultar', $headersArray[1]);
     }
@@ -27,7 +27,7 @@ class ConfigUfTest extends TestCase
 
         $headersArray = $consulta->getHeaderSoap();
 
-        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreConfigUF"';
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="https://www.testegnre.pe.gov.br/webservice/GnreConfigUF"';
         $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: consultar', $headersArray[1]);
     }

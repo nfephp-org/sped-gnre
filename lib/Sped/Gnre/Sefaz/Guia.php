@@ -47,7 +47,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c02_receita;
@@ -55,7 +55,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c25_detalhamentoReceita;
@@ -63,7 +63,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c26_produto;
@@ -71,7 +71,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c27_tipoIdentificacaoEmitente;
@@ -86,7 +86,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c28_tipoDocOrigem;
@@ -94,7 +94,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c04_docOrigem;
@@ -125,7 +125,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c15_convenio;
@@ -183,7 +183,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo inteiro
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    int
      */
     private $c34_tipoIdentificacaoDestinatario;
@@ -264,7 +264,7 @@ class Guia
     /**
      * Para esse atributo é esperado um dado do tipo string
      * para maiores informações visualizar a documentação oficial do GNRE
-     * http://www.gnre.pe.gov.br/gnre/index.html
+     * https://www.gnre.pe.gov.br/gnre/index.html
      * @var    string
      */
     private $c42_identificadorGuia;
@@ -325,7 +325,7 @@ class Guia
      * Dados retornados pelo web service da SEFAZ com a situação
      * da guia, se foi processada com sucesso ou se houve erro.
      * Para maiores informações sobre esse item consulte
-     * a documentação de retorno em http://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
+     * a documentação de retorno em https://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
      * @var int
      */
     private $retornoSituacaoGuia;
@@ -334,7 +334,7 @@ class Guia
      * Dados retornados pelo web service da SEFAZ com o numero de sequencia
      * que a guia tem na SEFAZ.
      * Para maiores informações sobre esse item consulte
-     * a documentação de retorno em http://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
+     * a documentação de retorno em https://www.gnre.pe.gov.br/gnre/portal/downloads.jsp
      * @var type
      */
     private $retornoSequencialGuia;

@@ -54,7 +54,7 @@ Antes de usar a API
 
 - É necessário entrar em contato com a SEFAZ de cada estado pedindo liberação do serviço de emissão de GNRE.
 
-- Leita todos os tópicos no FAQ oficial em http://www.gnre.pe.gov.br/gnre/portal/faq.jsp. Os tópicos abordados são muito úteis para quem está começando nesse serviço.
+- Leita todos os tópicos no FAQ oficial em https://www.gnre.pe.gov.br/gnre/portal/faq.jsp. Os tópicos abordados são muito úteis para quem está começando nesse serviço.
 
 GNRE PHP
 =================
@@ -88,10 +88,10 @@ Informações úteis
 |Descrição|Endereço|
 |---------|--------|
 |Grupo de discussão | https://groups.google.com/forum/#!forum/gnrephp|
-|Site oficial do governo | http://www.gnre.pe.gov.br/gnre/index.html|
+|Site oficial do governo | https://www.gnre.pe.gov.br/gnre/index.html|
 |Site do Projeto | http://nfephp-org.github.io/sped-gnre/|
 |Wiki, onde é possível encontrar maiores informações de como utilizar a API | https://github.com/nfephp-org/sped-gnre/wiki|
-|Site oficial da SEFAZ de todo os estados|http://www.gnre.pe.gov.br/gnre/portal/linksUteis.jsp|
+|Site oficial da SEFAZ de todo os estados|https://www.gnre.pe.gov.br/gnre/portal/linksUteis.jsp|
 
 1. Antes de gerar qualquer guia GNRE com o seu certificado, tenha **CERTEZA** que você possui autorização para isso. A geração de
 GNRE depende de cada estado, ou seja, se você deseja gerar a guia para o Acre (com destino ao Acre) tenha certeza que

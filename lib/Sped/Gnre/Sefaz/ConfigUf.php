@@ -41,8 +41,8 @@ class ConfigUf extends ConsultaConfigUf
     public function getHeaderSoap()
     {
         $action = $this->ambienteDeTeste ?
-            'http://www.testegnre.pe.gov.br/webservice/GnreConfigUF' :
-            'http://www.gnre.pe.gov.br/webservice/GnreConfigUF';
+            'https://www.testegnre.pe.gov.br/webservice/GnreConfigUF' :
+            'https://www.gnre.pe.gov.br/webservice/GnreConfigUF';
 
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
@@ -72,7 +72,7 @@ class ConfigUf extends ConsultaConfigUf
         $gnre->preserveWhiteSpace = false;
 
         $consulta = $gnre->createElement('TConsultaConfigUf');
-        $consulta->setAttribute('xmlns', 'http://www.gnre.pe.gov.br');
+        $consulta->setAttribute('xmlns', 'https://www.gnre.pe.gov.br');
 
         $ambiente = $gnre->createElement('ambiente', $this->getEnvironment());
         $estado   = $gnre->createElement('uf', $this->getEstado());
@@ -95,7 +95,7 @@ class ConfigUf extends ConsultaConfigUf
     {
         $soapEnv = $gnre->createElement('soap12:Envelope');
         $soapEnv->setAttribute('xmlns:soap12', 'http://www.w3.org/2003/05/soap-envelope');
-        $soapEnv->setAttribute('xmlns:gnr', 'http://www.gnre.pe.gov.br/webservice/GnreConfigUF');
+        $soapEnv->setAttribute('xmlns:gnr', 'https://www.gnre.pe.gov.br/webservice/GnreConfigUF');
 
         $gnreCabecalhoSoap = $gnre->createElement('gnr:gnreCabecMsg');
         $gnreCabecalhoSoap->appendChild($gnre->createElement('gnr:versaoDados', '1.00'));

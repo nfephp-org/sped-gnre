@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns="http://www.gnre.pe.gov.br"
+<xs:schema xmlns="https://www.gnre.pe.gov.br"
 	attributeFormDefault="unqualified" 
 	elementFormDefault="qualified" 
-	targetNamespace="http://www.gnre.pe.gov.br" 
+	targetNamespace="https://www.gnre.pe.gov.br" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:include xmlns="http://www.gnre.pe.gov.br" schemaLocation="tiposBasicoGNRE_v2.00.xsd"/>
+	<xs:include xmlns="https://www.gnre.pe.gov.br" schemaLocation="tiposBasicoGNRE_v2.00.xsd"/>
 	<xs:group name="dadosGnre_2.00_1">
 		<xs:sequence>
 			<xs:element name="ufFavorecida" type="TUf" maxOccurs="1"
