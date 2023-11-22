@@ -3,7 +3,7 @@
 	elementFormDefault="qualified" 
 	attributeFormDefault="unqualified" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns="https://www.gnre.pe.gov.br" >
+	xmlns="http://www.gnre.pe.gov.br" >
     <xs:element name="TConsLote_GNRE">
     	<xs:complexType>
     		<xs:sequence>

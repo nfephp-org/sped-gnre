@@ -7,7 +7,7 @@
     </soap12:Header>
     <soap12:Body>
         <gnr:gnreDadosMsg>
-            <TConsultaConfigUf xmlns="https://www.gnre.pe.gov.br">
+            <TConsultaConfigUf xmlns="http://www.gnre.pe.gov.br">
                 <ambiente>1</ambiente>
                 <uf>PR</uf>
                 <receita>100099</receita>

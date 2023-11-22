@@ -2,7 +2,7 @@
 <xs:schema targetNamespace="https://www.gnre.pe.gov.br"
 	elementFormDefault="qualified"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns="https://www.gnre.pe.gov.br" 
+	xmlns="http://www.gnre.pe.gov.br" 
 	attributeFormDefault="unqualified">
 	<xs:include schemaLocation="dados_gnre_v1.00.xsd"/>
 	<xs:include schemaLocation="dados_gnre_v2.00.xsd"/>

@@ -3,7 +3,7 @@
 	elementFormDefault="qualified" 
 	attributeFormDefault="unqualified" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns="https://www.gnre.pe.gov.br" >
+	xmlns="http://www.gnre.pe.gov.br" >
 	<xs:include schemaLocation="dados_gnre_v1.00.xsd"/>
 	<xs:include schemaLocation="dados_gnre_v2.00.xsd"/>
 	<xs:group name="dadosGnre_1.00">

@@ -55,12 +55,15 @@ class GnreHelper
         $xml = self::parseNf($xmlNf);
         $guia = new Guia();
         $guia->c04_docOrigem = $xml->NrNf;
-        $guia->c28_tipoDocOrigem = $xml->TipoDoc;
+        //$guia->c28_tipoDocOrigem = $xml->TipoDoc;
+        $guia->c28_tipoDocOrigem = 10;
         $guia->c21_cepEmitente = $xml->CEPEmpresa;
         $guia->c16_razaoSocialEmitente = $xml->NmEmpresa;
         $guia->c03_idContribuinteEmitente = $xml->NrDocumentoEmpresa;
         $guia->c18_enderecoEmitente = $xml->EnderecoEmpresa;
-        $guia->c19_municipioEmitente = $xml->MunicipioEmpresa;
+
+        $guia->c19_municipioEmitente = $xml->CdMunicipioEmpresa;
+
         $guia->c20_ufEnderecoEmitente = $xml->UfEmpresa;
         $guia->c17_inscricaoEstadualEmitente = $xml->NrIEEmpresa;
         $guia->c22_telefoneEmitente = $xml->TelefoneEmpresa;
@@ -68,7 +71,7 @@ class GnreHelper
         $guia->c35_idContribuinteDestinatario = $xml->NrDocumentoCliente;
         $guia->c36_inscricaoEstadualDestinatario = $xml->NrIECliente;
         $guia->c37_razaoSocialDestinatario = $xml->NmCliente;
-        $guia->c38_municipioDestinatario = $xml->MunicipioCliente;
+        $guia->c38_municipioDestinatario = $xml->CdMunicipioCliente;
 
         return $guia;
     }
