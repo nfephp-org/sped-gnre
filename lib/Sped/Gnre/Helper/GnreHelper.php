@@ -71,7 +71,7 @@ class GnreHelper
         $guia->c35_idContribuinteDestinatario = $xml->NrDocumentoCliente;
         $guia->c36_inscricaoEstadualDestinatario = $xml->NrIECliente;
         $guia->c37_razaoSocialDestinatario = $xml->NmCliente;
-        $guia->c38_municipioDestinatario = 06200;//$xml->CdMunicipioCliente;
+        $guia->c38_municipioDestinatario = '06200';//$xml->CdMunicipioCliente;
 
         return $guia;
     }
