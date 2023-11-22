@@ -2,7 +2,7 @@
 <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <soapenv:Body>
         <gnreRespostaMsg xmlns="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote">
-            <ns1:TResultLote_GNRE xmlns="http://www.gnre.pe.gov.br" xmlns:ns1="https://www.gnre.pe.gov.br">
+            <ns1:TResultLote_GNRE xmlns="http://www.gnre.pe.gov.br" xmlns:ns1="http://www.gnre.pe.gov.br">
                 <ns1:ambiente>1</ns1:ambiente>
                 <ns1:numeroRecibo>0000000000</ns1:numeroRecibo>
                 <ns1:situacaoProcess>
