@@ -62,7 +62,7 @@ class GnreHelper
         $guia->c03_idContribuinteEmitente = $xml->NrDocumentoEmpresa;
         $guia->c18_enderecoEmitente = $xml->EnderecoEmpresa;
 
-        $guia->c19_municipioEmitente = $xml->CdMunicipioEmpresa;
+        $guia->c19_municipioEmitente = 15004;//$xml->CdMunicipioEmpresa;
 
         $guia->c20_ufEnderecoEmitente = $xml->UfEmpresa;
         $guia->c17_inscricaoEstadualEmitente = $xml->NrIEEmpresa;
@@ -71,7 +71,7 @@ class GnreHelper
         $guia->c35_idContribuinteDestinatario = $xml->NrDocumentoCliente;
         $guia->c36_inscricaoEstadualDestinatario = $xml->NrIECliente;
         $guia->c37_razaoSocialDestinatario = $xml->NmCliente;
-        $guia->c38_municipioDestinatario = $xml->CdMunicipioCliente;
+        $guia->c38_municipioDestinatario = 06200;//$xml->CdMunicipioCliente;
 
         return $guia;
     }

@@ -72,7 +72,7 @@ class ConfigUf extends ConsultaConfigUf
         $gnre->preserveWhiteSpace = false;
 
         $consulta = $gnre->createElement('TConsultaConfigUf');
-        $consulta->setAttribute('xmlns', 'https://www.gnre.pe.gov.br');
+        $consulta->setAttribute('xmlns', 'http://www.gnre.pe.gov.br');
 
         $ambiente = $gnre->createElement('ambiente', $this->getEnvironment());
         $estado   = $gnre->createElement('uf', $this->getEstado());
