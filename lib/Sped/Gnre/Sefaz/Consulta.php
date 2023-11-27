@@ -58,7 +58,7 @@ class Consulta extends ConsultaGnre
     {
         return $this->ambienteDeTeste ?
             'http://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote' :
-            'https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
+            'http://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
     }
 
     /**

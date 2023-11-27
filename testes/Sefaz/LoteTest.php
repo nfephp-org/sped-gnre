@@ -26,14 +26,14 @@ class LoteTest extends TestCase
     {
         $lote = new Lote();
 
-        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+        $this->assertEquals('http://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
     public function testDeveRetornarAacaoAserExecutadaNoSoap()
     {
         $lote = new Lote();
 
-        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+        $this->assertEquals('http://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
     public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioJuridicos()

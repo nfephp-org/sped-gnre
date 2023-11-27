@@ -87,7 +87,7 @@ class Lote extends LoteGnre
     {
         return $this->ambienteDeTeste ?
             'http://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao' :
-            'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
+            'http://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
     }
 
     /**

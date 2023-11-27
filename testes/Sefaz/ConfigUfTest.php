@@ -36,7 +36,7 @@ class ConfigUfTest extends TestCase
     {
         $consulta = new \Sped\Gnre\Sefaz\ConfigUf();
 
-        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF', $consulta->soapAction());
+        $this->assertEquals('http://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF', $consulta->soapAction());
     }
 
     public function testDeveRetornarXmlCompletoVazioParaRealizarAconsulta()
@@ -55,7 +55,7 @@ class ConfigUfTest extends TestCase
     {
         $consulta = new \Sped\Gnre\Sefaz\ConfigUf();
 
-        $this->assertEquals($consulta->soapAction(), 'https://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF');
+        $this->assertEquals($consulta->soapAction(), 'http://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF');
     }
 
     public function testDeveRetornarAactionAserExecutadaNoWebServiceDeTestes()

@@ -58,7 +58,7 @@ class ConfigUf extends ConsultaConfigUf
     {
         return $this->ambienteDeTeste ?
             'http://www.testegnre.pe.gov.br/gnreWS/services/GnreConfigUF' :
-            'https://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF';
+            'http://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF';
     }
 
     /**
