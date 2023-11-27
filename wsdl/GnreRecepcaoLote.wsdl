@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao" xmlns:s="http://www.w3.org/2001/XMLSchema"
+<wsdl:definitions targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao" xmlns:s="http://www.w3.org/2001/XMLSchema"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
-                  xmlns:tns="https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+                  xmlns:tns="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
     <wsdl:types>
-        <s:schema elementFormDefault="qualified" targetNamespace="https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao">
+        <s:schema elementFormDefault="qualified" targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao">
             <s:element name="gnreDadosMsg">
                 <s:complexType mixed="true">
                     <s:sequence>
@@ -45,7 +45,7 @@
     <wsdl:binding name="GnreLoteRecepcao" type="tns:GnreLoteRecepcaoSoap">
         <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="processar">
-            <soap12:operation soapAction="https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao/processar"
+            <soap12:operation soapAction="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao/processar"
                   style="document"/>
             <wsdl:input>
                 <soap12:body use="literal"/>

@@ -15,7 +15,7 @@ class ConsultaTest extends TestCase
         $consulta = new \Sped\Gnre\Sefaz\Consulta();
         $headersArray = $consulta->getHeaderSoap();
 
-        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="https://www.gnre.pe.gov.br/webservice/GnreResultadoLote"';
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreResultadoLote"';
         $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: consultar', $headersArray[1]);
     }
@@ -27,7 +27,7 @@ class ConsultaTest extends TestCase
 
         $headersArray = $consulta->getHeaderSoap();
 
-        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="https://www.testegnre.pe.gov.br/webservice/GnreResultadoLote"';
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote"';
         $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: consultar', $headersArray[1]);
     }
@@ -62,7 +62,7 @@ class ConsultaTest extends TestCase
         $consulta = new \Sped\Gnre\Sefaz\Consulta();
         $consulta->utilizarAmbienteDeTeste(true);
 
-        $action = 'https://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
+        $action = 'http://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
         $this->assertEquals($consulta->soapAction(), $action);
     }
 }

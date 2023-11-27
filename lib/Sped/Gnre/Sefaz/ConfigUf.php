@@ -41,8 +41,8 @@ class ConfigUf extends ConsultaConfigUf
     public function getHeaderSoap()
     {
         $action = $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/webservice/GnreConfigUF' :
-            'https://www.gnre.pe.gov.br/webservice/GnreConfigUF';
+            'http://www.testegnre.pe.gov.br/webservice/GnreConfigUF' :
+            'http://www.gnre.pe.gov.br/webservice/GnreConfigUF';
 
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
@@ -57,7 +57,7 @@ class ConfigUf extends ConsultaConfigUf
     public function soapAction()
     {
         return $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreConfigUF' :
+            'http://www.testegnre.pe.gov.br/gnreWS/services/GnreConfigUF' :
             'https://www.gnre.pe.gov.br/gnreWS/services/GnreConfigUF';
     }
 

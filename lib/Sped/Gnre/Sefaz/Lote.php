@@ -71,8 +71,8 @@ class Lote extends LoteGnre
     public function getHeaderSoap()
     {
         $action = $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
-            'https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
+            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
 
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
@@ -86,7 +86,7 @@ class Lote extends LoteGnre
     public function soapAction()
     {
         return $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao' :
+            'http://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao' :
             'https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao';
     }
 
@@ -265,8 +265,8 @@ class Lote extends LoteGnre
         $gnre->appendChild($soapEnv);
 
         $action = $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
-            'https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
+            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
         $gnreDadosMsg->setAttribute('xmlns', $action);

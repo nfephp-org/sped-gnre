@@ -51,8 +51,8 @@ class LoteV2 extends Lote {
         $gnre->appendChild($soapEnv);
 
         $action = $this->ambienteDeTesteV2 ?
-            'https://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
-            'https://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+            'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
+            'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
         $gnreDadosMsg->setAttribute('xmlns', $action);

@@ -42,8 +42,8 @@ class Consulta extends ConsultaGnre
     public function getHeaderSoap()
     {
         $action = $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
-            'https://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
+            'http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
+            'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
 
         return array(
             'Content-Type: application/soap+xml;charset=utf-8;action="' . $action . '"',
@@ -57,7 +57,7 @@ class Consulta extends ConsultaGnre
     public function soapAction()
     {
         return $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote' :
+            'http://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote' :
             'https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
     }
 
@@ -105,8 +105,8 @@ class Consulta extends ConsultaGnre
         $gnre->appendChild($soapEnv);
 
         $action = $this->ambienteDeTeste ?
-            'https://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
-            'https://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
+            'http://www.testegnre.pe.gov.br/webservice/GnreResultadoLote' :
+            'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
 
         $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
         $gnreDadosMsg->setAttribute('xmlns', $action);
