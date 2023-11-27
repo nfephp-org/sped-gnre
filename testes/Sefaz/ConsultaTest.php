@@ -36,7 +36,7 @@ class ConsultaTest extends TestCase
     {
         $consulta = new \Sped\Gnre\Sefaz\Consulta();
 
-        $this->assertEquals('http://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote', $consulta->soapAction());
+        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote', $consulta->soapAction());
     }
 
     public function testDeveRetornarXmlCompletoVazioParaRealizarAconsulta()
@@ -54,7 +54,7 @@ class ConsultaTest extends TestCase
     {
         $consulta = new \Sped\Gnre\Sefaz\Consulta();
 
-        $this->assertEquals($consulta->soapAction(), 'http://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote');
+        $this->assertEquals($consulta->soapAction(), 'https://www.gnre.pe.gov.br/gnreWS/services/GnreResultadoLote');
     }
 
     public function testDeveRetornarAactionAserExecutadaNoWebServiceDeTestes()
@@ -62,7 +62,7 @@ class ConsultaTest extends TestCase
         $consulta = new \Sped\Gnre\Sefaz\Consulta();
         $consulta->utilizarAmbienteDeTeste(true);
 
-        $action = 'http://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
+        $action = 'https://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote';
         $this->assertEquals($consulta->soapAction(), $action);
     }
 }

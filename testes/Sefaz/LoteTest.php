@@ -17,7 +17,7 @@ class LoteTest extends TestCase
         $lote = new Lote();
         $headersArray = $lote->getHeaderSoap();
 
-        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao"';
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.gnre.pe.gov.br/webservice/GnreRecepcaoLote"';
         $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: processar', $headersArray[1]);
     }
@@ -26,14 +26,14 @@ class LoteTest extends TestCase
     {
         $lote = new Lote();
 
-        $this->assertEquals('http://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
     public function testDeveRetornarAacaoAserExecutadaNoSoap()
     {
         $lote = new Lote();
 
-        $this->assertEquals('http://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+        $this->assertEquals('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
     public function testDeveRetornarOxmlDoLoteSemCamposExtrasEparaEmitenteEdestinatarioJuridicos()
@@ -313,7 +313,7 @@ class LoteTest extends TestCase
     {
         $lote = new Lote();
         $lote->utilizarAmbienteDeTeste(true);
-        $this->assertEquals('http://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
+        $this->assertEquals('https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $lote->soapAction());
     }
 
     public function testDeveRetornarOsCabecalhosParaArequisicaoSoapAoWebServiceDeteste()
@@ -323,7 +323,7 @@ class LoteTest extends TestCase
 
         $headersArray = $lote->getHeaderSoap();
 
-        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao"';
+        $header = 'Content-Type: application/soap+xml;charset=utf-8;action="http://www.testegnre.pe.gov.br/webservice/GnreRecepcaoLote"';
         $this->assertEquals($header, $headersArray[0]);
         $this->assertEquals('SOAPAction: processar', $headersArray[1]);
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="https://www.gnre.pe.gov.br"
+<schema targetNamespace="http://www.gnre.pe.gov.br"
 	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="https://www.gnre.pe.gov.br">
+	xmlns:tns="http://www.gnre.pe.gov.br">
 	<include schemaLocation="tiposBasicoGNRE_v1.00.xsd"></include>
 	<simpleType name="TReceita">
 		<restriction base="string">

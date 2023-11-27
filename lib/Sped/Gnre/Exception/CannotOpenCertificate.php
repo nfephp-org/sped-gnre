@@ -37,7 +37,7 @@ class CannotOpenCertificate extends \Exception
     {
         parent::__construct(
             'Não foi possível abrir o certificado ' . $certificate . ' verifique a senha informada',
-            0,
+            null,
             null
         );
     }

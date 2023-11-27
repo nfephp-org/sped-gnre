@@ -2,8 +2,8 @@
 <xs:schema 
 	attributeFormDefault="unqualified" 
 	elementFormDefault="qualified" 
-	targetNamespace="https://www.gnre.pe.gov.br" 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Q1="https://www.gnre.pe.gov.br">
+	targetNamespace="http://www.gnre.pe.gov.br" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://www.gnre.pe.gov.br">
 	<xs:include xmlns="http://www.gnre.pe.gov.br" schemaLocation="tiposBasicoGNRE_v1.00.xsd"/>
 	<xs:simpleType name="TDocOrigem">
 		<xs:restriction base="xs:string">

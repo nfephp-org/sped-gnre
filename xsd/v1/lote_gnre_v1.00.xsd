@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="https://www.gnre.pe.gov.br"
+<xs:schema targetNamespace="http://www.gnre.pe.gov.br"
 	elementFormDefault="qualified"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://www.gnre.pe.gov.br" 
@@ -527,8 +527,7 @@
 													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
-										</xs:element>
-
+										</xs:element>
                                         <xs:element name="c42_identificadorGuia" maxOccurs="1" minOccurs="0">
                                             <xs:simpleType>
                                             	<xs:restriction
