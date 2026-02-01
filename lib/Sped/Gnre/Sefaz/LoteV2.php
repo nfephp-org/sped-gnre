@@ -39,10 +39,12 @@ class LoteV2 extends Lote {
         $soapEnv->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
         $soapEnv->setAttribute('xmlns:xsd', 'http://www.w3.org/2001/XMLSchema');
         $soapEnv->setAttribute('xmlns:soap12', 'http://www.w3.org/2003/05/soap-envelope');
+        $soapEnv->setAttribute('xmlns:gnr', 'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao');
 
-        $gnreCabecalhoSoap = $gnre->createElement('gnreCabecMsg');
+
+        $gnreCabecalhoSoap = $gnre->createElement('gnr:gnreCabecMsg');
         $gnreCabecalhoSoap->setAttribute('xmlns', 'http://www.gnre.pe.gov.br/wsdl/processar');
-        $gnreCabecalhoSoap->appendChild($gnre->createElement('versaoDados', '2.00'));
+        $gnreCabecalhoSoap->appendChild($gnre->createElement('gnr:versaoDados', '2.00'));
 
         $soapHeader = $gnre->createElement('soap12:Header');
         $soapHeader->appendChild($gnreCabecalhoSoap);
@@ -54,7 +56,7 @@ class LoteV2 extends Lote {
             'http://www.testegnre.pe.gov.br/webservice/GnreLoteRecepcao' :
             'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
 
-        $gnreDadosMsg = $gnre->createElement('gnreDadosMsg');
+        $gnreDadosMsg = $gnre->createElement('gnr:gnreDadosMsg');
         $gnreDadosMsg->setAttribute('xmlns', $action);
 
         $gnreDadosMsg->appendChild($loteGnre);
@@ -368,5 +370,5 @@ class LoteV2 extends Lote {
         }
         return $doc;
     }
-
+    
 }
