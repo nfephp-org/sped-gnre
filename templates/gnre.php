@@ -70,7 +70,7 @@
 
     </style>
     <body>
-        {foreach $guiaViaInfo as $key => $via}
+        <?php foreach ($guiaViaInfo as $key => $via): ?>
             <table cellspacing="0" cellpadding="1" style="width:100%;">
                 <tr>
                     <td style="width: 65%;" valign="top" class="noborder">
@@ -95,31 +95,31 @@
                             </tr>
                             <tr>
                                 <td class="borderleft">
-                                    {$guia->c16_razaoSocialEmitente}
+                                    <?= $guia->c16_razaoSocialEmitente ?>
                                 </td>
                                 <td class="borderright">
-                                    {$guia->c03_idContribuinteEmitente}
+                                    <?= $guia->c03_idContribuinteEmitente ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="notop nobottom" colspan="2">
-                                    Endereço: {$guia->c18_enderecoEmitente}
+                                    Endereço: <?= $guia->c18_enderecoEmitente ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="borderleft">
-                                    Município: {$guia->c19_municipioEmitente}
+                                    Município: <?= $guia->c19_municipioEmitente ?>
                                 </td>
                                 <td class="borderright">
-                                    UF: {$guia->c20_ufEnderecoEmitente}
+                                    UF: <?= $guia->c20_ufEnderecoEmitente ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="noright notop">
-                                    CEP: {$guia->c21_cepEmitente}
+                                    CEP: <?= $guia->c21_cepEmitente ?>
                                 </td>
                                 <td class="noleft notop">
-                                    DDD/Telefone: {$guia->c22_telefoneEmitente}
+                                    DDD/Telefone: <?= $guia->c22_telefoneEmitente ?>
                                 </td>
                             </tr>
                             <tr >
@@ -129,12 +129,12 @@
                             </tr>
                             <tr>
                                 <td class="notop nobottom" colspan="2">
-                                    CNPJ/CPF/Insc. Est.: {$guia->c35_idContribuinteDestinatario}
+                                    CNPJ/CPF/Insc. Est.: <?= $guia->c35_idContribuinteDestinatario ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="notop" colspan="2">
-                                    Município: {$guia->c38_municipioDestinatario}
+                                    Município: <?= $guia->c38_municipioDestinatario ?>
                                 </td>
                             </tr>
                             <tr>
@@ -144,22 +144,22 @@
                             </tr>
                             <tr>
                                 <td class="notop nobottom" colspan="2">
-                                    Convênio/Protocolo: {$guia->c15_convenio}
+                                    Convênio/Protocolo: <?= $guia->c15_convenio ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="notop" colspan="2">
-                                    Produto: {$guia->c26_produto}
+                                    Produto: <?= $guia->c26_produto ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="nobrdtb" colspan="2" style="height:64px" valign="top">
-                                    Informações Complementares: {$guia->retornoInformacoesComplementares}
+                                    Informações Complementares: <?= $guia->retornoInformacoesComplementares ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="notop" colspan="2">
-                                    Documento válido para pagamento até {$guia->c14_dataVencimento}
+                                    Documento válido para pagamento até <?= $guia->c14_dataVencimento ?>
                                 </td>
                             </tr>
                         </table>
@@ -171,83 +171,83 @@
                                 <td style="width: 120px" colspan="2" class="nobottom">Código da Receita</td>
                             </tr>
                             <tr>
-                                <td class="notop" align="right">{$guia->c01_UfFavorecida}</td>
-                                <td class="notop" align="right" colspan="2">{$guia->c02_receita}</td>
+                                <td class="notop" align="right"><?= $guia->c01_UfFavorecida ?></td>
+                                <td class="notop" align="right" colspan="2"><?= $guia->c02_receita ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Nº de Controle</td>
                             </tr>
                             <tr>
-                                <td colspan="3" align="right" class="notop">{$guia->retornoNumeroDeControle}</td>
+                                <td colspan="3" align="right" class="notop"><?= $guia->retornoNumeroDeControle ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Data de Vencimento</td>
                             </tr>
                             <tr>
-                                <td colspan="3" align="right" class="notop">{$guia->c14_dataVencimento}</td>
+                                <td colspan="3" align="right" class="notop"><?= $guia->c14_dataVencimento ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Nº do Documento de Origem</td>
                             </tr>
                             <tr>
-                                <td colspan="3" align="right" class="notop">{$guia->c04_docOrigem}</td>
+                                <td colspan="3" align="right" class="notop"><?= $guia->c04_docOrigem ?></td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="nobottom">Período de Referência</td>
                                 <td class="nobottom" align="left">Nº Parcela</td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="notop" align="right">{$guia->mes}/{$guia->ano}</td>
-                                <td class="notop" align="right">{$guia->parcela}</td>
+                                <td colspan="2" class="notop" align="right"><?= $guia->mes ?>/<?= $guia->ano ?></td>
+                                <td class="notop" align="right"><?= $guia->parcela ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Valor Principal</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="notop" align="right">R$ {$guia->c06_valorPrincipal}</td>
+                                <td colspan="3" class="notop" align="right">R$ <?= $guia->c06_valorPrincipal ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Atualização Monetária</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="notop" align="right">R$ {$guia->retornoAtualizacaoMonetaria}</td>
+                                <td colspan="3" class="notop" align="right">R$ <?= $guia->retornoAtualizacaoMonetaria ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Juros</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="notop" align="right">R$ {$guia->retornoJuros}</td>
+                                <td colspan="3" class="notop" align="right">R$ <?= $guia->retornoJuros ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Multa</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="notop" align="right">R$ {$guia->retornoMulta}</td>
+                                <td colspan="3" class="notop" align="right">R$ <?= $guia->retornoMulta ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Total a Recolher</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="notop" align="right">{$guia->c10_valorTotal}</td>
+                                <td colspan="3" class="notop" align="right"><?= $guia->c10_valorTotal ?></td>
                             </tr>
                             <tr>
-                                <td class="noborder" colspan="3" style="text-align:right;">{$via}</td>
+                                <td class="noborder" colspan="3" style="text-align:right;"><?= $via ?></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="noborder" style="padding-left:140px;">
-                        {$guia->retornoRepresentacaoNumerica}
+                        <?= $guia->retornoRepresentacaoNumerica ?>
                     </td>
                 </tr>
                 <tr>
                     <td class="noborder" style="padding-left:90px;" >
-                        <img src="data:image/jpeg;base64,{$barcode->getCodigoBarrasBase64()}"/>
+                        <img src="data:image/jpeg;base64,<?= $barcode->getCodigoBarrasBase64() ?>"/>
                     </td>
                 </tr>
             </table>
             <br/>
-        {/foreach}
+        <?php endforeach; ?>
     </body>
 </html>

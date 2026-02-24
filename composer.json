@@ -4,14 +4,12 @@
     "license": ["GPL-3.0-or-later", "MIT"],
     "require": {
         "php": ">=7.3.0",
-        "dompdf/dompdf": "^3.0",
-        "sabberworm/php-css-parser": "^8.4",
-        "laminas/laminas-servicemanager": "~3.0",
-        "laminas/laminas-barcode": "^2.3",
-        "smarty/smarty": "~3.1",
-        "nfephp-org/sped-nfe": "~5.0",
+        "ext-dom": "*",
         "ext-gd": "*",
-        "ext-dom": "*"
+        "dompdf/dompdf": "^3.0",
+        "laminas/laminas-barcode": "^2.3",
+        "laminas/laminas-servicemanager": "~3.0",
+        "nfephp-org/sped-nfe": "~5.0"
     },
     "scripts": {
         "test": "phpunit"
@@ -29,5 +27,8 @@
         "squizlabs/php_codesniffer": "^3.5",
         "php-coveralls/php-coveralls": "^2.2",
         "mikey179/vfsstream": "^1.6"
+    },
+    "config": {
+        "sort-packages": true
     }
 }

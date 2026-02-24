@@ -19,7 +19,6 @@ namespace Sped\Gnre\Render;
 
 use Sped\Gnre\Sefaz\Lote;
 use Sped\Gnre\Render\Barcode128;
-use Sped\Gnre\Render\SmartyFactory;
 
 /**
  * Classe que contém a estrutura para gerar o pdf da guia de pagamento.
@@ -46,11 +45,6 @@ class Html
     private $barCode;
 
     /**
-     * @var type
-     */
-    private $smartyFactory;
-
-    /**
      * Retorna a instância do objeto atual ou cria uma caso não exista
      * @return \Sped\Gnre\Render\Barcode128
      */
@@ -73,25 +67,6 @@ class Html
     {
         $this->barCode = $barCode;
         return $this;
-    }
-
-    public function setSmartyFactory(\Sped\Gnre\Render\SmartyFactory $smartyFactory)
-    {
-        $this->smartyFactory = $smartyFactory;
-        return $this;
-    }
-
-    /**
-     * Retorna uma factory para ser possível utilizar o Smarty
-     * @return Sped\Gnre\Render\SmartyFactory
-     */
-    public function getSmartyFactory()
-    {
-        if ($this->smartyFactory === null) {
-            $this->smartyFactory = new SmartyFactory();
-        }
-
-        return $this->smartyFactory;
     }
 
     /**
@@ -119,15 +94,12 @@ class Html
             $barcode = $this->getBarCode()
                     ->setNumeroCodigoBarras($guia->retornoCodigoDeBarras);
 
-            $smarty = $this->getSmartyFactory()
-                    ->create();
-            $smarty->assign('guiaViaInfo', $guiaViaInfo);
-            $smarty->assign('barcode', $barcode);
-            $smarty->assign('guia', $guia);
+            $documentRoot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DIRECTORY_SEPARATOR;
+            $templatePath = $documentRoot . 'templates' . DIRECTORY_SEPARATOR . 'gnre.php';
 
-            $documentRoot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) .  DIRECTORY_SEPARATOR ;
-
-            $html .= $smarty->fetch($documentRoot . 'templates' . DIRECTORY_SEPARATOR . 'gnre.tpl');
+            ob_start();
+            include $templatePath;
+            $html .= ob_get_clean();
         }
 
         $this->html = $html;
