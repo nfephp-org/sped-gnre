@@ -82,6 +82,18 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			<xs:element minOccurs="0" name="qrcodePayload">
+				<xs:annotation>
+					<xs:documentation>String PIX, texto copia e cola, utilizado na geracao do qrcode.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:whiteSpace value="preserve" />
+						<xs:maxLength value="512"></xs:maxLength>
+						<xs:minLength value="100"></xs:minLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 			<xs:element name="motivosRejeicao" maxOccurs="1" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
@@ -131,7 +143,7 @@
     			<xs:element name="numeroRecibo" minOccurs="0">
     				<xs:simpleType>
     					<xs:restriction base="xs:string">
-    						<xs:pattern value="[0-9]{10}"></xs:pattern>
+    						<xs:pattern value="[0-9]{14}"></xs:pattern>
     					</xs:restriction>
     				</xs:simpleType>
     			</xs:element>
@@ -167,9 +179,11 @@
                                     	<xs:element name="situacaoGuia" maxOccurs="1" minOccurs="1">
 											<xs:annotation>
 												<xs:documentation>
-													0 - Processada com sucesso 1 - Invalidada pelo
-													Portal 2 - Invalidada pela UF 3 - Erro de
-													comunicação
+													0 - Processada com sucesso 
+													1 - Invalidada pelo	Portal 
+													2 - Invalidada pela UF 
+													3 - Erro de	comunicação
+													4 - Pendencia de processamento
 												</xs:documentation>
 											</xs:annotation>
 											<xs:simpleType>
@@ -178,6 +192,7 @@
 													<xs:enumeration value="1"></xs:enumeration>
 													<xs:enumeration value="2"></xs:enumeration>
 													<xs:enumeration value="3"></xs:enumeration>
+													<xs:enumeration value="4"></xs:enumeration>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:element>
@@ -257,6 +272,27 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pdfGuias" minOccurs="0" maxOccurs="1"></xs:element>
+							<xs:element name="arquivoPagamento" minOccurs="0" maxOccurs="1"></xs:element>
+							<xs:element name="noticias" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="noticia" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="dhPublicacao" type="TDataHora" maxOccurs="1" minOccurs="1">
+						                                <xs:annotation>
+						                                	<xs:documentation>Data e Hora da publicacao da noticia</xs:documentation>
+						                                </xs:annotation>			                                
+													</xs:element>
+													<xs:element name="titulo" minOccurs="1" maxOccurs="1" type="xs:string" />
+													<xs:element name="texto" minOccurs="1" maxOccurs="1" type="xs:string" />			
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcaoConsulta" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcaoConsulta" xmlns:intf="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcaoConsulta" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcaoConsulta" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="gnreDadosMsg">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+   <element name="consultarResponse">
+    <complexType>
+     <sequence/>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="consultarRequest">
+
+      <wsdl:part element="impl:gnreDadosMsg" name="gnreDadosMsg">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarResponse">
+
+      <wsdl:part element="impl:consultarResponse" name="consultarResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GnreLoteRecepcaoConsultaSoap">
+
+      <wsdl:operation name="consultar" parameterOrder="gnreDadosMsg">
+
+         <wsdl:input message="impl:consultarRequest" name="consultarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consultarResponse" name="consultarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GnreLoteRecepcaoConsultaSoapBinding" type="impl:GnreLoteRecepcaoConsultaSoap">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultar">
+
+         <wsdlsoap:operation soapAction="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcaoConsulta/consultar"/>
+
+         <wsdl:input name="consultarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GnreLoteRecepcaoConsulta">
+
+      <wsdl:port binding="impl:GnreLoteRecepcaoConsultaSoapBinding" name="GnreLoteRecepcaoConsulta">
+
+         <wsdlsoap:address location="https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcaoConsulta"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
