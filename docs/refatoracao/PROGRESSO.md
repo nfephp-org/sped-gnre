@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F2 (Comunicação), em andamento
-- **Tarefa:** T2.6 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 a T2.5 concluídas)
+- **Fase:** F2 ✅ concluída. Próxima: F3 (`Make` 2.00 + `MakeConsulta` + `RegrasUf`)
+- **Tarefa:** escrever o plano detalhado da F3 (`planos/AAAA-MM-DD-fase-3-make.md`)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T2.6, exemplos, CHANGELOG, CI e fechamento da F2.
+- **Próxima ação:** escrever o plano da F3. Fontes: golden `lote-v2-*`, `legacy/lib/Sped/Gnre/Sefaz/LoteV2.php`, `backup/master-local-2024-08:lib/Sped/Gnre/Sefaz/LoteV2Builder.php`, ACBr `PCNGNRE/pgnreGNREW.pas` e Manual 2.17 seção 4.1.
 
 ## Pendências abertas
 
@@ -42,6 +42,8 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **R-10** (T2.2): propriedades da `Common\Tools` declaradas com `@var` (padrão sped-mdfe/sped-nfe), sem tipo nativo; o comportamento é o mesmo do contrato do ROADMAP. Custo se errado: tipar depois, sem quebra.
 - **R-11** (T2.4): os helpers `golden()`/`c14n()` do `ToolsTestCase` passaram a usar **C14N exclusivo**. O C14N comum levava junto os `xmlns` do envelope SOAP legado, e com isso o teste do lote da T2.3 enviava o golden já "sujo" e comparava o golden com ele mesmo; a consulta e o ConfigUF falharam por isso. Agora a comparação considera só os namespaces usados. Custo se errado: nenhum (só afeta testes).
 - **R-12** (T2.4): valores do usuário inseridos no XML (recibo, receita) passam por `htmlspecialchars(ENT_XML1)`, prevenindo injeção de XML; a validação de formato continua no XSD. Custo se errado: nenhum.
+- **R-13** (T2.6): a regra `certs/` do `.gitignore` legado ignorava **qualquer** pasta `certs`, inclusive `tests/fixtures/certs`, e a CI falhou nas 7 versões por falta do certificado de teste. A regra passou a ser `/certs/` (só na raiz), e foi conferido que nenhum outro arquivo do projeto estava sendo ignorado. Custo se errado: nenhum.
+- **Revisão final da F2:** autorrevisão (sem agente revisor, que só é criado a pedido do usuário). Uma revisão independente pode ser pedida antes da F3.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -108,6 +110,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T2.3 | `Tools::sefazEnviaLote` (1.00 e 2.00): a mensagem é igual ao golden (C14N), o envelope segue D-15 e um XML inválido não é enviado; suíte 75 ✔ | feat: sefazEnviaLote |
 | 2026-11-22 | T2.4 | `sefazConsultaLote` (opções incluirPDFGuias/ArquivoPagamento/Noticias só no 2.00, na ordem do XSD) e `sefazConsultaConfigUf` (courier); mensagens iguais ao golden; R-11 e R-12; suíte 88 ✔ | feat: sefazConsultaLote e sefazConsultaConfigUf |
 | 2026-11-22 | T2.5 | Consulta de guia: `sefazEnviaLoteConsulta` (XSD lote_consulta_guia 2.00) e `sefazConsultaLoteConsulta`, sempre com versaoDados 2.00 e pasta PL_GNRE_200, mesmo com o config em 1.00; suíte 94 ✔ | feat: consulta de guia |
+| 2026-11-22 | T2.6 | Exemplos dos 5 serviços (`examples/`), CHANGELOG `Added`; CI falhou (certificado ignorado pelo `.gitignore`, R-13), corrigido; **CI verde nas 7 versões** (run com sha 899430e). **F2 concluída** | docs: exemplos + test: certificado |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
