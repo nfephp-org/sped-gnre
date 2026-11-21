@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F2 ✅ concluída. Próxima: F3 (`Make` 2.00 + `MakeConsulta` + `RegrasUf`)
-- **Tarefa:** escrever o plano detalhado da F3 (`planos/AAAA-MM-DD-fase-3-make.md`)
+- **Fase:** F3 (`Make` 2.00 + `MakeConsulta` + `RegrasUf`), em andamento
+- **Tarefa:** T3.1 do plano `planos/2026-11-22-fase-3-make.md`
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** escrever o plano da F3. Fontes: golden `lote-v2-*`, `legacy/lib/Sped/Gnre/Sefaz/LoteV2.php`, `backup/master-local-2024-08:lib/Sped/Gnre/Sefaz/LoteV2Builder.php`, ACBr `PCNGNRE/pgnreGNREW.pas` e Manual 2.17 seção 4.1.
+- **Próxima ação:** T3.1, `Make` (guia, emitente, montagem e erros).
 
 ## Pendências abertas
 
@@ -111,6 +111,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T2.4 | `sefazConsultaLote` (opções incluirPDFGuias/ArquivoPagamento/Noticias só no 2.00, na ordem do XSD) e `sefazConsultaConfigUf` (courier); mensagens iguais ao golden; R-11 e R-12; suíte 88 ✔ | feat: sefazConsultaLote e sefazConsultaConfigUf |
 | 2026-11-22 | T2.5 | Consulta de guia: `sefazEnviaLoteConsulta` (XSD lote_consulta_guia 2.00) e `sefazConsultaLoteConsulta`, sempre com versaoDados 2.00 e pasta PL_GNRE_200, mesmo com o config em 1.00; suíte 94 ✔ | feat: consulta de guia |
 | 2026-11-22 | T2.6 | Exemplos dos 5 serviços (`examples/`), CHANGELOG `Added`; CI falhou (certificado ignorado pelo `.gitignore`, R-13), corrigido; **CI verde nas 7 versões** (run com sha 899430e). **F2 concluída** | docs: exemplos + test: certificado |
+| 2026-11-22 | plano F3 | Pesquisa: XSD 2.17 (ordem dos elementos), ACBr `pgnreGNREW.GerarXml2`, golden. Achados: o legado descartava detalhamentoReceita/produto/IE do emitente/convenio e duplicava o valor principal; o layout 1.00 vive dentro do lote 2.00 (P-06, para a F4). Plano da F3 escrito | docs: plano da F3 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
