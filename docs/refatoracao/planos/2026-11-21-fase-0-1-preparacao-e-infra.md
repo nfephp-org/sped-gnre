@@ -192,15 +192,15 @@
 - Create: `.github/workflows/ci.yml`
 - Modify: `README.md` (reescrito), Create: `CHANGELOG.md`
 
-- [ ] **Step 1: `ci.yml`** com base em `D:/NfePhpDev/sped-nfe/.github/workflows/ci.yml`:
+- [x] **Step 1: `ci.yml`** com base em `D:/NfePhpDev/sped-nfe/.github/workflows/ci.yml`:
   - gatilhos: push em `master` e `refactor/v1`, PR em `master`
   - matriz `["7.4","8.0","8.1","8.2","8.3","8.4","8.5"]`
   - extensões: `dom, curl, openssl, soap, json, libxml, simplexml, mbstring, gd, zlib`
   - steps: checkout@v4 → setup-php@v2 → `composer validate --strict` → `git ls-files --eol | grep "w/crlf" && exit 1 || true` → `composer install --no-progress` → `composer phpcs` → `composer stan` → `composer test`
   - sem Codecov por enquanto (o fork não tem token)
-- [ ] **Step 2: Push e conferir a CI** — Run: `git push` e, com o gh autenticado, `gh run watch` (sem gh: aba Actions do fork) → Expected: as 7 versões verdes. Uma versão vermelha → corrigir antes de seguir e registrar a causa no PROGRESSO.
-- [ ] **Step 3: README.md** com: badges da CI do fork; aviso "1.0 em desenvolvimento — para a 0.x use a tag `0.0.x`"; requisitos (PHP ≥ 7.4, extensões); instalação; link para `docs/refatoracao/ROADMAP.md`. Preservar a seção "Antes de usar a API" do README atual (avisos sobre a SEFAZ e o certificado).
-- [ ] **Step 4a: Licença** — copiar `D:/NfePhpDev/sped-nfe/LICENSE.md` (LGPLv3) por cima do `LICENSE.md` e acrescentar ao README a seção "Licença" com o texto padrão do sped-nfe (LGPLv3+, GPLv3+ ou MIT, à escolha). Registrar no CHANGELOG: `### Changed — licença alinhada ao ecossistema`.
-- [ ] **Step 4: CHANGELOG.md** com `## [1.0.0] - Unreleased` e `### Changed` (namespace, PHP ≥ 7.4, sped-common), `### Removed` (Smarty, Dompdf, laminas, sped-nfe, Guzzle).
-- [ ] **Step 5 (usuário): abrir uma issue em nfephp-org/sped-gnre** com o título "Proposta: sped-gnre 1.0 no padrão sped-common (PHP ≥ 7.4)" e o resumo das decisões D-01..D-10 e link para o ROADMAP no fork. Anotar o número da issue no PROGRESSO.
-- [ ] **Step 6: Fechar a fase**: marcar F1 ✅ no ROADMAP; no PROGRESSO, definir "Próxima ação: escrever o plano detalhado da F2"; commit `ci: pipeline 7.4-8.5 e docs da 1.0`.
+- [x] **Step 2: Push e conferir a CI** — Run: `git push` e, com o gh autenticado, `gh run watch` (sem gh: aba Actions do fork) → Expected: as 7 versões verdes. Uma versão vermelha → corrigir antes de seguir e registrar a causa no PROGRESSO.
+- [x] **Step 3: README.md** com: badges da CI do fork; aviso "1.0 em desenvolvimento — para a 0.x use a tag `0.0.x`"; requisitos (PHP ≥ 7.4, extensões); instalação; link para `docs/refatoracao/ROADMAP.md`. Preservar a seção "Antes de usar a API" do README atual (avisos sobre a SEFAZ e o certificado).
+- [x] **Step 4a: Licença** — copiar `D:/NfePhpDev/sped-nfe/LICENSE.md` (LGPLv3) por cima do `LICENSE.md` e acrescentar ao README a seção "Licença" com o texto padrão do sped-nfe (LGPLv3+, GPLv3+ ou MIT, à escolha). Registrar no CHANGELOG: `### Changed — licença alinhada ao ecossistema`.
+- [x] **Step 4: CHANGELOG.md** com `## [1.0.0] - Unreleased` e `### Changed` (namespace, PHP ≥ 7.4, sped-common), `### Removed` (Smarty, Dompdf, laminas, sped-nfe, Guzzle).
+- [ ] **Step 5 (usuário): rascunho pronto em `docs/refatoracao/rascunho-issue-upstream.md`. Abrir uma issue em nfephp-org/sped-gnre** com o título "Proposta: sped-gnre 1.0 no padrão sped-common (PHP ≥ 7.4)" e o resumo das decisões D-01..D-10 e link para o ROADMAP no fork. Anotar o número da issue no PROGRESSO.
+- [x] **Step 6: Fechar a fase**: marcar F1 ✅ no ROADMAP; no PROGRESSO, definir "Próxima ação: escrever o plano detalhado da F2"; commit `ci: pipeline 7.4-8.5 e docs da 1.0`.

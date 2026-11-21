@@ -103,7 +103,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | Fase | Nome | Status | Plano detalhado | Critério de saída (tudo verificável) |
 |------|------|--------|-----------------|---------------------------------------|
 | F0 | Preparação e linha de base | ✅ | `planos/2026-11-21-fase-0-1-preparacao-e-infra.md` | branch `refactor/v1` no origin; finais de linha normalizados; resultado da suíte antiga registrado; golden XMLs em `tests/fixtures/legacy/`; fork do sped-da clonado |
-| F1 | Infraestrutura e esqueleto | ⬜ | idem | `composer validate --strict`, `composer phpcs`, `composer stan`, `composer test` verdes no PHP 8.3 local e CI verde de 7.4 a 8.5 |
+| F1 | Infraestrutura e esqueleto | ✅ | idem | `composer validate --strict`, `composer phpcs`, `composer stan`, `composer test` verdes no PHP 8.3 local e CI verde de 7.4 a 8.5 |
 | F2 | Comunicação (`Common\Tools`, `Tools`, `Webservices`) | ⬜ | escrever ao iniciar | os 3 serviços testados com `SoapFake`; envelope equivalente ao golden (XML canonicalizado); nenhuma chave gravada fora do temp do SoapCurl |
 | F3 | `Make` 2.00 + `RegrasUf` | ⬜ | escrever ao iniciar | os cenários de `legacy/exemplos/xml` geram XML válido no XSD 2.00; diferenças em relação ao golden do `LoteV2` explicadas no PROGRESSO (bugs corrigidos) |
 | F4 | `MakeV1` (layout 1.00) | ⬜ | escrever ao iniciar | igual ao golden do `Lote` v1 e válido no XSD 1.00 |

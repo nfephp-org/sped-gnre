@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F1, em andamento
-- **Tarefa:** T1.4 (T1.1, T1.2 e T1.3 concluídas)
+- **Fase:** F1 ✅ concluída. Próxima: F2 (Comunicação)
+- **Tarefa:** escrever o plano detalhado da F2 (`planos/AAAA-MM-DD-fase-2-comunicacao.md`)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T1.4: CI (`.github/workflows/ci.yml`), README, LICENSE.md (LGPL), CHANGELOG e a issue de anúncio no upstream. ⚠️ Antes da F4, responder à **P-02** (manter ou não o layout 1.00).
+- **Próxima ação:** (1) usuário: revisar e publicar a issue (`rascunho-issue-upstream.md`, P-04); (2) responder **P-02** (layout 1.00) e **P-03** (incluir consulta de guia na F2); (3) escrever o plano da F2.
 
 ## Pendências abertas
 
@@ -23,6 +23,7 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 |----|-----------|----------|-----------------|
 | P-01 | ✅ **Resolvida** (2026-11-21): pacote oficial do **Manual v2.17** baixado do Portal GNRE (`https://www.gnre.pe.gov.br:444/gnre/v/automacao/baixarManual`; a porta 443 devolve 403 para acesso automatizado). Tem 16 XSDs completos, sem include faltando, e valida os golden com dados corretos. Virou `schemes/PL_GNRE_200/`. | — | — |
 | P-02 | O pacote oficial 2.17 **não tem mais** o `lote_gnre_v1.00.xsd`; segundo fontes secundárias, a SEFAZ aceitou o lote 1.00 só até 31/03/2021. D-04 (manter o layout 1.00 / `MakeV1` / F4) precisa ser reconfirmada pelo usuário. | F4 (não bloqueia F1–F3) | Proposta: não implementar o `MakeV1`. Manter `schemes/PL_GNRE_100` só como histórico, ou removê-lo. |
+| P-04 | Issue de anúncio no nfephp-org/sped-gnre (T1.4 Step 5): rascunho pronto em `docs/refatoracao/rascunho-issue-upstream.md`. É pública e sai em nome do usuário, por isso não foi publicada automaticamente. | aceitação upstream (não bloqueia a F2) | Usuário revisa e publica |
 | P-03 | O pacote 2.17 traz serviços que o legado não implementa: consulta de guia (`lote_consulta_guia_v2.00.xsd`, `lote_gnre_result_consulta_v2.00.xsd`) e `retorno_gnre_v2.00.xsd`. | plano da F2 | Incluir `sefazConsultaGuia()` no contrato da `Tools` ao escrever o plano da F2 (exige uma decisão D-13). |
 
 ## Decisões de execução (R-xx)
@@ -95,6 +96,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-21 | — | Sessão pausada pelo usuário no início da T1.2 | docs: ponto de retomada |
 | 2026-11-22 | T1.2 | Novo `composer.json` (php>=7.4, sped-common ^5.1, licença LGPL/GPL/MIT); install limpo; `composer audit`: 0 vulnerabilidades (antes 5 no Smarty) | build!: composer 1.0 |
 | 2026-11-22 | T1.3 | Exceções `NFePHP\Gnre\Exception\*`, phpcs (PSR-12 + PHPCompatibility 10), phpstan nível 5, phpunit; `SchemesTest` com 53 testes ✔ (XSDs, includes, 4 golden válidos, exceções). R-06..R-09 | feat: esqueleto NFePHP\Gnre + chore: phpstan.neon |
+| 2026-11-22 | T1.4 | `ci.yml` (7.4–8.5, validate, CRLF, phpcs, stan, test); **CI verde nas 7 versões** (run 44904014382); README, LICENSE.md (LGPLv3), CHANGELOG; rascunho da issue. **F1 concluída** | ci: pipeline 7.4-8.5 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
