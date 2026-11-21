@@ -96,15 +96,17 @@
 | `lote-v2-completo-homolog.xml` | igual, com `setAmbienteDeTesteV2(true)` |
 | `consulta-lote-prod.xml` | `new Sped\Gnre\Sefaz\Consulta()`; `setRecibo('1234567890')`, `setEnvironment(1)` → `toXml()` (o oficial não tem construtor; ambiente de produção = padrão, `utilizarAmbienteDeTeste(false)`) |
 | `config-uf-prod.xml` | `new Sped\Gnre\Sefaz\ConfigUf()`, `setEnvironment(1)`, `setEstado('PR')`, `setReceita(100099)` → `toXml()` |
+| `lote-v1-valido.xml` | `Lote` + `guiaValida()` (acrescentado na execução, ver R-03) |
+| `lote-v2-valido-prod.xml` | `LoteV2` produção + `guiaValida()` (acrescentado na execução, ver R-03) |
 
-- [ ] **Step 1: Escrever `gerar.php`**: `require __DIR__.'/../../../vendor/autoload.php'`, monta cada caso da tabela e grava com `DOMDocument::loadXML` + `formatOutput = true` (saída estável e legível) em `__DIR__`. Uma função `guiaExemplo(): Sped\Gnre\Sefaz\Guia` com os valores de `exemplos/gerar-xml.php`.
-- [ ] **Step 2: Gerar**
-  Run: `php tests/fixtures/legacy/gerar.php && ls tests/fixtures/legacy/*.xml | wc -l` → Expected: `6`
-- [ ] **Step 3: Conferir o determinismo**
-  Run: `php tests/fixtures/legacy/gerar.php && git status --short tests/fixtures/legacy` (após um `git add` do Step 2) → Expected: nenhuma modificação.
-- [ ] **Step 4: Validar o conteúdo interno nos XSDs** (one-liner PHP: extrair o nó `TLote_GNRE`, `TConsLote_GNRE` ou `TConsultaConfigUf` com DOMXPath e chamar `schemaValidate` com `xsd/v1/lote_gnre_v1.00.xsd`, `xsd/v2/lote_gnre_v2.00.xsd`, `xsd/v1/lote_gnre_consulta_v1.00.xsd`, `xsd/v1/consulta_config_uf_v1.00.xsd`). Gravar em `validos.txt` uma linha `arquivo;xsd` para cada golden que **passou**.
-- [ ] **Step 5: Registrar no PROGRESSO** quais goldens falharam no XSD e a primeira mensagem do libxml (são os primeiros candidatos à tabela de divergências).
-- [ ] **Step 6: Commit** `test: golden XMLs do comportamento legado`
+- [x] **Step 1: Escrever `gerar.php`**: `require __DIR__.'/../../../vendor/autoload.php'`, monta cada caso da tabela e grava com `DOMDocument::loadXML` + `formatOutput = true` (saída estável e legível) em `__DIR__`. Uma função `guiaExemplo(): Sped\Gnre\Sefaz\Guia` com os valores de `exemplos/gerar-xml.php`.
+- [x] **Step 2: Gerar**
+  Run: `php tests/fixtures/legacy/gerar.php && ls tests/fixtures/legacy/*.xml | wc -l` → Expected: `6` → resultado `8` (R-03)
+- [x] **Step 3: Conferir o determinismo**
+  Run: `php tests/fixtures/legacy/gerar.php && git status --short tests/fixtures/legacy` (após um `git add` do Step 2) → Expected: nenhuma modificação. ✔
+- [x] **Step 4: Validar o conteúdo interno nos XSDs**. Formato do `validos.txt` alterado para `arquivo;nome-do-xsd`, só o nome do arquivo (R-02).
+- [x] **Step 5: Registrar no PROGRESSO** quais goldens falharam no XSD e a primeira mensagem do libxml (são os primeiros candidatos à tabela de divergências).
+- [x] **Step 6: Commit** `test: golden XMLs do comportamento legado`
 
 ### Task T0.5: Fork do sped-da (ação do usuário)
 
@@ -112,7 +114,7 @@
 - [x] **Step 2:** clonado em `D:/betoeu/sped-da` com o remote `upstream` → nfephp-org/sped-da.
 - [x] **Step 3:** `master` = `upstream/master` = `6e4b3e7`.
 - [x] **Step 4 (usuário):** `gh auth login` feito (conta betoeu).
-- [ ] **Step 5:** marcar F0 ✅ no ROADMAP e commitar `docs: conclui F0`.
+- [x] **Step 5:** marcar F0 ✅ no ROADMAP e commitar `docs: conclui F0`.
 
 ---
 
@@ -122,6 +124,11 @@
 
 **Files:** só movimentações (`git mv`).
 
+- [ ] **Step 0: Resolver a pendência P-01 (pacote de schemas, ver PROGRESSO)** antes de mover. O `xsd/v2` do repositório está quebrado (inclui `dados_gnre_v1.00.xsd` e `tiposBasicoGNRE_v1.00.xsd`, que não estão na pasta) e diverge do zip do manual nos dois sentidos.
+  - Se o pacote vigente puder ser baixado do Portal GNRE: ele vira `schemes/PL_GNRE_200/` (pasta plana, todos os arquivos).
+  - Se não puder: `schemes/PL_GNRE_200/` = os 13 XSDs de `exemplos/docs/Manual_de_Integracao_Contribuintes_GNRE_v2.00.zip`, aplicando por cima o padrão `[0-9]{2}BR[0-9]{11}` do `tiposBasicoGNRE_v2.00.xsd` do repositório; `schemes/PL_GNRE_100/` = `xsd/v1` do repositório.
+  - Registrar a origem de cada arquivo em `schemes/README.md`.
+  - Nesse caso, a linha `git mv xsd/v2 …` do Step 1 é trocada pela cópia do pacote escolhido mais `git rm -r xsd/v2`.
 - [ ] **Step 1: Mover**
   ```bash
   mkdir -p legacy docs schemes
@@ -168,7 +175,7 @@
 - [ ] **Step 1: Escrever o teste `tests/SchemesTest.php`** (`NFePHP\Gnre\Tests\SchemesTest extends PHPUnit\Framework\TestCase`):
   - `testTodosOsXsdCarregam` (data provider com cada `schemes/*/*.xsd`): `assertTrue((new DOMDocument())->load($xsd))`.
   - `testIncludesExistem` (mesmo provider): para cada `xs:include/@schemaLocation` e `xs:import/@schemaLocation`, `assertFileExists(dirname($xsd).'/'.$loc)`.
-  - `testGoldenValidos` (provider lido de `tests/fixtures/legacy/validos.txt`; se o arquivo estiver vazio, `markTestSkipped`): extrai o nó raiz de dados e chama `NFePHP\Common\Validator::isValid($xml, $xsd)` → `assertTrue`. O caminho do XSD é remapeado de `xsd/v1/`→`schemes/PL_GNRE_100/` e `xsd/v2/`→`schemes/PL_GNRE_200/`.
+  - `testGoldenValidos` (provider lido de `tests/fixtures/legacy/validos.txt`; se o arquivo estiver vazio, `markTestSkipped`): extrai o nó raiz de dados (`TLote_GNRE`, `TConsLote_GNRE` ou `TConsultaConfigUf`) e chama `NFePHP\Common\Validator::isValid($xml, $xsd)` → `assertTrue`. O `validos.txt` guarda `arquivo;nome-do-xsd` (R-02): nomes com `v2.00` são procurados em `schemes/PL_GNRE_200/` e os demais em `schemes/PL_GNRE_100/`. Os 4 golden listados precisam passar.
   - `testDocumentsExceptionImplementaInterface`: `assertInstanceOf(ExceptionInterface::class, DocumentsException::wrongDocument(1))`.
 - [ ] **Step 2: Rodar e ver falhar** — Run: `vendor/bin/phpunit` → Expected: erro `Class "NFePHP\Gnre\Exception\DocumentsException" not found` (ou "No tests executed" sem `phpunit.xml.dist`).
 - [ ] **Step 3: Criar as exceções e as configurações**:
