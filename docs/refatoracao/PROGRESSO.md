@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F6 (DA da guia), em andamento
-- **Tarefa:** T6.1 do plano `planos/2026-11-22-fase-6-dagnre.md`
+- **Tarefa:** T6.2 do plano `planos/2026-11-22-fase-6-dagnre.md` (T6.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T6.1, dependências (sped-da, ext-gd, smalot/pdfparser) e CI antes de seguir.
+- **Próxima ação:** T6.2, `DA\DadosGuia`.
 
 ## Pendências abertas
 
@@ -47,6 +47,7 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **Revisão final da F2:** autorrevisão (sem agente revisor, que só é criado a pedido do usuário). Uma revisão independente pode ser pedida antes da F3.
 - **R-14** (T3.1): o `Make.php` da T3.1 já inclui as tags de item da T3.2, porque o desenho de slots por guia e item é um só e dividi-lo geraria retrabalho. A T3.2 continua TDD: os testes dela cobrem esse código e, se algum passar de primeira, isso é registrado como achado. Custo se errado: nenhum.
 - **R-15** (T5.1): a fixture `retorno-resultado-v2.xml` (do ACBr, de 2020) teve o `numeroRecibo` completado de 10 para 14 dígitos, porque o XSD 2.17 do **resultado** só aceita 14 (a consulta aceita 10 ou 14). Isso indica que os recibos atuais têm 14 dígitos. A alteração está registrada no comentário da fixture. Custo se errado: nenhum (só afeta testes).
+- **R-16** (T6.1): `composer stan` passou a usar `--memory-limit=512M`, porque com o sped-da o phpstan passa dos 128 MB padrão (o erro aparecia só como "Found 1 error" e a cadeia condicionada barrou o commit, como devia). Custo se errado: nenhum.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -130,6 +131,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T5.3 | `Factories\FromNFe`: emitente, destinatário, chave/número, valores, documento de origem pelas `RegrasUf`, `guiaDifal`/`guiaSt` (FCP como tipo 12) devolvendo um `Make` que ainda aceita tags; guia gerada da NF-e real válida no XSD; fixture `nfe-difal.xml` + `tests/fixtures/xml/README.md`; 13 testes; suíte 205 ✔ | feat: FromNFe |
 | 2026-11-22 | T5.4 | Exemplos `standardize-retorno.php` e `guia-difal-da-nfe.php` (sem rede; o XML de DIFAL é válido no XSD); CHANGELOG; **CI verde nas 7 versões** (sha da3f6c8). **F5 concluída** | docs: exemplos F5 |
 | 2026-11-22 | plano F6 | Pesquisa: sped-da `DaCommon`/`Damdfe` (código de barras via tc-lib em PNG base64), ACBr (`TRLBarcode` com Ratio 3 = **I25**, padrão Febraban de arrecadação; o legado usava Code128); o XSD do resultado 2.17 tem `qrcodePayload` (**PIX**) e `pdfGuias`; os campos de retorno diferem entre 1.00 e 2.00 → `DadosGuia` normaliza. Plano da F6 escrito | docs: plano da F6 |
+| 2026-11-22 | T6.1 | `nfephp-org/sped-da` ^1.1 (v1.1.7, com tc-lib-barcode 1.18.5) + `ext-gd`; `smalot/pdfparser` ^2.12 em dev; smoke test I25 + PDF; phpstan com 512M (R-16); **CI verde nas 7 versões** (sha 9a3a254) | build: sped-da |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

@@ -50,12 +50,12 @@
 **Files:**
 - Modify: `composer.json`, `.github/workflows/ci.yml` (a extensão `gd` já está), `README.md` (requisitos)
 
-- [ ] **Step 1:** acrescentar `"nfephp-org/sped-da": "^1.1"` e `"ext-gd": "*"` no `require`, e `"smalot/pdfparser": "^2.12"` no `require-dev`.
-- [ ] **Step 2:** `composer validate --strict && composer update --no-interaction` → sem erro; conferir com `composer show nfephp-org/sped-da tecnickcom/tc-lib-barcode smalot/pdfparser` que os três estão instalados.
-- [ ] **Step 3:** smoke test `tests/DA/DependenciasTest.php`: `testI25`, `(new Com\Tecnick\Barcode\Barcode())->getBarcodeObj('I25', str_repeat('8', 44), -1, -12, 'black')->getPngData()` começa com `"\x89PNG"`; `testPdf`, `new NFePHP\DA\Legacy\Pdf('P', 'mm', 'A4')` gera uma string que começa com `%PDF`.
-- [ ] **Step 4:** a cadeia `composer phpcs && composer stan && composer test` → verde.
-- [ ] **Step 5:** push e CI das 7 versões verdes **antes** de seguir (para descobrir cedo uma incompatibilidade do sped-da com o 7.4 ou o 8.5).
-- [ ] **Step 6: Commit** `build: sped-da (DA da guia) e pdfparser em dev`
+- [x] **Step 1:** acrescentar `"nfephp-org/sped-da": "^1.1"` e `"ext-gd": "*"` no `require`, e `"smalot/pdfparser": "^2.12"` no `require-dev`.
+- [x] **Step 2:** `composer validate --strict && composer update --no-interaction` → sem erro; conferir com `composer show nfephp-org/sped-da tecnickcom/tc-lib-barcode smalot/pdfparser` que os três estão instalados.
+- [x] **Step 3:** smoke test `tests/DA/DependenciasTest.php`: `testI25`, `(new Com\Tecnick\Barcode\Barcode())->getBarcodeObj('I25', str_repeat('8', 44), -1, -12, 'black')->getPngData()` começa com `"\x89PNG"`; `testPdf`, `new NFePHP\DA\Legacy\Pdf('P', 'mm', 'A4')` gera uma string que começa com `%PDF`.
+- [x] **Step 4:** a cadeia `composer phpcs && composer stan && composer test` → verde.
+- [x] **Step 5:** push e CI das 7 versões verdes **antes** de seguir (para descobrir cedo uma incompatibilidade do sped-da com o 7.4 ou o 8.5).
+- [x] **Step 6: Commit** `build: sped-da (DA da guia) e pdfparser em dev`
 
 ### Task T6.2: `DA\DadosGuia` (normalização para impressão)
 
