@@ -124,7 +124,7 @@
 - Create: `examples/dagnre.php` (gera o PDF a partir da fixture do resultado v2, sem rede; com `php -d ... > guia.pdf` ou mostrado no navegador)
 - Modify: `CHANGELOG.md`, `README.md` (seção "Impressão da guia", incluindo a alternativa `incluirPDFGuias`), `docs/refatoracao/ROADMAP.md`, `docs/refatoracao/PROGRESSO.md`
 
-- [ ] **Step 1:** exemplo + `php -l` + execução (a saída começa com `%PDF`).
-- [ ] **Step 2:** CHANGELOG (`### Added`: `DA\Dagnre` e `DA\DadosGuia`; `### Fixed`: código de barras I25); README.
-- [ ] **Step 3:** push e CI → 7 jobs `success`.
-- [ ] **Step 4: Fechar a fase**: F6 ✅; a próxima ação passa a ser escrever o plano da F7 (docs, limpeza, RC e homologação real). Commit `docs: conclui F6`.
+- [x] **Step 1:** exemplo + `php -l` + execução (a saída começa com `%PDF`).
+- [x] **Step 2:** CHANGELOG (`### Added`: `DA\Dagnre` e `DA\DadosGuia`; `### Fixed`: código de barras I25); README.
+- [x] **Step 3:** push e CI → 7 jobs `success`.
+- [x] **Step 4: Fechar a fase**: F6 ✅; a próxima ação passa a ser escrever o plano da F7 (docs, limpeza, RC e homologação real). Commit `docs: conclui F6`.

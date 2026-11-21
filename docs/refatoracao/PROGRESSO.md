@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F6 (DA da guia), em andamento
-- **Tarefa:** T6.4 do plano `planos/2026-11-22-fase-6-dagnre.md` (T6.1 a T6.3 concluídas)
+- **Fase:** F6 ✅ concluída. Próxima: F7 (docs, exemplos, limpeza, RC e homologação real)
+- **Tarefa:** escrever o plano detalhado da F7
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T6.4, exemplo `dagnre.php`, README (seção impressão), CHANGELOG, CI e fechamento da F6.
+- **Próxima ação:** escrever o plano da F7: remover `legacy/`, guia de migração 0.x→1.0, README completo (incluindo a nota de valor 21 = 11 e o tamanho do recibo), revisão independente do branch (opcional, a pedido do usuário), homologação real com o certificado do usuário (P-05), tag `v1.0.0-rc1` e, por D-13, issue + PR no nfephp-org.
 
 ## Pendências abertas
 
@@ -134,6 +134,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T6.1 | `nfephp-org/sped-da` ^1.1 (v1.1.7, com tc-lib-barcode 1.18.5) + `ext-gd`; `smalot/pdfparser` ^2.12 em dev; smoke test I25 + PDF; phpstan com 512M (R-16); **CI verde nas 7 versões** (sha 9a3a254) | build: sped-da |
 | 2026-11-22 | T6.2 | `DA\DadosGuia`: resultado 2.00 (soma por tipo: principal 11+12, atualização 51+52, juros 41+42, multa 31+32), guia 1.00 do resultado (c06..c10, c29, c30) e TXT 1.00; formata linha digitável, CNPJ/CPF, valores e datas; 8 testes; suíte 215 ✔ | feat(da): DadosGuia |
 | 2026-11-22 | T6.3 | `DA\Dagnre`: 10 testes (texto e páginas via pdfparser, espião confirma I25 e QR). **Conferência visual** (PDF → PNG com pypdfium2 num venv isolado no scratchpad): vias, blocos, valores por tipo, linha digitável, I25 e QR PIX corretos; a linha de corte encostava no código de barras e foi corrigida (barra de 10 mm, corte em y−0,6). Ponto menor: o nº do documento de origem com 44 dígitos sai em fonte pequena; suíte 225 ✔ | feat(da): Dagnre |
+| 2026-11-22 | T6.4 | Exemplo `dagnre.php` (gera `%PDF`), README com a seção "Impressão da guia" (e a alternativa `incluirPDFGuias`), CHANGELOG; **CI verde nas 7 versões** (sha 243de46). **F6 concluída** | docs: exemplo F6 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
