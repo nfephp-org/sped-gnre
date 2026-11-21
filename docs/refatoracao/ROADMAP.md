@@ -31,6 +31,7 @@ um único certificado/config e sem conflito de dependências.
 | D-14 | **Incluir a consulta de guia** (serviços `GnreLoteRecepcaoConsulta` + `GnreResultadoLoteConsulta`, XSD `lote_consulta_guia_v2.00.xsd`), que o legado não implementava. Na F2: `sefazEnviaLoteConsulta()` e `sefazConsultaLoteConsulta()`; na F3: `MakeConsulta`. | Usuário (2026-11-22) |
 | D-15 | **Envelope SOAP igual ao do ACBr** (`D:\AcbrDev\trunk2\Fontes\ACBrDFe`, rev. 49272, 2026-11-19), que funciona em produção: o `gnreCabecMsg` e o `gnreDadosMsg` usam o mesmo namespace `http://www.gnre.pe.gov.br/webservice/<Servico>` **nos dois ambientes**; a action é esse namespace; o `versaoDados` é o `versao` do config (as duas consultas de guia são fixas em `2.00`). Bate com o `targetNamespace` dos WSDLs. Diverge de propósito do legado (`wsdl/processar`, `wsdl/consultar`, `testegnre` em homologação) e do exemplo do manual (`wsdl/<Servico>`). Tudo fica em `storage/wsgnre.json`. Teste real em homologação na F7. | Análise: WSDL + ACBr + manual |
 | D-16 | **Layout 1.00 nos dois formatos** (resolve a P-06): o `MakeV1` gera (a) a **guia 1.00 embutida no lote 2.00**, isto é, `TLote_GNRE versao="2.00"` com `TDadosGNRE versao="1.00"`, o formato do pacote oficial 2.17, enviado com config `versao` 2.00 (padrão); ou (b) o **lote 1.00 puro**, `TLote_GNRE` e `TDadosGNRE` sem `versao`, como na 0.x, enviado com config `versao` 1.00. Os campos `c01_...` são idênticos nos dois. | Usuário (2026-11-22) |
+| D-17 | **`Standardize` sem perda de atributos**: o `json_encode` do SimpleXML (usado no sped-nfe e no sped-mdfe) descarta o atributo de elemento com texto, então `<valor tipo="12">1.82</valor>` viraria só `"1.82"`. Na GNRE o atributo define o tipo do valor e do documento de origem. O `Standardize` da GNRE usa um conversor DOM próprio: `attributes` + `value`, irmãos repetidos viram array, sem prefixos `ns1:`. A API pública continua a do ecossistema. | Análise (2026-11-22) |
 
 Novas decisões: acrescentar uma linha com a data. Nunca apague linhas; para mudar uma decisão, marque a antiga como "substituída por D-xx".
 
@@ -113,7 +114,13 @@ class MakeV1 {                       // layout 1.00 (D-16)
 
 namespace NFePHP\Gnre\Common;
 class Standardize { public function whichIs(string $xml): string; public function toStd(?string $xml = null): \stdClass;
-                    public function toArray(?string $xml = null): array; public function toJson(?string $xml = null): string; }
+                    public function toArray(?string $xml = null): array; public function toJson(?string $xml = null): string; } // D-17
+class RetornoTxtV1 { public static function ler(string $txt): \stdClass; }   // resultado TXT do lote 1.00 puro (posições do ACBr)
+
+namespace NFePHP\Gnre\Factories;
+class FromNFe { public function __construct(string $xmlNFe); public function emitente(): \stdClass; public function destinatario(): \stdClass;
+                public function documentoOrigem(bool $difal = false): \stdClass; public function valores(): \stdClass;
+                public function guiaDifal(\stdClass $opcoes): \NFePHP\Gnre\Make; public function guiaSt(\stdClass $opcoes): \NFePHP\Gnre\Make; }
 class RegrasUf { public static function tipoDocOrigem(string $uf, bool $difal = false): string;  // '10','22','24'
                  public static function tipoChaveDoc(string $uf): string; }                       // 'numero'|'chave'
 ```
@@ -129,7 +136,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F2 | Comunicação (`Common\Tools`, `Tools`, `Webservices`) | ✅ | `planos/2026-11-22-fase-2-comunicacao.md` | os **5** serviços testados com `SoapFake`; envelope equivalente ao golden (XML canonicalizado); nenhuma chave gravada fora do temp do SoapCurl |
 | F3 | `Make` 2.00 + `MakeConsulta` + `RegrasUf` | ✅ | `planos/2026-11-22-fase-3-make.md` | os cenários de `legacy/exemplos/xml` geram XML válido no XSD 2.00; diferenças em relação ao golden do `LoteV2` explicadas no PROGRESSO (bugs corrigidos) |
 | F4 | `MakeV1` (layout 1.00, 2 formatos — D-16) | ✅ | `planos/2026-11-22-fase-4-makev1.md` | formato 1.00: igual ao golden do `Lote` v1 e válido em `PL_GNRE_100`; formato 2.00: válido em `PL_GNRE_200`; os dois enviados pela `Tools` (SoapFake) |
-| F5 | `Standardize` + `Factories\FromNFe` | ⬜ | escrever ao iniciar | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
+| F5 | `Standardize` + `RetornoTxtV1` + `Factories\FromNFe` | 🟨 | `planos/2026-11-22-fase-5-retornos-nfe.md` | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre`, padrão sped-da) | ⬜ | escrever ao iniciar | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
 | F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
 | F8 | Migrar a DA para o sped-da | ⬜ | escrever ao iniciar | PR no sped-da com `NFePHP\DA\GNRE\Dagnre`; o sped-gnre remove `DA/` e a dependência sped-da (1.1.0) |

@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F4 ✅ concluída. Próxima: F5 (`Standardize` + `Factories\FromNFe`)
-- **Tarefa:** escrever o plano detalhado da F5
+- **Fase:** F5 (`Standardize` + `RetornoTxtV1` + `FromNFe`), em andamento
+- **Tarefa:** T5.1 do plano `planos/2026-11-22-fase-5-retornos-nfe.md`
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** escrever o plano da F5. Fontes: XSDs de retorno 2.17 (`lote_gnre_recibo_v1.00`, `lote_gnre_result_v2.00`, `lote_gnre_result_consulta_v2.00`, `config_uf_v1.00`, `retorno_gnre_v2.00`), ACBr `PCNGNRE/pgnreRet*.pas`, `legacy/lib/Sped/Gnre/Helper/GnreHelper.php` e o `Standardize` do sped-mdfe/sped-nfe.
+- **Próxima ação:** T5.1, `Common\Standardize` (D-17) e as fixtures de retorno.
 
 ## Pendências abertas
 
@@ -123,6 +123,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T4.1 | `MakeV1` (2 formatos): o lote puro é idêntico ao golden v1 (C14N) e o embutido é válido no XSD 2.17; `Common\MakeTrait` extraído do `Make` (testes do Make seguem verdes); 13 testes; suíte 168 ✔ | feat: MakeV1 |
 | 2026-11-22 | T4.2 | Integração MakeV1 + Tools nos 2 formatos (versaoDados 2.00/1.00; formato trocado → ValidatorException sem envio). Passou de primeira (sem código novo, como previsto); mutação (pasta de schemas fixa em PL_GNRE_100) derrubou 2 testes; suíte 172 ✔ | test: envio layout 1.00 |
 | 2026-11-22 | T4.3 | Exemplo `make-lote-v1.php` (os 2 formatos, válidos nos XSDs); CHANGELOG; **CI verde nas 7 versões** (sha 122f72c). **F4 concluída** | docs: exemplo F4 |
+| 2026-11-22 | plano F5 | Pesquisa: retornos reais usam o prefixo `ns1:`; o json do SimpleXML perde o atributo `tipo` do `valor` (D-17); o resultado do 1.00 puro é TXT posicional (posições do ACBr, as do legado estavam erradas); fixture de NF-e com DIFAL do sped-nfe (CPF de teste inválido, corrigido na cópia). Plano da F5 escrito | docs: plano da F5 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
