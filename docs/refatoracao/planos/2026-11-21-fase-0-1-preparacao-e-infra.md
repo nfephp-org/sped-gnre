@@ -166,7 +166,7 @@
 
 **Files:**
 - Create: `src/Exception/ExceptionInterface.php`, `InvalidArgumentException.php`, `RuntimeException.php`, `DocumentsException.php` (espelhar `D:/NfePhpDev/sped-mdfe/src/Exception/*`, trocando o namespace para `NFePHP\Gnre\Exception`)
-- Create: `phpcs.xml`, `phpstan.neon.dist` (R-08), `phpunit.xml.dist`, `.editorconfig` (copiar do sped-nfe), `bootstrap.php`, `storage/.gitkeep`
+- Create: `phpcs.xml`, `phpstan.neon`, `phpunit.xml.dist`, `.editorconfig` (copiar do sped-nfe), `bootstrap.php`, `storage/.gitkeep`
 - Test: `tests/SchemesTest.php`
 
 **Interfaces:**

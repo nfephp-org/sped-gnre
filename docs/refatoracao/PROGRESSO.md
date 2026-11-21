@@ -35,7 +35,7 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **R-05** (T1.1): `docs/manuais/` guarda só o manual vigente (v2.17 PDF). Os manuais antigos (`exemplos/docs`) foram para `legacy/manuais-antigos/`. Custo se errado: nenhum.
 - **R-06** (T1.3): o `DocumentsException` ficou só com os códigos 0–8, com textos adaptados à GNRE. Os códigos 9–16 do mdfe (CSC, QRCode, TXT) não existem na GNRE. Custo se errado: acrescentar códigos depois.
 - **R-07** (T1.3): `phpcompatibility/php-compatibility` passou de `^9.3` para **`^10.0@alpha`**, igual ao sped-common. Verificado: a 9.3.5 (de 2019) **não detecta** union types nem `str_contains`, então não garantia a D-01; a 10.0.0-alpha2 detecta os dois. Custo se errado: depender de uma versão alpha só em dev (o sped-common faz o mesmo).
-- **R-08** (T1.3): o arquivo do phpstan é **`phpstan.neon.dist`**, não `phpstan.neon`. O ambiente local bloqueia a escrita de `phpstan.neon` (EPERM), e o phpstan carrega o `.dist` sozinho. `.dist` também é o nome convencional para arquivo versionado. Custo se errado: renomear.
+- **R-08** (T1.3): ~~usar `phpstan.neon.dist`~~ **revogada**. A sessão chegou a ver EPERM ao gravar `phpstan.neon*` (a escrita aparecia só com atraso). O arquivo final é o **`phpstan.neon`**, igual ao sped-nfe e ao sped-common, e entrou num commit à parte. Se o EPERM voltar, criar o arquivo pelo terminal do usuário.
 - **R-09** (T1.3): `wrongDocument()` usa `new self()` em vez de `new static()` (o phpstan acusou "Unsafe usage of new static"). Custo se errado: uma subclasse recebe a classe-mãe.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
@@ -94,7 +94,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-21 | T1.1 | P-01 resolvida com o manual oficial v2.17; legado em `legacy/`; `schemes/PL_GNRE_100` e `PL_GNRE_200`; arquivos de Travis, Coveralls e Docker removidos; P-02 e P-03 abertas | refactor!: congela codigo 0.x |
 | 2026-11-21 | — | Sessão pausada pelo usuário no início da T1.2 | docs: ponto de retomada |
 | 2026-11-22 | T1.2 | Novo `composer.json` (php>=7.4, sped-common ^5.1, licença LGPL/GPL/MIT); install limpo; `composer audit`: 0 vulnerabilidades (antes 5 no Smarty) | build!: composer 1.0 |
-| 2026-11-22 | T1.3 | Exceções `NFePHP\Gnre\Exception\*`, phpcs (PSR-12 + PHPCompatibility 10), phpstan nível 5, phpunit; `SchemesTest` com 53 testes ✔ (XSDs, includes, 4 golden válidos, exceções). R-06..R-09 | feat: esqueleto NFePHP\Gnre |
+| 2026-11-22 | T1.3 | Exceções `NFePHP\Gnre\Exception\*`, phpcs (PSR-12 + PHPCompatibility 10), phpstan nível 5, phpunit; `SchemesTest` com 53 testes ✔ (XSDs, includes, 4 golden válidos, exceções). R-06..R-09 | feat: esqueleto NFePHP\Gnre + chore: phpstan.neon |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
