@@ -150,7 +150,7 @@
 **Files:**
 - Modify: `composer.json` (reescrito)
 
-- [ ] **Step 1: Escrever o `composer.json`** no formato do `D:/NfePhpDev/sped-nfe/composer.json`, com estes valores:
+- [x] **Step 1: Escrever o `composer.json`** no formato do `D:/NfePhpDev/sped-nfe/composer.json`, com estes valores:
   - `name` `nfephp-org/sped-gnre`, `type` `library`, `description` `"API para geração e comunicação da GNRE com o Portal GNRE (SEFAZ-PE)."`, `keywords` `["gnre","sped","nfephp","icms","difal"]`, `homepage` `https://github.com/nfephp-org/sped-gnre`, `license` `["LGPL-3.0-or-later","GPL-3.0-or-later","MIT"]`
   - `authors`: Matheus Marabesi (autor original), Comunidade NFePHP (`/graphs/contributors`)
   - `require`: `php >=7.4`, `nfephp-org/sped-common ^5.1`, `ext-dom`, `ext-curl`, `ext-openssl`, `ext-soap`, `ext-json`, `ext-libxml`, `ext-simplexml`, `ext-mbstring`
@@ -158,9 +158,9 @@
   - `autoload` `NFePHP\\Gnre\\` → `src/`; `autoload-dev` `NFePHP\\Gnre\\Tests\\` → `tests/`
   - `scripts`: `test` `vendor/bin/phpunit -c phpunit.xml.dist`, `phpcs` `vendor/bin/phpcs`, `phpcbf` `vendor/bin/phpcbf`, `stan` `vendor/bin/phpstan analyse`, `precommit` `["@phpcs","@stan","@test"]`
   - `extra.branch-alias` `{"dev-refactor/v1": "1.0.x-dev"}`; `minimum-stability` `stable`; `config.allow-plugins` `{"dealerdirect/phpcodesniffer-composer-installer": true}`
-- [ ] **Step 2: Validar** — Run: `composer validate --strict` → Expected: `./composer.json is valid`
-- [ ] **Step 3: Instalar** — Run: `composer install --no-interaction` → Expected: sem erro; `vendor/nfephp-org/sped-common` presente.
-- [ ] **Step 4: Commit** `build!: composer 1.0 (php>=7.4, sped-common, sem smarty/dompdf/laminas)`
+- [x] **Step 2: Validar** — Run: `composer validate --strict` → Expected: `./composer.json is valid`
+- [x] **Step 3: Instalar** — Run: `composer install --no-interaction` → Expected: sem erro; `vendor/nfephp-org/sped-common` presente.
+- [x] **Step 4: Commit** `build!: composer 1.0 (php>=7.4, sped-common, sem smarty/dompdf/laminas)`
 
 ### Task T1.3: Esqueleto do `src/`, configuração das ferramentas e primeiro teste
 
