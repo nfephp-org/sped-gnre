@@ -18,9 +18,9 @@ um único certificado/config e sem conflito de dependências.
 | D-01 | PHP `>= 7.4`, CI de 7.4 a 8.5 (igual a sped-common/sped-nfe). Proibido no `src/`: union types, `mixed`, `match`, enums, promoção de construtor, `str_starts_with`/`str_contains`, `readonly`, nullsafe `?->`. | Usuário (2026-11-21) |
 | D-02 | Nova versão **major 1.0.0**, namespace `NFePHP\Gnre\`, sem camada de compatibilidade com `Sped\Gnre\`. A 0.x continua no histórico/tag para quem não migrar. | Usuário |
 | D-03 | A impressão da guia (DA) começa **dentro** do sped-gnre, já escrita no padrão do sped-da (`extends NFePHP\DA\Common\DaCommon`), para depois virar `NFePHP\DA\GNRE\Dagnre` no sped-da. | Usuário |
-| D-04 | **Manter o layout 1.00** além do 2.00: `MakeV1` (1.00) e `Make` (2.00), escolhidos pelo `versao` do config. | Usuário |
+| D-04 | **Manter o layout 1.00** além do 2.00: `MakeV1` (1.00) e `Make` (2.00), escolhidos pelo `versao` do config. **Reconfirmada em 2026-11-22** (P-02), mesmo com o XSD do lote 1.00 fora do pacote 2.17, "caso alguma SEFAZ use a versão antiga". O XSD 1.00 vem de `schemes/PL_GNRE_100`. | Usuário |
 | D-05 | Comunicação só via `NFePHP\Common\Soap\SoapCurl` (sem Guzzle, sem chave privada gravada pelo pacote). | Análise |
-| D-06 | O lote GNRE não é assinado (só TLS mútuo): `Tools` usa `Certificate` + `SoapCurl`, não usa `Signer`. Conferir no Manual 2.01 na Fase 2. | Análise (a confirmar) |
+| D-06 | O lote GNRE não é assinado (só TLS mútuo): `Tools` usa `Certificate` + `SoapCurl`, não usa `Signer`. **Confirmada:** o Manual 2.17 (seção 4, item d) exige só "SSL com autenticação mútua", e o ACBr também não assina o lote. | Análise + Manual 2.17 + ACBr |
 | D-07 | ~~Licença mantida como está.~~ Substituída por D-11. | Análise |
 | D-08 | O código antigo vai para `legacy/` na Fase 1 (sem autoload e fora do CI), serve só de referência e é apagado na Fase 7. O comportamento antigo fica registrado em XMLs de referência ("golden") gerados na Fase 0. | Análise |
 | D-09 | Dependências finais do `require`: `nfephp-org/sped-common`, `nfephp-org/sped-da` (só por causa da DA, removida na Fase 8) e extensões. Saem Smarty, Dompdf, laminas, sabberworm e sped-nfe. | Análise |
@@ -28,6 +28,8 @@ um único certificado/config e sem conflito de dependências.
 | D-11 | Licença igual à dos demais projetos: `LGPL-3.0-or-later`, `GPL-3.0-or-later`, `MIT` (LICENSE.md do sped-nfe). Mencionar a mudança na issue de anúncio (T1.4) para ciência dos autores e mantenedores. | Usuário (2026-11-21) |
 | D-12 | A base é o remoto oficial (`origin/master` = `upstream/master` = `189fee1`). O trabalho local de 2024 (LoteV2Builder, LoteV2ConsultaBuilder, LoteV2Request, mudanças no gnre.tpl) fica só na branch local `backup/master-local-2024-08`, para consulta nas fases F2, F3 e F6. | Usuário (2026-11-21) |
 | D-13 | O anúncio e a issue ficam **só no fork** (betoeu/sped-gnre#1) até a refatoração terminar. Só na F7 vão para o nfephp-org/sped-gnre (issue + PR). Substitui o passo de anúncio da T1.4 e o item de risco "abrir issue antes do PR grande". | Usuário (2026-11-22) |
+| D-14 | **Incluir a consulta de guia** (serviços `GnreLoteRecepcaoConsulta` + `GnreResultadoLoteConsulta`, XSD `lote_consulta_guia_v2.00.xsd`), que o legado não implementava. Na F2: `sefazEnviaLoteConsulta()` e `sefazConsultaLoteConsulta()`; na F3: `MakeConsulta`. | Usuário (2026-11-22) |
+| D-15 | **Envelope SOAP igual ao do ACBr** (`D:\AcbrDev\trunk2\Fontes\ACBrDFe`, rev. 49272, 2026-11-19), que funciona em produção: o `gnreCabecMsg` e o `gnreDadosMsg` usam o mesmo namespace `http://www.gnre.pe.gov.br/webservice/<Servico>` **nos dois ambientes**; a action é esse namespace; o `versaoDados` é o `versao` do config (as duas consultas de guia são fixas em `2.00`). Bate com o `targetNamespace` dos WSDLs. Diverge de propósito do legado (`wsdl/processar`, `wsdl/consultar`, `testegnre` em homologação) e do exemplo do manual (`wsdl/<Servico>`). Tudo fica em `storage/wsgnre.json`. Teste real em homologação na F7. | Análise: WSDL + ACBr + manual |
 
 Novas decisões: acrescentar uma linha com a data. Nunca apague linhas; para mudar uma decisão, marque a antiga como "substituída por D-xx".
 
@@ -39,13 +41,14 @@ src/
   Common/Webservices.php  lê storage/wsgnre.json
   Common/RegrasUf.php     lê storage/regras_uf.json (substitui switch getCodigoDoc/getNumDoc e Estados/*)
   Common/Standardize.php  retorno SEFAZ → stdClass/array/json
-  Tools.php               sefazEnviaLote, sefazConsultaLote, sefazConsultaConfigUf
+  Tools.php               sefazEnviaLote, sefazConsultaLote, sefazConsultaConfigUf, sefazEnviaLoteConsulta, sefazConsultaLoteConsulta
+  MakeConsulta.php        lote de consultas de guia (TLote_ConsultaGNRE 2.00) — D-14
   Make.php                layout 2.00 (tags → TLote_GNRE)
   MakeV1.php              layout 1.00
   Factories/FromNFe.php   XML de NF-e autorizada → stdClass para o Make (substitui GnreHelper)
   DA/Dagnre.php           impressão (Fase 6) → migra para o sped-da (Fase 8)
   Exception/              ExceptionInterface, InvalidArgumentException, RuntimeException, DocumentsException
-schemes/PL_GNRE_100/, schemes/PL_GNRE_200/   (vindos de xsd/v1 e xsd/v2)
+schemes/PL_GNRE_100/ (layout 1.00 histórico), schemes/PL_GNRE_200/ (pacote oficial v2.17)
 storage/wsgnre.json, storage/regras_uf.json
 tests/ (+ tests/fixtures/legacy = golden da Fase 0), examples/, docs/
 ```
@@ -58,24 +61,33 @@ tests/ (+ tests/fixtures/legacy = golden da Fase 0), examples/, docs/
 // "cpf" pode substituir "cnpj"; "versao" ∈ {"1.00","2.00"}
 
 namespace NFePHP\Gnre\Common;
+class Webservices {                        // lê storage/wsgnre.json
+    public function __construct(string $json);
+    public function get(string $servico, int $tpAmb): \stdClass;   // {url, namespace, action, metodo, versaoDados: ?string}
+}
 class Tools {
+    public \stdClass $config;
     public string $lastRequest = '';  public string $lastResponse = '';
     public int $tpAmb = 2;            public string $versao = '2.00';
     public function __construct(string $configJson, \NFePHP\Common\Certificate $certificate);
     public function loadSoapClass(\NFePHP\Common\Soap\SoapInterface $soap): void;
     public function setEnvironment(int $tpAmb = 2): void;
     public function version(string $versao = ''): string;
-    protected function servico(string $service): void;               // GnreLoteRecepcao|GnreResultadoLote|GnreConfigUF
-    protected function sendRequest(string $body, array $parameters = []): string;
-    protected function isValid(string $versao, string $xml, string $schema): bool;
+    protected function servico(string $servico, ?int $tpAmb = null): void;  // nome do serviço em wsgnre.json
+    protected function sendRequest(string $request): string;               // envelopa, envia, grava lastRequest/lastResponse
+    protected function isValid(string $xml, string $xsd, ?string $versao = null): bool; // lança ValidatorException
 }
 
 namespace NFePHP\Gnre;
-class Tools extends Common\Tools {
-    public function sefazEnviaLote(string $xmlLote): string;              // retorno SOAP bruto
-    public function sefazConsultaLote(string $recibo, ?int $tpAmb = null): string;
-    public function sefazConsultaConfigUf(string $uf, string $receita): string;
+class Tools extends Common\Tools {            // todos devolvem o retorno SOAP bruto
+    public function sefazEnviaLote(string $xmlLote): string;                          // GnreLoteRecepcao
+    public function sefazConsultaLote(string $recibo, array $opcoes = []): string;    // GnreResultadoLote; opcoes: incluirPDFGuias|incluirArquivoPagamento|incluirNoticias => S|N (só 2.00)
+    public function sefazConsultaConfigUf(string $uf, string $receita = '', bool $courier = false): string; // GnreConfigUF
+    public function sefazEnviaLoteConsulta(string $xmlLoteConsulta): string;          // GnreLoteRecepcaoConsulta (D-14)
+    public function sefazConsultaLoteConsulta(string $recibo): string;                // GnreResultadoLoteConsulta (D-14)
 }
+
+class MakeConsulta { public function tagConsulta(\stdClass $std): \DOMElement; public function getXML(): string; public function getErrors(): array; } // D-14, F3
 
 class Make {                         // 2.00; cada tagGuia abre uma nova guia, as demais tags vão para a última
     public function tagGuia(\stdClass $std): \DOMElement;            // TDadosGNRE
@@ -105,8 +117,8 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 |------|------|--------|-----------------|---------------------------------------|
 | F0 | Preparação e linha de base | ✅ | `planos/2026-11-21-fase-0-1-preparacao-e-infra.md` | branch `refactor/v1` no origin; finais de linha normalizados; resultado da suíte antiga registrado; golden XMLs em `tests/fixtures/legacy/`; fork do sped-da clonado |
 | F1 | Infraestrutura e esqueleto | ✅ | idem | `composer validate --strict`, `composer phpcs`, `composer stan`, `composer test` verdes no PHP 8.3 local e CI verde de 7.4 a 8.5 |
-| F2 | Comunicação (`Common\Tools`, `Tools`, `Webservices`) | ⬜ | escrever ao iniciar | os 3 serviços testados com `SoapFake`; envelope equivalente ao golden (XML canonicalizado); nenhuma chave gravada fora do temp do SoapCurl |
-| F3 | `Make` 2.00 + `RegrasUf` | ⬜ | escrever ao iniciar | os cenários de `legacy/exemplos/xml` geram XML válido no XSD 2.00; diferenças em relação ao golden do `LoteV2` explicadas no PROGRESSO (bugs corrigidos) |
+| F2 | Comunicação (`Common\Tools`, `Tools`, `Webservices`) | 🟨 | `planos/2026-11-22-fase-2-comunicacao.md` | os **5** serviços testados com `SoapFake`; envelope equivalente ao golden (XML canonicalizado); nenhuma chave gravada fora do temp do SoapCurl |
+| F3 | `Make` 2.00 + `MakeConsulta` + `RegrasUf` | ⬜ | escrever ao iniciar | os cenários de `legacy/exemplos/xml` geram XML válido no XSD 2.00; diferenças em relação ao golden do `LoteV2` explicadas no PROGRESSO (bugs corrigidos) |
 | F4 | `MakeV1` (layout 1.00) | ⬜ | escrever ao iniciar | igual ao golden do `Lote` v1 e válido no XSD 1.00 |
 | F5 | `Standardize` + `Factories\FromNFe` | ⬜ | escrever ao iniciar | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre`, padrão sped-da) | ⬜ | escrever ao iniciar | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |

@@ -12,19 +12,20 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F1 ✅ concluída. Próxima: F2 (Comunicação)
-- **Tarefa:** escrever o plano detalhado da F2 (`planos/AAAA-MM-DD-fase-2-comunicacao.md`)
+- **Fase:** F2 (Comunicação), plano escrito, execução não iniciada
+- **Tarefa:** T2.1 do plano `planos/2026-11-22-fase-2-comunicacao.md`
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** (1) responder **P-02** (layout 1.00) e **P-03** (incluir consulta de guia na F2); (2) escrever o plano detalhado da F2.
+- **Próxima ação:** executar a T2.1 (`storage/wsgnre.json` + `Common\Webservices`).
 
 ## Pendências abertas
 
 | ID | Pendência | Bloqueia | Proposta padrão |
 |----|-----------|----------|-----------------|
 | P-01 | ✅ **Resolvida** (2026-11-21): pacote oficial do **Manual v2.17** baixado do Portal GNRE (`https://www.gnre.pe.gov.br:444/gnre/v/automacao/baixarManual`; a porta 443 devolve 403 para acesso automatizado). Tem 16 XSDs completos, sem include faltando, e valida os golden com dados corretos. Virou `schemes/PL_GNRE_200/`. | — | — |
-| P-02 | O pacote oficial 2.17 **não tem mais** o `lote_gnre_v1.00.xsd`; segundo fontes secundárias, a SEFAZ aceitou o lote 1.00 só até 31/03/2021. D-04 (manter o layout 1.00 / `MakeV1` / F4) precisa ser reconfirmada pelo usuário. | F4 (não bloqueia F1–F3) | Proposta: não implementar o `MakeV1`. Manter `schemes/PL_GNRE_100` só como histórico, ou removê-lo. |
+| P-02 | ✅ Resolvida (2026-11-22): o usuário **manteve o layout 1.00** (D-04 reconfirmada) "caso alguma SEFAZ use a versão antiga". O XSD vem de `schemes/PL_GNRE_100`. | — | — |
 | P-04 | ✅ Resolvida (D-13): a issue de anúncio está **só no fork**, em https://github.com/betoeu/sped-gnre/issues/1. Vai para o nfephp-org na F7. | — | — |
-| P-03 | O pacote 2.17 traz serviços que o legado não implementa: consulta de guia (`lote_consulta_guia_v2.00.xsd`, `lote_gnre_result_consulta_v2.00.xsd`) e `retorno_gnre_v2.00.xsd`. | plano da F2 | Incluir `sefazConsultaGuia()` no contrato da `Tools` ao escrever o plano da F2 (exige uma decisão D-14). |
+| P-03 | ✅ Resolvida (2026-11-22): consulta de guia incluída (D-14) com os 2 serviços do manual 2.17 (`GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`). | — | — |
+| P-05 | Pontos a confirmar em homologação **real** na F7, com o certificado do usuário: (a) o envelope D-15 nos 5 serviços; (b) `versaoDados` do ConfigUF (o ACBr usa a versão do config, o legado usava `1.00`); (c) `versaoDados` `2.00` nas consultas de guia (o ACBr não implementa esses serviços). | F7 | — |
 
 ## Decisões de execução (R-xx)
 
@@ -98,6 +99,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T1.3 | Exceções `NFePHP\Gnre\Exception\*`, phpcs (PSR-12 + PHPCompatibility 10), phpstan nível 5, phpunit; `SchemesTest` com 53 testes ✔ (XSDs, includes, 4 golden válidos, exceções). R-06..R-09 | feat: esqueleto NFePHP\Gnre + chore: phpstan.neon |
 | 2026-11-22 | T1.4 | `ci.yml` (7.4–8.5, validate, CRLF, phpcs, stan, test); **CI verde nas 7 versões** (run 44904014382); README, LICENSE.md (LGPLv3), CHANGELOG; rascunho da issue. **F1 concluída** | ci: pipeline 7.4-8.5 |
 | 2026-11-22 | T1.4 | Crédito a Alberto Leal (README, composer authors, CHANGELOG). D-13: issue só no fork (#1, issues ativadas no fork) | docs: credita + docs: D-13 |
+| 2026-11-22 | plano F2 | Usuário: manter o layout 1.00 (P-02) e incluir a consulta de guia (P-03). Pesquisa: manual 2.17 (5 serviços, métodos, PDF da guia via `incluirPDFGuias`), WSDLs legados, **ACBr trunk2 rev. 49272** (namespaces). Decisões D-14 e D-15; contrato da `Tools` atualizado; plano da F2 escrito | docs: plano da F2 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
