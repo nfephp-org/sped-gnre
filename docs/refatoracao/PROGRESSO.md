@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F6 (DA da guia), em andamento
-- **Tarefa:** T6.2 do plano `planos/2026-11-22-fase-6-dagnre.md` (T6.1 concluída)
+- **Tarefa:** T6.3 do plano `planos/2026-11-22-fase-6-dagnre.md` (T6.1 e T6.2 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T6.2, `DA\DadosGuia`.
+- **Próxima ação:** T6.3, `DA\Dagnre` (PDF em 3 vias, I25, PIX).
 
 ## Pendências abertas
 
@@ -132,6 +132,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T5.4 | Exemplos `standardize-retorno.php` e `guia-difal-da-nfe.php` (sem rede; o XML de DIFAL é válido no XSD); CHANGELOG; **CI verde nas 7 versões** (sha da3f6c8). **F5 concluída** | docs: exemplos F5 |
 | 2026-11-22 | plano F6 | Pesquisa: sped-da `DaCommon`/`Damdfe` (código de barras via tc-lib em PNG base64), ACBr (`TRLBarcode` com Ratio 3 = **I25**, padrão Febraban de arrecadação; o legado usava Code128); o XSD do resultado 2.17 tem `qrcodePayload` (**PIX**) e `pdfGuias`; os campos de retorno diferem entre 1.00 e 2.00 → `DadosGuia` normaliza. Plano da F6 escrito | docs: plano da F6 |
 | 2026-11-22 | T6.1 | `nfephp-org/sped-da` ^1.1 (v1.1.7, com tc-lib-barcode 1.18.5) + `ext-gd`; `smalot/pdfparser` ^2.12 em dev; smoke test I25 + PDF; phpstan com 512M (R-16); **CI verde nas 7 versões** (sha 9a3a254) | build: sped-da |
+| 2026-11-22 | T6.2 | `DA\DadosGuia`: resultado 2.00 (soma por tipo: principal 11+12, atualização 51+52, juros 41+42, multa 31+32), guia 1.00 do resultado (c06..c10, c29, c30) e TXT 1.00; formata linha digitável, CNPJ/CPF, valores e datas; 8 testes; suíte 215 ✔ | feat(da): DadosGuia |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

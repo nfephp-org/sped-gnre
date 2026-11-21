@@ -70,7 +70,7 @@
   - `formatarLinhaDigitavel(string $linha): string`, `formatarDocumento(string $doc): string` (CNPJ `00.000.000/0000-00`, CPF `000.000.000-00`, demais sem alteração) e `formatarValor(string $valor): string`.
 - Todos são métodos estáticos e devolvem os campos listados nas Global Constraints.
 
-- [ ] **Step 1: Escrever `tests/DA/DadosGuiaTest.php`** com a fixture `retorno-resultado-v2.xml` (via `Standardize`):
+- [x] **Step 1: Escrever `tests/DA/DadosGuiaTest.php`** com a fixture `retorno-resultado-v2.xml` (via `Standardize`):
   - `testGuia200Simples` (1ª guia): `ufFavorecida` RS, `receita` 100099, `documentoOrigem` `35200111111111111111550400000096111125788316`, `emitenteDocumento` `11.111.111/1111-11`, `emitenteRazaoSocial` `TESTES NF-E 4.00`, `destinatarioIE` `3333333333`, `dataVencimento` `28/01/2020`, `dataLimitePagamento` `28/01/2020`, `valorPrincipal` `243,00`, `valorTotal` `243,00`, `numeroControle` `0096220013500000`, `linhaDigitavel` `858500000029430099992006280100962200000000000000`, `codigoBarras` `85850000002430099992002801000000000000000000`.
   - `testGuia200ComFcp` (2ª guia): `valorPrincipal` `184,07` (182.25 + 1.82); `atualizacaoMonetaria` `8,00` (52); `juros` `5,11` (42); `multa` `5,11` (32); `valorTotal` `182,25` (`valorGNRE`).
   - `testGuia100NoResultado`: um `stdClass` montado no teste com `attributes->versao` = `1.00` e `c01_UfFavorecida` SP, `c02_receita` 100099, `c06_valorPrincipal` 10.00, `c07_atualizacaoMonetaria` 1.00, `c08_juros` 0.50, `c09_multa` 0.20, `c10_valorTotal` 11.70, `c14_dataVencimento` 2026-12-15, `c29_dataLimitePagamento` 2026-12-20, `c30_nossoNumero` 123, `c16_razaoSocialEmitente` X, `c03_idContribuinteEmitente` {CNPJ 06157250000116}, `c05_referencia` {mes 11, ano 2026}, `linhaDigitavel` e `codigoBarras` → campos correspondentes, `periodoReferencia` `11/2026`.
@@ -78,10 +78,10 @@
   - `testFormatarLinhaDigitavel`: `858500000029430099992006280100962200000000000000` → `85850000002-9 43009999200-6 28010096220-0 00000000000-0`; tamanho diferente de 48 → devolve sem formatar.
   - `testFormatarValor`: `1234.5` → `1.234,50`; `0` → `''`; `''` → `''`.
   - `testInformacoesComplementares`: guia 2.00 com `informacoesComplementares->informacao` = `['A', 'B']` → `"A\nB"`; com uma só (string) → `'A'`.
-- [ ] **Step 2: Rodar e ver falhar** → classe inexistente.
-- [ ] **Step 3: Implementar.** Antes de mapear, `valor`/`item` são normalizados para array (lembrando que um único elemento vem como objeto). Os valores com atributo vêm como `{attributes, value}` (D-17).
-- [ ] **Step 4:** a cadeia de verificação → verde.
-- [ ] **Step 5: Commit** `feat(da): DadosGuia (normalizacao das guias para impressao)`
+- [x] **Step 2: Rodar e ver falhar** → classe inexistente.
+- [x] **Step 3: Implementar.** Antes de mapear, `valor`/`item` são normalizados para array (lembrando que um único elemento vem como objeto). Os valores com atributo vêm como `{attributes, value}` (D-17).
+- [x] **Step 4:** a cadeia de verificação → verde.
+- [x] **Step 5: Commit** `feat(da): DadosGuia (normalizacao das guias para impressao)`
 
 ### Task T6.3: `DA\Dagnre`
 
