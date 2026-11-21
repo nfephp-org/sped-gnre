@@ -23,7 +23,7 @@ um único certificado/config e sem conflito de dependências.
 | D-06 | O lote GNRE não é assinado (só TLS mútuo): `Tools` usa `Certificate` + `SoapCurl`, não usa `Signer`. **Confirmada:** o Manual 2.17 (seção 4, item d) exige só "SSL com autenticação mútua", e o ACBr também não assina o lote. | Análise + Manual 2.17 + ACBr |
 | D-07 | ~~Licença mantida como está.~~ Substituída por D-11. | Análise |
 | D-08 | O código antigo vai para `legacy/` na Fase 1 (sem autoload e fora do CI), serve só de referência e é apagado na Fase 7. O comportamento antigo fica registrado em XMLs de referência ("golden") gerados na Fase 0. | Análise |
-| D-09 | Dependências finais do `require`: `nfephp-org/sped-common`, `nfephp-org/sped-da` (só por causa da DA, removida na Fase 8) e extensões. Saem Smarty, Dompdf, laminas, sabberworm e sped-nfe. | Análise |
+| D-09 | Dependências finais do `require`: `nfephp-org/sped-common`, `nfephp-org/sped-da` (só por causa da DA, removida na Fase 8) e extensões. Saem Smarty, Dompdf, laminas, sabberworm e sped-nfe.  **Atualizada pela D-18:** a 1.0 sai só com `nfephp-org/sped-common` + extensões no `require`; o sped-da fica em `suggest`. | Análise |
 | D-10 | A versão alvo é **1.0.0** (a última publicada é a 0.3.0; o próximo major pelo semver é a 1.0). Os layouts da SEFAZ continuam sendo 1.00 e 2.00, sem relação com a versão do pacote. A linha antiga é chamada de "0.x". | Usuário (2026-11-21) |
 | D-11 | Licença igual à dos demais projetos: `LGPL-3.0-or-later`, `GPL-3.0-or-later`, `MIT` (LICENSE.md do sped-nfe). Mencionar a mudança na issue de anúncio (T1.4) para ciência dos autores e mantenedores. | Usuário (2026-11-21) |
 | D-12 | A base é o remoto oficial (`origin/master` = `upstream/master` = `189fee1`). O trabalho local de 2024 (LoteV2Builder, LoteV2ConsultaBuilder, LoteV2Request, mudanças no gnre.tpl) fica só na branch local `backup/master-local-2024-08`, para consulta nas fases F2, F3 e F6. | Usuário (2026-11-21) |
@@ -140,7 +140,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F5 | `Standardize` + `RetornoTxtV1` + `Factories\FromNFe` | ✅ | `planos/2026-11-22-fase-5-retornos-nfe.md` | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre` + `DA\DadosGuia`, padrão sped-da) | ✅ | `planos/2026-11-22-fase-6-dagnre.md` | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
 | F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
-| F8 | Migrar a DA para o sped-da (**antes da F7**, D-18) | 🟨 | `planos/2026-11-22-fase-8-migracao-sped-da.md` | branch `feature/gnre` no fork do sped-da com `NFePHP\DA\GNRE\Dagnre` (testes verdes, sem regressão na suíte do sped-da); o sped-gnre sem `DA/` e sem sped-da no `require`; CI verde |
+| F8 | Migrar a DA para o sped-da (**antes da F7**, D-18) | ✅ | `planos/2026-11-22-fase-8-migracao-sped-da.md` | branch `feature/gnre` no fork do sped-da com `NFePHP\DA\GNRE\Dagnre` (testes verdes, sem regressão na suíte do sped-da); o sped-gnre sem `DA/` e sem sped-da no `require`; CI verde |
 
 Dependências: F0 → F1 → F2 → (F3 ∥ F4) → F5 → F6 → **F8 → F7** (D-18). F3 e F4 podem ser feitas em qualquer ordem.
 

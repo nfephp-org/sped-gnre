@@ -86,9 +86,9 @@
 - Delete: `src/DA/`, `tests/DA/`
 - Modify: `composer.json` (tira `nfephp-org/sped-da`, `ext-gd` e `smalot/pdfparser`; acrescenta o `suggest`), `examples/dagnre.php` (passa a usar `NFePHP\DA\GNRE\Dagnre`, com checagem `class_exists` e mensagem explicando como instalar), `README.md` (a seção "Impressão da guia" aponta para o sped-da; requisitos sem `gd`), `CHANGELOG.md`, `docs/refatoracao/ROADMAP.md`, `docs/refatoracao/PROGRESSO.md`
 
-- [ ] **Step 1:** remover os diretórios e as dependências; `composer update` → sem erro; `composer install --no-dev --dry-run` não lista `nfephp-org/sped-da`.
-- [ ] **Step 2:** `rg -n "NFePHP\\\\DA|Com\\\\Tecnick" src tests` → nenhuma ocorrência.
-- [ ] **Step 3:** a cadeia `composer phpcs && composer stan && composer test` → verde (a suíte cai em 225 − os testes do `DA` = 205).
-- [ ] **Step 4:** avaliar se o phpstan ainda precisa do `--memory-limit=512M`. Se não precisar, reverter a R-16 e registrar.
-- [ ] **Step 5:** push e CI das 7 versões → verde.
-- [ ] **Step 6: Fechar a F8:** F8 ✅ no ROADMAP; D-09 atualizada (o sped-da sai do `require` já na 1.0); PROGRESSO com a próxima ação = escrever o plano da F7, incluindo o PR do sped-da. Commit `refactor!: impressao da guia movida para o sped-da (NFePHP\DA\GNRE\Dagnre)`.
+- [x] **Step 1:** remover os diretórios e as dependências; `composer update` → sem erro; `composer install --no-dev --dry-run` não lista `nfephp-org/sped-da`.
+- [x] **Step 2:** `rg -n "NFePHP\\\\DA|Com\\\\Tecnick" src tests` → nenhuma ocorrência.
+- [x] **Step 3:** a cadeia `composer phpcs && composer stan && composer test` → verde (a suíte cai em 225 − os testes do `DA` = 205).
+- [x] **Step 4:** avaliar se o phpstan ainda precisa do `--memory-limit=512M`. Se não precisar, reverter a R-16 e registrar.
+- [x] **Step 5:** push e CI das 7 versões → verde.
+- [x] **Step 6: Fechar a F8:** F8 ✅ no ROADMAP; D-09 atualizada (o sped-da sai do `require` já na 1.0); PROGRESSO com a próxima ação = escrever o plano da F7, incluindo o PR do sped-da. Commit `refactor!: impressao da guia movida para o sped-da (NFePHP\DA\GNRE\Dagnre)`.

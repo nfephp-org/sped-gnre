@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F8 (mover a impressão para o sped-da), em andamento. Depois, F7 (D-18)
-- **Tarefa:** T8.4 do plano `planos/2026-11-22-fase-8-migracao-sped-da.md` (T8.1 a T8.3 concluídas)
+- **Fase:** F8 ✅ concluída. Próxima: F7 (docs, limpeza, RC, homologação real, PRs no nfephp-org)
+- **Tarefa:** escrever o plano detalhado da F7 (depois de o usuário responder às 2 perguntas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T8.4, remover `src/DA`, `tests/DA` e as dependências sped-da/gd/pdfparser do sped-gnre (`suggest`), ajustar o exemplo e o README, CI, fechar a F8.
+- **Próxima ação:** perguntar ao usuário (1) como fazer a homologação real (P-05: certificado, quem executa) e (2) se quer uma revisão independente do branch antes dos PRs; depois, escrever o plano da F7, que inclui o PR do sped-da (branch `feature/gnre` do fork) e o do sped-gnre, mais a issue (D-13/D-18).
 
 ## Pendências abertas
 
@@ -47,7 +47,7 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **Revisão final da F2:** autorrevisão (sem agente revisor, que só é criado a pedido do usuário). Uma revisão independente pode ser pedida antes da F3.
 - **R-14** (T3.1): o `Make.php` da T3.1 já inclui as tags de item da T3.2, porque o desenho de slots por guia e item é um só e dividi-lo geraria retrabalho. A T3.2 continua TDD: os testes dela cobrem esse código e, se algum passar de primeira, isso é registrado como achado. Custo se errado: nenhum.
 - **R-15** (T5.1): a fixture `retorno-resultado-v2.xml` (do ACBr, de 2020) teve o `numeroRecibo` completado de 10 para 14 dígitos, porque o XSD 2.17 do **resultado** só aceita 14 (a consulta aceita 10 ou 14). Isso indica que os recibos atuais têm 14 dígitos. A alteração está registrada no comentário da fixture. Custo se errado: nenhum (só afeta testes).
-- **R-16** (T6.1): `composer stan` passou a usar `--memory-limit=512M`, porque com o sped-da o phpstan passa dos 128 MB padrão (o erro aparecia só como "Found 1 error" e a cadeia condicionada barrou o commit, como devia). Custo se errado: nenhum.
+- **R-16** (T6.1, reavaliada na T8.4): `composer stan` passou a usar `--memory-limit=512M`, porque com o sped-da o phpstan passava dos 128 MB padrão (na T8.4, mesmo sem o sped-da, ainda passa de 128 MB, porque o código cresceu; mantido) (o erro aparecia só como "Found 1 error" e a cadeia condicionada barrou o commit, como devia). Custo se errado: nenhum.
 - **R-17** (T8.3): **bug encontrado na portabilidade**: o `Dagnre` chamava `image()` da logo sem o tipo, mas o `DaCommon::adjustImage()` devolve a logo em `data://` sem extensão, e o FPDF lançava exceção. Nenhum teste da F6 passava logo. Corrigido no sped-da com `jpeg`, como o `Damdfe` faz, e com o teste `testLogo` (arquivo PNG e data URI) que reproduziu a falha antes. No sped-gnre o código sai na T8.4, então não foi corrigido lá. Custo se errado: nenhum.
 - **Achado upstream (sped-da, para o PR da F7):** com `debugMode(true)`, o `DaCommon` converte o `E_USER_DEPRECATED` do `tc-lib-barcode` 1.x em exceção, o que quebra os exemplos que usam código de barras (o `examples/mdfe/damdfe.php` do upstream também falha). O exemplo GNRE não ativa o debug.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
@@ -140,6 +140,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | plano F8 | Usuário: mover a impressão para o sped-da **antes** da F7 (D-18). Para evitar dependência circular, o sped-da lê o resultado sozinho (`GNRE\ResultadoLote`). Plano da F8 escrito | docs: plano da F8 |
 | 2026-11-22 | T8.1 | sped-da: branch `feature/gnre` a partir de `upstream/master` `6e4b3e7`. **Linha de base do upstream** (sem alteração nossa): phpunit 72 testes, **4 erros já existentes** (`DamdfeTest`: seguro ×3 e vale-pedágio, `Damdfe.php:1045/1028`); phpcs PSR-2 com 63 violações já existentes; phpstan estoura 128M (como na R-16). Meta: `src/GNRE` limpo e a suíte sem novas falhas | (sem commit no sped-da) |
 | 2026-11-22 | T8.2–T8.3 | **sped-da** branch `feature/gnre` (fork): `src/GNRE/{ResultadoLote,DadosGuia,Dagnre}.php` (sem dependência do sped-gnre), testes `tests/GNRE` (28), fixtures `tests/fixtures/xml/gnre`, `examples/gnre/dagnre.php`, `docs/Dagnre.md`, README (uso + crédito "Alberto Leal (GNRE)") e CHANGELOG. Suíte do sped-da: 100 testes, só os 4 erros já existentes; PSR-2, phpstan nível 1 e compatibilidade 7.4 limpos em `src/GNRE`; PDF conferido visualmente (igual à F6). Bug da logo corrigido (R-17). Commits 804b69b, 7a488a7, e1d0aeb; push só no fork | (commits no sped-da) |
+| 2026-11-22 | T8.4 | sped-gnre sem `src/DA`/`tests/DA`; sped-da, gd e pdfparser removidos (5 pacotes a menos), sped-da em `suggest`; `examples/dagnre.php` usa `NFePHP\DA\GNRE\Dagnre` com mensagem amigável se o sped-da não estiver instalado; README e CHANGELOG atualizados; o phpstan ainda precisa de 512M (R-16 mantida); suíte 205 ✔; **CI verde nas 7 versões** (sha 3419ca8). **F8 concluída** | refactor!: impressão no sped-da |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
