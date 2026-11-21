@@ -59,15 +59,15 @@
   - Internamente: localiza o nó pelo nome local (aceita prefixo e envelope), converte com as regras D-17 e, se o `resultado` for texto, lê o TXT do 1.00 com as posições do ACBr.
 - Produces: `NFePHP\DA\GNRE\DadosGuia` (mesma API e comportamento do sped-gnre) e `NFePHP\DA\GNRE\Dagnre` (mesma API pública). O `Dagnre` lança `\InvalidArgumentException` onde o sped-gnre lançava `DocumentsException`, porque o sped-da usa as exceções nativas do PHP; as mensagens continuam as mesmas.
 
-- [ ] **Step 1: Copiar as fixtures e portar os testes.** Troque os namespaces; use `TEST_FIXTURES . 'xml/gnre/'`; use `NFePHP\DA\Tests\Utils::textoPdf()` no lugar do helper `texto()`; e troque `DocumentsException` por `\InvalidArgumentException`. O `ResultadoLoteTest` recebe do `StandardizeTest`/`RetornoTxtV1Test` os casos que importam para a impressão: o nó dentro do envelope com `ns1:`, `valor` com `attributes`/`value`, uma guia vira objeto e duas viram array, o TXT do 1.00 e um documento que não é resultado.
-- [ ] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit tests/GNRE` → classes inexistentes.
-- [ ] **Step 3: Portar o código.**
+- [x] **Step 1: Copiar as fixtures e portar os testes.** Troque os namespaces; use `TEST_FIXTURES . 'xml/gnre/'`; use `NFePHP\DA\Tests\Utils::textoPdf()` no lugar do helper `texto()`; e troque `DocumentsException` por `\InvalidArgumentException`. O `ResultadoLoteTest` recebe do `StandardizeTest`/`RetornoTxtV1Test` os casos que importam para a impressão: o nó dentro do envelope com `ns1:`, `valor` com `attributes`/`value`, uma guia vira objeto e duas viram array, o TXT do 1.00 e um documento que não é resultado.
+- [x] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit tests/GNRE` → classes inexistentes.
+- [x] **Step 3: Portar o código.**
   - `ResultadoLote` reúne o conversor D-17 e o leitor de TXT.
   - O `DadosGuia` passa a receber o `stdClass` produzido pelo `ResultadoLote`.
   - O `Dagnre` troca `Standardize` + `RetornoTxtV1` por `ResultadoLote::ler()`.
-- [ ] **Step 4:** `vendor/bin/phpunit` (a suíte inteira do sped-da) → os testes GNRE verdes e os demais iguais à linha de base. `vendor/bin/phpcs --standard=psr2 src/GNRE` e `vendor/bin/phpstan analyse src/GNRE --level 1` → limpos. Conferir também o PHPCompatibility, rodando o phpcs do sped-gnre (`testVersion 7.4-`) sobre `D:/betoeu/sped-da/src/GNRE`.
-- [ ] **Step 5: Conferência visual** (pypdfium2 no venv do scratchpad): o PDF gerado no sped-da é igual ao da F6.
-- [ ] **Step 6: Commit no sped-da** `feat: GNRE - documento auxiliar da guia (Dagnre)`, com corpo explicando a origem (refatoração do sped-gnre 1.0).
+- [x] **Step 4:** `vendor/bin/phpunit` (a suíte inteira do sped-da) → os testes GNRE verdes e os demais iguais à linha de base. `vendor/bin/phpcs --standard=psr2 src/GNRE` e `vendor/bin/phpstan analyse src/GNRE --level 1` → limpos. Conferir também o PHPCompatibility, rodando o phpcs do sped-gnre (`testVersion 7.4-`) sobre `D:/betoeu/sped-da/src/GNRE`.
+- [x] **Step 5: Conferência visual** (pypdfium2 no venv do scratchpad): o PDF gerado no sped-da é igual ao da F6.
+- [x] **Step 6: Commit no sped-da** `feat: GNRE - documento auxiliar da guia (Dagnre)`, com corpo explicando a origem (refatoração do sped-gnre 1.0).
 
 ### Task T8.3: Exemplo, documentação e push da branch no fork do sped-da
 
@@ -75,10 +75,10 @@
 - Create: `examples/gnre/dagnre.php` (no estilo de `examples/mdfe/*`: lê o XML de exemplo e devolve o PDF), `docs/Dagnre.md` (uso, entrada aceita, 3 vias, I25, PIX, guias não impressas)
 - Modify: `README.md` do sped-da (incluir o GNRE na lista de documentos) e `CHANGELOG.md` do sped-da
 
-- [ ] **Step 1:** exemplo + `php -l` + execução (`%PDF`).
-- [ ] **Step 2:** docs, README e CHANGELOG.
-- [ ] **Step 3:** suíte completa do sped-da de novo → igual à linha de base + GNRE verde.
-- [ ] **Step 4:** commit `docs: GNRE (exemplo e documentação do Dagnre)` e `git push -u origin feature/gnre` (só no fork; o PR para o upstream fica para a F7).
+- [x] **Step 1:** exemplo + `php -l` + execução (`%PDF`).
+- [x] **Step 2:** docs, README e CHANGELOG.
+- [x] **Step 3:** suíte completa do sped-da de novo → igual à linha de base + GNRE verde.
+- [x] **Step 4:** commit `docs: GNRE (exemplo e documentação do Dagnre)` e `git push -u origin feature/gnre` (só no fork; o PR para o upstream fica para a F7).
 
 ### Task T8.4: Remover a impressão do sped-gnre
 
