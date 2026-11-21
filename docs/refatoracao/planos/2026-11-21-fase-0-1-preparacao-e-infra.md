@@ -71,13 +71,13 @@
 - Modify: `composer.lock` (o lock só existe até a T1.2)
 - Modify: `docs/refatoracao/PROGRESSO.md`
 
-- [ ] **Step 1: Reconciliar o lock no PHP 8.3 local**
+- [x] **Step 1: Reconciliar o lock no PHP 8.3 local**
   Run: `composer update --no-interaction --no-progress`
   Expected: termina sem erro. Se falhar, registrar o erro no PROGRESSO e usar `composer update --ignore-platform-req=php`.
-- [ ] **Step 2: Rodar a suíte antiga**
+- [x] **Step 2: Rodar a suíte antiga**
   Run: `vendor/bin/phpunit --testdox 2>&1 | tail -40`
-- [ ] **Step 3: Registrar no PROGRESSO** (seção nova "Linha de base F0"): contagem de testes, falhas e erros, e o nome de cada teste que falhou com a mensagem em uma linha. **Não corrigir nada.**
-- [ ] **Step 4: Commit** `chore: atualiza lock legado e registra linha de base`
+- [x] **Step 3: Registrar no PROGRESSO** (seção nova "Linha de base F0"): contagem de testes, falhas e erros, e o nome de cada teste que falhou com a mensagem em uma linha. **Não corrigir nada.**
+- [x] **Step 4: Commit** `chore: atualiza lock legado e registra linha de base`
 
 ### Task T0.4: XMLs de referência (golden) do código antigo
 
