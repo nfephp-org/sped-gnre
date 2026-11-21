@@ -139,7 +139,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F4 | `MakeV1` (layout 1.00, 2 formatos — D-16) | ✅ | `planos/2026-11-22-fase-4-makev1.md` | formato 1.00: igual ao golden do `Lote` v1 e válido em `PL_GNRE_100`; formato 2.00: válido em `PL_GNRE_200`; os dois enviados pela `Tools` (SoapFake) |
 | F5 | `Standardize` + `RetornoTxtV1` + `Factories\FromNFe` | ✅ | `planos/2026-11-22-fase-5-retornos-nfe.md` | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre` + `DA\DadosGuia`, padrão sped-da) | ✅ | `planos/2026-11-22-fase-6-dagnre.md` | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
-| F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
+| F7 | Revisão, roteiro de homologação, docs, limpeza e RC | 🟨 | `planos/2026-11-22-fase-7-release.md` | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
 | F8 | Migrar a DA para o sped-da (**antes da F7**, D-18) | ✅ | `planos/2026-11-22-fase-8-migracao-sped-da.md` | branch `feature/gnre` no fork do sped-da com `NFePHP\DA\GNRE\Dagnre` (testes verdes, sem regressão na suíte do sped-da); o sped-gnre sem `DA/` e sem sped-da no `require`; CI verde |
 
 Dependências: F0 → F1 → F2 → (F3 ∥ F4) → F5 → F6 → **F8 → F7** (D-18). F3 e F4 podem ser feitas em qualquer ordem.

@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F8 ✅ concluída. Próxima: F7 (docs, limpeza, RC, homologação real, PRs no nfephp-org)
-- **Tarefa:** escrever o plano detalhado da F7 (depois de o usuário responder às 2 perguntas)
+- **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
+- **Tarefa:** T7.1 do plano `planos/2026-11-22-fase-7-release.md`; revisores independentes (sped-gnre e sped-da) em execução
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** perguntar ao usuário (1) como fazer a homologação real (P-05: certificado, quem executa) e (2) se quer uma revisão independente do branch antes dos PRs; depois, escrever o plano da F7, que inclui o PR do sped-da (branch `feature/gnre` do fork) e o do sped-gnre, mais a issue (D-13/D-18).
+- **Próxima ação:** receber os relatórios dos 2 revisores, reavaliar os achados e fazer o passe de correção (T7.1); depois T7.2 (roteiro de homologação).
 
 ## Pendências abertas
 
@@ -26,7 +26,7 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 | P-04 | ✅ Resolvida (D-13): a issue de anúncio está **só no fork**, em https://github.com/betoeu/sped-gnre/issues/1. Vai para o nfephp-org na F7. | — | — |
 | P-03 | ✅ Resolvida (2026-11-22): consulta de guia incluída (D-14) com os 2 serviços do manual 2.17 (`GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`). | — | — |
 | P-06 | ✅ Resolvida (2026-11-22): o usuário escolheu **oferecer os dois formatos** (D-16). | — | — |
-| P-05 | Pontos a confirmar em homologação **real** na F7, com o certificado do usuário: (a) o envelope D-15 nos 5 serviços; (b) `versaoDados` do ConfigUF (o ACBr usa a versão do config, o legado usava `1.00`); (c) `versaoDados` `2.00` nas consultas de guia (o ACBr não implementa esses serviços). | F7 | — |
+| P-05 | Pontos a confirmar em homologação **real** na F7, com o certificado do usuário: (a) o envelope D-15 nos 5 serviços; (b) `versaoDados` do ConfigUF (o ACBr usa a versão do config, o legado usava `1.00`); (c) `versaoDados` `2.00` nas consultas de guia (o ACBr não implementa esses serviços). | Usuário (2026-11-22): **sem certificado de homologação agora**; a F7 entrega só o roteiro (`docs/HOMOLOGACAO.md` + `examples/homologacao.php`) para o usuário executar depois. | aberta até a execução do roteiro |
 
 ## Decisões de execução (R-xx)
 
@@ -141,6 +141,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T8.1 | sped-da: branch `feature/gnre` a partir de `upstream/master` `6e4b3e7`. **Linha de base do upstream** (sem alteração nossa): phpunit 72 testes, **4 erros já existentes** (`DamdfeTest`: seguro ×3 e vale-pedágio, `Damdfe.php:1045/1028`); phpcs PSR-2 com 63 violações já existentes; phpstan estoura 128M (como na R-16). Meta: `src/GNRE` limpo e a suíte sem novas falhas | (sem commit no sped-da) |
 | 2026-11-22 | T8.2–T8.3 | **sped-da** branch `feature/gnre` (fork): `src/GNRE/{ResultadoLote,DadosGuia,Dagnre}.php` (sem dependência do sped-gnre), testes `tests/GNRE` (28), fixtures `tests/fixtures/xml/gnre`, `examples/gnre/dagnre.php`, `docs/Dagnre.md`, README (uso + crédito "Alberto Leal (GNRE)") e CHANGELOG. Suíte do sped-da: 100 testes, só os 4 erros já existentes; PSR-2, phpstan nível 1 e compatibilidade 7.4 limpos em `src/GNRE`; PDF conferido visualmente (igual à F6). Bug da logo corrigido (R-17). Commits 804b69b, 7a488a7, e1d0aeb; push só no fork | (commits no sped-da) |
 | 2026-11-22 | T8.4 | sped-gnre sem `src/DA`/`tests/DA`; sped-da, gd e pdfparser removidos (5 pacotes a menos), sped-da em `suggest`; `examples/dagnre.php` usa `NFePHP\DA\GNRE\Dagnre` com mensagem amigável se o sped-da não estiver instalado; README e CHANGELOG atualizados; o phpstan ainda precisa de 512M (R-16 mantida); suíte 205 ✔; **CI verde nas 7 versões** (sha 3419ca8). **F8 concluída** | refactor!: impressão no sped-da |
+| 2026-11-22 | plano F7 | Usuário: homologação só com roteiro (sem certificado) e com revisão independente. 2 revisores (sped-gnre `189fee1..59a6ae1`, sped-da `6e4b3e7..e1d0aeb`) acionados; plano da F7 escrito | docs: plano da F7 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
