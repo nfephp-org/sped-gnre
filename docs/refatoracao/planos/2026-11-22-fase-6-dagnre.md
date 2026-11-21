@@ -102,7 +102,7 @@
   - embaixo, a linha digitável formatada, o código de barras I25 (≈103 × 13 mm) e, se houver `qrcodePayload`, o QR Code PIX (`QRCODE,M`, ≈25 mm) com a legenda `Pagamento via PIX`.
   - Os textos usam `textBox` com fonte reduzida quando não cabem (`cellFitScale` ou `getNumLines`).
 
-- [ ] **Step 1: Escrever `tests/DA/DagnreTest.php`** (helper `texto(string $pdf): string` com o `Smalot\PdfParser\Parser`):
+- [x] **Step 1: Escrever `tests/DA/DagnreTest.php`** (helper `texto(string $pdf): string` com o `Smalot\PdfParser\Parser`):
   - `testPdfDoResultadoV2`: a fixture `retorno-resultado-v2.xml` gera um PDF que começa com `%PDF`, tem **2 páginas** e cujo texto contém `GNRE`, `1ª via - Banco`, `3ª via - Contribuinte/Fisco`, `TESTES NF-E 4.00`, `85850000002-9 43009999200-6 28010096220-0 00000000000-0` e `243,00`.
   - `testCodigoBarrasEhI25`: subclasse de teste que intercepta o desenho do código de barras (método `protected codigoBarras(string $codigo, ...)`) e registra o tipo e o código → `I25` e `85850000002430099992002801000000000000000000`.
   - `testQrCodePix`: fixture com `<qrcodePayload>00020126...</qrcodePayload>` acrescentado via DOM na 1ª guia → o texto contém `Pagamento via PIX`; a 2ª guia (sem payload) não contém.
@@ -112,11 +112,11 @@
   - `testResultadoV1Txt`: a fixture `retorno-resultado-v1.xml` tem a única guia com situação `1`, então dá `DocumentsException`. Com a situação trocada para `0` na linha TXT, gera 1 página que contém `AC`.
   - `testNaoEResultado`: o recibo (`retorno-recibo.xml`) → `DocumentsException`.
   - `testCreditos`: `creditsIntegratorFooter('MINHA EMPRESA')` → o texto contém `MINHA EMPRESA` e `Powered by NFePHP`.
-- [ ] **Step 2: Rodar e ver falhar** → classe inexistente.
-- [ ] **Step 3: Implementar** (`monta` → uma página por guia → 3 × `via($y, $guia, $rotulo)` + `rodape()`).
-- [ ] **Step 4:** a cadeia de verificação → verde. Gerar o PDF da fixture em `scratchpad` e **conferir visualmente** (ler o PDF ou uma imagem dele), registrando no PROGRESSO o que foi conferido.
-- [ ] **Step 5: Registrar no PROGRESSO** (divergências): o legado usava Code128 (fora do padrão Febraban de arrecadação), Smarty e Dompdf, não tinha PIX nem várias vias por página garantidas, e usava `templates/guia.tpl`, que não existe.
-- [ ] **Step 6: Commit** `feat(da): Dagnre (PDF da GNRE em 3 vias, I25 e PIX)`
+- [x] **Step 2: Rodar e ver falhar** → classe inexistente.
+- [x] **Step 3: Implementar** (`monta` → uma página por guia → 3 × `via($y, $guia, $rotulo)` + `rodape()`).
+- [x] **Step 4:** a cadeia de verificação → verde. Gerar o PDF da fixture em `scratchpad` e **conferir visualmente** (ler o PDF ou uma imagem dele), registrando no PROGRESSO o que foi conferido.
+- [x] **Step 5: Registrar no PROGRESSO** (divergências): o legado usava Code128 (fora do padrão Febraban de arrecadação), Smarty e Dompdf, não tinha PIX nem várias vias por página garantidas, e usava `templates/guia.tpl`, que não existe.
+- [x] **Step 6: Commit** `feat(da): Dagnre (PDF da GNRE em 3 vias, I25 e PIX)`
 
 ### Task T6.4: Exemplo, documentação e fechamento da F6
 
