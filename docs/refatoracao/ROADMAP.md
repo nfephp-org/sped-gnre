@@ -30,6 +30,7 @@ um único certificado/config e sem conflito de dependências.
 | D-13 | O anúncio e a issue ficam **só no fork** (betoeu/sped-gnre#1) até a refatoração terminar. Só na F7 vão para o nfephp-org/sped-gnre (issue + PR). Substitui o passo de anúncio da T1.4 e o item de risco "abrir issue antes do PR grande". | Usuário (2026-11-22) |
 | D-14 | **Incluir a consulta de guia** (serviços `GnreLoteRecepcaoConsulta` + `GnreResultadoLoteConsulta`, XSD `lote_consulta_guia_v2.00.xsd`), que o legado não implementava. Na F2: `sefazEnviaLoteConsulta()` e `sefazConsultaLoteConsulta()`; na F3: `MakeConsulta`. | Usuário (2026-11-22) |
 | D-15 | **Envelope SOAP igual ao do ACBr** (`D:\AcbrDev\trunk2\Fontes\ACBrDFe`, rev. 49272, 2026-11-19), que funciona em produção: o `gnreCabecMsg` e o `gnreDadosMsg` usam o mesmo namespace `http://www.gnre.pe.gov.br/webservice/<Servico>` **nos dois ambientes**; a action é esse namespace; o `versaoDados` é o `versao` do config (as duas consultas de guia são fixas em `2.00`). Bate com o `targetNamespace` dos WSDLs. Diverge de propósito do legado (`wsdl/processar`, `wsdl/consultar`, `testegnre` em homologação) e do exemplo do manual (`wsdl/<Servico>`). Tudo fica em `storage/wsgnre.json`. Teste real em homologação na F7. | Análise: WSDL + ACBr + manual |
+| D-16 | **Layout 1.00 nos dois formatos** (resolve a P-06): o `MakeV1` gera (a) a **guia 1.00 embutida no lote 2.00**, isto é, `TLote_GNRE versao="2.00"` com `TDadosGNRE versao="1.00"`, o formato do pacote oficial 2.17, enviado com config `versao` 2.00 (padrão); ou (b) o **lote 1.00 puro**, `TLote_GNRE` e `TDadosGNRE` sem `versao`, como na 0.x, enviado com config `versao` 1.00. Os campos `c01_...` são idênticos nos dois. | Usuário (2026-11-22) |
 
 Novas decisões: acrescentar uma linha com a data. Nunca apague linhas; para mudar uma decisão, marque a antiga como "substituída por D-xx".
 
@@ -100,7 +101,15 @@ class Make {                         // 2.00; cada tagGuia abre uma nova guia, a
     public function getXML(): string;                                // TLote_GNRE validado no XSD 2.00
     public function getErrors(): array;
 }
-class MakeV1 { public function tagGuia(\stdClass $std): \DOMElement; public function getXML(): string; public function getErrors(): array; }
+class MakeV1 {                       // layout 1.00 (D-16)
+    public const FORMATO_LOTE_200 = '2.00';  // guia 1.00 dentro do lote 2.00 (padrão)
+    public const FORMATO_LOTE_100 = '1.00';  // lote 1.00 puro (0.x)
+    public function __construct(string $formato = self::FORMATO_LOTE_200);
+    public function tagGuia(\stdClass $std): \DOMElement;        // campos c01_..c42_ (nomes das tags)
+    public function tagReferencia(\stdClass $std): \DOMElement;  // c05_referencia: periodo, mes, ano, parcela
+    public function tagCampoExtra(\stdClass $std): \DOMElement;  // c39_camposExtras/campoExtra: codigo, tipo (T|N|D), valor
+    public function getXML(): string; public function getErrors(): array;
+}
 
 namespace NFePHP\Gnre\Common;
 class Standardize { public function whichIs(string $xml): string; public function toStd(?string $xml = null): \stdClass;
@@ -119,7 +128,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F1 | Infraestrutura e esqueleto | ✅ | idem | `composer validate --strict`, `composer phpcs`, `composer stan`, `composer test` verdes no PHP 8.3 local e CI verde de 7.4 a 8.5 |
 | F2 | Comunicação (`Common\Tools`, `Tools`, `Webservices`) | ✅ | `planos/2026-11-22-fase-2-comunicacao.md` | os **5** serviços testados com `SoapFake`; envelope equivalente ao golden (XML canonicalizado); nenhuma chave gravada fora do temp do SoapCurl |
 | F3 | `Make` 2.00 + `MakeConsulta` + `RegrasUf` | ✅ | `planos/2026-11-22-fase-3-make.md` | os cenários de `legacy/exemplos/xml` geram XML válido no XSD 2.00; diferenças em relação ao golden do `LoteV2` explicadas no PROGRESSO (bugs corrigidos) |
-| F4 | `MakeV1` (layout 1.00) | ⬜ | escrever ao iniciar | igual ao golden do `Lote` v1 e válido no XSD 1.00 |
+| F4 | `MakeV1` (layout 1.00, 2 formatos — D-16) | 🟨 | `planos/2026-11-22-fase-4-makev1.md` | formato 1.00: igual ao golden do `Lote` v1 e válido em `PL_GNRE_100`; formato 2.00: válido em `PL_GNRE_200`; os dois enviados pela `Tools` (SoapFake) |
 | F5 | `Standardize` + `Factories\FromNFe` | ⬜ | escrever ao iniciar | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre`, padrão sped-da) | ⬜ | escrever ao iniciar | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
 | F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |

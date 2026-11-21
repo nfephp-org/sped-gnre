@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F3 ✅ concluída. Próxima: F4 (`MakeV1`, layout 1.00)
-- **Tarefa:** escrever o plano detalhado da F4, considerando primeiro a **P-06**
+- **Fase:** F4 (`MakeV1`, layout 1.00 em 2 formatos), em andamento
+- **Tarefa:** T4.1 do plano `planos/2026-11-22-fase-4-makev1.md`
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** decidir com o usuário a P-06 (como gerar o layout 1.00) e escrever o plano da F4.
+- **Próxima ação:** T4.1, `MakeV1` + extração do `Common\MakeTrait`.
 
 ## Pendências abertas
 
@@ -25,7 +25,7 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 | P-02 | ✅ Resolvida (2026-11-22): o usuário **manteve o layout 1.00** (D-04 reconfirmada) "caso alguma SEFAZ use a versão antiga". O XSD vem de `schemes/PL_GNRE_100`. | — | — |
 | P-04 | ✅ Resolvida (D-13): a issue de anúncio está **só no fork**, em https://github.com/betoeu/sped-gnre/issues/1. Vai para o nfephp-org na F7. | — | — |
 | P-03 | ✅ Resolvida (2026-11-22): consulta de guia incluída (D-14) com os 2 serviços do manual 2.17 (`GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`). | — | — |
-| P-06 | No pacote oficial 2.17, o `TLote_GNRE` (versão fixa 2.00) aceita guias `TDadosGNRE` com `versao="1.00"` (grupo `dadosGnre_1.00`, campos `c01_...`, definido em `PL_GNRE_200/dados_gnre_v1.00.xsd`) **ou** `versao="2.00"`, inclusive misturadas no mesmo lote. Já o lote 1.00 "puro" do legado (`TLote_GNRE` sem `versao`, validado em `PL_GNRE_100`) é o formato anterior a 2019. | Desenho da F4 | Proposta: o `MakeV1` gera a **guia 1.00 dentro do lote 2.00** (formato vigente aceito pelo XSD oficial), validada em `PL_GNRE_200`; o lote 1.00 puro continua possível via `Tools` com `versao` 1.00 (PL_GNRE_100), só por compatibilidade. |
+| P-06 | ✅ Resolvida (2026-11-22): o usuário escolheu **oferecer os dois formatos** (D-16). | — | — |
 | P-05 | Pontos a confirmar em homologação **real** na F7, com o certificado do usuário: (a) o envelope D-15 nos 5 serviços; (b) `versaoDados` do ConfigUF (o ACBr usa a versão do config, o legado usava `1.00`); (c) `versaoDados` `2.00` nas consultas de guia (o ACBr não implementa esses serviços). | F7 | — |
 
 ## Decisões de execução (R-xx)
@@ -119,6 +119,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T3.3 | `MakeConsulta` (7 tipos de consulta, emitenteId por CNPJ/CPF/IE, máx. 50, docOrigem com tipo); o XML gerado é idêntico à fixture da F2; 9 testes; suíte 125 ✔ | feat: MakeConsulta |
 | 2026-11-22 | T3.4 | `RegrasUf` + `storage/regras_uf.json` (sugestões da 0.x; o oficial é o ConfigUF); as 27 UFs conferidas contra o legado; suíte 155 ✔ | feat(common): RegrasUf |
 | 2026-11-22 | T3.5 | Exemplos com `Make`/`MakeConsulta` (`make-lote.php` gera um XML válido no XSD sem certificado), CHANGELOG Added/Fixed; **CI verde nas 7 versões** (sha 4aa8132). **F3 concluída**. P-06 aberta | docs: exemplos F3 |
+| 2026-11-22 | plano F4 | Usuário: os dois formatos do 1.00 (D-16). Os dois XSDs têm a mesma sequência de campos `c01..c42`; muda só o invólucro. Achado: o legado descartava `periodo` 0. Plano da F4 escrito | docs: plano da F4 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
