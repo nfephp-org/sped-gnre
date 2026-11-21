@@ -32,6 +32,22 @@ composer require nfephp-org/sped-gnre
 Layout de lote **2.00**, com os schemas do **Manual de Integração do Contribuinte GNRE v2.17**
 em `schemes/PL_GNRE_200/` (origem registrada em [`schemes/README.md`](schemes/README.md)).
 
+## Impressão da guia
+
+`NFePHP\Gnre\DA\Dagnre` gera o PDF da GNRE (3 vias por guia: Banco, Contribuinte e Contribuinte/Fisco)
+a partir do retorno de `sefazConsultaLote()`. O PDF traz o código de barras de arrecadação
+(2 de 5 intercalado) e o QR Code PIX quando a SEFAZ o informa. Só as guias processadas com sucesso
+são impressas; as demais ficam em `getGuiasNaoImpressas()`.
+
+```php
+$dagnre = new \NFePHP\Gnre\DA\Dagnre($tools->sefazConsultaLote($recibo));
+$dagnre->creditsIntegratorFooter('Minha Empresa');
+$pdf = $dagnre->render();
+```
+
+Alternativa: o próprio Portal GNRE devolve o PDF pronto quando a consulta é feita com
+`$tools->sefazConsultaLote($recibo, ['incluirPDFGuias' => 'S'])`, em `resultado->pdfGuias` (base64).
+
 ## Antes de usar a API
 
 - Verifique se seu certificado digital não foi expedido através da [certisign](https://www.certisign.com.br), pois existe um problema na cadeia do certificado que impossibilita a emissão de guias GNRE. Certificados expedidos através do [SERASA](https://serasa.certificadodigital.com.br/) funcionam normalmente para a emissão (até agora nenhum erro foi relatado).

@@ -27,8 +27,11 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
   **preservando os atributos**: `<valor tipo="12">` vira `{attributes: {tipo: "12"}, value: ...}`.
 - `NFePHP\Gnre\Common\RetornoTxtV1`: lê o resultado TXT posicional do lote 1.00 puro.
 - `NFePHP\Gnre\Factories\FromNFe`: dados da guia a partir do XML da NF-e e atalhos `guiaDifal()`/`guiaSt()`.
-- Exemplos em `examples/` (`make-lote.php`, `make-lote-v1.php`, `standardize-retorno.php` e
-  `guia-difal-da-nfe.php` rodam sem certificado).
+- `NFePHP\Gnre\DA\Dagnre`: PDF da GNRE (3 vias por guia), no padrão do sped-da, com código de barras
+  de arrecadação (2 de 5 intercalado) e QR Code PIX; `NFePHP\Gnre\DA\DadosGuia` normaliza as guias
+  2.00, 1.00 e do TXT 1.00 para impressão.
+- Exemplos em `examples/` (`make-lote.php`, `make-lote-v1.php`, `standardize-retorno.php`,
+  `guia-difal-da-nfe.php` e `dagnre.php` rodam sem certificado).
 
 ### Fixed
 - Campos que a 0.x descartava no lote 2.00 (`detalhamentoReceita`, `produto`, IE do emitente e `convenio`) agora são enviados.
@@ -36,6 +39,7 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 - `identificadorGuia` e `referencia/periodo` deixam de ser fixos (`1` e `0`).
 - No layout 1.00, o período `0` (mensal) não é mais descartado.
 - Leitura do resultado TXT do lote 1.00 com as posições corretas (a 0.x tinha campos deslocados e sobrepostos).
+- O código de barras da guia passa a ser 2 de 5 intercalado (padrão Febraban de arrecadação); a 0.x usava Code128.
 
 ### Changed
 - Namespace `Sped\Gnre` substituído por `NFePHP\Gnre` (pasta `src/`).
@@ -45,5 +49,6 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 - CI migrada do Travis para o GitHub Actions.
 
 ### Removed
+- Impressão via Smarty + Dompdf (substituída pelo `DA\Dagnre`).
 - Dependências `smarty/smarty` (5 vulnerabilidades conhecidas na 3.1.46), `dompdf/dompdf`, `laminas/*`, `sabberworm/php-css-parser`, `nfephp-org/sped-nfe` e o uso não declarado de `guzzlehttp/guzzle`.
 - Código 0.x (`Sped\Gnre`), mantido só como referência em `legacy/` até a versão final.
