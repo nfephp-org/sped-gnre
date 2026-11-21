@@ -124,12 +124,12 @@
 
 **Files:** só movimentações (`git mv`).
 
-- [ ] **Step 0: Resolver a pendência P-01 (pacote de schemas, ver PROGRESSO)** antes de mover. O `xsd/v2` do repositório está quebrado (inclui `dados_gnre_v1.00.xsd` e `tiposBasicoGNRE_v1.00.xsd`, que não estão na pasta) e diverge do zip do manual nos dois sentidos.
+- [x] **Step 0: Resolver a pendência P-01 (pacote de schemas, ver PROGRESSO)** antes de mover. O `xsd/v2` do repositório está quebrado (inclui `dados_gnre_v1.00.xsd` e `tiposBasicoGNRE_v1.00.xsd`, que não estão na pasta) e diverge do zip do manual nos dois sentidos.
   - Se o pacote vigente puder ser baixado do Portal GNRE: ele vira `schemes/PL_GNRE_200/` (pasta plana, todos os arquivos).
   - Se não puder: `schemes/PL_GNRE_200/` = os 13 XSDs de `exemplos/docs/Manual_de_Integracao_Contribuintes_GNRE_v2.00.zip`, aplicando por cima o padrão `[0-9]{2}BR[0-9]{11}` do `tiposBasicoGNRE_v2.00.xsd` do repositório; `schemes/PL_GNRE_100/` = `xsd/v1` do repositório.
   - Registrar a origem de cada arquivo em `schemes/README.md`.
   - Nesse caso, a linha `git mv xsd/v2 …` do Step 1 é trocada pela cópia do pacote escolhido mais `git rm -r xsd/v2`.
-- [ ] **Step 1: Mover**
+- [x] **Step 1: Mover**
   ```bash
   mkdir -p legacy docs schemes
   git mv exemplos/docs docs/manuais
@@ -139,11 +139,11 @@
   git mv tests/fixtures/legacy/gerar.php legacy/gerar-golden.php
   git rm -q .travis.yml .coveralls.yml Dockerfile docker-compose.yml composer.lock phpunit.xml.dist .github/workflows/php.yml
   ```
-- [ ] **Step 2: Criar `legacy/README.md`** (3 linhas): código 0.x congelado só para referência, sem autoload, removido na F7.
-- [ ] **Step 3: Atualizar `.gitignore`**: acrescentar `composer.lock`, `/build/`, `.phpunit.cache/`, `/legacy/certs/*.pfx`.
-- [ ] **Step 4: Verificar**
+- [x] **Step 2: Criar `legacy/README.md`** (3 linhas): código 0.x congelado só para referência, sem autoload, removido na F7.
+- [x] **Step 3: Atualizar `.gitignore`**: acrescentar `composer.lock`, `/build/`, `.phpunit.cache/`, `/legacy/certs/*.pfx`.
+- [x] **Step 4: Verificar**
   Run: `ls` → Expected: `docs legacy schemes tests LICENSE.md README.md composer.json .gitattributes .gitignore .github`
-- [ ] **Step 5: Commit** `refactor!: congela codigo 0.x em legacy/ e adota estrutura padrao`
+- [x] **Step 5: Commit** `refactor!: congela codigo 0.x em legacy/ e adota estrutura padrao`
 
 ### Task T1.2: Novo `composer.json`
 

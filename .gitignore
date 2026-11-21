@@ -5,3 +5,8 @@ coverage/
 local/
 nbproject
 .phpunit.result.cache
+composer.lock
+/build/
+.phpunit.cache/
+.phpunit.result.cache
+/legacy/certs/*.pfx

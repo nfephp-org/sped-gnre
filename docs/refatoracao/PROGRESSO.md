@@ -12,16 +12,18 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F0 ✅ concluída. Próxima: F1
-- **Tarefa:** T1.1, começando pelo Step 0 (pendência P-01)
+- **Fase:** F1, em andamento
+- **Tarefa:** T1.2 (T1.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** resolver a **P-01** (qual pacote de XSD vira `schemes/`) e depois executar a T1.1.
+- **Próxima ação:** T1.2, novo `composer.json`. ⚠️ Pergunta ao usuário sobre D-04 (layout 1.00), ver P-02.
 
 ## Pendências abertas
 
 | ID | Pendência | Bloqueia | Proposta padrão |
 |----|-----------|----------|-----------------|
-| P-01 | O `xsd/v2` do repositório está **quebrado**: o `lote_gnre_v2.00.xsd` e o `lote_gnre_result_v2.00.xsd` incluem `dados_gnre_v1.00.xsd`, e o `tiposBasicoGNRE_v2.00.xsd` inclui `tiposBasicoGNRE_v1.00.xsd`; nenhum dos dois está na pasta. Além disso, 6 XSDs diferem do zip oficial do manual nos dois sentidos (o repositório tem o padrão `[0-9]{2}BR[0-9]{11}`; o zip tem os enums `c39..c42` e `maxOccurs=200`). | T1.1 Step 0 | Tentar baixar o pacote vigente do Portal GNRE. Se não for possível, usar o zip do manual (13 XSDs, completo) e aplicar por cima o padrão `BR` do repositório. |
+| P-01 | ✅ **Resolvida** (2026-11-21): pacote oficial do **Manual v2.17** baixado do Portal GNRE (`https://www.gnre.pe.gov.br:444/gnre/v/automacao/baixarManual`; a porta 443 devolve 403 para acesso automatizado). Tem 16 XSDs completos, sem include faltando, e valida os golden com dados corretos. Virou `schemes/PL_GNRE_200/`. | — | — |
+| P-02 | O pacote oficial 2.17 **não tem mais** o `lote_gnre_v1.00.xsd`; segundo fontes secundárias, a SEFAZ aceitou o lote 1.00 só até 31/03/2021. D-04 (manter o layout 1.00 / `MakeV1` / F4) precisa ser reconfirmada pelo usuário. | F4 (não bloqueia F1–F3) | Proposta: não implementar o `MakeV1`. Manter `schemes/PL_GNRE_100` só como histórico, ou removê-lo. |
+| P-03 | O pacote 2.17 traz serviços que o legado não implementa: consulta de guia (`lote_consulta_guia_v2.00.xsd`, `lote_gnre_result_consulta_v2.00.xsd`) e `retorno_gnre_v2.00.xsd`. | plano da F2 | Incluir `sefazConsultaGuia()` no contrato da `Tools` ao escrever o plano da F2 (exige uma decisão D-13). |
 
 ## Decisões de execução (R-xx)
 
@@ -29,6 +31,8 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 
 - **R-01** (T0.3): rodei a suíte legada com `--no-configuration`, porque o `stopOnFailure="true"` do phpunit.xml legado parava no 1º erro. Custo se errado: nenhum, só muda a forma de executar.
 - **R-02** (T0.4): o `validos.txt` guarda só o **nome** do XSD, sem a pasta, para não depender da P-01. Custo se errado: 1 linha no `SchemesTest` (T1.3, já ajustado no plano).
+- **R-04** (T1.1): `schemes/PL_GNRE_200/` = pacote oficial 2.17 sem alteração (só LF). O `xsd/v2` antigo foi removido e `xsd/v1` virou `schemes/PL_GNRE_100/`. Origem registrada em `schemes/README.md`. Custo se errado: trocar a pasta.
+- **R-05** (T1.1): `docs/manuais/` guarda só o manual vigente (v2.17 PDF). Os manuais antigos (`exemplos/docs`) foram para `legacy/manuais-antigos/`. Custo se errado: nenhum.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -83,6 +87,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-21 | T0.2 | `.gitattributes` (eol=lf + export-ignore); 4 XSDs renormalizados (eram CRLF ou mistos); 0 CRLF restante | chore: normaliza finais de linha |
 | 2026-11-21 | T0.3 | Lock legado atualizado; suíte antiga 70 testes: 67 ✔ e 2 erros (teste do CertificatePfx no PHP ≥ 7.4); 5 CVEs no Smarty | chore: atualiza lock legado |
 | 2026-11-21 | T0.4 | 8 golden determinísticos; estrutura legada válida, dados de exemplo inválidos; XSD v2 do repositório quebrado (P-01); R-01..R-03. **F0 concluída** | test: golden XMLs |
+| 2026-11-21 | T1.1 | P-01 resolvida com o manual oficial v2.17; legado em `legacy/`; `schemes/PL_GNRE_100` e `PL_GNRE_200`; arquivos de Travis, Coveralls e Docker removidos; P-02 e P-03 abertas | refactor!: congela codigo 0.x |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
