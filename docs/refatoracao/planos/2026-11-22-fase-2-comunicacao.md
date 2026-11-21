@@ -137,7 +137,7 @@
   3. `servico('GnreLoteRecepcao')`;
   4. `return sendRequest($request)`.
 
-- [ ] **Step 1: Escrever `tests/ToolsEnviaLoteTest.php`** (`extends ToolsTestCase`; `SoapFake` com `setReturnValue('<retorno/>')`):
+- [x] **Step 1: Escrever `tests/ToolsEnviaLoteTest.php`** (`extends ToolsTestCase`; `SoapFake` com `setReturnValue('<retorno/>')`):
   - `testEnviaLote200`: `$xml = $this->golden('lote-v2-valido-prod.xml', 'TLote_GNRE')`, depois `sefazEnviaLote($xml)`. Verifica:
     - retorno `'<retorno/>'`;
     - `sendParams['url']` = `https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao`;
@@ -150,11 +150,11 @@
   - `testRemoveDeclaracaoXml`: `'<?xml version="1.0" encoding="UTF-8"?>' . "\n" . $xml` → `lastRequest` sem `<?xml`, e o envio acontece.
   - `testXmlInvalidoNaoEnvia`: golden `lote-v2-completo-prod.xml` (dados inválidos) → `expectException(ValidatorException::class)` e, num `finally`, `assertSame(0, $fake->getCalls())`.
   - `testProducao`: `setEnvironment(1)` → `url` `https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao` e o mesmo namespace.
-- [ ] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit --filter ToolsEnviaLoteTest` → Expected: `Class "NFePHP\Gnre\Tools" not found`.
-- [ ] **Step 3: Implementar `sefazEnviaLote`** em `src/Tools.php`.
-- [ ] **Step 4: Rodar** — `composer test`, `composer phpcs`, `composer stan` → verdes.
-- [ ] **Step 5: Registrar no PROGRESSO** (tabela de divergências): a linha "namespace em homologação" vira a regra D-15, com o resumo de como era no legado (`gnreCabecMsg` em `wsdl/processar`, `gnreDadosMsg` em `testegnre` na homologação) e de como fica na 1.0.
-- [ ] **Step 6: Commit** `feat: Tools::sefazEnviaLote (layouts 1.00 e 2.00)`
+- [x] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit --filter ToolsEnviaLoteTest` → Expected: `Class "NFePHP\Gnre\Tools" not found`.
+- [x] **Step 3: Implementar `sefazEnviaLote`** em `src/Tools.php`.
+- [x] **Step 4: Rodar** — `composer test`, `composer phpcs`, `composer stan` → verdes.
+- [x] **Step 5: Registrar no PROGRESSO** (tabela de divergências): a linha "namespace em homologação" vira a regra D-15, com o resumo de como era no legado (`gnreCabecMsg` em `wsdl/processar`, `gnreDadosMsg` em `testegnre` na homologação) e de como fica na 1.0.
+- [x] **Step 6: Commit** `feat: Tools::sefazEnviaLote (layouts 1.00 e 2.00)`
 
 ### Task T2.4: `sefazConsultaLote` e `sefazConsultaConfigUf`
 

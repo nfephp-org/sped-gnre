@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F2 (Comunicação), em andamento
-- **Tarefa:** T2.3 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 e T2.2 concluídas)
+- **Tarefa:** T2.4 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 a T2.3 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T2.3, `Tools::sefazEnviaLote` (layouts 1.00 e 2.00).
+- **Próxima ação:** T2.4, `sefazConsultaLote` e `sefazConsultaConfigUf`.
 
 ## Pendências abertas
 
@@ -103,6 +103,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | plano F2 | Usuário: manter o layout 1.00 (P-02) e incluir a consulta de guia (P-03). Pesquisa: manual 2.17 (5 serviços, métodos, PDF da guia via `incluirPDFGuias`), WSDLs legados, **ACBr trunk2 rev. 49272** (namespaces). Decisões D-14 e D-15; contrato da `Tools` atualizado; plano da F2 escrito | docs: plano da F2 |
 | 2026-11-22 | T2.1 | `storage/wsgnre.json` (5 serviços) + `Common\Webservices`; 6 testes ✔ | feat(common): Webservices |
 | 2026-11-22 | T2.2 | `Common\Tools` (config validado, ambiente, versão, SoapCurl, servico, sendRequest, isValid) + `SoapFake` + `ToolsTestCase` + certificado de teste; suíte 70 ✔ | feat(common): Tools base |
+| 2026-11-22 | T2.3 | `Tools::sefazEnviaLote` (1.00 e 2.00): a mensagem é igual ao golden (C14N), o envelope segue D-15 e um XML inválido não é enviado; suíte 75 ✔ | feat: sefazEnviaLote |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
@@ -110,5 +111,5 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 |------|--------|-----|--------------------|
 | `identificadorGuia` (v2) | fixo `1` em todas as guias do lote | a conferir na F3 | Manual 2.01 |
 | `item/valor` (v2) | `c06_valorPrincipal` enviado 2×, `tipo=11` e `tipo=21` | a conferir na F3 | Manual 2.01, tabela de tipos de valor |
-| namespace em homologação (v2) | só o `gnreDadosMsg` muda para `testegnre`; o `TLote_GNRE` fica em `gnre.pe.gov.br` | a conferir na F2 | WSDL de homologação |
+| Envelope SOAP (todos os serviços) | `gnreCabecMsg` em `.../wsdl/processar` ou `.../wsdl/consultar`; `gnreDadosMsg` em `.../webservice/<Servico>`, trocado para `testegnre` em homologação; ConfigUF com prefixo `gnr:` | **D-15**: cabeçalho, corpo e action em `http://www.gnre.pe.gov.br/webservice/<Servico>` nos **dois** ambientes; só a URL muda | WSDL (`targetNamespace`) + ACBr trunk2 rev. 49272; confirmar em homologação real (P-05) |
 | `referencia/periodo` (v2) | fixo `0` | a conferir na F3 | Manual 2.01 |
