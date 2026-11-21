@@ -109,8 +109,8 @@
   - `protected function c14n(string $xml): string` → carrega com `preserveWhiteSpace = false` e devolve `documentElement->C14N()`.
   - Os golden foram gravados com indentação, por isso **toda comparação de XML nos testes usa `c14n()` dos dois lados**. O `golden()` carrega com `preserveWhiteSpace = false`.
 
-- [ ] **Step 1: Copiar o certificado de teste e escrever o `SoapFake` e o `ToolsTestCase`.**
-- [ ] **Step 2: Escrever `tests/Common/ToolsTest.php`:**
+- [x] **Step 1: Copiar o certificado de teste e escrever o `SoapFake` e o `ToolsTestCase`.**
+- [x] **Step 2: Escrever `tests/Common/ToolsTest.php`:**
   - `testConfigValido`: `tpAmb === 2`, `versao === '2.00'`, `config->siglaUF === 'SP'`.
   - provider `configInvalidoProvider` → `testConfigInvalido` com `expectException(DocumentsException::class)` para: `'{'` (JSON quebrado), `tpAmb: 3`, `versao: '3.00'`, `siglaUF: 'AN'`, e `cnpj` e `cpf` ausentes (`config` sem as duas chaves).
   - `testCpfNoLugarDoCnpj`: config sem `cnpj` e com `cpf: '90483926086'` → não lança.
@@ -118,10 +118,10 @@
   - `testVersion`: `version()` → `'2.00'`; `version('1.00')` → `'1.00'`; `version('9.99')` → `InvalidArgumentException`.
   - `testLoadSoapClass`: depois de `loadSoapClass($fake)`, `$tools->soap === $fake`.
   - `testCheckSoapCriaSoapCurl`: subclasse anônima de teste que expõe `checkSoap()` → `assertInstanceOf(SoapCurl::class, $tools->soap)`.
-- [ ] **Step 3: Rodar e ver falhar** — `vendor/bin/phpunit --filter 'Common\\ToolsTest'` → Expected: `Class "NFePHP\Gnre\Common\Tools" not found`.
-- [ ] **Step 4: Implementar `src/Common/Tools.php`** conforme as Interfaces. Caminhos: `$this->pathwsfiles = realpath(__DIR__ . '/../../storage') . '/'` e `schemes` com `realpath(__DIR__ . '/../../schemes')`.
-- [ ] **Step 5: Rodar** — `composer test` → `OK`; `composer phpcs && composer stan` → sem erros.
-- [ ] **Step 6: Commit** `feat(common): Tools base (config, ambiente, versao, soap, XSD)`
+- [x] **Step 3: Rodar e ver falhar** — `vendor/bin/phpunit --filter 'Common\\ToolsTest'` → Expected: `Class "NFePHP\Gnre\Common\Tools" not found`.
+- [x] **Step 4: Implementar `src/Common/Tools.php`** conforme as Interfaces. Caminhos: `$this->pathwsfiles = realpath(__DIR__ . '/../../storage') . '/'` e `schemes` com `realpath(__DIR__ . '/../../schemes')`.
+- [x] **Step 5: Rodar** — `composer test` → `OK`; `composer phpcs && composer stan` → sem erros.
+- [x] **Step 6: Commit** `feat(common): Tools base (config, ambiente, versao, soap, XSD)`
 
 ### Task T2.3: `Tools::sefazEnviaLote` (layouts 2.00 e 1.00)
 

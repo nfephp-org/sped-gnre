@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F2 (Comunicação), em andamento
-- **Tarefa:** T2.2 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 concluída)
+- **Tarefa:** T2.3 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 e T2.2 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T2.2, `Common\Tools` + `SoapFake` + `ToolsTestCase` + certificado de teste.
+- **Próxima ação:** T2.3, `Tools::sefazEnviaLote` (layouts 1.00 e 2.00).
 
 ## Pendências abertas
 
@@ -39,6 +39,7 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **R-07** (T1.3): `phpcompatibility/php-compatibility` passou de `^9.3` para **`^10.0@alpha`**, igual ao sped-common. Verificado: a 9.3.5 (de 2019) **não detecta** union types nem `str_contains`, então não garantia a D-01; a 10.0.0-alpha2 detecta os dois. Custo se errado: depender de uma versão alpha só em dev (o sped-common faz o mesmo).
 - **R-08** (T1.3): ~~usar `phpstan.neon.dist`~~ **revogada**. A sessão chegou a ver EPERM ao gravar `phpstan.neon*` (a escrita aparecia só com atraso). O arquivo final é o **`phpstan.neon`**, igual ao sped-nfe e ao sped-common, e entrou num commit à parte. Se o EPERM voltar, criar o arquivo pelo terminal do usuário.
 - **R-09** (T1.3): `wrongDocument()` usa `new self()` em vez de `new static()` (o phpstan acusou "Unsafe usage of new static"). Custo se errado: uma subclasse recebe a classe-mãe.
+- **R-10** (T2.2): propriedades da `Common\Tools` declaradas com `@var` (padrão sped-mdfe/sped-nfe), sem tipo nativo; o comportamento é o mesmo do contrato do ROADMAP. Custo se errado: tipar depois, sem quebra.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -101,6 +102,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T1.4 | Crédito a Alberto Leal (README, composer authors, CHANGELOG). D-13: issue só no fork (#1, issues ativadas no fork) | docs: credita + docs: D-13 |
 | 2026-11-22 | plano F2 | Usuário: manter o layout 1.00 (P-02) e incluir a consulta de guia (P-03). Pesquisa: manual 2.17 (5 serviços, métodos, PDF da guia via `incluirPDFGuias`), WSDLs legados, **ACBr trunk2 rev. 49272** (namespaces). Decisões D-14 e D-15; contrato da `Tools` atualizado; plano da F2 escrito | docs: plano da F2 |
 | 2026-11-22 | T2.1 | `storage/wsgnre.json` (5 serviços) + `Common\Webservices`; 6 testes ✔ | feat(common): Webservices |
+| 2026-11-22 | T2.2 | `Common\Tools` (config validado, ambiente, versão, SoapCurl, servico, sendRequest, isValid) + `SoapFake` + `ToolsTestCase` + certificado de teste; suíte 70 ✔ | feat(common): Tools base |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
