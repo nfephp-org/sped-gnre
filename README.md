@@ -18,7 +18,7 @@ com o Portal GNRE (SEFAZ-PE). Faz parte do projeto [NFePHP](https://github.com/n
 ## Requisitos
 
 - PHP **7.4 a 8.5**
-- Extensões: `dom`, `curl`, `openssl`, `soap`, `json`, `libxml`, `simplexml`, `mbstring`, `gd` (impressão da guia)
+- Extensões: `dom`, `curl`, `openssl`, `soap`, `json`, `libxml`, `simplexml`, `mbstring`
 - Certificado digital A1 (o mesmo usado para emitir NF-e)
 
 ## Instalação
@@ -34,18 +34,22 @@ em `schemes/PL_GNRE_200/` (origem registrada em [`schemes/README.md`](schemes/RE
 
 ## Impressão da guia
 
-`NFePHP\Gnre\DA\Dagnre` gera o PDF da GNRE (3 vias por guia: Banco, Contribuinte e Contribuinte/Fisco)
-a partir do retorno de `sefazConsultaLote()`. O PDF traz o código de barras de arrecadação
-(2 de 5 intercalado) e o QR Code PIX quando a SEFAZ o informa. Só as guias processadas com sucesso
-são impressas; as demais ficam em `getGuiasNaoImpressas()`.
+O PDF da GNRE fica no [nfephp-org/sped-da](https://github.com/nfephp-org/sped-da), junto com DANFE,
+DACTE e DAMDFE: `NFePHP\DA\GNRE\Dagnre` gera 3 vias por guia (Banco, Contribuinte e
+Contribuinte/Fisco) a partir do retorno de `sefazConsultaLote()`, com código de barras de arrecadação
+(2 de 5 intercalado) e QR Code PIX quando a SEFAZ o informa.
+
+```sh
+composer require nfephp-org/sped-da
+```
 
 ```php
-$dagnre = new \NFePHP\Gnre\DA\Dagnre($tools->sefazConsultaLote($recibo));
+$dagnre = new \NFePHP\DA\GNRE\Dagnre($tools->sefazConsultaLote($recibo));
 $dagnre->creditsIntegratorFooter('Minha Empresa');
 $pdf = $dagnre->render();
 ```
 
-Alternativa: o próprio Portal GNRE devolve o PDF pronto quando a consulta é feita com
+Alternativa sem o sped-da: o próprio Portal GNRE devolve o PDF pronto quando a consulta é feita com
 `$tools->sefazConsultaLote($recibo, ['incluirPDFGuias' => 'S'])`, em `resultado->pdfGuias` (base64).
 
 ## Antes de usar a API
