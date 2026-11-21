@@ -1,0 +1,51 @@
+name: Pipeline
+on:
+  push:
+    branches:
+      - master
+      - refactor/v1
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  testsuite:
+    name: Testes Automatizados
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["7.4", "8.0", "8.1", "8.2", "8.3", "8.4", "8.5"]
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: dom, curl, openssl, soap, json, libxml, simplexml, mbstring, gd, zlib
+          coverage: none
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Validar composer.json
+        run: composer validate --strict
+
+      - name: Sem CRLF no repositorio
+        run: |
+          if git ls-files --eol | grep "w/crlf"; then
+            echo "Arquivos com CRLF encontrados (use LF)"; exit 1
+          fi
+
+      - name: Composer Install
+        run: composer install --no-progress -o --no-ansi --no-interaction
+
+      - name: Check php code style
+        run: composer phpcs
+
+      - name: Análises estáticas
+        run: composer stan
+
+      - name: Rodando PHPUnit
+        run: composer test
