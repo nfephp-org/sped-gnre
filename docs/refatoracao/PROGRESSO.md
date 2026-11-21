@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F2 (Comunicação), em andamento
-- **Tarefa:** T2.4 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 a T2.3 concluídas)
+- **Tarefa:** T2.5 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 a T2.4 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T2.4, `sefazConsultaLote` e `sefazConsultaConfigUf`.
+- **Próxima ação:** T2.5, consulta de guia (`sefazEnviaLoteConsulta` + `sefazConsultaLoteConsulta`).
 
 ## Pendências abertas
 
@@ -40,6 +40,8 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **R-08** (T1.3): ~~usar `phpstan.neon.dist`~~ **revogada**. A sessão chegou a ver EPERM ao gravar `phpstan.neon*` (a escrita aparecia só com atraso). O arquivo final é o **`phpstan.neon`**, igual ao sped-nfe e ao sped-common, e entrou num commit à parte. Se o EPERM voltar, criar o arquivo pelo terminal do usuário.
 - **R-09** (T1.3): `wrongDocument()` usa `new self()` em vez de `new static()` (o phpstan acusou "Unsafe usage of new static"). Custo se errado: uma subclasse recebe a classe-mãe.
 - **R-10** (T2.2): propriedades da `Common\Tools` declaradas com `@var` (padrão sped-mdfe/sped-nfe), sem tipo nativo; o comportamento é o mesmo do contrato do ROADMAP. Custo se errado: tipar depois, sem quebra.
+- **R-11** (T2.4): os helpers `golden()`/`c14n()` do `ToolsTestCase` passaram a usar **C14N exclusivo**. O C14N comum levava junto os `xmlns` do envelope SOAP legado, e com isso o teste do lote da T2.3 enviava o golden já "sujo" e comparava o golden com ele mesmo; a consulta e o ConfigUF falharam por isso. Agora a comparação considera só os namespaces usados. Custo se errado: nenhum (só afeta testes).
+- **R-12** (T2.4): valores do usuário inseridos no XML (recibo, receita) passam por `htmlspecialchars(ENT_XML1)`, prevenindo injeção de XML; a validação de formato continua no XSD. Custo se errado: nenhum.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -104,6 +106,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T2.1 | `storage/wsgnre.json` (5 serviços) + `Common\Webservices`; 6 testes ✔ | feat(common): Webservices |
 | 2026-11-22 | T2.2 | `Common\Tools` (config validado, ambiente, versão, SoapCurl, servico, sendRequest, isValid) + `SoapFake` + `ToolsTestCase` + certificado de teste; suíte 70 ✔ | feat(common): Tools base |
 | 2026-11-22 | T2.3 | `Tools::sefazEnviaLote` (1.00 e 2.00): a mensagem é igual ao golden (C14N), o envelope segue D-15 e um XML inválido não é enviado; suíte 75 ✔ | feat: sefazEnviaLote |
+| 2026-11-22 | T2.4 | `sefazConsultaLote` (opções incluirPDFGuias/ArquivoPagamento/Noticias só no 2.00, na ordem do XSD) e `sefazConsultaConfigUf` (courier); mensagens iguais ao golden; R-11 e R-12; suíte 88 ✔ | feat: sefazConsultaLote e sefazConsultaConfigUf |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

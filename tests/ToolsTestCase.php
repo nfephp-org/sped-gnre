@@ -45,7 +45,8 @@ abstract class ToolsTestCase extends TestCase
     }
 
     /**
-     * C14N do nó $raiz do golden (os golden foram gravados com indentação).
+     * C14N exclusivo do nó $raiz do golden: só os namespaces usados, sem os do envelope SOAP
+     * (os golden foram gravados com indentação).
      */
     protected function golden(string $arquivo, string $raiz): string
     {
@@ -54,7 +55,7 @@ abstract class ToolsTestCase extends TestCase
         $dom->load(self::FIXTURES . '/legacy/' . $arquivo);
         $no = $dom->getElementsByTagNameNS('*', $raiz)->item(0);
         $this->assertInstanceOf(DOMElement::class, $no, "Nó $raiz não encontrado em $arquivo");
-        return (string) $no->C14N();
+        return (string) $no->C14N(true);
     }
 
     /**
@@ -66,6 +67,6 @@ abstract class ToolsTestCase extends TestCase
         $dom->preserveWhiteSpace = false;
         $dom->loadXML($xml);
         $this->assertInstanceOf(DOMElement::class, $dom->documentElement);
-        return (string) $dom->documentElement->C14N();
+        return (string) $dom->documentElement->C14N(true);
     }
 }

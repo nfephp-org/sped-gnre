@@ -167,7 +167,7 @@
   - `sefazConsultaLote(string $recibo, array $opcoes = []): string`. Monta `<TConsLote_GNRE xmlns="http://www.gnre.pe.gov.br"><ambiente>{tpAmb}</ambiente><numeroRecibo>{recibo}</numeroRecibo>` e acrescenta, nesta ordem e só se presentes, `incluirPDFGuias`, `incluirArquivoPagamento` e `incluirNoticias`, fechando com `</TConsLote_GNRE>`. Valida em `lote_gnre_consulta_v1.00.xsd` (pasta da versão) e usa o serviço `GnreResultadoLote`. Recibo vazio após `trim` → `InvalidArgumentException`. Chave de opção desconhecida ou valor diferente de `S`/`N` → `InvalidArgumentException`. Opções com `versao` 1.00 → `InvalidArgumentException` ("opções exigem layout 2.00").
   - `sefazConsultaConfigUf(string $uf, string $receita = '', bool $courier = false): string`. Monta `<TConsultaConfigUf xmlns="http://www.gnre.pe.gov.br"><ambiente>{tpAmb}</ambiente><uf>{UF}</uf>`; se `$receita !== ''`, acrescenta `<receita>{receita}</receita>` (com `courier="S"` se `$courier`); fecha com `</TConsultaConfigUf>`. Valida em `consulta_config_uf_v1.00.xsd` e usa o serviço `GnreConfigUF`. UF fora de `UFS` → `InvalidArgumentException`. `$courier` sem receita → `InvalidArgumentException`.
 
-- [ ] **Step 1: Escrever `tests/ToolsConsultasTest.php`:**
+- [x] **Step 1: Escrever `tests/ToolsConsultasTest.php`:**
   - `testConsultaLoteIgualAoGolden`: config `tpAmb: 1` e `sefazConsultaLote('1234567890')` → C14N de `lastRequest` = `golden('consulta-lote-prod.xml', 'TConsLote_GNRE')`; `operation` `consultar`; header namespace `http://www.gnre.pe.gov.br/webservice/GnreResultadoLote`.
   - `testConsultaLoteComPdf`: `sefazConsultaLote('2512345678', ['incluirPDFGuias' => 'S'])` → `lastRequest` contém `<incluirPDFGuias>S</incluirPDFGuias>` logo após `</numeroRecibo>`.
   - `testReciboVazio` (`'  '`), `testOpcaoInvalida` (`['incluirPDF' => 'S']`), `testValorOpcaoInvalido` (`['incluirNoticias' => 'X']`) e `testOpcaoNoLayout100` (config `versao: '1.00'` com `['incluirPDFGuias' => 'N']`) → todos `InvalidArgumentException` e `getCalls() === 0`.
@@ -176,10 +176,10 @@
   - `testConfigUfCourier`: `('SP', '100099', true)` → contém `<receita courier="S">100099</receita>`.
   - `testConfigUfSemReceita`: `('BA')` → não contém `<receita`.
   - `testUfInvalida` (`'XX'`) e `testCourierSemReceita` (`('SP', '', true)`) → `InvalidArgumentException`.
-- [ ] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit --filter ToolsConsultasTest` → Expected: `Call to undefined method NFePHP\Gnre\Tools::sefazConsultaLote()`.
-- [ ] **Step 3: Implementar** os dois métodos.
-- [ ] **Step 4: Rodar** — `composer test`, `composer phpcs`, `composer stan` → verdes.
-- [ ] **Step 5: Commit** `feat: Tools::sefazConsultaLote e sefazConsultaConfigUf`
+- [x] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit --filter ToolsConsultasTest` → Expected: `Call to undefined method NFePHP\Gnre\Tools::sefazConsultaLote()`.
+- [x] **Step 3: Implementar** os dois métodos.
+- [x] **Step 4: Rodar** — `composer test`, `composer phpcs`, `composer stan` → verdes.
+- [x] **Step 5: Commit** `feat: Tools::sefazConsultaLote e sefazConsultaConfigUf`
 
 ### Task T2.5: Consulta de guia (D-14): `sefazEnviaLoteConsulta` e `sefazConsultaLoteConsulta`
 
