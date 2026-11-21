@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
-- **Tarefa:** T7.1 do plano `planos/2026-11-22-fase-7-release.md`; revisores independentes (sped-gnre e sped-da) em execução
+- **Tarefa:** T7.1 do plano `planos/2026-11-22-fase-7-release.md` (Step 1: revisão independente)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** receber os relatórios dos 2 revisores, reavaliar os achados e fazer o passe de correção (T7.1); depois T7.2 (roteiro de homologação).
+- **Próxima ação:** a sessão foi pausada pelo usuário (desligar o computador) com os 2 revisores ainda em execução. Os relatórios **não** chegaram e serão perdidos. Ao retomar: **reacionar os 2 revisores** (sped-gnre `189fee1..` HEAD de `refactor/v1`; sped-da `6e4b3e7..` HEAD de `feature/gnre`; usar o template `code-reviewer.md` do skill `superpowers:requesting-code-review`, com o ROADMAP/PROGRESSO/planos como spec), reavaliar os achados e fazer o passe de correção; depois T7.2 (roteiro de homologação).
 
 ## Pendências abertas
 
@@ -142,6 +142,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T8.2–T8.3 | **sped-da** branch `feature/gnre` (fork): `src/GNRE/{ResultadoLote,DadosGuia,Dagnre}.php` (sem dependência do sped-gnre), testes `tests/GNRE` (28), fixtures `tests/fixtures/xml/gnre`, `examples/gnre/dagnre.php`, `docs/Dagnre.md`, README (uso + crédito "Alberto Leal (GNRE)") e CHANGELOG. Suíte do sped-da: 100 testes, só os 4 erros já existentes; PSR-2, phpstan nível 1 e compatibilidade 7.4 limpos em `src/GNRE`; PDF conferido visualmente (igual à F6). Bug da logo corrigido (R-17). Commits 804b69b, 7a488a7, e1d0aeb; push só no fork | (commits no sped-da) |
 | 2026-11-22 | T8.4 | sped-gnre sem `src/DA`/`tests/DA`; sped-da, gd e pdfparser removidos (5 pacotes a menos), sped-da em `suggest`; `examples/dagnre.php` usa `NFePHP\DA\GNRE\Dagnre` com mensagem amigável se o sped-da não estiver instalado; README e CHANGELOG atualizados; o phpstan ainda precisa de 512M (R-16 mantida); suíte 205 ✔; **CI verde nas 7 versões** (sha 3419ca8). **F8 concluída** | refactor!: impressão no sped-da |
 | 2026-11-22 | plano F7 | Usuário: homologação só com roteiro (sem certificado) e com revisão independente. 2 revisores (sped-gnre `189fee1..59a6ae1`, sped-da `6e4b3e7..e1d0aeb`) acionados; plano da F7 escrito | docs: plano da F7 |
+| 2026-11-22 | — | Sessão pausada pelo usuário durante a T7.1 (revisores em execução, relatórios não recebidos) | docs: ponto de retomada |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
