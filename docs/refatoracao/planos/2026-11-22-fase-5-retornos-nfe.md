@@ -86,7 +86,7 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
 - Produces: `NFePHP\Gnre\Common\RetornoTxtV1::ler(string $txt): stdClass` → `{cabecalho: ?stdClass, guias: stdClass[], rejeicoes: stdClass[], rodape: ?stdClass}`, com os nomes de campos das Global Constraints. As rejeições também ficam ligadas à guia: `guia->rejeicoes` recebe as linhas `2` com o mesmo `sequencialGuia`.
 - Uso: `(new Standardize($retorno))->toStd()->resultado` (string) → `RetornoTxtV1::ler(...)`.
 
-- [ ] **Step 1: Escrever `tests/Common/RetornoTxtV1Test.php`** com o `resultado` da fixture (via `Standardize`). Valores esperados, já conferidos com as posições do ACBr:
+- [x] **Step 1: Escrever `tests/Common/RetornoTxtV1Test.php`** com o `resultado` da fixture (via `Standardize`). Valores esperados, já conferidos com as posições do ACBr:
   - `cabecalho`: `numeroProtocoloLote` `0000070008`, `ambiente` `0`;
   - `guias[0]`: `sequencialGuia` `0001`, `situacaoGuia` `1`, `ufFavorecida` `AC`, `receita` `123456`, `razaoSocialEmitente` `TESTE RAZAO SOCIAL`, `ufEmitente` `SP`, `dataVencimento` `10102014`, `periodoReferencia` `3`, `mesAnoReferencia` `112014`, `parcela` `005`, `valorPrincipal` `0.00`, `quantidadeVias` `3`;
   - `rejeicoes[0]`: `sequencialGuia` `0001`, `nomeCampo` `c02_receita`, `codigoMotivo` `205`, `descricaoMotivo` `A UF favorecida nao gera GNRE para a Receita informada.`;
@@ -95,11 +95,11 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
   - `testValorEmCentavos`: linha `1` sintética com `000000000012345` na posição 919 → `valorPrincipal === '123.45'`.
   - `testQuebrasDeLinha`: o mesmo TXT com `\r\n`, `\r` e linhas em branco extras → resultado igual.
   - `testTxtVazio` → `guias` e `rejeicoes` vazios, `cabecalho` null.
-- [ ] **Step 2: Rodar e ver falhar** → classe inexistente.
-- [ ] **Step 3: Implementar.** As posições ficam em constantes (arrays `campo => [inicio, tamanho]`), lidas com `substr($linha, $inicio - 1, $tamanho)`. Cada linha passa por `ltrim` dos espaços de indentação **antes** de ler o identificador (no exemplo, as linhas vêm indentadas dentro do XML).
-- [ ] **Step 4: Rodar** → verde.
-- [ ] **Step 5: Registrar no PROGRESSO** (divergências): o `Parser/SefazRetorno` da 0.x tinha posições deslocadas e sobrepostas (ex.: `dataLimitePagamento` 900/8 e `periodo` 908/909); a 1.0 usa as posições do ACBr.
-- [ ] **Step 6: Commit** `feat(common): leitor do resultado TXT do lote 1.00`
+- [x] **Step 2: Rodar e ver falhar** → classe inexistente.
+- [x] **Step 3: Implementar.** As posições ficam em constantes (arrays `campo => [inicio, tamanho]`), lidas com `substr($linha, $inicio - 1, $tamanho)`. Cada linha passa por `ltrim` dos espaços de indentação **antes** de ler o identificador (no exemplo, as linhas vêm indentadas dentro do XML).
+- [x] **Step 4: Rodar** → verde.
+- [x] **Step 5: Registrar no PROGRESSO** (divergências): o `Parser/SefazRetorno` da 0.x tinha posições deslocadas e sobrepostas (ex.: `dataLimitePagamento` 900/8 e `periodo` 908/909); a 1.0 usa as posições do ACBr.
+- [x] **Step 6: Commit** `feat(common): leitor do resultado TXT do lote 1.00`
 
 ### Task T5.3: `Factories\FromNFe`
 

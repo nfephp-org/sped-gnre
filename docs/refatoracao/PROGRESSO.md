@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F5 (`Standardize` + `RetornoTxtV1` + `FromNFe`), em andamento
-- **Tarefa:** T5.2 do plano `planos/2026-11-22-fase-5-retornos-nfe.md` (T5.1 concluída)
+- **Tarefa:** T5.3 do plano `planos/2026-11-22-fase-5-retornos-nfe.md` (T5.1 e T5.2 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T5.2, `Common\RetornoTxtV1` (TXT do resultado do lote 1.00).
+- **Próxima ação:** T5.3, `Factories\FromNFe` + fixture `nfe-difal.xml`.
 
 ## Pendências abertas
 
@@ -126,6 +126,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T4.3 | Exemplo `make-lote-v1.php` (os 2 formatos, válidos nos XSDs); CHANGELOG; **CI verde nas 7 versões** (sha 122f72c). **F4 concluída** | docs: exemplo F4 |
 | 2026-11-22 | plano F5 | Pesquisa: retornos reais usam o prefixo `ns1:`; o json do SimpleXML perde o atributo `tipo` do `valor` (D-17); o resultado do 1.00 puro é TXT posicional (posições do ACBr, as do legado estavam erradas); fixture de NF-e com DIFAL do sped-nfe (CPF de teste inválido, corrigido na cópia). Plano da F5 escrito | docs: plano da F5 |
 | 2026-11-22 | T5.1 | `Standardize` (D-17): o nó é achado no envelope SOAP com prefixo `ns1:`; atributo + texto viram `attributes` + `value`; irmãos repetidos viram array. 4 fixtures de retorno validadas nos XSDs 2.17 (ConfigUF exigiu `enderecoObr` e `campo` fixo; resultado exigiu recibo de 14 dígitos, R-15); 13 testes; suíte 185 ✔ | feat(common): Standardize |
+| 2026-11-22 | T5.2 | `RetornoTxtV1::ler` (cabeçalho, guias, rejeições ligadas à guia, rodapé; centavos; CRLF/LF/CR/linhas em branco); os valores da fixture do legado batem com as posições do ACBr; 7 testes; suíte 192 ✔ | feat(common): RetornoTxtV1 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
@@ -137,3 +138,4 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | `referencia/periodo` (v2) | fixo `0` | informado pelo usuário em `tagReferencia` | XSD 2.17 |
 | Campos descartados (v2) | o `LoteV2` ignorava `detalhamentoReceita`, `produto`, a IE do emitente e o `convenio`, mesmo quando preenchidos | o `Make` envia todos, na ordem do XSD | XSD 2.17 + golden `lote-v2-valido-prod` |
 | `periodo` = 0 (v1) | `Estados/Padrao` testava `if ($guia->periodo)` e descartava o período mensal (`0`) | `MakeV1` envia o período sempre que informado | XSD (enum 0..5) |
+| Retorno TXT do lote 1.00 | `Parser/SefazRetorno` com posições deslocadas e sobrepostas (ex.: `dataLimitePagamento` 900/8 × `periodo` 908/909; `sequencialGuia` 1/4) | `Common\RetornoTxtV1` com as posições do ACBr (base 1), valores em centavos convertidos e rejeições ligadas à guia | ACBr `pgnreRetConsResLoteGNRE.pas` (os manuais 2.01 e 2.17 não documentam o TXT) |
