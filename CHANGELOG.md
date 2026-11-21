@@ -15,7 +15,17 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 - Consulta de guias já emitidas (serviços `GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`), que não existia na 0.x.
 - Suporte aos layouts de lote 1.00 e 2.00, escolhidos pelo `versao` do config JSON.
 - `storage/wsgnre.json` com URLs, namespaces e versões de cada serviço; os envelopes SOAP seguem o WSDL oficial.
-- Exemplos em `examples/`.
+- `NFePHP\Gnre\Make`: monta o lote 2.00 com `tagGuia`, `tagEmitente`, `tagItem`, `tagReferencia`,
+  `tagItemValor`, `tagDestinatario` e `tagCampoExtra`, que podem ser chamadas em qualquer ordem
+  (o XML sai na sequência do XSD); suporta várias guias por lote e vários itens por guia.
+- `NFePHP\Gnre\MakeConsulta`: monta o lote de consultas de guia (7 tipos de consulta).
+- `NFePHP\Gnre\Common\RegrasUf`: sugestões de tipo de documento de origem por UF (tabela da 0.x).
+- Exemplos em `examples/`, incluindo `make-lote.php`, que roda sem certificado.
+
+### Fixed
+- Campos que a 0.x descartava no lote 2.00 (`detalhamentoReceita`, `produto`, IE do emitente e `convenio`) agora são enviados.
+- O valor principal não é mais duplicado como `tipo=11` e `tipo=21`; só os valores informados vão no XML.
+- `identificadorGuia` e `referencia/periodo` deixam de ser fixos (`1` e `0`).
 
 ### Changed
 - Namespace `Sped\Gnre` substituído por `NFePHP\Gnre` (pasta `src/`).
