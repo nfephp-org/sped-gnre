@@ -18,7 +18,7 @@ com o Portal GNRE (SEFAZ-PE). Faz parte do projeto [NFePHP](https://github.com/n
 ## Requisitos
 
 - PHP **7.4 a 8.5**
-- Extensões: `dom`, `curl`, `openssl`, `soap`, `json`, `libxml`, `simplexml`, `mbstring`
+- Extensões: `dom`, `curl`, `openssl`, `soap`, `json`, `libxml`, `simplexml`, `mbstring`, `gd` (impressão da guia)
 - Certificado digital A1 (o mesmo usado para emitir NF-e)
 
 ## Instalação
