@@ -32,6 +32,7 @@ um único certificado/config e sem conflito de dependências.
 | D-15 | **Envelope SOAP igual ao do ACBr** (`D:\AcbrDev\trunk2\Fontes\ACBrDFe`, rev. 49272, 2026-11-19), que funciona em produção: o `gnreCabecMsg` e o `gnreDadosMsg` usam o mesmo namespace `http://www.gnre.pe.gov.br/webservice/<Servico>` **nos dois ambientes**; a action é esse namespace; o `versaoDados` é o `versao` do config (as duas consultas de guia são fixas em `2.00`). Bate com o `targetNamespace` dos WSDLs. Diverge de propósito do legado (`wsdl/processar`, `wsdl/consultar`, `testegnre` em homologação) e do exemplo do manual (`wsdl/<Servico>`). Tudo fica em `storage/wsgnre.json`. Teste real em homologação na F7. | Análise: WSDL + ACBr + manual |
 | D-16 | **Layout 1.00 nos dois formatos** (resolve a P-06): o `MakeV1` gera (a) a **guia 1.00 embutida no lote 2.00**, isto é, `TLote_GNRE versao="2.00"` com `TDadosGNRE versao="1.00"`, o formato do pacote oficial 2.17, enviado com config `versao` 2.00 (padrão); ou (b) o **lote 1.00 puro**, `TLote_GNRE` e `TDadosGNRE` sem `versao`, como na 0.x, enviado com config `versao` 1.00. Os campos `c01_...` são idênticos nos dois. | Usuário (2026-11-22) |
 | D-17 | **`Standardize` sem perda de atributos**: o `json_encode` do SimpleXML (usado no sped-nfe e no sped-mdfe) descarta o atributo de elemento com texto, então `<valor tipo="12">1.82</valor>` viraria só `"1.82"`. Na GNRE o atributo define o tipo do valor e do documento de origem. O `Standardize` da GNRE usa um conversor DOM próprio: `attributes` + `value`, irmãos repetidos viram array, sem prefixos `ns1:`. A API pública continua a do ecossistema. | Análise (2026-11-22) |
+| D-18 | **A F8 (mover a impressão para o sped-da) vem antes da F7.** A 1.0 do sped-gnre sai **sem** `DA/` e sem depender do sped-da (só `suggest`). No sped-da, o `Dagnre` lê o resultado sozinho (classe interna `GNRE\ResultadoLote`), sem depender do sped-gnre, para evitar dependência circular. O PR no nfephp-org/sped-da é aberto na F7, junto com o do sped-gnre (por analogia com a D-13). | Usuário (2026-11-22) |
 
 Novas decisões: acrescentar uma linha com a data. Nunca apague linhas; para mudar uma decisão, marque a antiga como "substituída por D-xx".
 
@@ -139,9 +140,9 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F5 | `Standardize` + `RetornoTxtV1` + `Factories\FromNFe` | ✅ | `planos/2026-11-22-fase-5-retornos-nfe.md` | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre` + `DA\DadosGuia`, padrão sped-da) | ✅ | `planos/2026-11-22-fase-6-dagnre.md` | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
 | F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
-| F8 | Migrar a DA para o sped-da | ⬜ | escrever ao iniciar | PR no sped-da com `NFePHP\DA\GNRE\Dagnre`; o sped-gnre remove `DA/` e a dependência sped-da (1.1.0) |
+| F8 | Migrar a DA para o sped-da (**antes da F7**, D-18) | 🟨 | `planos/2026-11-22-fase-8-migracao-sped-da.md` | branch `feature/gnre` no fork do sped-da com `NFePHP\DA\GNRE\Dagnre` (testes verdes, sem regressão na suíte do sped-da); o sped-gnre sem `DA/` e sem sped-da no `require`; CI verde |
 
-Dependências: F0 → F1 → F2 → (F3 ∥ F4) → F5 → F6 → F7 → F8. F3 e F4 podem ser feitas em qualquer ordem.
+Dependências: F0 → F1 → F2 → (F3 ∥ F4) → F5 → F6 → **F8 → F7** (D-18). F3 e F4 podem ser feitas em qualquer ordem.
 
 ## Riscos conhecidos
 
