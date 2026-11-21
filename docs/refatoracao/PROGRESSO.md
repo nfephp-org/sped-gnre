@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F3 (`Make` 2.00 + `MakeConsulta` + `RegrasUf`), em andamento
-- **Tarefa:** T3.2 do plano `planos/2026-11-22-fase-3-make.md` (T3.1 concluída)
+- **Tarefa:** T3.3 do plano `planos/2026-11-22-fase-3-make.md` (T3.1 e T3.2 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T3.2: testes de itens, referência, valores, destinatário e campos extras. A implementação dessas tags já entrou no `src/Make.php` na T3.1 (R-14).
+- **Próxima ação:** T3.3, `MakeConsulta`.
 
 ## Pendências abertas
 
@@ -114,12 +114,14 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T2.6 | Exemplos dos 5 serviços (`examples/`), CHANGELOG `Added`; CI falhou (certificado ignorado pelo `.gitignore`, R-13), corrigido; **CI verde nas 7 versões** (run com sha 899430e). **F2 concluída** | docs: exemplos + test: certificado |
 | 2026-11-22 | plano F3 | Pesquisa: XSD 2.17 (ordem dos elementos), ACBr `pgnreGNREW.GerarXml2`, golden. Achados: o legado descartava detalhamentoReceita/produto/IE do emitente/convenio e duplicava o valor principal; o layout 1.00 vive dentro do lote 2.00 (P-06, para a F4). Plano da F3 escrito | docs: plano da F3 |
 | 2026-11-22 | T3.1 | `Make`: guia, emitente, montagem idempotente na ordem do XSD, erros em `getErrors()`, `RuntimeException` sem guia ou com erro; 10 testes; suíte 104 ✔ | feat: Make (guia, emitente) |
+| 2026-11-22 | T3.2 | 12 testes de item, incluindo um idêntico ao golden do legado (C14N). Eles passaram de primeira (R-14), e por isso foi feita uma **verificação por mutação**: trocar a ordem referência/valor e aceitar valor não numérico derrubaram 2 e 1 testes, respectivamente. Base `MakeTestCase`; suíte 116 ✔ | feat: Make (itens) |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
 | Item | Legado | 1.0 | Fonte (manual/XSD) |
 |------|--------|-----|--------------------|
-| `identificadorGuia` (v2) | fixo `1` em todas as guias do lote | a conferir na F3 | Manual 2.01 |
-| `item/valor` (v2) | `c06_valorPrincipal` enviado 2×, `tipo=11` e `tipo=21` | a conferir na F3 | Manual 2.01, tabela de tipos de valor |
+| `identificadorGuia` (v2) | fixo `1` em todas as guias do lote | informado pelo usuário em `tagGuia` (opcional) | XSD 2.17 + ACBr `GerarXml2` |
+| `item/valor` (v2) | `c06_valorPrincipal` enviado 2×, como `tipo=11` **e** `tipo=21` | só os valores informados em `tagItemValor` (tipos 11–52), como o ACBr | XSD 2.17 (enum de tipos) + ACBr |
 | Envelope SOAP (todos os serviços) | `gnreCabecMsg` em `.../wsdl/processar` ou `.../wsdl/consultar`; `gnreDadosMsg` em `.../webservice/<Servico>`, trocado para `testegnre` em homologação; ConfigUF com prefixo `gnr:` | **D-15**: cabeçalho, corpo e action em `http://www.gnre.pe.gov.br/webservice/<Servico>` nos **dois** ambientes; só a URL muda | WSDL (`targetNamespace`) + ACBr trunk2 rev. 49272; confirmar em homologação real (P-05) |
-| `referencia/periodo` (v2) | fixo `0` | a conferir na F3 | Manual 2.01 |
+| `referencia/periodo` (v2) | fixo `0` | informado pelo usuário em `tagReferencia` | XSD 2.17 |
+| Campos descartados (v2) | o `LoteV2` ignorava `detalhamentoReceita`, `produto`, a IE do emitente e o `convenio`, mesmo quando preenchidos | o `Make` envia todos, na ordem do XSD | XSD 2.17 + golden `lote-v2-valido-prod` |

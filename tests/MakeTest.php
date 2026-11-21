@@ -2,26 +2,11 @@
 
 namespace NFePHP\Gnre\Tests;
 
-use NFePHP\Common\Validator;
 use NFePHP\Gnre\Exception\RuntimeException;
 use NFePHP\Gnre\Make;
-use stdClass;
 
-class MakeTest extends ToolsTestCase
+class MakeTest extends MakeTestCase
 {
-    /**
-     * @param array<string, mixed> $dados
-     */
-    protected function std(array $dados): stdClass
-    {
-        return (object) $dados;
-    }
-
-    protected function valida(string $xml): void
-    {
-        $this->assertTrue(Validator::isValid($xml, __DIR__ . '/../schemes/PL_GNRE_200/lote_gnre_v2.00.xsd'));
-    }
-
     public function testGuiaMinima(): void
     {
         $make = new Make();
