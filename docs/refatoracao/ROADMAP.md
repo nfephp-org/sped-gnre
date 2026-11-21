@@ -137,7 +137,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F3 | `Make` 2.00 + `MakeConsulta` + `RegrasUf` | ✅ | `planos/2026-11-22-fase-3-make.md` | os cenários de `legacy/exemplos/xml` geram XML válido no XSD 2.00; diferenças em relação ao golden do `LoteV2` explicadas no PROGRESSO (bugs corrigidos) |
 | F4 | `MakeV1` (layout 1.00, 2 formatos — D-16) | ✅ | `planos/2026-11-22-fase-4-makev1.md` | formato 1.00: igual ao golden do `Lote` v1 e válido em `PL_GNRE_100`; formato 2.00: válido em `PL_GNRE_200`; os dois enviados pela `Tools` (SoapFake) |
 | F5 | `Standardize` + `RetornoTxtV1` + `Factories\FromNFe` | ✅ | `planos/2026-11-22-fase-5-retornos-nfe.md` | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
-| F6 | DA da guia (`DA\Dagnre`, padrão sped-da) | ⬜ | escrever ao iniciar | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
+| F6 | DA da guia (`DA\Dagnre` + `DA\DadosGuia`, padrão sped-da) | 🟨 | `planos/2026-11-22-fase-6-dagnre.md` | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
 | F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
 | F8 | Migrar a DA para o sped-da | ⬜ | escrever ao iniciar | PR no sped-da com `NFePHP\DA\GNRE\Dagnre`; o sped-gnre remove `DA/` e a dependência sped-da (1.1.0) |
 

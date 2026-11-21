@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F5 ✅ concluída. Próxima: F6 (DA da guia, `DA\Dagnre`, padrão sped-da)
-- **Tarefa:** escrever o plano detalhado da F6
+- **Fase:** F6 (DA da guia), em andamento
+- **Tarefa:** T6.1 do plano `planos/2026-11-22-fase-6-dagnre.md`
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** escrever o plano da F6. Entrada natural: cada `guia` do `TResultLote_GNRE` 2.00 (via `Standardize`), com `linhaDigitavel`, `codigoBarras`, `nossoNumero` e `dataLimitePagamento`; o portal também pode devolver o PDF pronto (`incluirPDFGuias`). Fontes: `D:\betoeu\sped-da` (`DaCommon`, `Legacy\Pdf`, `tc-lib-barcode`), `legacy/templates/gnre.tpl` (layout da 0.x) e o ACBr `GNRE/Fortes/ACBrGNReGuiaRLRetrato`.
+- **Próxima ação:** T6.1, dependências (sped-da, ext-gd, smalot/pdfparser) e CI antes de seguir.
 
 ## Pendências abertas
 
@@ -129,6 +129,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T5.2 | `RetornoTxtV1::ler` (cabeçalho, guias, rejeições ligadas à guia, rodapé; centavos; CRLF/LF/CR/linhas em branco); os valores da fixture do legado batem com as posições do ACBr; 7 testes; suíte 192 ✔ | feat(common): RetornoTxtV1 |
 | 2026-11-22 | T5.3 | `Factories\FromNFe`: emitente, destinatário, chave/número, valores, documento de origem pelas `RegrasUf`, `guiaDifal`/`guiaSt` (FCP como tipo 12) devolvendo um `Make` que ainda aceita tags; guia gerada da NF-e real válida no XSD; fixture `nfe-difal.xml` + `tests/fixtures/xml/README.md`; 13 testes; suíte 205 ✔ | feat: FromNFe |
 | 2026-11-22 | T5.4 | Exemplos `standardize-retorno.php` e `guia-difal-da-nfe.php` (sem rede; o XML de DIFAL é válido no XSD); CHANGELOG; **CI verde nas 7 versões** (sha da3f6c8). **F5 concluída** | docs: exemplos F5 |
+| 2026-11-22 | plano F6 | Pesquisa: sped-da `DaCommon`/`Damdfe` (código de barras via tc-lib em PNG base64), ACBr (`TRLBarcode` com Ratio 3 = **I25**, padrão Febraban de arrecadação; o legado usava Code128); o XSD do resultado 2.17 tem `qrcodePayload` (**PIX**) e `pdfGuias`; os campos de retorno diferem entre 1.00 e 2.00 → `DadosGuia` normaliza. Plano da F6 escrito | docs: plano da F6 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
