@@ -27,6 +27,7 @@ um único certificado/config e sem conflito de dependências.
 | D-10 | A versão alvo é **1.0.0** (a última publicada é a 0.3.0; o próximo major pelo semver é a 1.0). Os layouts da SEFAZ continuam sendo 1.00 e 2.00, sem relação com a versão do pacote. A linha antiga é chamada de "0.x". | Usuário (2026-11-21) |
 | D-11 | Licença igual à dos demais projetos: `LGPL-3.0-or-later`, `GPL-3.0-or-later`, `MIT` (LICENSE.md do sped-nfe). Mencionar a mudança na issue de anúncio (T1.4) para ciência dos autores e mantenedores. | Usuário (2026-11-21) |
 | D-12 | A base é o remoto oficial (`origin/master` = `upstream/master` = `189fee1`). O trabalho local de 2024 (LoteV2Builder, LoteV2ConsultaBuilder, LoteV2Request, mudanças no gnre.tpl) fica só na branch local `backup/master-local-2024-08`, para consulta nas fases F2, F3 e F6. | Usuário (2026-11-21) |
+| D-13 | O anúncio e a issue ficam **só no fork** (betoeu/sped-gnre#1) até a refatoração terminar. Só na F7 vão para o nfephp-org/sped-gnre (issue + PR). Substitui o passo de anúncio da T1.4 e o item de risco "abrir issue antes do PR grande". | Usuário (2026-11-22) |
 
 Novas decisões: acrescentar uma linha com a data. Nunca apague linhas; para mudar uma decisão, marque a antiga como "substituída por D-xx".
 
@@ -109,7 +110,7 @@ Status: ⬜ não iniciada · 🟨 em andamento · ✅ concluída · ⏸️ bloqu
 | F4 | `MakeV1` (layout 1.00) | ⬜ | escrever ao iniciar | igual ao golden do `Lote` v1 e válido no XSD 1.00 |
 | F5 | `Standardize` + `Factories\FromNFe` | ⬜ | escrever ao iniciar | retornos de exemplo → std/array/json; NF-e de exemplo → guia válida |
 | F6 | DA da guia (`DA\Dagnre`, padrão sped-da) | ⬜ | escrever ao iniciar | PDF gerado a partir do XML de resultado; código de barras conferido; teste com smalot/pdfparser |
-| F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; PR aberto no nfephp-org |
+| F7 | Docs, exemplos, limpeza e RC | ⬜ | escrever ao iniciar | `legacy/` removido; README + guia de migração 0.x→1.0; CHANGELOG; teste real em homologação (feito por você, com certificado); tag `v1.0.0-rc1` no fork; issue (texto da betoeu/sped-gnre#1) e PR abertos no nfephp-org (D-13) |
 | F8 | Migrar a DA para o sped-da | ⬜ | escrever ao iniciar | PR no sped-da com `NFePHP\DA\GNRE\Dagnre`; o sped-gnre remove `DA/` e a dependência sped-da (1.1.0) |
 
 Dependências: F0 → F1 → F2 → (F3 ∥ F4) → F5 → F6 → F7 → F8. F3 e F4 podem ser feitas em qualquer ordem.
@@ -118,4 +119,4 @@ Dependências: F0 → F1 → F2 → (F3 ∥ F4) → F5 → F6 → F7 → F8. F3 
 
 - O ambiente de homologação da SEFAZ-PE exige certificado e liberação da UF. Os testes automatizados usam só `SoapFake`; o teste real fica na F7, feito por você.
 - Os golden XMLs podem carregar bugs do código antigo (ex.: `identificadorGuia` fixo em `1`, `valor` tipo 11 e 21 iguais, namespace `testegnre`). Na F3, cada divergência é conferida contra o Manual 2.01 (`docs/manuais/`) antes de decidir.
-- Aceitação upstream: abrir uma issue no nfephp-org/sped-gnre anunciando a 1.0 antes do PR grande (tarefa da F1).
+- Aceitação upstream: por decisão D-13 o anúncio ao nfephp-org só acontece na F7, junto com o PR. Risco: mantenedores pedirem mudanças estruturais tarde. Mitigação: a issue #1 no fork já documenta a proposta.
