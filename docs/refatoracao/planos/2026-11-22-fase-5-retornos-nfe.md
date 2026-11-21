@@ -122,7 +122,7 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
   - Os atalhos devolvem um `Make` com 1 guia (UF favorecida = UF de destino; `valorGNRE` = soma dos valores), o emitente, 1 item (receita, documento de origem, vencimento, valores) e o destinatário. O usuário ainda pode chamar `tagCampoExtra`/`tagReferencia` no `Make` devolvido.
   - Valor zero na fonte (sem DIFAL ou sem ST) → `InvalidArgumentException` ("a NF-e não tem valor de ... a recolher").
 
-- [ ] **Step 1: Escrever `tests/Factories/FromNFeTest.php`** (estende `MakeTestCase`):
+- [x] **Step 1: Escrever `tests/Factories/FromNFeTest.php`** (estende `MakeTestCase`):
   - `testEmitente`: `CNPJ` `07670813000823`, `IE` `013581225`, `razaoSocial` `SEILA COMERCIO ELETRONICO S.A`, `endereco` `ROD BR-132, 1000 - VILA AMARO`, `municipio` `05101`, `uf` `ES`, `cep` `29143080`, `telefone` `195552323`.
   - `testDestinatarioCpf`: `CPF` `90483926086`, sem `CNPJ`, `razaoSocial` `CICLANO DA SILVA`, `municipio` `50308`; `ufDestino()` `SP`.
   - `testChaveENumero`: `chave()` `32191107670813000825550010059062251133037938`; `numero()` `5906225`; sem `protNFe` (removido via DOM) a chave continua a mesma, vinda do `Id`.
@@ -134,10 +134,10 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
   - `testUfComChave`: `dest/enderDest/UF` = `RJ` (via DOM) → `documentoOrigem` é a chave de 44 dígitos e o tipo é `24`.
   - `testNaoENfe`: `'<cteProc/>'` → `DocumentsException`.
   - `testOpcoesObrigatorias`: `guiaDifal({})` → `InvalidArgumentException`.
-- [ ] **Step 2: Rodar e ver falhar** → classe inexistente.
-- [ ] **Step 3: Implementar** com `DOMDocument` + `getElementsByTagName` (o namespace da NF-e é fixo).
-- [ ] **Step 4: Rodar** → verde.
-- [ ] **Step 5: Commit** `feat: Factories\FromNFe (guias de DIFAL e ST a partir da NF-e)`
+- [x] **Step 2: Rodar e ver falhar** → classe inexistente.
+- [x] **Step 3: Implementar** com `DOMDocument` + `getElementsByTagName` (o namespace da NF-e é fixo).
+- [x] **Step 4: Rodar** → verde.
+- [x] **Step 5: Commit** `feat: Factories\FromNFe (guias de DIFAL e ST a partir da NF-e)`
 
 ### Task T5.4: Exemplos, documentação e fechamento da F5
 
