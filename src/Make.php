@@ -5,6 +5,7 @@ namespace NFePHP\Gnre;
 use DOMElement;
 use NFePHP\Common\DOMImproved as Dom;
 use NFePHP\Common\Strings;
+use NFePHP\Gnre\Common\MakeTrait;
 use NFePHP\Gnre\Common\Tools as ToolsCommon;
 use NFePHP\Gnre\Exception\RuntimeException;
 use stdClass;
@@ -26,6 +27,8 @@ use stdClass;
  */
 class Make
 {
+    use MakeTrait;
+
     protected const VERSAO = '2.00';
     protected const TIPOS_GNRE = ['0', '1', '2'];
     protected const TIPOS_VALOR = ['11', '12', '21', '22', '31', '32', '41', '42', '51', '52'];
@@ -54,9 +57,7 @@ class Make
 
     public function __construct()
     {
-        $this->dom = new Dom('1.0', 'UTF-8');
-        $this->dom->preserveWhiteSpace = false;
-        $this->dom->formatOutput = false;
+        $this->dom = $this->novoDom();
     }
 
     /**
@@ -230,9 +231,7 @@ class Make
      */
     public function monta(): bool
     {
-        $dom = new Dom('1.0', 'UTF-8');
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = false;
+        $dom = $this->novoDom();
         $lote = $dom->createElementNS(ToolsCommon::PORTAL, 'TLote_GNRE');
         $lote->setAttribute('versao', self::VERSAO);
         $dom->appendChild($lote);
@@ -355,50 +354,6 @@ class Make
     }
 
     /**
-     * Acrescenta um filho só se o valor não for nulo nem vazio
-     *
-     * @param mixed $valor
-     */
-    protected function filho(Dom $dom, DOMElement $pai, string $nome, $valor): void
-    {
-        if ($valor === null || $valor === '') {
-            return;
-        }
-        $pai->appendChild($dom->createElement($nome, (string) $valor));
-    }
-
-    /**
-     * Formata um valor monetário com 2 casas; valor não numérico vira erro
-     *
-     * @param mixed $valor
-     */
-    protected function decimal($valor, string $descricao, bool $obrigatorio = false): ?string
-    {
-        if ($valor === null || $valor === '') {
-            if ($obrigatorio) {
-                $this->errors[] = "Preenchimento Obrigatório! $descricao";
-            }
-            return null;
-        }
-        if (!is_numeric($valor)) {
-            $this->errors[] = "$descricao: valor numérico inválido [$valor] (use ponto como separador decimal).";
-            return null;
-        }
-        return number_format((float) $valor, 2, '.', '');
-    }
-
-    /**
-     * @param mixed $valor
-     */
-    protected function limitar($valor, int $tamanho): ?string
-    {
-        if ($valor === null || $valor === '') {
-            return null;
-        }
-        return mb_substr((string) $valor, 0, $tamanho);
-    }
-
-    /**
      * Índice da guia atual
      */
     protected function guiaAtual(string $tag): int
@@ -421,13 +376,5 @@ class Make
             throw new RuntimeException("Chame tagItem() antes de $tag().");
         }
         return [$g, count($this->guias[$g]['itens']) - 1];
-    }
-
-    /**
-     * @param array<int, string> $possible
-     */
-    protected function equilizar(stdClass $std, array $possible): stdClass
-    {
-        return Strings::equilizeParameters(clone $std, $possible);
     }
 }
