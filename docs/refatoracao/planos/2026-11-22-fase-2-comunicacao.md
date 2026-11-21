@@ -69,16 +69,16 @@
 }
 ```
 
-- [ ] **Step 1: Escrever `tests/Common/WebservicesTest.php`** (carrega o `storage/wsgnre.json` real):
+- [x] **Step 1: Escrever `tests/Common/WebservicesTest.php`** (carrega o `storage/wsgnre.json` real):
   - `testLoteRecepcaoProducao`: `get('GnreLoteRecepcao', 1)` → `url` `https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao`, `namespace` `http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao`, `action` `"http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao"` (com as aspas), `metodo` `processar`, `versaoDados` null.
   - `testHomologacaoMudaSoUrl`: `get('GnreResultadoLote', 2)` → `url` `https://www.testegnre.pe.gov.br/gnreWS/services/GnreResultadoLote` e `namespace` `http://www.gnre.pe.gov.br/webservice/GnreResultadoLote` (sem `teste`).
   - `testConsultaGuiaTemVersaoFixa`: `get('GnreLoteRecepcaoConsulta', 2)->versaoDados === '2.00'` e `get('GnreResultadoLoteConsulta', 1)->metodo === 'consultar'`.
   - `testServicoDesconhecido`: `expectException(RuntimeException::class)` em `get('Xpto', 1)`.
   - `testAmbienteInvalido`: `expectException(RuntimeException::class)` em `get('GnreConfigUF', 3)`.
-- [ ] **Step 2: Rodar e ver falhar** — Run: `vendor/bin/phpunit --filter WebservicesTest` → Expected: `Class "NFePHP\Gnre\Common\Webservices" not found`.
-- [ ] **Step 3: Criar o `storage/wsgnre.json` e `src/Common/Webservices.php`** (decodifica com `json_decode(..., false)`; JSON inválido → `RuntimeException`).
-- [ ] **Step 4: Rodar** — `vendor/bin/phpunit --filter WebservicesTest` → Expected: `OK (5 tests`. Depois `composer phpcs && composer stan` → sem erros.
-- [ ] **Step 5: Commit** `feat(common): Webservices e storage/wsgnre.json (D-15)`
+- [x] **Step 2: Rodar e ver falhar** — Run: `vendor/bin/phpunit --filter WebservicesTest` → Expected: `Class "NFePHP\Gnre\Common\Webservices" not found`.
+- [x] **Step 3: Criar o `storage/wsgnre.json` e `src/Common/Webservices.php`** (decodifica com `json_decode(..., false)`; JSON inválido → `RuntimeException`).
+- [x] **Step 4: Rodar** — `vendor/bin/phpunit --filter WebservicesTest` → Expected: `OK (5 tests`. Depois `composer phpcs && composer stan` → sem erros.
+- [x] **Step 5: Commit** `feat(common): Webservices e storage/wsgnre.json (D-15)`
 
 ### Task T2.2: `Common\Tools` (config, ambiente, versão, soap, validação)
 

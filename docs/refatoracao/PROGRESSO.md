@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F2 (Comunicação), plano escrito, execução não iniciada
-- **Tarefa:** T2.1 do plano `planos/2026-11-22-fase-2-comunicacao.md`
+- **Fase:** F2 (Comunicação), em andamento
+- **Tarefa:** T2.2 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** executar a T2.1 (`storage/wsgnre.json` + `Common\Webservices`).
+- **Próxima ação:** T2.2, `Common\Tools` + `SoapFake` + `ToolsTestCase` + certificado de teste.
 
 ## Pendências abertas
 
@@ -100,6 +100,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T1.4 | `ci.yml` (7.4–8.5, validate, CRLF, phpcs, stan, test); **CI verde nas 7 versões** (run 44904014382); README, LICENSE.md (LGPLv3), CHANGELOG; rascunho da issue. **F1 concluída** | ci: pipeline 7.4-8.5 |
 | 2026-11-22 | T1.4 | Crédito a Alberto Leal (README, composer authors, CHANGELOG). D-13: issue só no fork (#1, issues ativadas no fork) | docs: credita + docs: D-13 |
 | 2026-11-22 | plano F2 | Usuário: manter o layout 1.00 (P-02) e incluir a consulta de guia (P-03). Pesquisa: manual 2.17 (5 serviços, métodos, PDF da guia via `incluirPDFGuias`), WSDLs legados, **ACBr trunk2 rev. 49272** (namespaces). Decisões D-14 e D-15; contrato da `Tools` atualizado; plano da F2 escrito | docs: plano da F2 |
+| 2026-11-22 | T2.1 | `storage/wsgnre.json` (5 serviços) + `Common\Webservices`; 6 testes ✔ | feat(common): Webservices |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
