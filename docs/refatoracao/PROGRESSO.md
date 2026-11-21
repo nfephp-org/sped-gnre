@@ -12,10 +12,10 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 
 ## Estado atual
 
-- **Fase:** F5 (`Standardize` + `RetornoTxtV1` + `FromNFe`), em andamento
-- **Tarefa:** T5.4 do plano `planos/2026-11-22-fase-5-retornos-nfe.md` (T5.1 a T5.3 concluídas)
+- **Fase:** F5 ✅ concluída. Próxima: F6 (DA da guia, `DA\Dagnre`, padrão sped-da)
+- **Tarefa:** escrever o plano detalhado da F6
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T5.4, exemplos, CHANGELOG, CI e fechamento da F5.
+- **Próxima ação:** escrever o plano da F6. Entrada natural: cada `guia` do `TResultLote_GNRE` 2.00 (via `Standardize`), com `linhaDigitavel`, `codigoBarras`, `nossoNumero` e `dataLimitePagamento`; o portal também pode devolver o PDF pronto (`incluirPDFGuias`). Fontes: `D:\betoeu\sped-da` (`DaCommon`, `Legacy\Pdf`, `tc-lib-barcode`), `legacy/templates/gnre.tpl` (layout da 0.x) e o ACBr `GNRE/Fortes/ACBrGNReGuiaRLRetrato`.
 
 ## Pendências abertas
 
@@ -128,13 +128,14 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T5.1 | `Standardize` (D-17): o nó é achado no envelope SOAP com prefixo `ns1:`; atributo + texto viram `attributes` + `value`; irmãos repetidos viram array. 4 fixtures de retorno validadas nos XSDs 2.17 (ConfigUF exigiu `enderecoObr` e `campo` fixo; resultado exigiu recibo de 14 dígitos, R-15); 13 testes; suíte 185 ✔ | feat(common): Standardize |
 | 2026-11-22 | T5.2 | `RetornoTxtV1::ler` (cabeçalho, guias, rejeições ligadas à guia, rodapé; centavos; CRLF/LF/CR/linhas em branco); os valores da fixture do legado batem com as posições do ACBr; 7 testes; suíte 192 ✔ | feat(common): RetornoTxtV1 |
 | 2026-11-22 | T5.3 | `Factories\FromNFe`: emitente, destinatário, chave/número, valores, documento de origem pelas `RegrasUf`, `guiaDifal`/`guiaSt` (FCP como tipo 12) devolvendo um `Make` que ainda aceita tags; guia gerada da NF-e real válida no XSD; fixture `nfe-difal.xml` + `tests/fixtures/xml/README.md`; 13 testes; suíte 205 ✔ | feat: FromNFe |
+| 2026-11-22 | T5.4 | Exemplos `standardize-retorno.php` e `guia-difal-da-nfe.php` (sem rede; o XML de DIFAL é válido no XSD); CHANGELOG; **CI verde nas 7 versões** (sha da3f6c8). **F5 concluída** | docs: exemplos F5 |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
 | Item | Legado | 1.0 | Fonte (manual/XSD) |
 |------|--------|-----|--------------------|
 | `identificadorGuia` (v2) | fixo `1` em todas as guias do lote | informado pelo usuário em `tagGuia` (opcional) | XSD 2.17 + ACBr `GerarXml2` |
-| `item/valor` (v2) | `c06_valorPrincipal` enviado 2×, como `tipo=11` **e** `tipo=21` | só os valores informados em `tagItemValor` (tipos 11–52), como o ACBr | XSD 2.17 (enum de tipos) + ACBr |
+| `item/valor` (v2) | `c06_valorPrincipal` enviado 2×, como `tipo=11` **e** `tipo=21` | só os valores informados em `tagItemValor` (tipos 11–52), como o ACBr | XSD 2.17 (enum de tipos) + ACBr. **Nota:** no retorno real (fixture do ACBr) a SEFAZ devolve o tipo 21 igual ao 11, então algumas UFs podem exigir o valor total; o usuário informa os dois com `tagItemValor`. Documentar no README (F7). |
 | Envelope SOAP (todos os serviços) | `gnreCabecMsg` em `.../wsdl/processar` ou `.../wsdl/consultar`; `gnreDadosMsg` em `.../webservice/<Servico>`, trocado para `testegnre` em homologação; ConfigUF com prefixo `gnr:` | **D-15**: cabeçalho, corpo e action em `http://www.gnre.pe.gov.br/webservice/<Servico>` nos **dois** ambientes; só a URL muda | WSDL (`targetNamespace`) + ACBr trunk2 rev. 49272; confirmar em homologação real (P-05) |
 | `referencia/periodo` (v2) | fixo `0` | informado pelo usuário em `tagReferencia` | XSD 2.17 |
 | Campos descartados (v2) | o `LoteV2` ignorava `detalhamentoReceita`, `produto`, a IE do emitente e o `convenio`, mesmo quando preenchidos | o `Make` envia todos, na ordem do XSD | XSD 2.17 + golden `lote-v2-valido-prod` |

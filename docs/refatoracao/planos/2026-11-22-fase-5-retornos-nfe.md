@@ -145,7 +145,7 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
 - Create: `examples/standardize-retorno.php` (lê a fixture do resultado v2 e mostra o `toJson`; sem rede), `examples/guia-difal-da-nfe.php` (monta a guia de DIFAL a partir da `tests/fixtures/xml/nfe-difal.xml` e imprime o XML; sem certificado)
 - Modify: `CHANGELOG.md`, `docs/refatoracao/ROADMAP.md` (D-17 e contrato do `Standardize`), `docs/refatoracao/PROGRESSO.md`
 
-- [ ] **Step 1: Exemplos** + `php -l` + execução dos dois (saída não vazia; o XML do segundo passa no XSD).
-- [ ] **Step 2: CHANGELOG** (`### Added`): `Standardize` (com atributos preservados), `RetornoTxtV1` e `FromNFe`.
-- [ ] **Step 3: Push e CI** → 7 jobs `success`.
-- [ ] **Step 4: Fechar a fase**: F5 ✅; a próxima ação passa a ser escrever o plano da F6 (DA). Registrar para a F6 que o `TResultLote_GNRE` 2.00 traz, por guia, `linhaDigitavel`, `codigoBarras`, `nossoNumero` e `dataLimitePagamento` (a entrada natural do `Dagnre`), e que o portal pode devolver o PDF pronto (`incluirPDFGuias`). Commit `docs: conclui F5`.
+- [x] **Step 1: Exemplos** + `php -l` + execução dos dois (saída não vazia; o XML do segundo passa no XSD).
+- [x] **Step 2: CHANGELOG** (`### Added`): `Standardize` (com atributos preservados), `RetornoTxtV1` e `FromNFe`.
+- [x] **Step 3: Push e CI** → 7 jobs `success`.
+- [x] **Step 4: Fechar a fase**: F5 ✅; a próxima ação passa a ser escrever o plano da F6 (DA). Registrar para a F6 que o `TResultLote_GNRE` 2.00 traz, por guia, `linhaDigitavel`, `codigoBarras`, `nossoNumero` e `dataLimitePagamento` (a entrada natural do `Dagnre`), e que o portal pode devolver o PDF pronto (`incluirPDFGuias`). Commit `docs: conclui F5`.
