@@ -50,7 +50,12 @@ class MakeConsultaTest extends MakeTestCase
     {
         $make = new MakeConsulta();
         $make->tagConsulta($this->std(['uf' => 'SP', 'numControle' => '1234567890', 'tipoConsulta' => 'N']));
-        $make->tagConsulta($this->std(['uf' => 'MG', 'IE' => '0623079040081', 'numControle' => '1234567891', 'tipoConsulta' => 'N']));
+        $make->tagConsulta($this->std([
+            'uf' => 'MG',
+            'IE' => '0623079040081',
+            'numControle' => '1234567891',
+            'tipoConsulta' => 'N',
+        ]));
 
         $xml = $make->getXML();
 
@@ -89,7 +94,11 @@ class MakeConsultaTest extends MakeTestCase
     {
         $make = new MakeConsulta();
         for ($i = 1; $i <= 51; $i++) {
-            $make->tagConsulta($this->std(['uf' => 'SP', 'numControle' => (string) (1000000000 + $i), 'tipoConsulta' => 'N']));
+            $make->tagConsulta($this->std([
+                'uf' => 'SP',
+                'numControle' => (string) (1000000000 + $i),
+                'tipoConsulta' => 'N',
+            ]));
         }
         $this->assertNotEmpty($make->getErrors());
         $this->expectException(RuntimeException::class);
