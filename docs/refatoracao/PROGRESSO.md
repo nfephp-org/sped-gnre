@@ -15,7 +15,7 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 - **Fase:** F1, em andamento
 - **Tarefa:** T1.2 (T1.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T1.2, novo `composer.json`. ⚠️ Pergunta ao usuário sobre D-04 (layout 1.00), ver P-02.
+- **Próxima ação:** T1.2 Step 1, reescrever o `composer.json` conforme o plano (o rascunho ainda não foi gravado; o arquivo continua o antigo). O `vendor/` local está com as dependências antigas: rode `rm -rf vendor && composer install` depois de gravar o novo. ⚠️ Antes da F4, responder à **P-02** (manter ou não o layout 1.00).
 
 ## Pendências abertas
 
@@ -88,6 +88,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-21 | T0.3 | Lock legado atualizado; suíte antiga 70 testes: 67 ✔ e 2 erros (teste do CertificatePfx no PHP ≥ 7.4); 5 CVEs no Smarty | chore: atualiza lock legado |
 | 2026-11-21 | T0.4 | 8 golden determinísticos; estrutura legada válida, dados de exemplo inválidos; XSD v2 do repositório quebrado (P-01); R-01..R-03. **F0 concluída** | test: golden XMLs |
 | 2026-11-21 | T1.1 | P-01 resolvida com o manual oficial v2.17; legado em `legacy/`; `schemes/PL_GNRE_100` e `PL_GNRE_200`; arquivos de Travis, Coveralls e Docker removidos; P-02 e P-03 abertas | refactor!: congela codigo 0.x |
+| 2026-11-21 | — | Sessão pausada pelo usuário no início da T1.2 | docs: ponto de retomada |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
