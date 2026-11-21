@@ -55,15 +55,15 @@
 **Files:**
 - Create: `.gitattributes`
 
-- [ ] **Step 1: Criar `.gitattributes`** com a primeira linha `* text=auto eol=lf`, `*.pdf binary`, `*.zip binary`, `*.jpg binary`, `*.png binary`, `*.pfx binary`, seguidas do bloco `export-ignore` do sped-nfe (`D:/NfePhpDev/sped-nfe/.gitattributes`) acrescido de `/legacy export-ignore` e `/docs export-ignore`.
-- [ ] **Step 2: Renormalizar**
+- [x] **Step 1: Criar `.gitattributes`** com a primeira linha `* text=auto eol=lf`, `*.pdf binary`, `*.zip binary`, `*.jpg binary`, `*.png binary`, `*.pfx binary`, seguidas do bloco `export-ignore` do sped-nfe (`D:/NfePhpDev/sped-nfe/.gitattributes`) acrescido de `/legacy export-ignore` e `/docs export-ignore`.
+- [x] **Step 2: Renormalizar**
   Run: `git add --renormalize . && git status --short | wc -l`
-- [ ] **Step 3: Verificar que só mudaram os finais de linha**
+- [x] **Step 3: Verificar que só mudaram os finais de linha**
   Run: `git diff --cached --ignore-cr-at-eol --stat | tail -1`
   Expected: só `.gitattributes` aparece com conteúdo real.
-- [ ] **Step 4: Verificar que não sobrou CRLF**
+- [x] **Step 4: Verificar que não sobrou CRLF**
   Run: `git ls-files --eol | grep -c "i/crlf"` → Expected: `0`
-- [ ] **Step 5: Commit** `chore: normaliza finais de linha para LF`
+- [x] **Step 5: Commit** `chore: normaliza finais de linha para LF`
 
 ### Task T0.3: Linha de base da suíte antiga
 
