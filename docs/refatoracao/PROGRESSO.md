@@ -24,7 +24,7 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 | P-01 | ✅ **Resolvida** (2026-11-21): pacote oficial do **Manual v2.17** baixado do Portal GNRE (`https://www.gnre.pe.gov.br:444/gnre/v/automacao/baixarManual`; a porta 443 devolve 403 para acesso automatizado). Tem 16 XSDs completos, sem include faltando, e valida os golden com dados corretos. Virou `schemes/PL_GNRE_200/`. | — | — |
 | P-02 | O pacote oficial 2.17 **não tem mais** o `lote_gnre_v1.00.xsd`; segundo fontes secundárias, a SEFAZ aceitou o lote 1.00 só até 31/03/2021. D-04 (manter o layout 1.00 / `MakeV1` / F4) precisa ser reconfirmada pelo usuário. | F4 (não bloqueia F1–F3) | Proposta: não implementar o `MakeV1`. Manter `schemes/PL_GNRE_100` só como histórico, ou removê-lo. |
 | P-04 | ✅ Resolvida (D-13): a issue de anúncio está **só no fork**, em https://github.com/betoeu/sped-gnre/issues/1. Vai para o nfephp-org na F7. | — | — |
-| P-03 | O pacote 2.17 traz serviços que o legado não implementa: consulta de guia (`lote_consulta_guia_v2.00.xsd`, `lote_gnre_result_consulta_v2.00.xsd`) e `retorno_gnre_v2.00.xsd`. | plano da F2 | Incluir `sefazConsultaGuia()` no contrato da `Tools` ao escrever o plano da F2 (exige uma decisão D-13). |
+| P-03 | O pacote 2.17 traz serviços que o legado não implementa: consulta de guia (`lote_consulta_guia_v2.00.xsd`, `lote_gnre_result_consulta_v2.00.xsd`) e `retorno_gnre_v2.00.xsd`. | plano da F2 | Incluir `sefazConsultaGuia()` no contrato da `Tools` ao escrever o plano da F2 (exige uma decisão D-14). |
 
 ## Decisões de execução (R-xx)
 
