@@ -20,12 +20,16 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
   (o XML sai na sequência do XSD); suporta várias guias por lote e vários itens por guia.
 - `NFePHP\Gnre\MakeConsulta`: monta o lote de consultas de guia (7 tipos de consulta).
 - `NFePHP\Gnre\Common\RegrasUf`: sugestões de tipo de documento de origem por UF (tabela da 0.x).
-- Exemplos em `examples/`, incluindo `make-lote.php`, que roda sem certificado.
+- `NFePHP\Gnre\MakeV1`: guias no layout 1.00 (campos `c01_..c42_`) em dois formatos:
+  a guia 1.00 dentro do lote 2.00 (`FORMATO_LOTE_200`, padrão, aceito pelo pacote oficial 2.17) e o
+  lote 1.00 puro (`FORMATO_LOTE_100`, como na 0.x).
+- Exemplos em `examples/`, incluindo `make-lote.php` e `make-lote-v1.php`, que rodam sem certificado.
 
 ### Fixed
 - Campos que a 0.x descartava no lote 2.00 (`detalhamentoReceita`, `produto`, IE do emitente e `convenio`) agora são enviados.
 - O valor principal não é mais duplicado como `tipo=11` e `tipo=21`; só os valores informados vão no XML.
 - `identificadorGuia` e `referencia/periodo` deixam de ser fixos (`1` e `0`).
+- No layout 1.00, o período `0` (mensal) não é mais descartado.
 
 ### Changed
 - Namespace `Sped\Gnre` substituído por `NFePHP\Gnre` (pasta `src/`).
