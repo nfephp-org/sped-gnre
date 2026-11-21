@@ -1,0 +1,9 @@
+{
+    "tpAmb": 2,
+    "razaosocial": "RAZAO SOCIAL DA EMPRESA",
+    "cnpj": "99999999000191",
+    "siglaUF": "SP",
+    "versao": "2.00",
+    "certificado": "certificado.pfx",
+    "senha": "senha-do-certificado"
+}

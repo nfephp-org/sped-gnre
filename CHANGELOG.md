@@ -8,6 +8,15 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 
 ## [1.0.0] - Unreleased
 
+### Added
+- `NFePHP\Gnre\Tools` com os 5 serviços do Portal GNRE sobre o `SoapCurl` do sped-common:
+  `sefazEnviaLote`, `sefazConsultaLote` (com as opções `incluirPDFGuias`, `incluirArquivoPagamento`
+  e `incluirNoticias`), `sefazConsultaConfigUf`, `sefazEnviaLoteConsulta` e `sefazConsultaLoteConsulta`.
+- Consulta de guias já emitidas (serviços `GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`), que não existia na 0.x.
+- Suporte aos layouts de lote 1.00 e 2.00, escolhidos pelo `versao` do config JSON.
+- `storage/wsgnre.json` com URLs, namespaces e versões de cada serviço; os envelopes SOAP seguem o WSDL oficial.
+- Exemplos em `examples/`.
+
 ### Changed
 - Namespace `Sped\Gnre` substituído por `NFePHP\Gnre` (pasta `src/`).
 - Requer PHP >= 7.4 (testado de 7.4 a 8.5) e `nfephp-org/sped-common` ^5.1.

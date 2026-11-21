@@ -10,3 +10,5 @@ composer.lock
 .phpunit.cache/
 .phpunit.result.cache
 /legacy/certs/*.pfx
+/examples/config.json
+/examples/*.pfx
