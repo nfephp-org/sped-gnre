@@ -53,7 +53,8 @@ composer test    # PHPUnit
 
 ## Créditos
 
-Projeto criado por [Matheus Marabesi](https://github.com/marabesi) e mantido pela
+Projeto criado por [Matheus Marabesi](https://github.com/marabesi) e refatorado para o padrão
+NFePHP (versão 1.0) por [Alberto Leal](https://github.com/betoeu). Mantido pela
 [Comunidade NFePHP](https://github.com/nfephp-org/sped-gnre/graphs/contributors).
 
 ## Licença

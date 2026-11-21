@@ -1,6 +1,8 @@
 # Changelog
 
 Todas as mudanças relevantes deste pacote são registradas aqui.
+
+Projeto criado por Matheus Marabesi; refatoração para o padrão NFePHP (1.0) por Alberto Leal.
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o versionamento segue o [SemVer](https://semver.org/lang/pt-BR/).
 
 ## [1.0.0] - Unreleased
