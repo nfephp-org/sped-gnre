@@ -1,4 +1,4 @@
-certs/
+/certs/
 vendor/
 .idea/
 coverage/
