@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F8 (mover a impressão para o sped-da), em andamento. Depois, F7 (D-18)
-- **Tarefa:** T8.1 do plano `planos/2026-11-22-fase-8-migracao-sped-da.md`
+- **Tarefa:** T8.2 do plano `planos/2026-11-22-fase-8-migracao-sped-da.md` (T8.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T8.1: branch `feature/gnre` no fork `D:\betoeu\sped-da` + linha de base da suíte do sped-da. As 2 perguntas da F7 (homologação real e revisão independente) ficam para depois da F8.
+- **Próxima ação:** T8.2, portar `ResultadoLote`, `DadosGuia` e `Dagnre` para `D:\betoeu\sped-da` (branch `feature/gnre`), com TDD. As 2 perguntas da F7 ficam para depois da F8.
 
 ## Pendências abertas
 
@@ -136,6 +136,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T6.3 | `DA\Dagnre`: 10 testes (texto e páginas via pdfparser, espião confirma I25 e QR). **Conferência visual** (PDF → PNG com pypdfium2 num venv isolado no scratchpad): vias, blocos, valores por tipo, linha digitável, I25 e QR PIX corretos; a linha de corte encostava no código de barras e foi corrigida (barra de 10 mm, corte em y−0,6). Ponto menor: o nº do documento de origem com 44 dígitos sai em fonte pequena; suíte 225 ✔ | feat(da): Dagnre |
 | 2026-11-22 | T6.4 | Exemplo `dagnre.php` (gera `%PDF`), README com a seção "Impressão da guia" (e a alternativa `incluirPDFGuias`), CHANGELOG; **CI verde nas 7 versões** (sha 243de46). **F6 concluída** | docs: exemplo F6 |
 | 2026-11-22 | plano F8 | Usuário: mover a impressão para o sped-da **antes** da F7 (D-18). Para evitar dependência circular, o sped-da lê o resultado sozinho (`GNRE\ResultadoLote`). Plano da F8 escrito | docs: plano da F8 |
+| 2026-11-22 | T8.1 | sped-da: branch `feature/gnre` a partir de `upstream/master` `6e4b3e7`. **Linha de base do upstream** (sem alteração nossa): phpunit 72 testes, **4 erros já existentes** (`DamdfeTest`: seguro ×3 e vale-pedágio, `Damdfe.php:1045/1028`); phpcs PSR-2 com 63 violações já existentes; phpstan estoura 128M (como na R-16). Meta: `src/GNRE` limpo e a suíte sem novas falhas | (sem commit no sped-da) |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

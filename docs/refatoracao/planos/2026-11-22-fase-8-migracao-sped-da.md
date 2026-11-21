@@ -40,10 +40,10 @@
 
 ### Task T8.1: Preparar o fork do sped-da
 
-- [ ] **Step 1:** `git -C D:/betoeu/sped-da fetch upstream && git -C D:/betoeu/sped-da checkout -b feature/gnre upstream/master`.
-- [ ] **Step 2:** `composer install --no-interaction` no sped-da → sem erro.
-- [ ] **Step 3: Linha de base:** `vendor/bin/phpunit` no sped-da e registrar no PROGRESSO do sped-gnre o total de testes, falhas e erros. `composer phpcs` e `composer stan`: registrar se o upstream já tem violações (só `src/GNRE` precisa sair limpo).
-- [ ] **Step 4:** registrar no PROGRESSO a branch e o commit de partida.
+- [x] **Step 1:** `git -C D:/betoeu/sped-da fetch upstream && git -C D:/betoeu/sped-da checkout -b feature/gnre upstream/master`.
+- [x] **Step 2:** `composer install --no-interaction` no sped-da → sem erro.
+- [x] **Step 3: Linha de base:** `vendor/bin/phpunit` no sped-da e registrar no PROGRESSO do sped-gnre o total de testes, falhas e erros. `composer phpcs` e `composer stan`: registrar se o upstream já tem violações (só `src/GNRE` precisa sair limpo).
+- [x] **Step 4:** registrar no PROGRESSO a branch e o commit de partida.
 
 ### Task T8.2: Portar `ResultadoLote`, `DadosGuia` e `Dagnre` para o sped-da (TDD)
 
