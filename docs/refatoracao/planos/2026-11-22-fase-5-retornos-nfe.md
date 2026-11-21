@@ -61,7 +61,7 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
 - `retorno-config-uf.xml`: `TConfigUf` mínimo válido no `config_uf_v1.00.xsd`, montado a partir do XSD.
 - Cada fixture tem o nó de dados validado no seu XSD dentro do próprio teste (`testFixturesValidas`).
 
-- [ ] **Step 1: Escrever as fixtures e `tests/Common/StandardizeTest.php`:**
+- [x] **Step 1: Escrever as fixtures e `tests/Common/StandardizeTest.php`:**
   - `testFixturesValidas` (provider fixture → raiz → XSD): o nó, extraído sem o envelope, valida no XSD de `PL_GNRE_200`.
   - `testWhichIs`: recibo → `TRetLote_GNRE`; resultado → `TResultLote_GNRE`; config → `TConfigUf`; lote do `Make` → `TLote_GNRE`.
   - `testRecibo`: `toStd()->recibo->numero === '2512345678'` e `situacaoRecepcao->codigo === '100'`.
@@ -71,10 +71,10 @@ Fixtures (todas dentro de envelope SOAP 1.2 + `<gnreRespostaMsg xmlns="http://ww
   - `testToArrayEToJson`: `toArray()['recibo']['numero'] === '2512345678'`; o `toJson()` decodificado é igual ao `toStd()`.
   - `testToStringSemPrefixo`: `(string) $std` não contém `ns1:`.
   - `testNaoXml` (`'abc'`) e `testRaizDesconhecida` (`'<foo/>'`) → `DocumentsException`.
-- [ ] **Step 2: Rodar e ver falhar** → `Class "NFePHP\Gnre\Common\Standardize" not found`.
-- [ ] **Step 3: Implementar** com um conversor recursivo `protected function converter(DOMElement $no)`, que devolve `stdClass` ou `string` conforme as regras D-17, e uma cópia sem prefixos para `$node`.
-- [ ] **Step 4: Rodar** — `composer phpcs && composer stan && composer test` → verde.
-- [ ] **Step 5: Commit** `feat(common): Standardize sem perda de atributos (D-17)`
+- [x] **Step 2: Rodar e ver falhar** → `Class "NFePHP\Gnre\Common\Standardize" not found`.
+- [x] **Step 3: Implementar** com um conversor recursivo `protected function converter(DOMElement $no)`, que devolve `stdClass` ou `string` conforme as regras D-17, e uma cópia sem prefixos para `$node`.
+- [x] **Step 4: Rodar** — `composer phpcs && composer stan && composer test` → verde.
+- [x] **Step 5: Commit** `feat(common): Standardize sem perda de atributos (D-17)`
 
 ### Task T5.2: `Common\RetornoTxtV1` (resultado do lote 1.00 puro)
 

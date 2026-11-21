@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F5 (`Standardize` + `RetornoTxtV1` + `FromNFe`), em andamento
-- **Tarefa:** T5.1 do plano `planos/2026-11-22-fase-5-retornos-nfe.md`
+- **Tarefa:** T5.2 do plano `planos/2026-11-22-fase-5-retornos-nfe.md` (T5.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T5.1, `Common\Standardize` (D-17) e as fixtures de retorno.
+- **Próxima ação:** T5.2, `Common\RetornoTxtV1` (TXT do resultado do lote 1.00).
 
 ## Pendências abertas
 
@@ -46,6 +46,7 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **R-13** (T2.6): a regra `certs/` do `.gitignore` legado ignorava **qualquer** pasta `certs`, inclusive `tests/fixtures/certs`, e a CI falhou nas 7 versões por falta do certificado de teste. A regra passou a ser `/certs/` (só na raiz), e foi conferido que nenhum outro arquivo do projeto estava sendo ignorado. Custo se errado: nenhum.
 - **Revisão final da F2:** autorrevisão (sem agente revisor, que só é criado a pedido do usuário). Uma revisão independente pode ser pedida antes da F3.
 - **R-14** (T3.1): o `Make.php` da T3.1 já inclui as tags de item da T3.2, porque o desenho de slots por guia e item é um só e dividi-lo geraria retrabalho. A T3.2 continua TDD: os testes dela cobrem esse código e, se algum passar de primeira, isso é registrado como achado. Custo se errado: nenhum.
+- **R-15** (T5.1): a fixture `retorno-resultado-v2.xml` (do ACBr, de 2020) teve o `numeroRecibo` completado de 10 para 14 dígitos, porque o XSD 2.17 do **resultado** só aceita 14 (a consulta aceita 10 ou 14). Isso indica que os recibos atuais têm 14 dígitos. A alteração está registrada no comentário da fixture. Custo se errado: nenhum (só afeta testes).
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -124,6 +125,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T4.2 | Integração MakeV1 + Tools nos 2 formatos (versaoDados 2.00/1.00; formato trocado → ValidatorException sem envio). Passou de primeira (sem código novo, como previsto); mutação (pasta de schemas fixa em PL_GNRE_100) derrubou 2 testes; suíte 172 ✔ | test: envio layout 1.00 |
 | 2026-11-22 | T4.3 | Exemplo `make-lote-v1.php` (os 2 formatos, válidos nos XSDs); CHANGELOG; **CI verde nas 7 versões** (sha 122f72c). **F4 concluída** | docs: exemplo F4 |
 | 2026-11-22 | plano F5 | Pesquisa: retornos reais usam o prefixo `ns1:`; o json do SimpleXML perde o atributo `tipo` do `valor` (D-17); o resultado do 1.00 puro é TXT posicional (posições do ACBr, as do legado estavam erradas); fixture de NF-e com DIFAL do sped-nfe (CPF de teste inválido, corrigido na cópia). Plano da F5 escrito | docs: plano da F5 |
+| 2026-11-22 | T5.1 | `Standardize` (D-17): o nó é achado no envelope SOAP com prefixo `ns1:`; atributo + texto viram `attributes` + `value`; irmãos repetidos viram array. 4 fixtures de retorno validadas nos XSDs 2.17 (ConfigUF exigiu `enderecoObr` e `campo` fixo; resultado exigiu recibo de 14 dígitos, R-15); 13 testes; suíte 185 ✔ | feat(common): Standardize |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
