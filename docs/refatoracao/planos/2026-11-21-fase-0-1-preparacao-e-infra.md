@@ -154,7 +154,7 @@
   - `name` `nfephp-org/sped-gnre`, `type` `library`, `description` `"API para geração e comunicação da GNRE com o Portal GNRE (SEFAZ-PE)."`, `keywords` `["gnre","sped","nfephp","icms","difal"]`, `homepage` `https://github.com/nfephp-org/sped-gnre`, `license` `["LGPL-3.0-or-later","GPL-3.0-or-later","MIT"]`
   - `authors`: Matheus Marabesi (autor original), Comunidade NFePHP (`/graphs/contributors`)
   - `require`: `php >=7.4`, `nfephp-org/sped-common ^5.1`, `ext-dom`, `ext-curl`, `ext-openssl`, `ext-soap`, `ext-json`, `ext-libxml`, `ext-simplexml`, `ext-mbstring`
-  - `require-dev`: `phpunit/phpunit ^9.6`, `squizlabs/php_codesniffer ^3.7`, `phpstan/phpstan ^1.10`, `phpcompatibility/php-compatibility ^9.3`, `dealerdirect/phpcodesniffer-composer-installer ^1.0`
+  - `require-dev`: `phpunit/phpunit ^9.6`, `squizlabs/php_codesniffer ^3.7`, `phpstan/phpstan ^1.10`, `phpcompatibility/php-compatibility ^10.0@alpha` (R-07), `dealerdirect/phpcodesniffer-composer-installer ^1.0`
   - `autoload` `NFePHP\\Gnre\\` → `src/`; `autoload-dev` `NFePHP\\Gnre\\Tests\\` → `tests/`
   - `scripts`: `test` `vendor/bin/phpunit -c phpunit.xml.dist`, `phpcs` `vendor/bin/phpcs`, `phpcbf` `vendor/bin/phpcbf`, `stan` `vendor/bin/phpstan analyse`, `precommit` `["@phpcs","@stan","@test"]`
   - `extra.branch-alias` `{"dev-refactor/v1": "1.0.x-dev"}`; `minimum-stability` `stable`; `config.allow-plugins` `{"dealerdirect/phpcodesniffer-composer-installer": true}`
@@ -166,25 +166,25 @@
 
 **Files:**
 - Create: `src/Exception/ExceptionInterface.php`, `InvalidArgumentException.php`, `RuntimeException.php`, `DocumentsException.php` (espelhar `D:/NfePhpDev/sped-mdfe/src/Exception/*`, trocando o namespace para `NFePHP\Gnre\Exception`)
-- Create: `phpcs.xml`, `phpstan.neon`, `phpunit.xml.dist`, `.editorconfig` (copiar do sped-nfe), `bootstrap.php`, `storage/.gitkeep`
+- Create: `phpcs.xml`, `phpstan.neon.dist` (R-08), `phpunit.xml.dist`, `.editorconfig` (copiar do sped-nfe), `bootstrap.php`, `storage/.gitkeep`
 - Test: `tests/SchemesTest.php`
 
 **Interfaces:**
 - Produces: `NFePHP\Gnre\Exception\DocumentsException::wrongDocument(int $code, string $msg = ''): self` com o mesmo mapa de códigos do mdfe (os códigos GNRE são acrescentados nas fases seguintes).
 
-- [ ] **Step 1: Escrever o teste `tests/SchemesTest.php`** (`NFePHP\Gnre\Tests\SchemesTest extends PHPUnit\Framework\TestCase`):
+- [x] **Step 1: Escrever o teste `tests/SchemesTest.php`** (`NFePHP\Gnre\Tests\SchemesTest extends PHPUnit\Framework\TestCase`):
   - `testTodosOsXsdCarregam` (data provider com cada `schemes/*/*.xsd`): `assertTrue((new DOMDocument())->load($xsd))`.
   - `testIncludesExistem` (mesmo provider): para cada `xs:include/@schemaLocation` e `xs:import/@schemaLocation`, `assertFileExists(dirname($xsd).'/'.$loc)`.
   - `testGoldenValidos` (provider lido de `tests/fixtures/legacy/validos.txt`; se o arquivo estiver vazio, `markTestSkipped`): extrai o nó raiz de dados (`TLote_GNRE`, `TConsLote_GNRE` ou `TConsultaConfigUf`) e chama `NFePHP\Common\Validator::isValid($xml, $xsd)` → `assertTrue`. O `validos.txt` guarda `arquivo;nome-do-xsd` (R-02): nomes com `v2.00` são procurados em `schemes/PL_GNRE_200/` e os demais em `schemes/PL_GNRE_100/`. Os 4 golden listados precisam passar.
   - `testDocumentsExceptionImplementaInterface`: `assertInstanceOf(ExceptionInterface::class, DocumentsException::wrongDocument(1))`.
-- [ ] **Step 2: Rodar e ver falhar** — Run: `vendor/bin/phpunit` → Expected: erro `Class "NFePHP\Gnre\Exception\DocumentsException" not found` (ou "No tests executed" sem `phpunit.xml.dist`).
-- [ ] **Step 3: Criar as exceções e as configurações**:
+- [x] **Step 2: Rodar e ver falhar** — Run: `vendor/bin/phpunit` → Expected: erro `Class "NFePHP\Gnre\Exception\DocumentsException" not found` (ou "No tests executed" sem `phpunit.xml.dist`).
+- [x] **Step 3: Criar as exceções e as configurações**:
   - `phpunit.xml.dist`: schema PHPUnit 9.6, `bootstrap="vendor/autoload.php"`, testsuite `tests`, `<coverage><include><directory>src</directory></include></coverage>`.
   - `phpcs.xml`: `<file>src</file><file>tests</file>`, `<arg name="extensions" value="php"/>`, `<rule ref="PSR12"/>`, `<config name="testVersion" value="7.4-"/>`, `<rule ref="PHPCompatibility"/>`, exclusão de `PSR1.Methods.CamelCapsMethodName` em `*/tests/*`.
   - `phpstan.neon`: `level: 5`, `paths: [src, tests]`, `treatPhpDocTypesAsCertain: false`.
-- [ ] **Step 4: Rodar tudo** — Run: `composer phpcs && composer stan && composer test` → Expected: 0 erros no phpcs, `[OK] No errors` no phpstan, `OK (N tests…)` no phpunit.
-- [ ] **Step 5: Conferir que o PHPCompatibility funciona**: criar temporariamente `src/Tmp.php` com `function f(): int|string { return 1; }` e rodar `composer phpcs` → Expected: erro de union type. Apagar o `src/Tmp.php`.
-- [ ] **Step 6: Commit** `feat: esqueleto NFePHP\Gnre (exceptions, phpcs, phpstan, phpunit)`
+- [x] **Step 4: Rodar tudo** — Run: `composer phpcs && composer stan && composer test` → Expected: 0 erros no phpcs, `[OK] No errors` no phpstan, `OK (N tests…)` no phpunit.
+- [x] **Step 5: Conferir que o PHPCompatibility funciona**: criar temporariamente `src/Tmp.php` com `function f(): int|string { return 1; }` e rodar `composer phpcs` → Expected: erro de union type. Apagar o `src/Tmp.php`.
+- [x] **Step 6: Commit** `feat: esqueleto NFePHP\Gnre (exceptions, phpcs, phpstan, phpunit)`
 
 ### Task T1.4: CI, README e anúncio no upstream
 
