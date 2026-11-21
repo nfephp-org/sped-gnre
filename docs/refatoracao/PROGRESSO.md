@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F2 (Comunicação), em andamento
-- **Tarefa:** T2.5 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 a T2.4 concluídas)
+- **Tarefa:** T2.6 do plano `planos/2026-11-22-fase-2-comunicacao.md` (T2.1 a T2.5 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T2.5, consulta de guia (`sefazEnviaLoteConsulta` + `sefazConsultaLoteConsulta`).
+- **Próxima ação:** T2.6, exemplos, CHANGELOG, CI e fechamento da F2.
 
 ## Pendências abertas
 
@@ -107,6 +107,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T2.2 | `Common\Tools` (config validado, ambiente, versão, SoapCurl, servico, sendRequest, isValid) + `SoapFake` + `ToolsTestCase` + certificado de teste; suíte 70 ✔ | feat(common): Tools base |
 | 2026-11-22 | T2.3 | `Tools::sefazEnviaLote` (1.00 e 2.00): a mensagem é igual ao golden (C14N), o envelope segue D-15 e um XML inválido não é enviado; suíte 75 ✔ | feat: sefazEnviaLote |
 | 2026-11-22 | T2.4 | `sefazConsultaLote` (opções incluirPDFGuias/ArquivoPagamento/Noticias só no 2.00, na ordem do XSD) e `sefazConsultaConfigUf` (courier); mensagens iguais ao golden; R-11 e R-12; suíte 88 ✔ | feat: sefazConsultaLote e sefazConsultaConfigUf |
+| 2026-11-22 | T2.5 | Consulta de guia: `sefazEnviaLoteConsulta` (XSD lote_consulta_guia 2.00) e `sefazConsultaLoteConsulta`, sempre com versaoDados 2.00 e pasta PL_GNRE_200, mesmo com o config em 1.00; suíte 94 ✔ | feat: consulta de guia |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

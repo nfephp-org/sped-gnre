@@ -198,16 +198,16 @@
 <TLote_ConsultaGNRE xmlns="http://www.gnre.pe.gov.br" versao="2.00"><consulta><uf>SP</uf><emitenteId><CNPJ>06157250000116</CNPJ></emitenteId><codBarras>85800000000123456789012345678901234567890123</codBarras><idConsulta>1</idConsulta><tipoConsulta>C</tipoConsulta></consulta></TLote_ConsultaGNRE>
 ```
 
-- [ ] **Step 1: Escrever `tests/ToolsConsultaGuiaTest.php`:**
+- [x] **Step 1: Escrever `tests/ToolsConsultaGuiaTest.php`:**
   - `testEnviaLoteConsulta`: fixture → `url` `https://www.testegnre.pe.gov.br/gnreWS/services/GnreLoteRecepcaoConsulta`; `operation` `processar`; header namespace `http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcaoConsulta`; `versaoDados` `2.00`; C14N de `lastRequest` = C14N da fixture.
   - `testEnviaLoteConsultaComLayout100`: config `versao: '1.00'` com a mesma fixture → envia, `versaoDados` `2.00`.
   - `testEnviaLoteConsultaInvalido`: a fixture sem `<tipoConsulta>C</tipoConsulta>` → `ValidatorException` e `getCalls() === 0`.
   - `testConsultaLoteConsulta`: `sefazConsultaLoteConsulta('25123456789012')` (14 dígitos) → `url` `.../GnreResultadoLoteConsulta`; `operation` `consultar`; `lastRequest` = `<TConsLote_GNRE xmlns="http://www.gnre.pe.gov.br"><ambiente>2</ambiente><numeroRecibo>25123456789012</numeroRecibo></TConsLote_GNRE>`.
   - `testConsultaLoteConsultaReciboVazio` → `InvalidArgumentException`.
-- [ ] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit --filter ToolsConsultaGuiaTest` → Expected: `Call to undefined method ...sefazEnviaLoteConsulta()`.
-- [ ] **Step 3: Implementar** os dois métodos.
-- [ ] **Step 4: Rodar** — `composer test`, `composer phpcs`, `composer stan` → verdes.
-- [ ] **Step 5: Commit** `feat: consulta de guia (GnreLoteRecepcaoConsulta e GnreResultadoLoteConsulta)`
+- [x] **Step 2: Rodar e ver falhar** — `vendor/bin/phpunit --filter ToolsConsultaGuiaTest` → Expected: `Call to undefined method ...sefazEnviaLoteConsulta()`.
+- [x] **Step 3: Implementar** os dois métodos.
+- [x] **Step 4: Rodar** — `composer test`, `composer phpcs`, `composer stan` → verdes.
+- [x] **Step 5: Commit** `feat: consulta de guia (GnreLoteRecepcaoConsulta e GnreResultadoLoteConsulta)`
 
 ### Task T2.6: Exemplos, CI e fechamento da F2
 

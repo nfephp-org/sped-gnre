@@ -86,6 +86,39 @@ class Tools extends ToolsCommon
     }
 
     /**
+     * Envia um lote de consultas de GNRE (serviço GnreLoteRecepcaoConsulta, assíncrono: retorna o recibo)
+     *
+     * O layout do lote de consultas existe apenas na versão 2.00, independente do layout do lote de guias.
+     *
+     * @param string $xmlLoteConsulta TLote_ConsultaGNRE (lote_consulta_guia_v2.00.xsd)
+     * @return string retorno SOAP bruto
+     */
+    public function sefazEnviaLoteConsulta(string $xmlLoteConsulta): string
+    {
+        $request = $this->limparXml($xmlLoteConsulta);
+        $this->isValid($request, 'lote_consulta_guia_v2.00.xsd', '2.00');
+        $this->servico('GnreLoteRecepcaoConsulta');
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * Consulta o resultado de um lote de consultas de GNRE (serviço GnreResultadoLoteConsulta)
+     *
+     * @param string $recibo número do recibo devolvido por sefazEnviaLoteConsulta
+     * @return string retorno SOAP bruto
+     */
+    public function sefazConsultaLoteConsulta(string $recibo): string
+    {
+        $request = '<TConsLote_GNRE xmlns="' . self::PORTAL . '">'
+            . '<ambiente>' . $this->tpAmb . '</ambiente>'
+            . '<numeroRecibo>' . $this->recibo($recibo) . '</numeroRecibo>'
+            . '</TConsLote_GNRE>';
+        $this->isValid($request, 'lote_gnre_consulta_v1.00.xsd', '2.00');
+        $this->servico('GnreResultadoLoteConsulta');
+        return $this->sendRequest($request);
+    }
+
+    /**
      * Valida e normaliza o número do recibo (o formato fica a cargo do XSD)
      */
     protected function recibo(string $recibo): string
