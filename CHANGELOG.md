@@ -23,13 +23,19 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 - `NFePHP\Gnre\MakeV1`: guias no layout 1.00 (campos `c01_..c42_`) em dois formatos:
   a guia 1.00 dentro do lote 2.00 (`FORMATO_LOTE_200`, padrão, aceito pelo pacote oficial 2.17) e o
   lote 1.00 puro (`FORMATO_LOTE_100`, como na 0.x).
-- Exemplos em `examples/`, incluindo `make-lote.php` e `make-lote-v1.php`, que rodam sem certificado.
+- `NFePHP\Gnre\Common\Standardize`: converte os retornos (envelope SOAP com prefixo `ns1:`) em stdClass/array/JSON
+  **preservando os atributos**: `<valor tipo="12">` vira `{attributes: {tipo: "12"}, value: ...}`.
+- `NFePHP\Gnre\Common\RetornoTxtV1`: lê o resultado TXT posicional do lote 1.00 puro.
+- `NFePHP\Gnre\Factories\FromNFe`: dados da guia a partir do XML da NF-e e atalhos `guiaDifal()`/`guiaSt()`.
+- Exemplos em `examples/` (`make-lote.php`, `make-lote-v1.php`, `standardize-retorno.php` e
+  `guia-difal-da-nfe.php` rodam sem certificado).
 
 ### Fixed
 - Campos que a 0.x descartava no lote 2.00 (`detalhamentoReceita`, `produto`, IE do emitente e `convenio`) agora são enviados.
 - O valor principal não é mais duplicado como `tipo=11` e `tipo=21`; só os valores informados vão no XML.
 - `identificadorGuia` e `referencia/periodo` deixam de ser fixos (`1` e `0`).
 - No layout 1.00, o período `0` (mensal) não é mais descartado.
+- Leitura do resultado TXT do lote 1.00 com as posições corretas (a 0.x tinha campos deslocados e sobrepostos).
 
 ### Changed
 - Namespace `Sped\Gnre` substituído por `NFePHP\Gnre` (pasta `src/`).
