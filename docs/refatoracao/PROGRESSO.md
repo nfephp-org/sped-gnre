@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F3 (`Make` 2.00 + `MakeConsulta` + `RegrasUf`), em andamento
-- **Tarefa:** T3.4 do plano `planos/2026-11-22-fase-3-make.md` (T3.1 a T3.3 concluídas)
+- **Tarefa:** T3.5 do plano `planos/2026-11-22-fase-3-make.md` (T3.1 a T3.4 concluídas)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T3.4, `RegrasUf` + `storage/regras_uf.json`.
+- **Próxima ação:** T3.5, exemplos com `Make`/`MakeConsulta`, CHANGELOG, CI e fechamento da F3.
 
 ## Pendências abertas
 
@@ -116,6 +116,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T3.1 | `Make`: guia, emitente, montagem idempotente na ordem do XSD, erros em `getErrors()`, `RuntimeException` sem guia ou com erro; 10 testes; suíte 104 ✔ | feat: Make (guia, emitente) |
 | 2026-11-22 | T3.2 | 12 testes de item, incluindo um idêntico ao golden do legado (C14N). Eles passaram de primeira (R-14), e por isso foi feita uma **verificação por mutação**: trocar a ordem referência/valor e aceitar valor não numérico derrubaram 2 e 1 testes, respectivamente. Base `MakeTestCase`; suíte 116 ✔ | feat: Make (itens) |
 | 2026-11-22 | T3.3 | `MakeConsulta` (7 tipos de consulta, emitenteId por CNPJ/CPF/IE, máx. 50, docOrigem com tipo); o XML gerado é idêntico à fixture da F2; 9 testes; suíte 125 ✔ | feat: MakeConsulta |
+| 2026-11-22 | T3.4 | `RegrasUf` + `storage/regras_uf.json` (sugestões da 0.x; o oficial é o ConfigUF); as 27 UFs conferidas contra o legado; suíte 155 ✔ | feat(common): RegrasUf |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
