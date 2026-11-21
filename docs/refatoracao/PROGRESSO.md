@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F3 (`Make` 2.00 + `MakeConsulta` + `RegrasUf`), em andamento
-- **Tarefa:** T3.1 do plano `planos/2026-11-22-fase-3-make.md`
+- **Tarefa:** T3.2 do plano `planos/2026-11-22-fase-3-make.md` (T3.1 concluída)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T3.1, `Make` (guia, emitente, montagem e erros).
+- **Próxima ação:** T3.2: testes de itens, referência, valores, destinatário e campos extras. A implementação dessas tags já entrou no `src/Make.php` na T3.1 (R-14).
 
 ## Pendências abertas
 
@@ -44,6 +44,7 @@ Decisões tomadas durante a execução, quando o plano não previa o caso. Forma
 - **R-12** (T2.4): valores do usuário inseridos no XML (recibo, receita) passam por `htmlspecialchars(ENT_XML1)`, prevenindo injeção de XML; a validação de formato continua no XSD. Custo se errado: nenhum.
 - **R-13** (T2.6): a regra `certs/` do `.gitignore` legado ignorava **qualquer** pasta `certs`, inclusive `tests/fixtures/certs`, e a CI falhou nas 7 versões por falta do certificado de teste. A regra passou a ser `/certs/` (só na raiz), e foi conferido que nenhum outro arquivo do projeto estava sendo ignorado. Custo se errado: nenhum.
 - **Revisão final da F2:** autorrevisão (sem agente revisor, que só é criado a pedido do usuário). Uma revisão independente pode ser pedida antes da F3.
+- **R-14** (T3.1): o `Make.php` da T3.1 já inclui as tags de item da T3.2, porque o desenho de slots por guia e item é um só e dividi-lo geraria retrabalho. A T3.2 continua TDD: os testes dela cobrem esse código e, se algum passar de primeira, isso é registrado como achado. Custo se errado: nenhum.
 - **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
 
 ## Achados da T0.4 (golden)
@@ -112,6 +113,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T2.5 | Consulta de guia: `sefazEnviaLoteConsulta` (XSD lote_consulta_guia 2.00) e `sefazConsultaLoteConsulta`, sempre com versaoDados 2.00 e pasta PL_GNRE_200, mesmo com o config em 1.00; suíte 94 ✔ | feat: consulta de guia |
 | 2026-11-22 | T2.6 | Exemplos dos 5 serviços (`examples/`), CHANGELOG `Added`; CI falhou (certificado ignorado pelo `.gitignore`, R-13), corrigido; **CI verde nas 7 versões** (run com sha 899430e). **F2 concluída** | docs: exemplos + test: certificado |
 | 2026-11-22 | plano F3 | Pesquisa: XSD 2.17 (ordem dos elementos), ACBr `pgnreGNREW.GerarXml2`, golden. Achados: o legado descartava detalhamentoReceita/produto/IE do emitente/convenio e duplicava o valor principal; o layout 1.00 vive dentro do lote 2.00 (P-06, para a F4). Plano da F3 escrito | docs: plano da F3 |
+| 2026-11-22 | T3.1 | `Make`: guia, emitente, montagem idempotente na ordem do XSD, erros em `getErrors()`, `RuntimeException` sem guia ou com erro; 10 testes; suíte 104 ✔ | feat: Make (guia, emitente) |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
