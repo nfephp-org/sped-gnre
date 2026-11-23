@@ -96,11 +96,11 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
 
 ### Task T7.5: Preparar para o upstream e criar o RC
 
-- [ ] **Step 1:** `composer.json` → `extra.branch-alias` `{"dev-master": "1.0.x-dev"}`; o badge do README aponta para `nfephp-org/sped-gnre`; o workflow continua aceitando push em `master`.
-- [ ] **Step 2:** atualizar a issue #1 do fork com o texto final (resumo da 1.0, da revisão e do estado da homologação).
-- [ ] **Step 3:** cadeia de verificação + push + CI das 7 versões verde.
-- [ ] **Step 4:** tag anotada `v1.0.0-rc1` no fork (`git tag -a v1.0.0-rc1 -m ...` + `git push origin v1.0.0-rc1`).
-- [ ] **Step 5:** fechar a F7 no ROADMAP e no PROGRESSO.
+- [x] **Step 1:** `composer.json` → `extra.branch-alias` `{"dev-master": "1.0.x-dev"}`; o badge do README aponta para `nfephp-org/sped-gnre`; o workflow continua aceitando push em `master`.
+- [x] **Step 2:** atualizar a issue #1 do fork com o texto final (resumo da 1.0, da revisão e do estado da homologação).
+- [x] **Step 3:** cadeia de verificação + push + CI das 7 versões verde.
+- [x] **Step 4:** tag anotada `v1.0.0-rc1` no fork (`git tag -a v1.0.0-rc1 -m ...` + `git push origin v1.0.0-rc1`).
+- [x] **Step 5:** fechar a F7 no ROADMAP e no PROGRESSO.
 
 ### Task T7.6: PRs e issue no nfephp-org (só com confirmação explícita do usuário)
 

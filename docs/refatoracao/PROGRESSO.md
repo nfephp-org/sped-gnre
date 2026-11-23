@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
-- **Tarefa:** T7.5 do plano `planos/2026-11-22-fase-7-release.md` (T7.1 a T7.4 concluídas)
+- **Tarefa:** T7.6 do plano `planos/2026-11-22-fase-7-release.md` (T7.1 a T7.5 concluídas; tag `v1.0.0-rc1` no fork)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T7.5: atualizar a issue #1 do fork, CI e tag `v1.0.0-rc1`; depois T7.6 (PRs no nfephp-org, **só com a confirmação do usuário**).
+- **Próxima ação:** T7.6, **aguardando a confirmação do usuário**: (1) issue no nfephp-org/sped-gnre com o texto de `rascunho-issue-upstream.md`; (2) PR `betoeu/sped-gnre:refactor/v1` → `nfephp-org/sped-gnre:master`; (3) PR `betoeu/sped-da:feature/gnre` → `nfephp-org/sped-da:master`. Depois, a homologação real (P-05) e a tag 1.0.0 (R-24).
 
 ## Pendências abertas
 
@@ -199,6 +199,7 @@ Dois revisores independentes, só leitura e sem o histórico desta conversa, um 
 | 2026-11-23 | T7.1 | Revisão independente dos 2 branches ("pronto com correções" nos dois). sped-da: C1, I2–I6 e Minor corrigidos (`0618ad3`, `e98bc69`), 40 testes GNRE. sped-gnre: C-1, I-1, I-2 e Minor corrigidos + limite de 600 KB (`9d4e131`, `3be6fd8`), 214 testes, CI verde nas 7 versões. I-3 → R-24 (RC + ressalva) | fix: revisão |
 | 2026-11-23 | T7.3 | `legacy/` removido (D-08); `.gitignore`/`.gitattributes` sem as regras dele; `tests/fixtures/legacy/README.md` explica a origem dos golden (gerador no commit `a71cdc0`); suíte 214 ✔ | chore!: remove legacy |
 | 2026-11-23 | T7.4 | README completo (uso de cada classe, formatos, dicas, links para MIGRACAO/HOMOLOGACAO, badge do nfephp-org, ressalva de RC); CHANGELOG `[1.0.0-rc1] - 2026-11-23` com a ressalva da homologação (R-24) e as correções da revisão; `branch-alias` `dev-master` (T7.5 Step 1 adiantado) | docs: README + CHANGELOG |
+| 2026-11-23 | T7.5 | issue #1 do fork com o texto final (rascunho versionado atualizado); CI verde nas 7 versões (`80c8395`); tag anotada `v1.0.0-rc1` no fork. `composer.lock` fica fora do git (padrão do ecossistema) | chore: RC |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
