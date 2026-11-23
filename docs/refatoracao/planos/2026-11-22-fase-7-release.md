@@ -41,7 +41,7 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
 
 **Files:** Create `docs/HOMOLOGACAO.md`, `examples/homologacao.php`
 
-- [ ] **Step 1: `examples/homologacao.php`** executa, em sequência, contra o ambiente de **homologação** (`tpAmb` 2):
+- [x] **Step 1: `examples/homologacao.php`** executa, em sequência, contra o ambiente de **homologação** (`tpAmb` 2):
   1. `sefazConsultaConfigUf` (UF do config, sem receita);
   2. `sefazEnviaLote` com o lote do `dados-lote.php`;
   3. `sefazConsultaLote` com o recibo retornado (aguardando o `tempoEstimadoProc`);
@@ -49,15 +49,15 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
   5. `sefazConsultaLoteConsulta`.
 
   Para cada serviço, grava `lastRequest` e `lastResponse` em `examples/homologacao-AAAAMMDD-HHMMSS/NN-servico-{request,response}.xml` e imprime um resumo (código e descrição da situação via `Standardize`). O certificado e a senha vêm do `config.json` (fora do git). A pasta de saída também fica no `.gitignore`.
-- [ ] **Step 2: `docs/HOMOLOGACAO.md`** com:
+- [x] **Step 2: `docs/HOMOLOGACAO.md`** com:
   - pré-requisitos: certificado A1, liberação do serviço GNRE na UF e acesso ao `testegnre.pe.gov.br`;
   - configuração e passo a passo;
   - **o que observar em cada ponto da P-05**: (a) o envelope D-15 aceito nos 5 serviços; (b) o `versaoDados` do ConfigUF, com o que testar se houver rejeição (trocar `versaoDados` para `1.00` no `storage/wsgnre.json`); (c) o `versaoDados` `2.00` nas consultas de guia;
   - um teste do layout 1.00 nos dois formatos (D-16);
   - a tabela de códigos de rejeição comuns do manual 2.17 (seção de mensagens de erro da área de dados);
   - como reportar o resultado (abrir uma issue no fork com os XMLs anexados, **removendo dados sensíveis**).
-- [ ] **Step 3:** `php -l` no exemplo; execução **sem** `config.json` → mensagem amigável (nenhuma chamada de rede).
-- [ ] **Step 4:** commit `docs: roteiro de homologacao (P-05)`.
+- [x] **Step 3:** `php -l` no exemplo; execução **sem** `config.json` → mensagem amigável (nenhuma chamada de rede).
+- [x] **Step 4:** commit `docs: roteiro de homologacao (P-05)`.
 
 ### Task T7.3: Remover o `legacy/` (D-08)
 

@@ -12,3 +12,4 @@ composer.lock
 /legacy/certs/*.pfx
 /examples/config.json
 /examples/*.pfx
+/examples/homologacao-*/

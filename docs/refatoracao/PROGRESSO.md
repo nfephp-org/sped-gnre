@@ -15,7 +15,7 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 - **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
 - **Tarefa:** T7.1 do plano `planos/2026-11-22-fase-7-release.md` (Step 1: revisão independente)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** a sessão foi pausada pelo usuário (desligar o computador) com os 2 revisores ainda em execução. Os relatórios **não** chegaram e serão perdidos. Ao retomar: **reacionar os 2 revisores** (sped-gnre `189fee1..` HEAD de `refactor/v1`; sped-da `6e4b3e7..` HEAD de `feature/gnre`; usar o template `code-reviewer.md` do skill `superpowers:requesting-code-review`, com o ROADMAP/PROGRESSO/planos como spec), reavaliar os achados e fazer o passe de correção; depois T7.2 (roteiro de homologação).
+- **Próxima ação:** T7.1: os 2 revisores foram **retomados** (o progresso deles estava salvo) e estão em execução; quando chegarem os relatórios, reavaliar e corrigir. A T7.2 (roteiro de homologação) já foi feita em paralelo.
 
 ## Pendências abertas
 
@@ -143,6 +143,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | T8.4 | sped-gnre sem `src/DA`/`tests/DA`; sped-da, gd e pdfparser removidos (5 pacotes a menos), sped-da em `suggest`; `examples/dagnre.php` usa `NFePHP\DA\GNRE\Dagnre` com mensagem amigável se o sped-da não estiver instalado; README e CHANGELOG atualizados; o phpstan ainda precisa de 512M (R-16 mantida); suíte 205 ✔; **CI verde nas 7 versões** (sha 3419ca8). **F8 concluída** | refactor!: impressão no sped-da |
 | 2026-11-22 | plano F7 | Usuário: homologação só com roteiro (sem certificado) e com revisão independente. 2 revisores (sped-gnre `189fee1..59a6ae1`, sped-da `6e4b3e7..e1d0aeb`) acionados; plano da F7 escrito | docs: plano da F7 |
 | 2026-11-22 | — | Sessão pausada pelo usuário durante a T7.1 (revisores em execução, relatórios não recebidos) | docs: ponto de retomada |
+| 2026-11-23 | T7.2 | Roteiro de homologação: `docs/HOMOLOGACAO.md` (pontos a–d da P-05, configuração, tabela de códigos 100–199/301–303/400–404/450–455 do manual 2.17, como ajustar `storage/wsgnre.json`, relatório sem dados sensíveis) + `examples/homologacao.php` (5 serviços, request/response por passo; modos 2.00, v1-200 e v1-100; sem `config.json` sai sem rede). Achado para a revisão: o portal limita a mensagem a **600 KB** (código 103) e a `Tools` não checa | docs: roteiro de homologação |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 
