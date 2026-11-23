@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
-- **Tarefa:** T7.3 do plano `planos/2026-11-22-fase-7-release.md` (T7.1 e T7.2 concluídas; T7.4 parcial: `docs/MIGRACAO.md` pronto)
+- **Tarefa:** T7.4 do plano `planos/2026-11-22-fase-7-release.md` (T7.1 a T7.3 concluídas; `docs/MIGRACAO.md` já pronto)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T7.3, remover o `legacy/`; depois T7.4 (README completo + ressalva do envelope no CHANGELOG/README, R-24), T7.5 (branch-alias `dev-master`, tag `v1.0.0-rc1`) e T7.6 (PRs, só com confirmação do usuário).
+- **Próxima ação:** T7.4 (README completo + ressalva do envelope no CHANGELOG/README, R-24), T7.5 (branch-alias `dev-master`, tag `v1.0.0-rc1`) e T7.6 (PRs, só com confirmação do usuário).
 
 ## Pendências abertas
 
@@ -197,6 +197,7 @@ Dois revisores independentes, só leitura e sem o histórico desta conversa, um 
 | 2026-11-22 | — | Sessão pausada pelo usuário durante a T7.1 (revisores em execução, relatórios não recebidos) | docs: ponto de retomada |
 | 2026-11-23 | T7.2 | Roteiro de homologação: `docs/HOMOLOGACAO.md` (pontos a–d da P-05, configuração, tabela de códigos 100–199/301–303/400–404/450–455 do manual 2.17, como ajustar `storage/wsgnre.json`, relatório sem dados sensíveis) + `examples/homologacao.php` (5 serviços, request/response por passo; modos 2.00, v1-200 e v1-100; sem `config.json` sai sem rede). Achado para a revisão: o portal limita a mensagem a **600 KB** (código 103) e a `Tools` não checa | docs: roteiro de homologação |
 | 2026-11-23 | T7.1 | Revisão independente dos 2 branches ("pronto com correções" nos dois). sped-da: C1, I2–I6 e Minor corrigidos (`0618ad3`, `e98bc69`), 40 testes GNRE. sped-gnre: C-1, I-1, I-2 e Minor corrigidos + limite de 600 KB (`9d4e131`, `3be6fd8`), 214 testes, CI verde nas 7 versões. I-3 → R-24 (RC + ressalva) | fix: revisão |
+| 2026-11-23 | T7.3 | `legacy/` removido (D-08); `.gitignore`/`.gitattributes` sem as regras dele; `tests/fixtures/legacy/README.md` explica a origem dos golden (gerador no commit `a71cdc0`); suíte 214 ✔ | chore!: remove legacy |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

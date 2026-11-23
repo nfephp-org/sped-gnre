@@ -9,7 +9,6 @@ composer.lock
 /build/
 .phpunit.cache/
 .phpunit.result.cache
-/legacy/certs/*.pfx
 /examples/config.json
 /examples/*.pfx
 /examples/homologacao-*/

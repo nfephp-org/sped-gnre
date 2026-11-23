@@ -1,1 +1,0 @@
-Essa pasta contém todos os certificados que serão utilizados pela API

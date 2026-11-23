@@ -49,4 +49,4 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 - Impressão da guia (Smarty + Dompdf): o PDF passa a ser gerado pelo `nfephp-org/sped-da` (`NFePHP\DA\GNRE\Dagnre`),
   sugerido em `suggest`; o sped-gnre não depende mais de bibliotecas de PDF ou código de barras.
 - Dependências `smarty/smarty` (5 vulnerabilidades conhecidas na 3.1.46), `dompdf/dompdf`, `laminas/*`, `sabberworm/php-css-parser`, `nfephp-org/sped-nfe` e o uso não declarado de `guzzlehttp/guzzle`.
-- Código 0.x (`Sped\Gnre`), mantido só como referência em `legacy/` até a versão final.
+- Código 0.x (`Sped\Gnre`). Guia de migração em `docs/MIGRACAO.md`.

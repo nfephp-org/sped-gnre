@@ -61,13 +61,13 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
 
 ### Task T7.3: Remover o `legacy/` (D-08)
 
-- [ ] **Step 1:** `git rm -r legacy/`.
-- [ ] **Step 2:** atualizar as referências:
+- [x] **Step 1:** `git rm -r legacy/`.
+- [x] **Step 2:** atualizar as referências:
   - `tests/fixtures/xml/README.md` (origem do `retorno-resultado-v1.xml`);
   - `tests/fixtures/legacy/` ganha um `README.md` dizendo que os golden foram gerados pelo `legacy/gerar-golden.php` no commit `a71cdc0` (reproduzível com `git show a71cdc0:tests/fixtures/legacy/gerar.php`);
   - `schemes/README.md` (`PL_GNRE_100`).
-- [ ] **Step 3:** `rg -n "legacy/" --glob '!docs/refatoracao/**'` → só as referências intencionais acima; a suíte continua verde.
-- [ ] **Step 4:** commit `chore!: remove o codigo 0.x (legacy/)`.
+- [x] **Step 3:** `rg -n "legacy/" --glob '!docs/refatoracao/**'` → só as referências intencionais acima; a suíte continua verde.
+- [x] **Step 4:** commit `chore!: remove o codigo 0.x (legacy/)`.
 
 ### Task T7.4: Documentação final
 
