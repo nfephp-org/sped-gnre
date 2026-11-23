@@ -29,7 +29,9 @@ $certificado = Certificate::readPfx(
     $config->senha
 );
 
-$tools = new Tools((string) file_get_contents($arquivoConfig), $certificado);
+// o arquivo e a senha do certificado não vão para a Tools (ficariam expostos em $tools->config)
+unset($config->certificado, $config->senha);
+$tools = new Tools((string) json_encode($config), $certificado);
 
 /**
  * Mostra o XML de retorno (navegador) ou imprime no terminal
