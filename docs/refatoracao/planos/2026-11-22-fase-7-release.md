@@ -73,7 +73,7 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
 
 **Files:** Modify `README.md`, `CHANGELOG.md`; Create `docs/MIGRACAO.md`
 
-- [ ] **Step 1: README** com: instalação; config JSON; certificado; um exemplo de uso de cada classe (`Tools`, `Make`, `MakeV1`, `MakeConsulta`, `Standardize`, `RetornoTxtV1`, `FromNFe`, `RegrasUf`); a impressão no sped-da; e notas práticas:
+- [x] **Step 1: README** com: instalação; config JSON; certificado; um exemplo de uso de cada classe (`Tools`, `Make`, `MakeV1`, `MakeConsulta`, `Standardize`, `RetornoTxtV1`, `FromNFe`, `RegrasUf`); a impressão no sped-da; e notas práticas:
   - datas `AAAA-MM-DD`;
   - município IBGE sem a UF;
   - recibos de 14 dígitos;
@@ -81,7 +81,7 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
   - PIX;
   - layout 1.00 nos dois formatos;
   - consultar as regras da UF no `sefazConsultaConfigUf`.
-- [ ] **Step 2: `docs/MIGRACAO.md`**, com a tabela 0.x → 1.0:
+- [x] **Step 2: `docs/MIGRACAO.md`**, com a tabela 0.x → 1.0:
   - `Setup` → config JSON + `Certificate`;
   - `Lote`/`LoteV2`/`Guia` → `Make`/`MakeV1`;
   - `Send` + `Connection` → `Tools`;
@@ -91,8 +91,8 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
   - `GnreHelper` → `FromNFe`.
 
   Também os campos `c01..c42` → tags 2.00, e as mudanças de comportamento da tabela de divergências do PROGRESSO (correções de bugs).
-- [ ] **Step 3:** CHANGELOG revisado (data do RC).
-- [ ] **Step 4:** commit `docs: README completo e guia de migracao 0.x -> 1.0`.
+- [x] **Step 3:** CHANGELOG revisado (data do RC).
+- [x] **Step 4:** commit `docs: README completo e guia de migracao 0.x -> 1.0`.
 
 ### Task T7.5: Preparar para o upstream e criar o RC
 

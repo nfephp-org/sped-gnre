@@ -6,7 +6,10 @@ Projeto criado por Matheus Marabesi; refatoração para o padrão NFePHP (1.0) p
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o versionamento segue o [SemVer](https://semver.org/lang/pt-BR/).
 
-## [1.0.0] - Unreleased
+## [1.0.0-rc1] - 2026-11-23
+
+> Release candidate: o envelope SOAP segue o WSDL oficial e o ACBr, mas ainda **não foi validado em
+> homologação** real (ver `docs/HOMOLOGACAO.md`). A 1.0.0 sai depois dessa validação.
 
 ### Added
 - `NFePHP\Gnre\Tools` com os 5 serviços do Portal GNRE sobre o `SoapCurl` do sped-common:
@@ -14,7 +17,9 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
   e `incluirNoticias`), `sefazConsultaConfigUf`, `sefazEnviaLoteConsulta` e `sefazConsultaLoteConsulta`.
 - Consulta de guias já emitidas (serviços `GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`), que não existia na 0.x.
 - Suporte aos layouts de lote 1.00 e 2.00, escolhidos pelo `versao` do config JSON.
-- `storage/wsgnre.json` com URLs, namespaces e versões de cada serviço; os envelopes SOAP seguem o WSDL oficial.
+- `storage/wsgnre.json` com URLs, namespaces e versões de cada serviço; os envelopes SOAP seguem o WSDL
+  oficial e o ACBr (pendente de validação em homologação real).
+- Mensagens acima de 600 KB (limite do Portal, código 103) são recusadas antes do envio.
 - `NFePHP\Gnre\Make`: monta o lote 2.00 com `tagGuia`, `tagEmitente`, `tagItem`, `tagReferencia`,
   `tagItemValor`, `tagDestinatario` e `tagCampoExtra`, que podem ser chamadas em qualquer ordem
   (o XML sai na sequência do XSD); suporta várias guias por lote e vários itens por guia.
@@ -31,11 +36,14 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
   `guia-difal-da-nfe.php` rodam sem certificado; `dagnre.php` exige o sped-da).
 
 ### Fixed
+- `FromNFe` informa a `IEST` (inscrição na UF favorecida) como IE do emitente, e não a IE de origem.
+- Truncamento de textos no `Make`/`MakeV1` não corta mais entidades (`&`) ao meio.
 - Campos que a 0.x descartava no lote 2.00 (`detalhamentoReceita`, `produto`, IE do emitente e `convenio`) agora são enviados.
 - O valor principal não é mais duplicado como `tipo=11` e `tipo=21`; só os valores informados vão no XML.
 - `identificadorGuia` e `referencia/periodo` deixam de ser fixos (`1` e `0`).
 - No layout 1.00, o período `0` (mensal) não é mais descartado.
-- Leitura do resultado TXT do lote 1.00 com as posições corretas (a 0.x tinha campos deslocados e sobrepostos).
+- Leitura do resultado TXT do lote 1.00 com as posições corretas e por caractere (a 0.x tinha campos
+  deslocados e sobrepostos, e acentos deslocavam valores e código de barras).
 - O código de barras da guia passa a ser 2 de 5 intercalado (padrão Febraban de arrecadação; a 0.x usava Code128), agora no sped-da.
 
 ### Changed
