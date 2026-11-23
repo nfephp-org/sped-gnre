@@ -1,0 +1,216 @@
+# Controle de progresso — sped-gnre 1.0
+
+## Como retomar (qualquer dia)
+
+1. `cd D:\betoeu\sped-gnre && git checkout refactor/v1 && git pull`
+2. Leia **Estado atual** e **Próxima ação** abaixo.
+3. Abra o plano da fase indicada e continue a partir do primeiro `- [ ]` não marcado.
+4. Ao terminar cada tarefa: marque os `- [x]` no plano, atualize esta página, faça o commit (o plano e o PROGRESSO entram no mesmo commit da tarefa).
+5. Ao parar no meio de uma tarefa: escreva em **Próxima ação** exatamente o passo em que parou e o que está pendente, e faça um commit `wip:` se houver código.
+
+Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `ROADMAP.md` e o plano da fase atual.
+
+## Estado atual
+
+- **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
+- **Tarefa:** F7 concluída até o envio (T7.1 a T7.6). Aguardando a revisão dos mantenedores e a homologação real (P-05).
+- **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
+- **Próxima ação:** acompanhar nfephp-org/sped-gnre#95 (issue), #96 (PR) e nfephp-org/sped-da#700 (PR) e responder aos pedidos de mudança (aplicar em `refactor/v1`/`feature/gnre` **e** levar ao `master` do fork). Executar `docs/HOMOLOGACAO.md` quando houver certificado; depois, a tag 1.0.0 (R-24).
+
+## Pendências abertas
+
+| ID | Pendência | Bloqueia | Proposta padrão |
+|----|-----------|----------|-----------------|
+| P-01 | ✅ **Resolvida** (2026-11-21): pacote oficial do **Manual v2.17** baixado do Portal GNRE (`https://www.gnre.pe.gov.br:444/gnre/v/automacao/baixarManual`; a porta 443 devolve 403 para acesso automatizado). Tem 16 XSDs completos, sem include faltando, e valida os golden com dados corretos. Virou `schemes/PL_GNRE_200/`. | — | — |
+| P-02 | ✅ Resolvida (2026-11-22): o usuário **manteve o layout 1.00** (D-04 reconfirmada) "caso alguma SEFAZ use a versão antiga". O XSD vem de `schemes/PL_GNRE_100`. | — | — |
+| P-04 | ✅ Resolvida (D-13): a issue de anúncio está **só no fork**, em https://github.com/betoeu/sped-gnre/issues/1. Vai para o nfephp-org na F7. | — | — |
+| P-03 | ✅ Resolvida (2026-11-22): consulta de guia incluída (D-14) com os 2 serviços do manual 2.17 (`GnreLoteRecepcaoConsulta` e `GnreResultadoLoteConsulta`). | — | — |
+| P-06 | ✅ Resolvida (2026-11-22): o usuário escolheu **oferecer os dois formatos** (D-16). | — | — |
+| P-05 | Pontos a confirmar em homologação **real** na F7, com o certificado do usuário: (a) o envelope D-15 nos 5 serviços; (b) `versaoDados` do ConfigUF (o ACBr usa a versão do config, o legado usava `1.00`); (c) `versaoDados` `2.00` nas consultas de guia (o ACBr não implementa esses serviços). | Usuário (2026-11-22): **sem certificado de homologação agora**; a F7 entrega só o roteiro (`docs/HOMOLOGACAO.md` + `examples/homologacao.php`) para o usuário executar depois. | aberta até a execução do roteiro |
+
+## Decisões de execução (R-xx)
+
+Decisões tomadas durante a execução, quando o plano não previa o caso. Formato: decisão, motivo, custo se estiver errada.
+
+- **R-01** (T0.3): rodei a suíte legada com `--no-configuration`, porque o `stopOnFailure="true"` do phpunit.xml legado parava no 1º erro. Custo se errado: nenhum, só muda a forma de executar.
+- **R-02** (T0.4): o `validos.txt` guarda só o **nome** do XSD, sem a pasta, para não depender da P-01. Custo se errado: 1 linha no `SchemesTest` (T1.3, já ajustado no plano).
+- **R-04** (T1.1): `schemes/PL_GNRE_200/` = pacote oficial 2.17 sem alteração (só LF). O `xsd/v2` antigo foi removido e `xsd/v1` virou `schemes/PL_GNRE_100/`. Origem registrada em `schemes/README.md`. Custo se errado: trocar a pasta.
+- **R-05** (T1.1): `docs/manuais/` guarda só o manual vigente (v2.17 PDF). Os manuais antigos (`exemplos/docs`) foram para `legacy/manuais-antigos/`. Custo se errado: nenhum.
+- **R-06** (T1.3): o `DocumentsException` ficou só com os códigos 0–8, com textos adaptados à GNRE. Os códigos 9–16 do mdfe (CSC, QRCode, TXT) não existem na GNRE. Custo se errado: acrescentar códigos depois.
+- **R-07** (T1.3): `phpcompatibility/php-compatibility` passou de `^9.3` para **`^10.0@alpha`**, igual ao sped-common. Verificado: a 9.3.5 (de 2019) **não detecta** union types nem `str_contains`, então não garantia a D-01; a 10.0.0-alpha2 detecta os dois. Custo se errado: depender de uma versão alpha só em dev (o sped-common faz o mesmo).
+- **R-08** (T1.3): ~~usar `phpstan.neon.dist`~~ **revogada**. A sessão chegou a ver EPERM ao gravar `phpstan.neon*` (a escrita aparecia só com atraso). O arquivo final é o **`phpstan.neon`**, igual ao sped-nfe e ao sped-common, e entrou num commit à parte. Se o EPERM voltar, criar o arquivo pelo terminal do usuário.
+- **R-09** (T1.3): `wrongDocument()` usa `new self()` em vez de `new static()` (o phpstan acusou "Unsafe usage of new static"). Custo se errado: uma subclasse recebe a classe-mãe.
+- **R-10** (T2.2): propriedades da `Common\Tools` declaradas com `@var` (padrão sped-mdfe/sped-nfe), sem tipo nativo; o comportamento é o mesmo do contrato do ROADMAP. Custo se errado: tipar depois, sem quebra.
+- **R-11** (T2.4): os helpers `golden()`/`c14n()` do `ToolsTestCase` passaram a usar **C14N exclusivo**. O C14N comum levava junto os `xmlns` do envelope SOAP legado, e com isso o teste do lote da T2.3 enviava o golden já "sujo" e comparava o golden com ele mesmo; a consulta e o ConfigUF falharam por isso. Agora a comparação considera só os namespaces usados. Custo se errado: nenhum (só afeta testes).
+- **R-12** (T2.4): valores do usuário inseridos no XML (recibo, receita) passam por `htmlspecialchars(ENT_XML1)`, prevenindo injeção de XML; a validação de formato continua no XSD. Custo se errado: nenhum.
+- **R-13** (T2.6): a regra `certs/` do `.gitignore` legado ignorava **qualquer** pasta `certs`, inclusive `tests/fixtures/certs`, e a CI falhou nas 7 versões por falta do certificado de teste. A regra passou a ser `/certs/` (só na raiz), e foi conferido que nenhum outro arquivo do projeto estava sendo ignorado. Custo se errado: nenhum.
+- **Revisão final da F2:** autorrevisão (sem agente revisor, que só é criado a pedido do usuário). Uma revisão independente pode ser pedida antes da F3.
+- **R-14** (T3.1): o `Make.php` da T3.1 já inclui as tags de item da T3.2, porque o desenho de slots por guia e item é um só e dividi-lo geraria retrabalho. A T3.2 continua TDD: os testes dela cobrem esse código e, se algum passar de primeira, isso é registrado como achado. Custo se errado: nenhum.
+- **R-15** (T5.1): a fixture `retorno-resultado-v2.xml` (do ACBr, de 2020) teve o `numeroRecibo` completado de 10 para 14 dígitos, porque o XSD 2.17 do **resultado** só aceita 14 (a consulta aceita 10 ou 14). Isso indica que os recibos atuais têm 14 dígitos. A alteração está registrada no comentário da fixture. Custo se errado: nenhum (só afeta testes).
+- **R-16** (T6.1, reavaliada na T8.4): `composer stan` passou a usar `--memory-limit=512M`, porque com o sped-da o phpstan passava dos 128 MB padrão (na T8.4, mesmo sem o sped-da, ainda passa de 128 MB, porque o código cresceu; mantido) (o erro aparecia só como "Found 1 error" e a cadeia condicionada barrou o commit, como devia). Custo se errado: nenhum.
+- **R-17** (T8.3): **bug encontrado na portabilidade**: o `Dagnre` chamava `image()` da logo sem o tipo, mas o `DaCommon::adjustImage()` devolve a logo em `data://` sem extensão, e o FPDF lançava exceção. Nenhum teste da F6 passava logo. Corrigido no sped-da com `jpeg`, como o `Damdfe` faz, e com o teste `testLogo` (arquivo PNG e data URI) que reproduziu a falha antes. No sped-gnre o código sai na T8.4, então não foi corrigido lá. Custo se errado: nenhum.
+- **Achado upstream (sped-da, para o PR da F7):** com `debugMode(true)`, o `DaCommon` converte o `E_USER_DEPRECATED` do `tc-lib-barcode` 1.x em exceção, o que quebra os exemplos que usam código de barras (o `examples/mdfe/damdfe.php` do upstream também falha). O exemplo GNRE não ativa o debug.
+- **R-03** (T0.4): acrescentei 2 golden com dados válidos (`lote-v1-valido.xml`, `lote-v2-valido-prod.xml`), porque os dados de `exemplos/gerar-xml.php` violam o XSD. A F3 e a F4 precisam de uma referência que passe no XSD. Custo se errado: 2 arquivos a mais.
+
+## Achados da T0.4 (golden)
+
+8 golden em `tests/fixtures/legacy/`; a geração é determinística (2ª execução sem diff). Validados contra o pacote do zip do manual:
+
+| Golden | Resultado | Motivo |
+|---|---|---|
+| lote-v1-completo / lote-v1-cpf-sem-extras | ✘ (só os dados) | receita com 7 dígitos (o XSD pede 6), detalhamento com 8, produto em texto, data dd/mm/aaaa, município com 7 dígitos (o XSD pede 5, IBGE sem UF), período 2014 (enum 0..5), tipo de campo extra `TXT`/`INT` (enum T/N/D) |
+| lote-v2-completo-prod / -homolog | ✘ (só os dados) | município, receita e data, como acima. A **estrutura** é válida |
+| lote-v1-valido, lote-v2-valido-prod | ✔ | também válidos contra `xsd/v1` do repositório (v1) |
+| consulta-lote-prod, config-uf-prod | ✔ | |
+
+Conclusão: a estrutura gerada pelo legado (v1 e v2) é válida; os exemplos e a documentação antigos ensinam formatos de dado errados (data dd/mm/aaaa, município com 7 dígitos). Isso vira um item do guia de migração (F7).
+
+## Checagem de forks (atualizada em 2026-11-21)
+
+| Repositório | Fork betoeu | Clone local | Necessário em |
+|---|---|---|---|
+| sped-gnre | ✅ github.com/betoeu/sped-gnre | `D:\betoeu\sped-gnre` (origin=fork, upstream=nfephp-org); `master` = oficial `189fee1` | F0 |
+| sped-da | ✅ github.com/betoeu/sped-da | `D:\betoeu\sped-da` (origin=fork, upstream=nfephp-org); `master` = oficial `6e4b3e7` | F6 (dependência) e F8 (PR) |
+| sped-common | ❌ (não precisa) | oficial em `D:\NfePhpDev\sped-common` | só se precisar de mudança no common (não previsto) |
+| sped-nfe / sped-cte | ❌ (não precisa) | oficiais | só leitura (referência) |
+| sped-mdfe | ✅ (já existe) | `D:\betoeu\sped-mdfe` | não necessário |
+
+`gh` autenticado como betoeu. As pastas `D:\betoeu\*` estão no workspace.
+
+Achados do fork sped-gnre:
+- Sincronizado a partir do remoto oficial (D-12). Os 2 commits locais antigos (`5f5435d`, `1f667c3`, com LoteV2Builder, LoteV2ConsultaBuilder, LoteV2Request e mudanças no gnre.tpl) estão guardados **só localmente** na branch `backup/master-local-2024-08`. Para consultar: `git show backup/master-local-2024-08:lib/Sped/Gnre/Sefaz/LoteV2Request.php`.
+- O `LoteV2` oficial não tem construtor nem Guzzle (usa `setAmbienteDeTesteV2(bool)`).
+
+Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo CI.
+
+## Linha de base F0 (T0.3, 2026-11-21, PHP 8.3.6 / OpenSSL 3.0.13 / PHPUnit 9.6.39)
+
+- `composer update` sem erro (lock reconciliado; Smarty v3.1.46 instalado).
+- `composer audit`: **5 advisories no smarty/smarty 3.1.46** (2 high: CVE-2024-35226, CVE-2023-28447; 3 medium: CVE-2026-62993, CVE-2026-62992, CVE-2018-25047). É mais um motivo para remover o Smarty na 1.0 (D-09).
+- O `phpunit.xml.dist` legado tem `stopOnFailure="true"` e para no 1º erro. Linha de base completa com: `vendor/bin/phpunit --no-configuration --bootstrap vendor/autoload.php testes`
+- **Resultado: 70 testes, 67 ✔, 2 erros, 1 warning.**
+  - ✘ `TestCertificatePfx::testPassarAoCriarChavePrivadaApartirDoCertificado`: "Trying to access array offset on null" (`CertificatePfx.php:71`). O mock de `open()` devolve null e o código acessa `['pkey']`; desde o PHP 7.4 isso vira notice e o phpunit converte em exceção. Defeito do teste.
+  - ✘ `TestCertificatePfx::testPassarAoCriarCertificadoPemApartirDoCertificado`: mesma causa (`CertificatePfx.php:86`).
+  - ⚠ Nome da classe `TestCertificatePfx` diferente do nome do arquivo `CertificatePfxTest.php` (deprecated no PHPUnit 9).
+  - Nenhum teste cobre `LoteV2` (o layout 2.00 em uso hoje).
+- Não corrigido (D-08: o legado fica congelado).
+
+## Revisão independente (T7.1, 2026-11-23)
+
+Dois revisores independentes, só leitura e sem o histórico desta conversa, um para cada branch. Os dois deram **"pronto com correções"**. Os itens Critical e Important foram corrigidos num único passe, cada um com um teste que falhava antes (RED → GREEN).
+
+**sped-da `feature/gnre`** (correções em `0618ad3`, docs em `e98bc69`; suíte do sped-da 112 testes, só os 4 erros já existentes):
+
+| Achado | Correção | Teste |
+|---|---|---|
+| C1: TXT 1.00 lido por byte (acento → código de barras e linha digitável errados) | `mb_substr` | `ResultadoLoteTest::testTxtComAcentoNaoDeslocaCampos` |
+| I2: no PHP 7.4 os valores somem com locale pt_BR | `formatarNumero(float)` sem passar por string | `DadosGuiaTest::testValoresIndependemDoLocale` (pula se o locale não existir) |
+| I3: chave NF-e invade o rótulo | `fonteQueCabe()` na coluna de valores | `DagnreTest::testChaveNfeCabeNaCelula` |
+| I4: textos longos sobrepõem linhas | `distribuirLinhas()` (reduz a fonte 7→5 e encurta, mantendo a validade) | `DagnreTest::testTextosLongosNaoSobrepoem` |
+| I5: I25 raster 2:1 com 10 mm | I25 vetorial 3:1, 13 mm, via de 95 mm | `testI25VetorialTresParaUm`, `testI25RejeitaTamanhoImpar`, `testCodigoBarrasCom13mm` |
+| I6: tipo de documento do TXT invertido | 1 = CPF, 2 = CNPJ, 3 = IE (confirmado no ACBr `ACBrGNREGuiasRetorno.pas`) | `DadosGuiaTest::testDocumentoTxtCpfCnpjIe` |
+| M1 IE duplicada; M2 total sem `valorGNRE`; M3 logo larga; M7 mensagem com a situação; M4/M6/M8 docs | corrigidos | `testEmitenteSoComIeNaoDuplica`, `testTotalSemValorGnre`, `testLogoLargaTemLarguraLimitada`, `testMensagemComSituacaoDoLote` |
+
+**sped-gnre `refactor/v1`** (correções em `9d4e131` e `3be6fd8`; suíte 214 testes; CI verde nas 7 versões):
+
+| Achado | Correção | Teste |
+|---|---|---|
+| C-1: TXT 1.00 lido por byte | `mb_substr` no `RetornoTxtV1` | `RetornoTxtV1Test::testTxtComAcentoNaoDeslocaCampos` |
+| I-1: truncamento depois do escape (`&` no limite zera o campo) | `limitar()`: decodifica → corta → escapa | `MakeItemTest::testLimiteDeTamanhoComEntidade` |
+| I-2: IE do emitente no `FromNFe` | `IEST` (inscrição na UF favorecida; regra 203 do manual 2.17); sem IEST, sem IE | `FromNFeTest::testEmitente`, `testEmitenteSemIestNaoInformaIe` (RED confirmado com o código antigo) |
+| I-3: envelope D-15 sem homologação real | decisão R-24 abaixo | — |
+| M1/M2/M3 `Standardize` (sem documento, JSON com UTF-8 inválido, SOAP Fault com motivo) | corrigidos | `testToStdSemDocumento`, `testSoapFaultRepassaMotivo` |
+| M4 mensagens sem `: ` | corrigido | `ToolsTest::testMensagemDeConfigComSeparador` |
+| M6 tipo de valor repetido/negativo | erro no `Make` | `MakeItemTest::testValorRepetidoOuNegativo` |
+| M7 docblock da `dataPagamento` no `FromNFe` | corrigido | — |
+| M9 envelope serializado não testado | `SoapFake::envelope()` + teste (protege a D-15) | `ToolsEnviaLoteTest::testEnvelopeSerializado` |
+| M10 senha do certificado no config da `Tools` (exemplos) | `bootstrap.php` remove `certificado`/`senha` | — |
+| Achado próprio: limite de 600 KB do portal (código 103) | `Common\Tools::sendRequest` recusa antes do envio | `ToolsEnviaLoteTest::testLoteAcimaDe600KbNaoEnvia` |
+
+**Minor adiados:**
+- Final: minor (adiado): `sefazConsultaConfigUf` sem o elemento opcional `tiposGnre` do XSD 2.17 (sped-gnre M5).
+- Final: minor (adiado): `branch-alias` `dev-master` e README completo → já previstos na T7.5/T7.4 (sped-gnre M8/M11).
+- Final: minor (adiado): QR Code PIX com 18 mm em vez dos ~25 mm do plano da F6 (R-23).
+
+**Decisões sobre os itens que os revisores deixaram de fora ("Declined to judge"):** todos ficam como estão.
+- Só o 1º item na impressão e os tipos 21/22 fora do principal: regra do plano, agora documentada no `docs/Dagnre.md`.
+- `InvalidArgumentException` no sped-da: convenção do sped-da.
+- `pdfGuias` ignorado: fora do escopo; o README mostra a alternativa.
+- Comportamento do `equilizeParameters`/`clearXmlString`: padrão do sped-common.
+- XXE: libxml ≥ 2.9 com entrada da SEFAZ sobre TLS mútuo.
+- Formato objeto/array do `Standardize`: padrão do ecossistema.
+- Tipos 21/22, IE e TXT com acento em produção: entram no roteiro de homologação (P-05).
+- Proxy/timeout: igual ao sped-nfe.
+- `regras_uf.json`: sugestão documentada.
+- Limite de guias por lote: depende da UF (`qtdMaximas` do ConfigUF), sem trava no pacote.
+
+- **R-23** (T7.1): QR Code PIX com 18 mm, porque a via de 95 mm não comporta 25 mm sem sobrepor a linha digitável. Ainda é legível com o payload do PIX dinâmico. Custo se errado: aumentar e reorganizar a faixa inferior.
+- **R-24** (T7.1, I-3): sem certificado de homologação, a entrega desta fase é a **`v1.0.0-rc1`**, não a 1.0.0. CHANGELOG, README e o PR levam a ressalva explícita de que o envelope D-15 segue o WSDL e o ACBr mas ainda não foi validado em homologação real. A tag 1.0.0 só sai depois da P-05. Custo se errado: o usuário pode preferir não abrir o PR antes da homologação. A decisão volta para ele na T7.6.
+
+## Diário de sessões
+
+| Data | Fase/Tarefa | O que foi feito | Commit |
+|------|-------------|-----------------|--------|
+| 2026-11-21 | — | Análise do gnre + padrões (common, nfe, cte, mdfe, da); decisões D-01..D-10; ROADMAP e plano F0–F1 criados | (ver linha abaixo) |
+| 2026-11-21 | T0.1, T0.5 | Usuário: base = remoto oficial, versão 1.0 aceita, licença igual aos demais (D-10..D-12). Backup local dos commits de 2024; master resetado para `189fee1`; fork do sped-da clonado; branch `refactor/v1` criada | docs: roadmap e plano |
+| 2026-11-21 | T0.2 | `.gitattributes` (eol=lf + export-ignore); 4 XSDs renormalizados (eram CRLF ou mistos); 0 CRLF restante | chore: normaliza finais de linha |
+| 2026-11-21 | T0.3 | Lock legado atualizado; suíte antiga 70 testes: 67 ✔ e 2 erros (teste do CertificatePfx no PHP ≥ 7.4); 5 CVEs no Smarty | chore: atualiza lock legado |
+| 2026-11-21 | T0.4 | 8 golden determinísticos; estrutura legada válida, dados de exemplo inválidos; XSD v2 do repositório quebrado (P-01); R-01..R-03. **F0 concluída** | test: golden XMLs |
+| 2026-11-21 | T1.1 | P-01 resolvida com o manual oficial v2.17; legado em `legacy/`; `schemes/PL_GNRE_100` e `PL_GNRE_200`; arquivos de Travis, Coveralls e Docker removidos; P-02 e P-03 abertas | refactor!: congela codigo 0.x |
+| 2026-11-21 | — | Sessão pausada pelo usuário no início da T1.2 | docs: ponto de retomada |
+| 2026-11-22 | T1.2 | Novo `composer.json` (php>=7.4, sped-common ^5.1, licença LGPL/GPL/MIT); install limpo; `composer audit`: 0 vulnerabilidades (antes 5 no Smarty) | build!: composer 1.0 |
+| 2026-11-22 | T1.3 | Exceções `NFePHP\Gnre\Exception\*`, phpcs (PSR-12 + PHPCompatibility 10), phpstan nível 5, phpunit; `SchemesTest` com 53 testes ✔ (XSDs, includes, 4 golden válidos, exceções). R-06..R-09 | feat: esqueleto NFePHP\Gnre + chore: phpstan.neon |
+| 2026-11-22 | T1.4 | `ci.yml` (7.4–8.5, validate, CRLF, phpcs, stan, test); **CI verde nas 7 versões** (run 44904014382); README, LICENSE.md (LGPLv3), CHANGELOG; rascunho da issue. **F1 concluída** | ci: pipeline 7.4-8.5 |
+| 2026-11-22 | T1.4 | Crédito a Alberto Leal (README, composer authors, CHANGELOG). D-13: issue só no fork (#1, issues ativadas no fork) | docs: credita + docs: D-13 |
+| 2026-11-22 | plano F2 | Usuário: manter o layout 1.00 (P-02) e incluir a consulta de guia (P-03). Pesquisa: manual 2.17 (5 serviços, métodos, PDF da guia via `incluirPDFGuias`), WSDLs legados, **ACBr trunk2 rev. 49272** (namespaces). Decisões D-14 e D-15; contrato da `Tools` atualizado; plano da F2 escrito | docs: plano da F2 |
+| 2026-11-22 | T2.1 | `storage/wsgnre.json` (5 serviços) + `Common\Webservices`; 6 testes ✔ | feat(common): Webservices |
+| 2026-11-22 | T2.2 | `Common\Tools` (config validado, ambiente, versão, SoapCurl, servico, sendRequest, isValid) + `SoapFake` + `ToolsTestCase` + certificado de teste; suíte 70 ✔ | feat(common): Tools base |
+| 2026-11-22 | T2.3 | `Tools::sefazEnviaLote` (1.00 e 2.00): a mensagem é igual ao golden (C14N), o envelope segue D-15 e um XML inválido não é enviado; suíte 75 ✔ | feat: sefazEnviaLote |
+| 2026-11-22 | T2.4 | `sefazConsultaLote` (opções incluirPDFGuias/ArquivoPagamento/Noticias só no 2.00, na ordem do XSD) e `sefazConsultaConfigUf` (courier); mensagens iguais ao golden; R-11 e R-12; suíte 88 ✔ | feat: sefazConsultaLote e sefazConsultaConfigUf |
+| 2026-11-22 | T2.5 | Consulta de guia: `sefazEnviaLoteConsulta` (XSD lote_consulta_guia 2.00) e `sefazConsultaLoteConsulta`, sempre com versaoDados 2.00 e pasta PL_GNRE_200, mesmo com o config em 1.00; suíte 94 ✔ | feat: consulta de guia |
+| 2026-11-22 | T2.6 | Exemplos dos 5 serviços (`examples/`), CHANGELOG `Added`; CI falhou (certificado ignorado pelo `.gitignore`, R-13), corrigido; **CI verde nas 7 versões** (run com sha 899430e). **F2 concluída** | docs: exemplos + test: certificado |
+| 2026-11-22 | plano F3 | Pesquisa: XSD 2.17 (ordem dos elementos), ACBr `pgnreGNREW.GerarXml2`, golden. Achados: o legado descartava detalhamentoReceita/produto/IE do emitente/convenio e duplicava o valor principal; o layout 1.00 vive dentro do lote 2.00 (P-06, para a F4). Plano da F3 escrito | docs: plano da F3 |
+| 2026-11-22 | T3.1 | `Make`: guia, emitente, montagem idempotente na ordem do XSD, erros em `getErrors()`, `RuntimeException` sem guia ou com erro; 10 testes; suíte 104 ✔ | feat: Make (guia, emitente) |
+| 2026-11-22 | T3.2 | 12 testes de item, incluindo um idêntico ao golden do legado (C14N). Eles passaram de primeira (R-14), e por isso foi feita uma **verificação por mutação**: trocar a ordem referência/valor e aceitar valor não numérico derrubaram 2 e 1 testes, respectivamente. Base `MakeTestCase`; suíte 116 ✔ | feat: Make (itens) |
+| 2026-11-22 | T3.3 | `MakeConsulta` (7 tipos de consulta, emitenteId por CNPJ/CPF/IE, máx. 50, docOrigem com tipo); o XML gerado é idêntico à fixture da F2; 9 testes; suíte 125 ✔ | feat: MakeConsulta |
+| 2026-11-22 | T3.4 | `RegrasUf` + `storage/regras_uf.json` (sugestões da 0.x; o oficial é o ConfigUF); as 27 UFs conferidas contra o legado; suíte 155 ✔ | feat(common): RegrasUf |
+| 2026-11-22 | T3.5 | Exemplos com `Make`/`MakeConsulta` (`make-lote.php` gera um XML válido no XSD sem certificado), CHANGELOG Added/Fixed; **CI verde nas 7 versões** (sha 4aa8132). **F3 concluída**. P-06 aberta | docs: exemplos F3 |
+| 2026-11-22 | plano F4 | Usuário: os dois formatos do 1.00 (D-16). Os dois XSDs têm a mesma sequência de campos `c01..c42`; muda só o invólucro. Achado: o legado descartava `periodo` 0. Plano da F4 escrito | docs: plano da F4 |
+| 2026-11-22 | T4.1 | `MakeV1` (2 formatos): o lote puro é idêntico ao golden v1 (C14N) e o embutido é válido no XSD 2.17; `Common\MakeTrait` extraído do `Make` (testes do Make seguem verdes); 13 testes; suíte 168 ✔ | feat: MakeV1 |
+| 2026-11-22 | T4.2 | Integração MakeV1 + Tools nos 2 formatos (versaoDados 2.00/1.00; formato trocado → ValidatorException sem envio). Passou de primeira (sem código novo, como previsto); mutação (pasta de schemas fixa em PL_GNRE_100) derrubou 2 testes; suíte 172 ✔ | test: envio layout 1.00 |
+| 2026-11-22 | T4.3 | Exemplo `make-lote-v1.php` (os 2 formatos, válidos nos XSDs); CHANGELOG; **CI verde nas 7 versões** (sha 122f72c). **F4 concluída** | docs: exemplo F4 |
+| 2026-11-22 | plano F5 | Pesquisa: retornos reais usam o prefixo `ns1:`; o json do SimpleXML perde o atributo `tipo` do `valor` (D-17); o resultado do 1.00 puro é TXT posicional (posições do ACBr, as do legado estavam erradas); fixture de NF-e com DIFAL do sped-nfe (CPF de teste inválido, corrigido na cópia). Plano da F5 escrito | docs: plano da F5 |
+| 2026-11-22 | T5.1 | `Standardize` (D-17): o nó é achado no envelope SOAP com prefixo `ns1:`; atributo + texto viram `attributes` + `value`; irmãos repetidos viram array. 4 fixtures de retorno validadas nos XSDs 2.17 (ConfigUF exigiu `enderecoObr` e `campo` fixo; resultado exigiu recibo de 14 dígitos, R-15); 13 testes; suíte 185 ✔ | feat(common): Standardize |
+| 2026-11-22 | T5.2 | `RetornoTxtV1::ler` (cabeçalho, guias, rejeições ligadas à guia, rodapé; centavos; CRLF/LF/CR/linhas em branco); os valores da fixture do legado batem com as posições do ACBr; 7 testes; suíte 192 ✔ | feat(common): RetornoTxtV1 |
+| 2026-11-22 | T5.3 | `Factories\FromNFe`: emitente, destinatário, chave/número, valores, documento de origem pelas `RegrasUf`, `guiaDifal`/`guiaSt` (FCP como tipo 12) devolvendo um `Make` que ainda aceita tags; guia gerada da NF-e real válida no XSD; fixture `nfe-difal.xml` + `tests/fixtures/xml/README.md`; 13 testes; suíte 205 ✔ | feat: FromNFe |
+| 2026-11-22 | T5.4 | Exemplos `standardize-retorno.php` e `guia-difal-da-nfe.php` (sem rede; o XML de DIFAL é válido no XSD); CHANGELOG; **CI verde nas 7 versões** (sha da3f6c8). **F5 concluída** | docs: exemplos F5 |
+| 2026-11-22 | plano F6 | Pesquisa: sped-da `DaCommon`/`Damdfe` (código de barras via tc-lib em PNG base64), ACBr (`TRLBarcode` com Ratio 3 = **I25**, padrão Febraban de arrecadação; o legado usava Code128); o XSD do resultado 2.17 tem `qrcodePayload` (**PIX**) e `pdfGuias`; os campos de retorno diferem entre 1.00 e 2.00 → `DadosGuia` normaliza. Plano da F6 escrito | docs: plano da F6 |
+| 2026-11-22 | T6.1 | `nfephp-org/sped-da` ^1.1 (v1.1.7, com tc-lib-barcode 1.18.5) + `ext-gd`; `smalot/pdfparser` ^2.12 em dev; smoke test I25 + PDF; phpstan com 512M (R-16); **CI verde nas 7 versões** (sha 9a3a254) | build: sped-da |
+| 2026-11-22 | T6.2 | `DA\DadosGuia`: resultado 2.00 (soma por tipo: principal 11+12, atualização 51+52, juros 41+42, multa 31+32), guia 1.00 do resultado (c06..c10, c29, c30) e TXT 1.00; formata linha digitável, CNPJ/CPF, valores e datas; 8 testes; suíte 215 ✔ | feat(da): DadosGuia |
+| 2026-11-22 | T6.3 | `DA\Dagnre`: 10 testes (texto e páginas via pdfparser, espião confirma I25 e QR). **Conferência visual** (PDF → PNG com pypdfium2 num venv isolado no scratchpad): vias, blocos, valores por tipo, linha digitável, I25 e QR PIX corretos; a linha de corte encostava no código de barras e foi corrigida (barra de 10 mm, corte em y−0,6). Ponto menor: o nº do documento de origem com 44 dígitos sai em fonte pequena; suíte 225 ✔ | feat(da): Dagnre |
+| 2026-11-22 | T6.4 | Exemplo `dagnre.php` (gera `%PDF`), README com a seção "Impressão da guia" (e a alternativa `incluirPDFGuias`), CHANGELOG; **CI verde nas 7 versões** (sha 243de46). **F6 concluída** | docs: exemplo F6 |
+| 2026-11-22 | plano F8 | Usuário: mover a impressão para o sped-da **antes** da F7 (D-18). Para evitar dependência circular, o sped-da lê o resultado sozinho (`GNRE\ResultadoLote`). Plano da F8 escrito | docs: plano da F8 |
+| 2026-11-22 | T8.1 | sped-da: branch `feature/gnre` a partir de `upstream/master` `6e4b3e7`. **Linha de base do upstream** (sem alteração nossa): phpunit 72 testes, **4 erros já existentes** (`DamdfeTest`: seguro ×3 e vale-pedágio, `Damdfe.php:1045/1028`); phpcs PSR-2 com 63 violações já existentes; phpstan estoura 128M (como na R-16). Meta: `src/GNRE` limpo e a suíte sem novas falhas | (sem commit no sped-da) |
+| 2026-11-22 | T8.2–T8.3 | **sped-da** branch `feature/gnre` (fork): `src/GNRE/{ResultadoLote,DadosGuia,Dagnre}.php` (sem dependência do sped-gnre), testes `tests/GNRE` (28), fixtures `tests/fixtures/xml/gnre`, `examples/gnre/dagnre.php`, `docs/Dagnre.md`, README (uso + crédito "Alberto Leal (GNRE)") e CHANGELOG. Suíte do sped-da: 100 testes, só os 4 erros já existentes; PSR-2, phpstan nível 1 e compatibilidade 7.4 limpos em `src/GNRE`; PDF conferido visualmente (igual à F6). Bug da logo corrigido (R-17). Commits 804b69b, 7a488a7, e1d0aeb; push só no fork | (commits no sped-da) |
+| 2026-11-22 | T8.4 | sped-gnre sem `src/DA`/`tests/DA`; sped-da, gd e pdfparser removidos (5 pacotes a menos), sped-da em `suggest`; `examples/dagnre.php` usa `NFePHP\DA\GNRE\Dagnre` com mensagem amigável se o sped-da não estiver instalado; README e CHANGELOG atualizados; o phpstan ainda precisa de 512M (R-16 mantida); suíte 205 ✔; **CI verde nas 7 versões** (sha 3419ca8). **F8 concluída** | refactor!: impressão no sped-da |
+| 2026-11-22 | plano F7 | Usuário: homologação só com roteiro (sem certificado) e com revisão independente. 2 revisores (sped-gnre `189fee1..59a6ae1`, sped-da `6e4b3e7..e1d0aeb`) acionados; plano da F7 escrito | docs: plano da F7 |
+| 2026-11-22 | — | Sessão pausada pelo usuário durante a T7.1 (revisores em execução, relatórios não recebidos) | docs: ponto de retomada |
+| 2026-11-23 | T7.2 | Roteiro de homologação: `docs/HOMOLOGACAO.md` (pontos a–d da P-05, configuração, tabela de códigos 100–199/301–303/400–404/450–455 do manual 2.17, como ajustar `storage/wsgnre.json`, relatório sem dados sensíveis) + `examples/homologacao.php` (5 serviços, request/response por passo; modos 2.00, v1-200 e v1-100; sem `config.json` sai sem rede). Achado para a revisão: o portal limita a mensagem a **600 KB** (código 103) e a `Tools` não checa | docs: roteiro de homologação |
+| 2026-11-23 | T7.1 | Revisão independente dos 2 branches ("pronto com correções" nos dois). sped-da: C1, I2–I6 e Minor corrigidos (`0618ad3`, `e98bc69`), 40 testes GNRE. sped-gnre: C-1, I-1, I-2 e Minor corrigidos + limite de 600 KB (`9d4e131`, `3be6fd8`), 214 testes, CI verde nas 7 versões. I-3 → R-24 (RC + ressalva) | fix: revisão |
+| 2026-11-23 | T7.3 | `legacy/` removido (D-08); `.gitignore`/`.gitattributes` sem as regras dele; `tests/fixtures/legacy/README.md` explica a origem dos golden (gerador no commit `a71cdc0`); suíte 214 ✔ | chore!: remove legacy |
+| 2026-11-23 | T7.4 | README completo (uso de cada classe, formatos, dicas, links para MIGRACAO/HOMOLOGACAO, badge do nfephp-org, ressalva de RC); CHANGELOG `[1.0.0-rc1] - 2026-11-23` com a ressalva da homologação (R-24) e as correções da revisão; `branch-alias` `dev-master` (T7.5 Step 1 adiantado) | docs: README + CHANGELOG |
+| 2026-11-23 | T7.5 | issue #1 do fork com o texto final (rascunho versionado atualizado); CI verde nas 7 versões (`80c8395`); tag anotada `v1.0.0-rc1` no fork. `composer.lock` fica fora do git (padrão do ecossistema) | chore: RC |
+| 2026-11-23 | T7.6 | Com a confirmação do usuário: o `master` dos forks recebe o fast-forward das branches (sped-gnre `e2d840d`, sped-da `e98bc69`) para uso enquanto o oficial não atualiza; issue nfephp-org/sped-gnre#95; PRs nfephp-org/sped-gnre#96 e nfephp-org/sped-da#700 | — |
+
+## Divergências legado × 1.0 (preencher a partir da F3)
+
+| Item | Legado | 1.0 | Fonte (manual/XSD) |
+|------|--------|-----|--------------------|
+| `identificadorGuia` (v2) | fixo `1` em todas as guias do lote | informado pelo usuário em `tagGuia` (opcional) | XSD 2.17 + ACBr `GerarXml2` |
+| `item/valor` (v2) | `c06_valorPrincipal` enviado 2×, como `tipo=11` **e** `tipo=21` | só os valores informados em `tagItemValor` (tipos 11–52), como o ACBr | XSD 2.17 (enum de tipos) + ACBr. **Nota:** no retorno real (fixture do ACBr) a SEFAZ devolve o tipo 21 igual ao 11, então algumas UFs podem exigir o valor total; o usuário informa os dois com `tagItemValor`. Documentar no README (F7). |
+| Envelope SOAP (todos os serviços) | `gnreCabecMsg` em `.../wsdl/processar` ou `.../wsdl/consultar`; `gnreDadosMsg` em `.../webservice/<Servico>`, trocado para `testegnre` em homologação; ConfigUF com prefixo `gnr:` | **D-15**: cabeçalho, corpo e action em `http://www.gnre.pe.gov.br/webservice/<Servico>` nos **dois** ambientes; só a URL muda | WSDL (`targetNamespace`) + ACBr trunk2 rev. 49272; confirmar em homologação real (P-05) |
+| `referencia/periodo` (v2) | fixo `0` | informado pelo usuário em `tagReferencia` | XSD 2.17 |
+| Campos descartados (v2) | o `LoteV2` ignorava `detalhamentoReceita`, `produto`, a IE do emitente e o `convenio`, mesmo quando preenchidos | o `Make` envia todos, na ordem do XSD | XSD 2.17 + golden `lote-v2-valido-prod` |
+| `periodo` = 0 (v1) | `Estados/Padrao` testava `if ($guia->periodo)` e descartava o período mensal (`0`) | `MakeV1` envia o período sempre que informado | XSD (enum 0..5) |
+| Retorno TXT do lote 1.00 | `Parser/SefazRetorno` com posições deslocadas e sobrepostas (ex.: `dataLimitePagamento` 900/8 × `periodo` 908/909; `sequencialGuia` 1/4) | `Common\RetornoTxtV1` com as posições do ACBr (base 1), valores em centavos convertidos e rejeições ligadas à guia | ACBr `pgnreRetConsResLoteGNRE.pas` (os manuais 2.01 e 2.17 não documentam o TXT) |
+| Impressão da guia | Smarty 3 (5 CVEs) + Dompdf + template HTML; código de barras **Code128** (laminas), fora do padrão Febraban de arrecadação; `createGuiaHtml()` usava `templates/guia.tpl`, que não existe; sem PIX | `DA\Dagnre` (padrão sped-da/FPDF): 3 vias por página, código **I25** (2 de 5 intercalado) de 44 dígitos, QR Code PIX (`qrcodePayload`), guias rejeitadas não impressas | ACBr (`TRLBarcode` Ratio 3) + XSD 2.17 do resultado |

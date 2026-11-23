@@ -1,0 +1,10 @@
+{
+    "padrao": {"tipoDocOrigem": "10", "tipoChaveDoc": "numero"},
+    "uf": {
+        "AM": {"tipoDocOrigem": "22", "tipoChaveDoc": "chave"},
+        "PE": {"tipoDocOrigem": "22", "tipoDocOrigemDifal": "24", "tipoChaveDoc": "chave"},
+        "RJ": {"tipoDocOrigem": "24", "tipoChaveDoc": "chave"},
+        "RS": {"tipoDocOrigem": "22", "tipoChaveDoc": "chave"},
+        "SC": {"tipoDocOrigem": "24", "tipoChaveDoc": "chave"}
+    }
+}

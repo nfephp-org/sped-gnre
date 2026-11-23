@@ -1,0 +1,4 @@
+lote-v1-valido.xml;lote_gnre_v1.00.xsd
+lote-v2-valido-prod.xml;lote_gnre_v2.00.xsd
+consulta-lote-prod.xml;lote_gnre_consulta_v1.00.xsd
+config-uf-prod.xml;consulta_config_uf_v1.00.xsd

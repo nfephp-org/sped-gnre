@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <soap12:Header>
+    <gnreCabecMsg xmlns="http://www.gnre.pe.gov.br/wsdl/processar">
+      <versaoDados>2.00</versaoDados>
+    </gnreCabecMsg>
+  </soap12:Header>
+  <soap12:Body>
+    <gnreDadosMsg xmlns="http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao">
+      <TLote_GNRE xmlns="http://www.gnre.pe.gov.br" versao="2.00">
+        <guias>
+          <TDadosGNRE versao="2.00">
+            <ufFavorecida>SP</ufFavorecida>
+            <tipoGnre>0</tipoGnre>
+            <contribuinteEmitente>
+              <identificacao>
+                <CNPJ>41819055000105</CNPJ>
+              </identificacao>
+              <razaoSocial>GNRE PHP EMITENTE</razaoSocial>
+              <endereco>Queens St</endereco>
+              <municipio>00108</municipio>
+              <uf>DF</uf>
+              <cep>08215917</cep>
+              <telefone>1199999999</telefone>
+            </contribuinteEmitente>
+            <itensGNRE>
+              <item>
+                <receita>100099</receita>
+                <documentoOrigem tipo="10">5656</documentoOrigem>
+                <referencia>
+                  <periodo>0</periodo>
+                  <mes>05</mes>
+                  <ano>2015</ano>
+                  <parcela>2</parcela>
+                </referencia>
+                <dataVencimento>2015-05-01</dataVencimento>
+                <valor tipo="11">10.99</valor>
+                <valor tipo="21">10.99</valor>
+                <contribuinteDestinatario>
+                  <identificacao>
+                    <CNPJ>86268158000162</CNPJ>
+                    <IE>10809181</IE>
+                  </identificacao>
+                  <razaoSocial>RAZAO SOCIAL GNRE PHP DESTINATARIO</razaoSocial>
+                  <municipio>02306</municipio>
+                </contribuinteDestinatario>
+                <camposExtras>
+                  <campoExtra>
+                    <codigo>666</codigo>
+                    <valor>GNRE</valor>
+                  </campoExtra>
+                  <campoExtra>
+                    <codigo>111</codigo>
+                    <valor>2</valor>
+                  </campoExtra>
+                </camposExtras>
+              </item>
+            </itensGNRE>
+            <valorGNRE>12.52</valorGNRE>
+            <dataPagamento>2015-11-30</dataPagamento>
+            <identificadorGuia>1</identificadorGuia>
+          </TDadosGNRE>
+        </guias>
+      </TLote_GNRE>
+    </gnreDadosMsg>
+  </soap12:Body>
+</soap12:Envelope>
