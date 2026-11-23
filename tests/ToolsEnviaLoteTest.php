@@ -89,4 +89,44 @@ class ToolsEnviaLoteTest extends ToolsTestCase
         $this->assertSame('https://www.gnre.pe.gov.br/gnreWS/services/GnreLoteRecepcao', $p['url']);
         $this->assertSame('http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao', $p['soapheader']->namespace);
     }
+
+    public function testEnvelopeSerializado(): void
+    {
+        $tools = $this->tools();
+        $tools->sefazEnviaLote($this->golden('lote-v2-valido-prod.xml', 'TLote_GNRE'));
+
+        $envelope = $this->fake->envelope();
+
+        $ns = 'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
+        $this->assertStringContainsString(
+            '<soap:Header><gnreCabecMsg xmlns="' . $ns . '">'
+            . '<versaoDados>2.00</versaoDados></gnreCabecMsg></soap:Header>',
+            $envelope
+        );
+        $this->assertStringContainsString('<soap:Body><gnreDadosMsg xmlns="' . $ns . '"><TLote_GNRE', $envelope);
+        $this->assertStringContainsString('xmlns:soap="http://www.w3.org/2003/05/soap-envelope"', $envelope);
+    }
+
+    public function testLoteAcimaDe600KbNaoEnvia(): void
+    {
+        $tools = $this->tools();
+        $make = new \NFePHP\Gnre\Make();
+        for ($i = 0; $i < 1300; $i++) {
+            $make->tagGuia((object) ['ufFavorecida' => 'SP', 'identificadorGuia' => (string) $i]);
+            $make->tagEmitente((object) ['CNPJ' => '06157250000116', 'razaoSocial' => str_repeat('R', 60),
+                'endereco' => str_repeat('E', 60), 'municipio' => '50308', 'uf' => 'SP', 'cep' => '01001000']);
+            $make->tagItem((object) ['receita' => '100099', 'dataVencimento' => '2026-12-15']);
+            $make->tagItemValor((object) ['tipo' => '11', 'valor' => 1]);
+            $make->tagDestinatario((object) ['CNPJ' => '86268158000162', 'razaoSocial' => str_repeat('D', 60)]);
+        }
+        $xml = $make->getXML();
+        $this->assertGreaterThan(600 * 1024, strlen($xml));
+        try {
+            $this->expectException(\NFePHP\Gnre\Exception\InvalidArgumentException::class);
+            $this->expectExceptionMessageMatches('/600 KB/');
+            $tools->sefazEnviaLote($xml);
+        } finally {
+            $this->assertSame(0, $this->fake->getCalls());
+        }
+    }
 }

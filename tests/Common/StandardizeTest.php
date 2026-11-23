@@ -137,4 +137,22 @@ class StandardizeTest extends TestCase
         $this->expectException(DocumentsException::class);
         (new Standardize())->toStd('<foo/>');
     }
+
+    public function testToStdSemDocumento(): void
+    {
+        $this->expectException(DocumentsException::class);
+        (new Standardize())->toStd();
+    }
+
+    public function testSoapFaultRepassaMotivo(): void
+    {
+        $fault = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"><soap:Body><soap:Fault>'
+            . '<soap:Code><soap:Value>soap:Receiver</soap:Value></soap:Code>'
+            . '<soap:Reason><soap:Text xml:lang="pt">Erro interno no Portal</soap:Text></soap:Reason>'
+            . '</soap:Fault></soap:Body></soap:Envelope>';
+
+        $this->expectException(DocumentsException::class);
+        $this->expectExceptionMessageMatches('/Erro interno no Portal/');
+        (new Standardize())->toStd($fault);
+    }
 }

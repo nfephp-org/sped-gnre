@@ -77,4 +77,17 @@ class SoapFake extends SoapBase implements SoapInterface
     {
         return $this->calls;
     }
+
+    /**
+     * Envelope SOAP que o SoapCurl montaria com os parâmetros do último send()
+     */
+    public function envelope(): string
+    {
+        return $this->makeEnvelopeSoap(
+            $this->sendParams['request'],
+            $this->sendParams['namespaces'],
+            $this->sendParams['soapver'],
+            $this->sendParams['soapheader']
+        );
+    }
 }

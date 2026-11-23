@@ -49,6 +49,11 @@ class Tools
         '2.00' => 'PL_GNRE_200',
     ];
 
+    /**
+     * Tamanho máximo da mensagem aceito pelo Portal GNRE (Anexo I, código 103)
+     */
+    protected const TAMANHO_MAXIMO = 600 * 1024;
+
     protected const SOAP_NAMESPACES = [
         'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
         'xmlns:xsd' => 'http://www.w3.org/2001/XMLSchema',
@@ -197,6 +202,12 @@ class Tools
      */
     protected function sendRequest(string $request): string
     {
+        if (strlen($request) > self::TAMANHO_MAXIMO) {
+            throw new InvalidArgumentException(sprintf(
+                'A mensagem tem %d KB e o Portal GNRE aceita no máximo 600 KB (código 103): divida o lote.',
+                (int) ceil(strlen($request) / 1024)
+            ));
+        }
         $this->checkSoap();
         $this->lastRequest = $request;
         $body = '<gnreDadosMsg xmlns="' . $this->urlNamespace . '">' . $request . '</gnreDadosMsg>';

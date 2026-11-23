@@ -78,6 +78,7 @@ class Standardize
         $dom = new DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
         $dom->loadXML($xml);
+        $this->verificarFault($dom);
         foreach ($this->rootTagList as $key) {
             $no = $dom->getElementsByTagNameNS('*', $key)->item(0);
             if (!$no instanceof DOMElement) {
@@ -101,6 +102,9 @@ class Standardize
         if (!empty($xml)) {
             $this->key = $this->whichIs($xml);
         }
+        if ($this->node === '') {
+            throw DocumentsException::wrongDocument(6);
+        }
         $dom = new DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
         $dom->loadXML($this->node);
@@ -109,7 +113,8 @@ class Standardize
         if (!$dados instanceof stdClass) {
             $dados = (object) ['value' => $dados];
         }
-        $this->json = (string) json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $opcoes = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE;
+        $this->json = (string) json_encode($dados, $opcoes);
         return json_decode($this->json);
     }
 
@@ -130,6 +135,29 @@ class Standardize
             $this->toStd($xml);
         }
         return (array) json_decode($this->json, true);
+    }
+
+    /**
+     * SOAP Fault devolvido com HTTP 200: lança a exceção com o motivo informado pelo servidor
+     */
+    protected function verificarFault(DOMDocument $dom): void
+    {
+        $fault = $dom->getElementsByTagNameNS('*', 'Fault')->item(0);
+        if (!$fault instanceof DOMElement) {
+            return;
+        }
+        $motivo = '';
+        foreach (['Text', 'faultstring'] as $nome) {
+            $no = $fault->getElementsByTagNameNS('*', $nome)->item(0) ?? $fault->getElementsByTagName($nome)->item(0);
+            if ($no !== null && trim((string) $no->textContent) !== '') {
+                $motivo = trim((string) $no->textContent);
+                break;
+            }
+        }
+        if ($motivo === '') {
+            $motivo = trim((string) $fault->textContent);
+        }
+        throw DocumentsException::wrongDocument(4, 'SOAP Fault: ' . $motivo);
     }
 
     /**

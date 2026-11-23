@@ -61,7 +61,10 @@ trait MakeTrait
         if ($valor === null || $valor === '') {
             return null;
         }
-        return mb_substr((string) $valor, 0, $tamanho);
+        // o texto já vem escapado pelo equilizeParameters (& -> &amp;): corta o texto real e escapa de novo,
+        // para não partir uma entidade ao meio nem contar "&amp;" como 5 caracteres
+        $texto = html_entity_decode((string) $valor, ENT_QUOTES | ENT_XML1, 'UTF-8');
+        return htmlspecialchars(mb_substr($texto, 0, $tamanho), ENT_QUOTES | ENT_XML1, 'UTF-8');
     }
 
     /**

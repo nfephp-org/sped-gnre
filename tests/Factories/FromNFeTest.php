@@ -58,13 +58,29 @@ class FromNFeTest extends MakeTestCase
     {
         $emitente = (new FromNFe($this->nfe()))->emitente();
         $this->assertSame('07670813000823', $emitente->CNPJ);
-        $this->assertSame('013581225', $emitente->IE);
+        // IE da GNRE = IEST (inscrição na UF favorecida), não a emit/IE 013581225 (regra 203 do manual 2.17)
+        $this->assertSame('0914567891113', $emitente->IE);
         $this->assertSame('SEILA COMERCIO ELETRONICO S.A', $emitente->razaoSocial);
         $this->assertSame('ROD BR-132, 1000 - VILA AMARO', $emitente->endereco);
         $this->assertSame('05101', $emitente->municipio);
         $this->assertSame('ES', $emitente->uf);
         $this->assertSame('29143080', $emitente->cep);
         $this->assertSame('195552323', $emitente->telefone);
+    }
+
+    public function testEmitenteSemIestNaoInformaIe(): void
+    {
+        $dom = new DOMDocument();
+        $dom->loadXML($this->nfe());
+        $iest = $dom->getElementsByTagName('IEST')->item(0);
+        $this->assertInstanceOf(DOMElement::class, $iest);
+        $this->assertNotNull($iest->parentNode);
+        $iest->parentNode->removeChild($iest);
+
+        $emitente = (new FromNFe((string) $dom->saveXML()))->emitente();
+
+        $this->assertFalse(property_exists($emitente, 'IE'));
+        $this->assertSame('07670813000823', $emitente->CNPJ);
     }
 
     public function testDestinatarioCpf(): void

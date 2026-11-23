@@ -179,6 +179,14 @@ class Make
         if (count($this->guias[$g]['itens'][$i]['valores']) >= self::MAX_VALORES) {
             $this->errors[] = $id . 'máximo de ' . self::MAX_VALORES . ' valores por item.';
         }
+        foreach ($this->guias[$g]['itens'][$i]['valores'] as $existente) {
+            if ($existente->getAttribute('tipo') === $tipo) {
+                $this->errors[] = $id . "tipo $tipo repetido no mesmo item.";
+            }
+        }
+        if (is_numeric($std->valor) && (float) $std->valor < 0) {
+            $this->errors[] = $id . "valor negativo [{$std->valor}].";
+        }
         $valor = $this->dom->createElement('valor', (string) $this->decimal($std->valor, $id . 'valor', true));
         $valor->setAttribute('tipo', $tipo);
         $this->guias[$g]['itens'][$i]['valores'][] = $valor;

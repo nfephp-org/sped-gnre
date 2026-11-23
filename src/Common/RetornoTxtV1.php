@@ -130,7 +130,8 @@ class RetornoTxtV1
     {
         $campos = new stdClass();
         foreach ($layout as $campo => [$inicio, $tamanho]) {
-            $campos->$campo = trim((string) substr($linha, $inicio - 1, $tamanho));
+            // posições em CARACTERES: o texto vem do DOM em UTF-8 e o layout aceita acentos
+            $campos->$campo = trim((string) mb_substr($linha, $inicio - 1, $tamanho, 'UTF-8'));
         }
         return $campos;
     }

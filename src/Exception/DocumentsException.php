@@ -22,11 +22,11 @@ class DocumentsException extends \InvalidArgumentException implements ExceptionI
         1 => "O arquivo indicado não é um documento GNRE válido.",
         2 => "O documento não contém a tag obrigatória {{msg}}.",
         3 => "O documento de resposta não contém o NODE {{msg}}.",
-        4 => "O documento de resposta relata um erro {{msg}}.",
+        4 => "O documento de resposta relata um erro: {{msg}}.",
         5 => "Os documentos se referem a diferentes objetos. {{msg}}.",
         6 => "O argumento passado não é um XML válido.",
         7 => "Este xml não pertence ao projeto SPED-GNRE.",
-        8 => "A configuração (config.json) não é válida {{msg}}.",
+        8 => "A configuração (config.json) não é válida: {{msg}}.",
     ];
 
     /**

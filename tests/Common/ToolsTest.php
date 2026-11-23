@@ -86,4 +86,14 @@ class ToolsTest extends ToolsTestCase
         $tools->verificar();
         $this->assertInstanceOf(SoapCurl::class, $tools->soap);
     }
+
+    public function testMensagemDeConfigComSeparador(): void
+    {
+        try {
+            new Tools($this->config(['tpAmb' => 3]), $this->certificado());
+            $this->fail('DocumentsException esperada');
+        } catch (DocumentsException $e) {
+            $this->assertStringContainsString('válida: tpAmb', $e->getMessage());
+        }
+    }
 }

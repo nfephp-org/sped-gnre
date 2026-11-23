@@ -203,4 +203,42 @@ class MakeItemTest extends MakeTestCase
         $this->assertStringContainsString('JOÃO &amp; CIA', $this->c14n($xml));
         $this->valida($xml);
     }
+
+    public function testLimiteDeTamanhoComEntidade(): void
+    {
+        $make = new Make();
+        $make->tagGuia($this->std(['ufFavorecida' => 'SP']));
+        $make->tagEmitente($this->std(['CNPJ' => '06157250000116', 'razaoSocial' => str_repeat('A', 57) . '&Cia']));
+        $make->tagItem($this->std(['receita' => '100099']));
+        $make->tagCampoExtra($this->std(['codigo' => '1', 'valor' => str_repeat('B', 97) . '&xyz']));
+
+        $xml = $make->getXML();
+        $dom = new \DOMDocument();
+        $dom->loadXML($xml);
+        $razao = (string) $dom->getElementsByTagName('razaoSocial')->item(0)->textContent;
+        $valor = (string) $dom->getElementsByTagName('campoExtra')->item(0)->getElementsByTagName('valor')
+            ->item(0)->textContent;
+
+        $this->assertNotSame('', $razao);
+        $this->assertLessThanOrEqual(60, mb_strlen($razao));
+        $this->assertStringStartsWith(str_repeat('A', 57), $razao);
+        $this->assertNotSame('', $valor);
+        $this->assertLessThanOrEqual(100, mb_strlen($valor));
+        $this->valida($xml);
+    }
+
+    public function testValorRepetidoOuNegativo(): void
+    {
+        $make = new Make();
+        $make->tagGuia($this->std(['ufFavorecida' => 'SP']));
+        $make->tagItem($this->std(['receita' => '100099']));
+        $make->tagItemValor($this->std(['tipo' => '11', 'valor' => 10]));
+        $make->tagItemValor($this->std(['tipo' => '11', 'valor' => 5]));
+        $make->tagItemValor($this->std(['tipo' => '12', 'valor' => -1]));
+
+        $erros = implode("\n", $make->getErrors());
+
+        $this->assertStringContainsString('tipo 11 repetido', $erros);
+        $this->assertStringContainsString('negativo', $erros);
+    }
 }

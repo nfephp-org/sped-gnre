@@ -52,13 +52,16 @@ class FromNFe
     }
 
     /**
-     * Dados do emitente da NF-e no formato de Make::tagEmitente()
+     * Dados do emitente da NF-e no formato de Make::tagEmitente(). A IE informada é a IEST (inscrição do
+     * emitente na UF favorecida); a IE de origem (emit/IE) não é usada.
      */
     public function emitente(): stdClass
     {
         $emit = $this->grupo('emit');
         $ender = $this->grupo('enderEmit');
         $emitente = $this->identificacao($emit);
+        // a IE da GNRE é a inscrição na UF favorecida (IEST da NF-e); sem ela, só CNPJ/CPF (regra 203 do manual 2.17)
+        $emitente->IE = $this->valor($emit, 'IEST');
         $emitente->razaoSocial = $this->valor($emit, 'xNome');
         $endereco = trim($this->valor($ender, 'xLgr') . ', ' . $this->valor($ender, 'nro'), ', ');
         $bairro = $this->valor($ender, 'xBairro');
@@ -138,8 +141,9 @@ class FromNFe
     /**
      * Guia de diferencial de alíquota (vICMSUFDest, mais vFCPUFDest se houver)
      *
-     * @param stdClass $opcoes receita, dataVencimento (obrigatórios), dataPagamento,
-     *                         identificadorGuia, detalhamentoReceita, produto
+     * @param stdClass $opcoes receita, dataVencimento (obrigatórios), dataPagamento (padrão: o próprio
+     *                         vencimento; o Portal calcula juros/multa por ela), identificadorGuia,
+     *                         detalhamentoReceita, produto
      */
     public function guiaDifal(stdClass $opcoes): Make
     {
