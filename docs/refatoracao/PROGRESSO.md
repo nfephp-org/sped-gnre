@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
-- **Tarefa:** T7.1 do plano `planos/2026-11-22-fase-7-release.md` (Step 1: revisão independente)
+- **Tarefa:** T7.3 do plano `planos/2026-11-22-fase-7-release.md` (T7.1 e T7.2 concluídas; T7.4 parcial: `docs/MIGRACAO.md` pronto)
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T7.1: os 2 revisores foram **retomados** (o progresso deles estava salvo) e estão em execução; quando chegarem os relatórios, reavaliar e corrigir. A T7.2 (roteiro de homologação) já foi feita em paralelo.
+- **Próxima ação:** T7.3, remover o `legacy/`; depois T7.4 (README completo + ressalva do envelope no CHANGELOG/README, R-24), T7.5 (branch-alias `dev-master`, tag `v1.0.0-rc1`) e T7.6 (PRs, só com confirmação do usuário).
 
 ## Pendências abertas
 
@@ -95,6 +95,58 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
   - Nenhum teste cobre `LoteV2` (o layout 2.00 em uso hoje).
 - Não corrigido (D-08: o legado fica congelado).
 
+## Revisão independente (T7.1, 2026-11-23)
+
+Dois revisores independentes, só leitura e sem o histórico desta conversa, um para cada branch. Os dois deram **"pronto com correções"**. Os itens Critical e Important foram corrigidos num único passe, cada um com um teste que falhava antes (RED → GREEN).
+
+**sped-da `feature/gnre`** (correções em `0618ad3`, docs em `e98bc69`; suíte do sped-da 112 testes, só os 4 erros já existentes):
+
+| Achado | Correção | Teste |
+|---|---|---|
+| C1: TXT 1.00 lido por byte (acento → código de barras e linha digitável errados) | `mb_substr` | `ResultadoLoteTest::testTxtComAcentoNaoDeslocaCampos` |
+| I2: no PHP 7.4 os valores somem com locale pt_BR | `formatarNumero(float)` sem passar por string | `DadosGuiaTest::testValoresIndependemDoLocale` (pula se o locale não existir) |
+| I3: chave NF-e invade o rótulo | `fonteQueCabe()` na coluna de valores | `DagnreTest::testChaveNfeCabeNaCelula` |
+| I4: textos longos sobrepõem linhas | `distribuirLinhas()` (reduz a fonte 7→5 e encurta, mantendo a validade) | `DagnreTest::testTextosLongosNaoSobrepoem` |
+| I5: I25 raster 2:1 com 10 mm | I25 vetorial 3:1, 13 mm, via de 95 mm | `testI25VetorialTresParaUm`, `testI25RejeitaTamanhoImpar`, `testCodigoBarrasCom13mm` |
+| I6: tipo de documento do TXT invertido | 1 = CPF, 2 = CNPJ, 3 = IE (confirmado no ACBr `ACBrGNREGuiasRetorno.pas`) | `DadosGuiaTest::testDocumentoTxtCpfCnpjIe` |
+| M1 IE duplicada; M2 total sem `valorGNRE`; M3 logo larga; M7 mensagem com a situação; M4/M6/M8 docs | corrigidos | `testEmitenteSoComIeNaoDuplica`, `testTotalSemValorGnre`, `testLogoLargaTemLarguraLimitada`, `testMensagemComSituacaoDoLote` |
+
+**sped-gnre `refactor/v1`** (correções em `9d4e131` e `3be6fd8`; suíte 214 testes; CI verde nas 7 versões):
+
+| Achado | Correção | Teste |
+|---|---|---|
+| C-1: TXT 1.00 lido por byte | `mb_substr` no `RetornoTxtV1` | `RetornoTxtV1Test::testTxtComAcentoNaoDeslocaCampos` |
+| I-1: truncamento depois do escape (`&` no limite zera o campo) | `limitar()`: decodifica → corta → escapa | `MakeItemTest::testLimiteDeTamanhoComEntidade` |
+| I-2: IE do emitente no `FromNFe` | `IEST` (inscrição na UF favorecida; regra 203 do manual 2.17); sem IEST, sem IE | `FromNFeTest::testEmitente`, `testEmitenteSemIestNaoInformaIe` (RED confirmado com o código antigo) |
+| I-3: envelope D-15 sem homologação real | decisão R-24 abaixo | — |
+| M1/M2/M3 `Standardize` (sem documento, JSON com UTF-8 inválido, SOAP Fault com motivo) | corrigidos | `testToStdSemDocumento`, `testSoapFaultRepassaMotivo` |
+| M4 mensagens sem `: ` | corrigido | `ToolsTest::testMensagemDeConfigComSeparador` |
+| M6 tipo de valor repetido/negativo | erro no `Make` | `MakeItemTest::testValorRepetidoOuNegativo` |
+| M7 docblock da `dataPagamento` no `FromNFe` | corrigido | — |
+| M9 envelope serializado não testado | `SoapFake::envelope()` + teste (protege a D-15) | `ToolsEnviaLoteTest::testEnvelopeSerializado` |
+| M10 senha do certificado no config da `Tools` (exemplos) | `bootstrap.php` remove `certificado`/`senha` | — |
+| Achado próprio: limite de 600 KB do portal (código 103) | `Common\Tools::sendRequest` recusa antes do envio | `ToolsEnviaLoteTest::testLoteAcimaDe600KbNaoEnvia` |
+
+**Minor adiados:**
+- Final: minor (adiado): `sefazConsultaConfigUf` sem o elemento opcional `tiposGnre` do XSD 2.17 (sped-gnre M5).
+- Final: minor (adiado): `branch-alias` `dev-master` e README completo → já previstos na T7.5/T7.4 (sped-gnre M8/M11).
+- Final: minor (adiado): QR Code PIX com 18 mm em vez dos ~25 mm do plano da F6 (R-23).
+
+**Decisões sobre os itens que os revisores deixaram de fora ("Declined to judge"):** todos ficam como estão.
+- Só o 1º item na impressão e os tipos 21/22 fora do principal: regra do plano, agora documentada no `docs/Dagnre.md`.
+- `InvalidArgumentException` no sped-da: convenção do sped-da.
+- `pdfGuias` ignorado: fora do escopo; o README mostra a alternativa.
+- Comportamento do `equilizeParameters`/`clearXmlString`: padrão do sped-common.
+- XXE: libxml ≥ 2.9 com entrada da SEFAZ sobre TLS mútuo.
+- Formato objeto/array do `Standardize`: padrão do ecossistema.
+- Tipos 21/22, IE e TXT com acento em produção: entram no roteiro de homologação (P-05).
+- Proxy/timeout: igual ao sped-nfe.
+- `regras_uf.json`: sugestão documentada.
+- Limite de guias por lote: depende da UF (`qtdMaximas` do ConfigUF), sem trava no pacote.
+
+- **R-23** (T7.1): QR Code PIX com 18 mm, porque a via de 95 mm não comporta 25 mm sem sobrepor a linha digitável. Ainda é legível com o payload do PIX dinâmico. Custo se errado: aumentar e reorganizar a faixa inferior.
+- **R-24** (T7.1, I-3): sem certificado de homologação, a entrega desta fase é a **`v1.0.0-rc1`**, não a 1.0.0. CHANGELOG, README e o PR levam a ressalva explícita de que o envelope D-15 segue o WSDL e o ACBr mas ainda não foi validado em homologação real. A tag 1.0.0 só sai depois da P-05. Custo se errado: o usuário pode preferir não abrir o PR antes da homologação. A decisão volta para ele na T7.6.
+
 ## Diário de sessões
 
 | Data | Fase/Tarefa | O que foi feito | Commit |
@@ -144,6 +196,7 @@ Ambiente local: PHP 8.3.6, Composer 2.8.6 (Windows). O PHP 7.4 é coberto pelo C
 | 2026-11-22 | plano F7 | Usuário: homologação só com roteiro (sem certificado) e com revisão independente. 2 revisores (sped-gnre `189fee1..59a6ae1`, sped-da `6e4b3e7..e1d0aeb`) acionados; plano da F7 escrito | docs: plano da F7 |
 | 2026-11-22 | — | Sessão pausada pelo usuário durante a T7.1 (revisores em execução, relatórios não recebidos) | docs: ponto de retomada |
 | 2026-11-23 | T7.2 | Roteiro de homologação: `docs/HOMOLOGACAO.md` (pontos a–d da P-05, configuração, tabela de códigos 100–199/301–303/400–404/450–455 do manual 2.17, como ajustar `storage/wsgnre.json`, relatório sem dados sensíveis) + `examples/homologacao.php` (5 serviços, request/response por passo; modos 2.00, v1-200 e v1-100; sem `config.json` sai sem rede). Achado para a revisão: o portal limita a mensagem a **600 KB** (código 103) e a `Tools` não checa | docs: roteiro de homologação |
+| 2026-11-23 | T7.1 | Revisão independente dos 2 branches ("pronto com correções" nos dois). sped-da: C1, I2–I6 e Minor corrigidos (`0618ad3`, `e98bc69`), 40 testes GNRE. sped-gnre: C-1, I-1, I-2 e Minor corrigidos + limite de 600 KB (`9d4e131`, `3be6fd8`), 214 testes, CI verde nas 7 versões. I-3 → R-24 (RC + ressalva) | fix: revisão |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

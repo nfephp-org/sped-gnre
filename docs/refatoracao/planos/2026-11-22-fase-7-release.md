@@ -29,13 +29,13 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
 
 ### Task T7.1: Revisão independente e passe de correção
 
-- [ ] **Step 1:** dois revisores independentes, um para cada branch: sped-gnre `refactor/v1` (base `189fee1`) e sped-da `feature/gnre` (base `6e4b3e7`). Os dois são só leitura e recebem o ROADMAP, o PROGRESSO e os planos.
-- [ ] **Step 2:** reavaliar cada achado pelo efeito para o integrador.
+- [x] **Step 1:** dois revisores independentes, um para cada branch: sped-gnre `refactor/v1` (base `189fee1`) e sped-da `feature/gnre` (base `6e4b3e7`). Os dois são só leitura e recebem o ROADMAP, o PROGRESSO e os planos.
+- [x] **Step 2:** reavaliar cada achado pelo efeito para o integrador.
   - Critical e Important entram num **único** passe de correção, cada um com teste RED → GREEN e suíte completa verde.
   - Minor vai para o PROGRESSO como "Final: minor (adiado)".
   - Cada item da lista "Declined to judge" vira uma decisão registrada.
-- [ ] **Step 3:** registrar no PROGRESSO o veredito de cada revisor, os itens corrigidos (teste + commit) e os adiados.
-- [ ] **Step 4:** commits nos dois repositórios + push (sped-gnre: CI das 7 versões verde).
+- [x] **Step 3:** registrar no PROGRESSO o veredito de cada revisor, os itens corrigidos (teste + commit) e os adiados.
+- [x] **Step 4:** commits nos dois repositórios + push (sped-gnre: CI das 7 versões verde).
 
 ### Task T7.2: Roteiro de homologação (P-05)
 
