@@ -13,9 +13,9 @@ Para o Claude: "continue a refatoração do sped-gnre" → ler este arquivo, `RO
 ## Estado atual
 
 - **Fase:** F7 (revisão, roteiro de homologação, docs, limpeza e RC), em andamento
-- **Tarefa:** T7.6 do plano `planos/2026-11-22-fase-7-release.md` (T7.1 a T7.5 concluídas; tag `v1.0.0-rc1` no fork)
+- **Tarefa:** F7 concluída até o envio (T7.1 a T7.6). Aguardando a revisão dos mantenedores e a homologação real (P-05).
 - **Branch:** `refactor/v1` (criada a partir de `189fee1`, enviada ao origin)
-- **Próxima ação:** T7.6, **aguardando a confirmação do usuário**: (1) issue no nfephp-org/sped-gnre com o texto de `rascunho-issue-upstream.md`; (2) PR `betoeu/sped-gnre:refactor/v1` → `nfephp-org/sped-gnre:master`; (3) PR `betoeu/sped-da:feature/gnre` → `nfephp-org/sped-da:master`. Depois, a homologação real (P-05) e a tag 1.0.0 (R-24).
+- **Próxima ação:** acompanhar nfephp-org/sped-gnre#95 (issue), #96 (PR) e nfephp-org/sped-da#700 (PR) e responder aos pedidos de mudança (aplicar em `refactor/v1`/`feature/gnre` **e** levar ao `master` do fork). Executar `docs/HOMOLOGACAO.md` quando houver certificado; depois, a tag 1.0.0 (R-24).
 
 ## Pendências abertas
 
@@ -200,6 +200,7 @@ Dois revisores independentes, só leitura e sem o histórico desta conversa, um 
 | 2026-11-23 | T7.3 | `legacy/` removido (D-08); `.gitignore`/`.gitattributes` sem as regras dele; `tests/fixtures/legacy/README.md` explica a origem dos golden (gerador no commit `a71cdc0`); suíte 214 ✔ | chore!: remove legacy |
 | 2026-11-23 | T7.4 | README completo (uso de cada classe, formatos, dicas, links para MIGRACAO/HOMOLOGACAO, badge do nfephp-org, ressalva de RC); CHANGELOG `[1.0.0-rc1] - 2026-11-23` com a ressalva da homologação (R-24) e as correções da revisão; `branch-alias` `dev-master` (T7.5 Step 1 adiantado) | docs: README + CHANGELOG |
 | 2026-11-23 | T7.5 | issue #1 do fork com o texto final (rascunho versionado atualizado); CI verde nas 7 versões (`80c8395`); tag anotada `v1.0.0-rc1` no fork. `composer.lock` fica fora do git (padrão do ecossistema) | chore: RC |
+| 2026-11-23 | T7.6 | Com a confirmação do usuário: o `master` dos forks recebe o fast-forward das branches (sped-gnre `e2d840d`, sped-da `e98bc69`) para uso enquanto o oficial não atualiza; issue nfephp-org/sped-gnre#95; PRs nfephp-org/sped-gnre#96 e nfephp-org/sped-da#700 | — |
 
 ## Divergências legado × 1.0 (preencher a partir da F3)
 

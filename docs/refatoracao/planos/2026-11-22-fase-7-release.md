@@ -104,7 +104,7 @@ Os PRs e a issue no upstream (D-13, D-18) são o último passo e **só acontecem
 
 ### Task T7.6: PRs e issue no nfephp-org (só com confirmação explícita do usuário)
 
-- [ ] **Step 1 (usuário confirma):** issue no `nfephp-org/sped-gnre` com o texto da issue #1.
-- [ ] **Step 2 (usuário confirma):** PR `betoeu/sped-gnre:refactor/v1` → `nfephp-org/sped-gnre:master`, com o resumo, o link para o ROADMAP/MIGRACAO e o estado da homologação (P-05 pendente).
-- [ ] **Step 3 (usuário confirma):** PR `betoeu/sped-da:feature/gnre` → `nfephp-org/sped-da:master`, citando o PR do sped-gnre e o achado do `debugMode` + tc-lib-barcode 1.x.
-- [ ] **Step 4:** registrar os links no PROGRESSO.
+- [x] **Step 1 (usuário confirma):** issue no `nfephp-org/sped-gnre` com o texto da issue #1.
+- [x] **Step 2 (usuário confirma):** PR `betoeu/sped-gnre:refactor/v1` → `nfephp-org/sped-gnre:master`, com o resumo, o link para o ROADMAP/MIGRACAO e o estado da homologação (P-05 pendente).
+- [x] **Step 3 (usuário confirma):** PR `betoeu/sped-da:feature/gnre` → `nfephp-org/sped-da:master`, citando o PR do sped-gnre e o achado do `debugMode` + tc-lib-barcode 1.x.
+- [x] **Step 4:** registrar os links no PROGRESSO.
